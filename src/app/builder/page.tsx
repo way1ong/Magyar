@@ -37,7 +37,8 @@ function note(t: BuilderTask): string | null {
     if (t.stem.forms?.low) return "«Знижена» основа: сполучна голосна a/e, а не o/ö.";
     return null;
   }
-  const av = t.pattern.afterVowel ?? (t.pattern.linking ? "n" : undefined);
+  const avRaw = t.pattern.afterVowel ?? (t.pattern.linking ? "n" : undefined);
+  const av = typeof avRaw === "object" ? avRaw[t.stem.harmony] : avRaw;
   if (av && endsWithVowel(stem)) return `Після голосної — лише -${av}.`;
   const c = t.pattern.assimilates ? finalConsonant(stem) : null;
   if (c) {

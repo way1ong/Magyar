@@ -83,7 +83,7 @@ export interface Pattern {
   /** Linking vowel rule for stems ending in a consonant (e.g. -on/-en/-ön): after a vowel just "-n". */
   linking?: boolean;
   /** The form used after a vowel-final stem, when it differs (-nként: óra → óránként). `linking` = "n". */
-  afterVowel?: string;
+  afterVowel?: string | Record<Harmony, string>;
   /**
    * -val/-vel: after a consonant the v assimilates to it (busz+val → busszal,
    * vonat+val → vonattal; a digraph doubles its first letter: hegy → heggyel).
