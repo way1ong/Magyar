@@ -6,6 +6,8 @@ const tabs = [
   { href: "/", icon: "☀️", label: "Сьогодні" },
   { href: "/review", icon: "🃏", label: "Картки" },
   { href: "/harmony", icon: "🎵", label: "Гармонія" },
+  { href: "/builder", icon: "🧩", label: "Конструктор" },
+  { href: "/dictation", icon: "✍️", label: "Диктант" },
   { href: "/settings", icon: "⚙️", label: "Ще" },
 ];
 

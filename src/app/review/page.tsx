@@ -4,7 +4,10 @@ import Link from "next/link";
 import { itemById } from "@/lib/content";
 import { answer, dueCards, previewIntervals, Rating, type Grade } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
-import { speak } from "@/lib/tts";
+import { seedCards } from "@/lib/seed";
+import { speakItem } from "@/lib/tts";
+import { VoiceHint } from "@/components/VoiceHint";
+import { hasRecording } from "@/lib/tts";
 
 /** One session: due "recognize" (HU→UA) and "recall" (UA→HU) cards, shuffled together. */
 export default function ReviewPage() {
@@ -15,6 +18,7 @@ export default function ReviewPage() {
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
+    await seedCards();
     const [a, b] = await Promise.all([dueCards("recognize", 15, 6), dueCards("recall", 15, 6)]);
     const all = [...a, ...b].sort(() => Math.random() - 0.5);
     setQueue(all);
@@ -93,10 +97,11 @@ export default function ReviewPage() {
       </button>
 
       <div className="row" style={{ marginBottom: 10 }}>
-        <button className="btn ghost" onClick={() => speak(item.hu)}>
+        <button className="btn ghost" onClick={() => speakItem(item.id, item.hu)}>
           🔊 Вимова
         </button>
       </div>
+      <VoiceHint hasRecording={hasRecording(item.id)} />
 
       {flipped ? (
         <div className="grade">

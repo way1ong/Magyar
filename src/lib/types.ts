@@ -16,6 +16,13 @@ export type PartOfSpeech =
   | "phrase"
   | "other";
 
+/**
+ * Semantic role of a noun, derived from its tags (see roleOf in content.ts):
+ * person ("person" tag), place ("place"), time (day/month/season/daytime/time),
+ * food ("food"/"drink"), else thing. Decides which suffixes make sense in the Harmony game.
+ */
+export type Role = "person" | "place" | "thing" | "time" | "food";
+
 export interface Item {
   /** Stable id, e.g. "a1-01-haz". Never reuse an id for another word. */
   id: string;
@@ -40,7 +47,41 @@ export interface Pattern {
   forms: Record<Harmony, string>;
   /** Linking vowel rule for stems ending in a consonant (e.g. -on/-en/-ön). */
   linking?: boolean;
+  /**
+   * -val/-vel: after a consonant the v assimilates to it (busz+val → busszal,
+   * vonat+val → vonattal; a digraph doubles its first letter: hegy → heggyel).
+   */
+  assimilates?: boolean;
+  /** Final a/e do NOT lengthen before this suffix (óra+kor → órakor). */
+  noLengthen?: boolean;
+  /**
+   * Parts of speech this suffix attaches to. Default: ["noun", "adj"].
+   * E.g. -szor/-szer/-ször (times) only goes on numerals.
+   */
+  attachesTo?: PartOfSpeech[];
+  /** Only stems carrying this tag take the suffix (-ul/-ül → "language" adjectives). */
+  attachesTag?: string;
+  /**
+   * Noun roles this suffix makes sense with (default: all). -ban on a person
+   * ("apában") or -nak on a table are grammatical but nonsense — the Harmony
+   * game only draws suffixes whose roles include the stem's role.
+   */
+  roles?: Role[];
+  /**
+   * Worked examples. Each one whose `stem` is an item with a known harmony
+   * class also becomes a Builder task (card `builder:<itemId>+<patternId>`),
+   * so `ua` must be a natural Ukrainian gloss of `result`, and `result`
+   * must equal apply(stem) — `npm run content:check` verifies that.
+   */
   examples: { stem: string; result: string; ua: string }[];
+}
+
+/** An extra worked example for a pattern defined in any pack (e.g. a1-01's -on/-en/-ön). */
+export interface PackExample {
+  pattern: string; // pattern id
+  stem: string;
+  result: string;
+  ua: string;
 }
 
 export interface ContentPack {
@@ -49,4 +90,9 @@ export interface ContentPack {
   title: string;
   items: Item[];
   patterns: Pattern[];
+  /**
+   * Builder tasks for this pack's words with suffixes from any pack
+   * ("hétfőn" — у понеділок). Same rules as Pattern.examples.
+   */
+  examples?: PackExample[];
 }

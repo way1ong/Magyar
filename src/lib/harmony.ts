@@ -17,12 +17,13 @@ export function guessHarmony(stem: string): Harmony {
     if (FRONT_ROUNDED.has(c)) return "front_rounded";
     if (BACK.has(c)) return "back";
     if (FRONT.has(c)) {
-      // i/í/é are often neutral: a back vowel earlier wins.
+      // i/í/é are neutral for back/front: an earlier back vowel wins (papír).
+      // Rounding (e vs ö) follows the LAST vowel, so an earlier ö/ü still
+      // gives "front": kereszteződés → kereszteződéshez, töri → törihez.
       if (c === "i" || c === "í" || c === "é") {
         for (let j = i - 1; j >= 0; j--) {
           if (BACK.has(chars[j])) return "back";
-          if (FRONT_ROUNDED.has(chars[j])) return "front_rounded";
-          if (chars[j] === "e") return "front";
+          if (FRONT_ROUNDED.has(chars[j]) || chars[j] === "e") return "front";
         }
       }
       return "front";
@@ -45,13 +46,40 @@ export function lengthenFinal(stem: string): string {
   return stem;
 }
 
+const DIGRAPHS = ["dzs", "cs", "dz", "gy", "ly", "ny", "sz", "ty", "zs"];
+
+/** The stem's final consonant, digraph-aware ("busz" → "sz"); null after a vowel. */
+export function finalConsonant(stem: string): string | null {
+  if (endsWithVowel(stem)) return null;
+  const s = stem.toLowerCase();
+  return DIGRAPHS.find((d) => s.endsWith(d)) ?? s.slice(-1);
+}
+
 /**
- * Apply a pattern to a stem. Handles final-vowel lengthening and the
- * "-n after a vowel" rule for linking-vowel suffixes (autó+n, alma→almán).
+ * The suffix as it attaches to this stem: the harmony variant, "n" for a
+ * linking suffix after a vowel, or the assimilated form of -val/-vel after a
+ * consonant (busz → "szal", vonat → "tal").
+ */
+export function suffixFor(stem: string, p: Pattern, h: Harmony): string {
+  if (p.linking && endsWithVowel(stem)) return "n";
+  const form = p.forms[h];
+  const c = p.assimilates ? finalConsonant(stem) : null;
+  return c ? c + form.slice(1) : form;
+}
+
+/**
+ * Apply a pattern to a stem. Handles final-vowel lengthening, the
+ * "-n after a vowel" rule for linking-vowel suffixes (autó+n, alma→almán)
+ * and -val/-vel assimilation (busz+val → busszal; gy+gy is written ggy).
  * Does NOT model consonant-stem changes (ház→házat, kéz→kezet).
  */
 export function apply(stem: string, p: Pattern, h: Harmony): string {
-  const base = lengthenFinal(stem);
-  if (p.linking && endsWithVowel(stem)) return base + "n";
-  return base + p.forms[h];
+  const base = p.noLengthen ? stem : lengthenFinal(stem);
+  const suffix = suffixFor(stem, p, h);
+  const c = p.assimilates ? finalConsonant(stem) : null;
+  // Doubled digraph is spelled with its first letter doubled: hegy+gyel → heggyel.
+  if (c && c.length > 1) return base.slice(0, -c.length) + c[0] + c + suffix.slice(c.length);
+  // Three identical consonants simplify to two: toll+val → tollal, jobb+val → jobbal.
+  if (c && base.endsWith(c + c)) return base + suffix.slice(1);
+  return base + suffix;
 }

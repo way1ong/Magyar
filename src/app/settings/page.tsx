@@ -7,6 +7,9 @@ import { allItems, allPatterns } from "@/lib/content";
 export default function SettingsPage() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [msg, setMsg] = useState("");
+  const [confirming, setConfirming] = useState(false);
+  // The single-file preview (Claude artifact) can't download files.
+  const isPreview = process.env.NEXT_PUBLIC_MAGYAR_PREVIEW === "1";
   const counts = useLiveQuery(async () => ({
     cards: await db.cards.count(),
     reviews: await db.reviews.count(),
@@ -33,10 +36,10 @@ export default function SettingsPage() {
     }
   };
 
+  // Two-step confirmation in the page itself (confirm() is blocked in some webviews).
   const reset = async () => {
-    if (!confirm("Стерти весь прогрес на цьому телефоні?")) return;
     await db.delete();
-    location.href = "/";
+    location.reload();
   };
 
   return (
@@ -53,6 +56,11 @@ export default function SettingsPage() {
       <h2 style={{ fontSize: 18 }}>Резервна копія</h2>
       <p className="muted">Прогрес живе лише на цьому телефоні. Раз на тиждень — експорт у файл.</p>
       <button className="btn" onClick={doExport} style={{ marginBottom: 10 }}>⬇️ Експорт прогресу (JSON)</button>
+      {isPreview && (
+        <p className="muted" style={{ fontSize: 14, marginTop: 0 }}>
+          У тестовій збірці файл не завантажиться — експорт перевіряй у застосунку на телефоні.
+        </p>
+      )}
       <button className="btn" onClick={() => fileRef.current?.click()} style={{ marginBottom: 10 }}>⬆️ Імпорт прогресу</button>
       <input
         ref={fileRef}
@@ -64,9 +72,21 @@ export default function SettingsPage() {
       {msg && <p>{msg}</p>}
 
       <h2 style={{ fontSize: 18, marginTop: 32 }}>Небезпечна зона</h2>
-      <button className="btn ghost" onClick={reset} style={{ borderColor: "var(--bad)", color: "var(--bad)" }}>
-        Стерти прогрес
-      </button>
+      {confirming ? (
+        <div className="card">
+          <p style={{ marginTop: 0 }}>Стерти всі картки й журнал повторень на цьому пристрої? Це не можна скасувати.</p>
+          <div className="row">
+            <button className="btn" onClick={() => setConfirming(false)}>Ні, залишити</button>
+            <button className="btn" onClick={reset} style={{ background: "var(--bad)", borderColor: "var(--bad)", color: "#fff" }}>
+              Так, стерти
+            </button>
+          </div>
+        </div>
+      ) : (
+        <button className="btn ghost" onClick={() => setConfirming(true)} style={{ borderColor: "var(--bad)", color: "var(--bad)" }}>
+          Стерти прогрес
+        </button>
+      )}
     </>
   );
 }

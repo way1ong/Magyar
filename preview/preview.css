@@ -1,0 +1,14 @@
+/* Follow the artifact viewer's explicit theme choice (data-theme on <html>),
+   in addition to the OS preference that globals.css already handles. */
+:root[data-theme="light"] {
+  --bg: #f6f3ee; --card: #ffffff; --ink: #1d1b19; --muted: #6e6a64; --line: #e2ddd5;
+  --accent: #b5452c; --accent-ink: #ffffff; color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #15130f; --card: #1f1c17; --ink: #f1ece4; --muted: #a39d93; --line: #2f2b25;
+  --accent: #e0674b; --accent-ink: #15130f; color-scheme: dark;
+}
+.preview-banner {
+  font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 10px;
+  padding: 8px 12px; margin-bottom: 12px;
+}

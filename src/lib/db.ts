@@ -8,7 +8,7 @@ import type { Card } from "ts-fsrs";
 
 /** FSRS card state for one item, plus which exercise it belongs to. */
 export interface CardRow {
-  /** `${exercise}:${itemId}` — e.g. "recall:a1-01-haz", "harmony:suf-inessive" */
+  /** `${exercise}:${itemId}` — e.g. "recall:a1-01-haz", "builder:a1-01-haz+suf-inessive" */
   key: string;
   exercise: Exercise;
   itemId: string;
@@ -24,7 +24,13 @@ export interface CardRow {
   last_review?: number;
 }
 
-export type Exercise = "recognize" | "recall" | "harmony";
+/**
+ * recognize/recall: itemId = content item id.
+ * harmony: itemId = stem item id (a random pattern is drawn each time).
+ * builder: itemId = `${stemItemId}+${patternId}` (see lib/builder.ts).
+ * dictation: itemId = content item id (hear it, type it; lib/dictation.ts).
+ */
+export type Exercise = "recognize" | "recall" | "harmony" | "builder" | "dictation";
 
 /** Full review log — keep every event, FSRS can be re-optimised from it. */
 export interface ReviewRow {
