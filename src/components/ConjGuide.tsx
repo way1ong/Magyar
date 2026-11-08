@@ -26,6 +26,15 @@ const IMP_ENDINGS = [
   ["ők", "-janak / -jenek", "-ják / -jék"],
 ];
 const IMPERATIVE = "Наказовий спосіб (felszólító mód): до основи додається -j, а до нього — закінчення з таблиці. -j зливається з кінцевим приголосним: після s, sz, z він подвоює їх (olvas → olvass, néz → nézz, főz → főzz, játsz → játssz); після t за короткою голосною t + j → ss (fizet → fizess, nyit → nyiss, szeret → szeress); після t за довгою голосною чи приголосною → ts (tanít → taníts, ért → érts, tart → tarts); після st, szt t випадає, а s/sz подвоюється (fest → fess, választ → válassz). Інакше -j лишається: vár → várj, mond → mondj, ül → ülj, lő → lőj. Коротка означена форма 2-ї особи — основа без -j плюс -d: várd, mondd, add, nézd, olvasd, fizesd, tanítsd. Відокремлюваний префікс у наказі йде після дієслова: Menj el! Nézd meg! Vedd be! (але в підрядному лишається: azt akarom, hogy elmenj). Неправильні: egyél / edd, igyál / idd, vegyél / vedd, vigyél / vidd, tegyél / tedd, higgyél / hidd, menj, gyere (ti: gyertek), légy / legyél; lát → láss, lásd.";
+const COND_ENDINGS = [
+  ["én", "-nék", "-nám / -ném"],
+  ["te", "-nál / -nél", "-nád / -néd"],
+  ["ő", "-na / -ne", "-ná / -né"],
+  ["mi", "-nánk / -nénk", "-nánk / -nénk"],
+  ["ti", "-nátok / -nétek", "-nátok / -nétek"],
+  ["ők", "-nának / -nének", "-nák / -nék"],
+];
+const CONDITIONAL = "Умовний спосіб (feltételes mód, «би»): до основи додається -n- і закінчення з таблиці: várnék (я б чекав), várnál, várna, várnánk, várnátok, várnának; означена: várnám, várnád, várná, várnánk, várnátok, várnák. 1-ша особа однини неозначеної відміни завжди -nék, навіть у задніх основ: várnék, olvasnék. Сполучна голосна -a-/-e- стоїть там само, де в -asz/-anak: після двох приголосних та після -ít чи приголосної + t — mondanék, értenék, tanítanék, hallanék; після s/sz/z і короткої голосної + t її нема — olvasnék, fizetnék, szeretnék. Неправильні: ennék / enném, innék / innám, vennék / venném, vinnék, tennék, hinnék, mennék, jönnék, lennék. Найчастіше вживана форма — szeretnék (я б хотів): Szeretnék egy kávét. Szeretném megnézni. Минулий умовний — минулий час + незмінне volna: olvastam volna (я б прочитав), elmentünk volna.";
 const POTENTIAL = "Можливість -hat/-het («може, можна»): до основи додається -hat (задні) / -het (передні), далі звичайні закінчення теперішнього часу: parkolhatok, parkolhatsz, parkolhat; означена: megnézhetem, megnézheted. Неправильні: ehet, ihat, vehet, vihet, tehet, hihet, mehet, jöhet, lehet, alhat. Minden lehet. Itt parkolhatok?";
 const FUTURE = "Майбутній: fog + інфінітив — fogok, fogsz, fog, fogunk, fogtok, fognak (означена: fogom, fogod, fogja, fogjuk, fogjátok, fogják) + dolgozni; відокремлюваний префікс іде наперед: el fogok menni, meg fogom nézni. lenni: leszek, leszel, lesz, leszünk, lesztek, lesznek.";
 
@@ -53,7 +62,7 @@ function verb(hu: string, ua = ""): Item {
 }
 
 function Paradigm({ item, note }: { item: Item; note?: string }) {
-  const cols: [Tense, boolean, string][] = [["pres", false, "теперішній"], ["pres", true, "теп. означена"], ["past", false, "минулий"], ["past", true, "мин. означена"], ["fut", false, "майбутній"], ["pot", false, "може (-hat/-het)"], ["imp", false, "наказовий"], ["imp", true, "наказ. означена"]];
+  const cols: [Tense, boolean, string][] = [["pres", false, "теперішній"], ["pres", true, "теп. означена"], ["past", false, "минулий"], ["past", true, "мин. означена"], ["fut", false, "майбутній"], ["pot", false, "може (-hat/-het)"], ["imp", false, "наказовий"], ["imp", true, "наказ. означена"], ["cond", false, "умовний"], ["cond", true, "умов. означена"]];
   const has = cols.filter(([t, d]) => conjugate(item, { tense: t, def: d, person: "1sg" }));
   return (
     <div className="guide-table-wrap">
@@ -80,8 +89,8 @@ function Paradigm({ item, note }: { item: Item; note?: string }) {
 /** Plain text of everything the tables show — for the guide's search box. */
 export function conjGuideText(): string {
   const items = [...MODELS.map(([hu]) => verb(hu)), ...IRREGULAR_HU.map(([hu, ua]) => verb(hu, ua))];
-  const forms = items.flatMap((it) => ["pres", "past", "fut", "pot", "imp"].flatMap((t) => [false, true].flatMap((d) => PERSONS.map((p) => conjugate(it, { tense: t as Tense, def: d, person: p })))));
-  return [...ENDINGS.flat(), FUTURE, POTENTIAL, IMPERATIVE, ...IMP_ENDINGS.flat(), ...MODELS.flat(), ...IRREGULAR_HU.flat(), ...forms].join(" ");
+  const forms = items.flatMap((it) => ["pres", "past", "fut", "pot", "imp", "cond"].flatMap((t) => [false, true].flatMap((d) => PERSONS.map((p) => conjugate(it, { tense: t as Tense, def: d, person: p })))));
+  return [...ENDINGS.flat(), FUTURE, POTENTIAL, IMPERATIVE, CONDITIONAL, ...IMP_ENDINGS.flat(), ...COND_ENDINGS.flat(), ...MODELS.flat(), ...IRREGULAR_HU.flat(), ...forms].join(" ");
 }
 
 export function ConjTables() {
@@ -116,6 +125,20 @@ export function ConjTables() {
         </table>
       </div>
       <p style={{ fontSize: 15 }}>{IMPERATIVE}</p>
+      <h3 className="guide-h3">Умовний спосіб</h3>
+      <div className="guide-table-wrap">
+        <table className="guide-table">
+          <thead>
+            <tr><th>особа</th><th>неозначена</th><th>означена</th></tr>
+          </thead>
+          <tbody>
+            {COND_ENDINGS.map((r) => (
+              <tr key={r[0]}>{r.map((c, i) => <td key={i} lang={i ? "hu" : undefined}>{c}</td>)}</tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p style={{ fontSize: 15 }}>{CONDITIONAL}</p>
       <h3 className="guide-h3">Зразки за типом основи</h3>
       {MODELS.map(([hu, note]) => <Paradigm key={hu} item={verb(hu)} note={note} />)}
       <h3 className="guide-h3">Неправильні дієслова</h3>
