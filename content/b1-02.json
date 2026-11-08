@@ -12,8 +12,6 @@
     {"id": "b1-02-tudna-segiteni", "type": "phrase", "hu": "Tudna segíteni?", "ua": "Ви могли б допомогти?", "pos": "phrase", "tags": ["request"]},
     {"id": "b1-02-megkerhetem-hogy-varjon", "type": "phrase", "hu": "Megkérhetem, hogy várjon?", "ua": "Можу попросити вас зачекати?", "pos": "phrase", "tags": ["request"]},
     {"id": "b1-02-kerem-ismetelje-meg", "type": "phrase", "hu": "Kérem, ismételje meg!", "ua": "Повторіть, будь ласка!", "pos": "phrase", "tags": ["request"]},
-    {"id": "b1-02-lassabban-kerem", "type": "phrase", "hu": "Lassabban, kérem!", "ua": "Повільніше, будь ласка!", "pos": "phrase", "tags": ["request"]},
-    {"id": "b1-02-nem-ertem", "type": "phrase", "hu": "Nem értem.", "ua": "Я не розумію.", "pos": "phrase", "tags": ["understanding"]},
     {"id": "b1-02-megertettem", "type": "phrase", "hu": "Megértettem.", "ua": "Я зрозумів / зрозуміла.", "pos": "phrase", "tags": ["understanding"]},
     {"id": "b1-02-termeszetesen-segitek", "type": "phrase", "hu": "Természetesen, segítek.", "ua": "Звісно, допоможу.", "pos": "phrase", "tags": ["opinion"]},
     {"id": "b1-02-elnezest-a-kesesert", "type": "phrase", "hu": "Elnézést a késésért.", "ua": "Вибачте за запізнення.", "pos": "phrase", "tags": ["apology"]},
@@ -27,7 +25,6 @@
     {"id": "b1-02-azonnal-intezkedem", "type": "phrase", "hu": "Azonnal intézkedem.", "ua": "Негайно вживу заходів.", "pos": "phrase", "tags": ["work"]},
     {"id": "b1-02-jo-otlet", "type": "phrase", "hu": "Jó ötlet!", "ua": "Гарна ідея!", "pos": "phrase", "tags": ["opinion"]},
     {"id": "b1-02-ez-nem-fog-menni", "type": "phrase", "hu": "Ez nem fog menni.", "ua": "Так не вийде.", "pos": "phrase", "tags": ["opinion"]},
-    {"id": "b1-02-van-egy-kerdesem", "type": "phrase", "hu": "Van egy kérdésem.", "ua": "У мене є запитання.", "pos": "phrase", "tags": ["meeting"]},
     {"id": "b1-02-mit-javasolsz", "type": "phrase", "hu": "Mit javasolsz?", "ua": "Що ти пропонуєш?", "pos": "phrase", "tags": ["meeting"]},
     {"id": "b1-02-rendben-megbeszeltuk", "type": "phrase", "hu": "Rendben, megbeszéltük.", "ua": "Гаразд, домовилися.", "pos": "phrase", "tags": ["meeting"]},
 

@@ -26,7 +26,6 @@
     {"id": "b1-03-hol-a-legkozelebbi-kormanyablak", "type": "phrase", "hu": "Hol a legközelebbi kormányablak?", "ua": "Де найближче «урядове вікно»?", "pos": "phrase", "tags": ["office"]},
     {"id": "b1-03-van-idopontom-tizre", "type": "phrase", "hu": "Van időpontom tízre.", "ua": "У мене запис на десяту.", "pos": "phrase", "tags": ["office"]},
     {"id": "b1-03-tolmacsot-hoztam", "type": "phrase", "hu": "Tolmácsot hoztam.", "ua": "Я привів перекладача.", "pos": "phrase", "tags": ["office"]},
-    {"id": "b1-03-nem-beszelek-jol-magyarul", "type": "phrase", "hu": "Nem beszélek jól magyarul.", "ua": "Я не дуже добре говорю угорською.", "pos": "phrase", "tags": ["office"]},
     {"id": "b1-03-koszonom-viszontlatasra", "type": "phrase", "hu": "Köszönöm, viszontlátásra!", "ua": "Дякую, до побачення!", "pos": "phrase", "tags": ["office"]},
 
     {"id": "b1-03-kormanyablak", "type": "word", "hu": "kormányablak", "ua": "«урядове вікно» (центр адмінпослуг)", "pos": "noun", "harmony": "back", "tags": ["place", "compound"]},

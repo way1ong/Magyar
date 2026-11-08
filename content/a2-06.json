@@ -143,8 +143,6 @@
     {"id": "a2-06-odakint", "type": "word", "hu": "odakint", "ua": "надворі", "pos": "adv", "example": {"hu": "Odakint hideg van.", "ua": "Надворі холодно."}},
     {"id": "a2-06-ejjel", "type": "word", "hu": "éjjel", "ua": "уночі", "pos": "adv", "tags": ["time"]},
     {"id": "a2-06-napkozben", "type": "word", "hu": "napközben", "ua": "удень, протягом дня", "pos": "adv", "tags": ["time"]},
-    {"id": "a2-06-holnaputan", "type": "word", "hu": "holnapután", "ua": "післязавтра", "pos": "adv", "tags": ["time"]},
-    {"id": "a2-06-tegnapelott", "type": "word", "hu": "tegnapelőtt", "ua": "позавчора", "pos": "adv", "tags": ["time"]},
     {"id": "a2-06-mindenhol", "type": "word", "hu": "mindenhol", "ua": "скрізь", "pos": "adv"},
     {"id": "a2-06-minusz", "type": "word", "hu": "mínusz", "ua": "мінус", "pos": "other", "example": {"hu": "Mínusz tíz fok.", "ua": "Мінус десять градусів."}},
     {"id": "a2-06-plusz", "type": "word", "hu": "plusz", "ua": "плюс", "pos": "other"}

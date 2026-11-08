@@ -29,7 +29,6 @@
     {"id": "b1-04-meg-nem-dontottem", "type": "phrase", "hu": "Még nem döntöttem.", "ua": "Я ще не вирішив.", "pos": "phrase", "tags": ["future"]},
     {"id": "b1-04-mar-nem-dolgozom-ott", "type": "phrase", "hu": "Már nem dolgozom ott.", "ua": "Я вже там не працюю.", "pos": "phrase", "tags": ["past"]},
     {"id": "b1-04-majd-meglatjuk", "type": "phrase", "hu": "Majd meglátjuk.", "ua": "Побачимо.", "pos": "phrase", "tags": ["future"]},
-    {"id": "b1-04-boldog-szuletesnapot", "type": "phrase", "hu": "Boldog születésnapot!", "ua": "З днем народження!", "pos": "phrase", "tags": ["holiday"]},
     {"id": "b1-04-kellemes-unnepeket", "type": "phrase", "hu": "Kellemes ünnepeket!", "ua": "Гарних свят!", "pos": "phrase", "tags": ["holiday"]},
     {"id": "b1-04-boldog-uj-evet", "type": "phrase", "hu": "Boldog új évet!", "ua": "З Новим роком!", "pos": "phrase", "tags": ["holiday"]},
 

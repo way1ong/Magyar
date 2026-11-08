@@ -3,7 +3,6 @@
   "level": "A2",
   "title": "Подорожі",
   "items": [
-    {"id": "a2-08-jo-utat", "type": "phrase", "hu": "Jó utat!", "ua": "Щасливої дороги!", "pos": "phrase", "tags": ["travel"]},
     {"id": "a2-08-hova-utazol", "type": "phrase", "hu": "Hová utazol?", "ua": "Куди ти їдеш?", "pos": "phrase", "tags": ["travel"]},
     {"id": "a2-08-kulfoldre-megyek", "type": "phrase", "hu": "Külföldre megyek.", "ua": "Я їду за кордон.", "pos": "phrase", "tags": ["travel"]},
     {"id": "a2-08-nyaralni-megyunk", "type": "phrase", "hu": "Nyaralni megyünk.", "ua": "Ми їдемо у відпустку.", "pos": "phrase", "tags": ["travel"]},
@@ -12,8 +11,6 @@
     {"id": "a2-08-mennyibe-kerul-egy-ejszaka", "type": "phrase", "hu": "Mennyibe kerül egy éjszaka?", "ua": "Скільки коштує одна ніч?", "pos": "phrase", "tags": ["hotel"]},
     {"id": "a2-08-reggelivel-egyutt", "type": "phrase", "hu": "Reggelivel együtt?", "ua": "Разом зі сніданком?", "pos": "phrase", "tags": ["hotel"]},
     {"id": "a2-08-hanykor-van-a-bejelentkezes", "type": "phrase", "hu": "Hánykor van a bejelentkezés?", "ua": "О котрій заселення?", "pos": "phrase", "tags": ["hotel"]},
-    {"id": "a2-08-mikor-indul-a-vonat", "type": "phrase", "hu": "Mikor indul a vonat?", "ua": "Коли відходить потяг?", "pos": "phrase", "tags": ["train"]},
-    {"id": "a2-08-melyik-vaganyrol-indul", "type": "phrase", "hu": "Melyik vágányról indul?", "ua": "З якої колії відходить?", "pos": "phrase", "tags": ["train"]},
     {"id": "a2-08-kesik-a-vonat", "type": "phrase", "hu": "Késik a vonat.", "ua": "Потяг запізнюється.", "pos": "phrase", "tags": ["train"]},
     {"id": "a2-08-lekestem-a-buszt", "type": "phrase", "hu": "Lekéstem a buszt.", "ua": "Я спізнився на автобус.", "pos": "phrase", "tags": ["train"]},
     {"id": "a2-08-egy-returjegyet-kerek-becsbe", "type": "phrase", "hu": "Egy retúrjegyet kérek Bécsbe.", "ua": "Прошу один квиток до Відня й назад.", "pos": "phrase", "tags": ["train"]},

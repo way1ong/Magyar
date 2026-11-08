@@ -3,7 +3,6 @@
   "level": "B1",
   "title": "Робота: інструктажі, перевірки, звіти",
   "items": [
-    {"id": "b1-01-kerem-a-jegyzokonyvet", "type": "phrase", "hu": "Kérem a jegyzőkönyvet.", "ua": "Прошу протокол.", "pos": "phrase", "tags": ["docs"]},
     {"id": "b1-01-mikor-lesz-az-ellenorzes", "type": "phrase", "hu": "Mikor lesz az ellenőrzés?", "ua": "Коли буде перевірка?", "pos": "phrase", "tags": ["inspection"]},
     {"id": "b1-01-holnap-jon-a-hatosag", "type": "phrase", "hu": "Holnap jön a hatóság.", "ua": "Завтра приходить інспекція (орган влади).", "pos": "phrase", "tags": ["inspection"]},
     {"id": "b1-01-toltse-ki-az-urlapot", "type": "phrase", "hu": "Töltse ki az űrlapot!", "ua": "Заповніть форму!", "pos": "phrase", "tags": ["docs"]},
@@ -18,7 +17,6 @@
     {"id": "b1-01-szerintem-ez-nem-biztonsagos", "type": "phrase", "hu": "Szerintem ez nem biztonságos.", "ua": "На мою думку, це небезпечно.", "pos": "phrase", "tags": ["opinion"]},
     {"id": "b1-01-hianyossagot-talaltunk", "type": "phrase", "hu": "Hiányosságot találtunk.", "ua": "Ми виявили недолік.", "pos": "phrase", "tags": ["inspection"]},
     {"id": "b1-01-hatarido-pentek", "type": "phrase", "hu": "Határidő: péntek.", "ua": "Термін: пʼятниця.", "pos": "phrase", "tags": ["docs"]},
-    {"id": "b1-01-ki-a-felelos", "type": "phrase", "hu": "Ki a felelős?", "ua": "Хто відповідальний?", "pos": "phrase", "tags": ["inspection"]},
     {"id": "b1-01-kijavitottuk-a-hibat", "type": "phrase", "hu": "Kijavítottuk a hibát.", "ua": "Ми виправили помилку.", "pos": "phrase", "tags": ["inspection"]},
     {"id": "b1-01-megszuntettuk-a-veszelyt", "type": "phrase", "hu": "Megszüntettük a veszélyt.", "ua": "Ми усунули небезпеку.", "pos": "phrase", "tags": ["inspection"]},
     {"id": "b1-01-reszt-vettem-az-oktatason", "type": "phrase", "hu": "Részt vettem az oktatáson.", "ua": "Я брав участь в інструктажі.", "pos": "phrase", "tags": ["training"]},

@@ -22,7 +22,8 @@ export default function ReviewPage() {
   const load = useCallback(async () => {
     await seedCards();
     const [a, b] = await Promise.all([sessionCards("recognize", 15, 6, 5), sessionCards("recall", 15, 6, 5)]);
-    const all = [...a, ...b].sort(() => Math.random() - 0.5);
+    // Cards whose item left the content (a duplicate removed) are skipped, not shown as "done".
+    const all = [...a, ...b].filter((c) => itemById(c.itemId)).sort(() => Math.random() - 0.5);
     setQueue(all);
     setI(0);
     setDone(0);
