@@ -123,9 +123,9 @@
     }
   ],
   "examples": [
-    { "pattern": "suf-accusative", "stem": "idő", "result": "időt", "ua": "час (що?)" },
-    { "pattern": "suf-accusative", "stem": "nyár", "result": "nyarat", "ua": "літо (що?)" },
-    { "pattern": "suf-accusative", "stem": "tél", "result": "telet", "ua": "зиму (що?)" },
+    { "pattern": "suf-accusative", "stem": "idő", "result": "időt", "ua": "(маю) час" },
+    { "pattern": "suf-accusative", "stem": "nyár", "result": "nyarat", "ua": "(люблю) літо" },
+    { "pattern": "suf-accusative", "stem": "tél", "result": "telet", "ua": "(люблю) зиму" },
     { "pattern": "suf-plural", "stem": "év", "result": "évek", "ua": "роки" },
     { "pattern": "suf-plural", "stem": "hónap", "result": "hónapok", "ua": "місяці" },
     { "pattern": "suf-plural", "stem": "perc", "result": "percek", "ua": "хвилини" },

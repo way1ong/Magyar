@@ -256,16 +256,16 @@
       "forms": { "back": "ot", "front": "et", "front_rounded": "öt" },
       "inflect": "acc",
       "examples": [
-        { "stem": "kávé", "result": "kávét", "ua": "каву (що?)" },
-        { "stem": "ház", "result": "házat", "ua": "будинок (що?)" },
-        { "stem": "könyv", "result": "könyvet", "ua": "книжку (що?)" },
-        { "stem": "asztal", "result": "asztalt", "ua": "стіл (що?)" },
-        { "stem": "gyerek", "result": "gyereket", "ua": "дитину (кого?)" },
-        { "stem": "kenyér", "result": "kenyeret", "ua": "хліб (що?)" },
-        { "stem": "víz", "result": "vizet", "ua": "воду (що?)" },
-        { "stem": "alma", "result": "almát", "ua": "яблуко (що?)" },
-        { "stem": "sör", "result": "sört", "ua": "пиво (що?)" },
-        { "stem": "tükör", "result": "tükröt", "ua": "дзеркало (що?)" }
+        { "stem": "kávé", "result": "kávét", "ua": "(прошу) каву" },
+        { "stem": "ház", "result": "házat", "ua": "(бачу) будинок" },
+        { "stem": "könyv", "result": "könyvet", "ua": "(читаю) книжку" },
+        { "stem": "asztal", "result": "asztalt", "ua": "(бачу) стіл" },
+        { "stem": "gyerek", "result": "gyereket", "ua": "(бачу) дитину" },
+        { "stem": "kenyér", "result": "kenyeret", "ua": "(купую) хліб" },
+        { "stem": "víz", "result": "vizet", "ua": "(пʼю) воду" },
+        { "stem": "alma", "result": "almát", "ua": "(їм) яблуко" },
+        { "stem": "sör", "result": "sört", "ua": "(пʼю) пиво" },
+        { "stem": "tükör", "result": "tükröt", "ua": "(бачу) дзеркало" }
       ]
     },
     {

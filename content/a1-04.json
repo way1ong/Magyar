@@ -135,11 +135,11 @@
     }
   ],
   "examples": [
-    { "pattern": "suf-accusative", "stem": "jegy", "result": "jegyet", "ua": "квиток (що?)" },
-    { "pattern": "suf-accusative", "stem": "busz", "result": "buszt", "ua": "автобус (що?)" },
-    { "pattern": "suf-accusative", "stem": "út", "result": "utat", "ua": "дорогу (що?)" },
-    { "pattern": "suf-accusative", "stem": "híd", "result": "hidat", "ua": "міст (що?)" },
-    { "pattern": "suf-accusative", "stem": "bőrönd", "result": "bőröndöt", "ua": "валізу (що?)" },
+    { "pattern": "suf-accusative", "stem": "jegy", "result": "jegyet", "ua": "(купую) квиток" },
+    { "pattern": "suf-accusative", "stem": "busz", "result": "buszt", "ua": "(чекаю) автобус" },
+    { "pattern": "suf-accusative", "stem": "út", "result": "utat", "ua": "(знаю) дорогу" },
+    { "pattern": "suf-accusative", "stem": "híd", "result": "hidat", "ua": "(бачу) міст" },
+    { "pattern": "suf-accusative", "stem": "bőrönd", "result": "bőröndöt", "ua": "(несу) валізу" },
     { "pattern": "suf-plural", "stem": "busz", "result": "buszok", "ua": "автобуси" },
     { "pattern": "suf-plural", "stem": "jegy", "result": "jegyek", "ua": "квитки" },
     { "pattern": "suf-plural", "stem": "út", "result": "utak", "ua": "дороги" },

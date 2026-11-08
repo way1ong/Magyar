@@ -164,11 +164,11 @@
     }
   ],
   "examples": [
-    { "pattern": "suf-accusative", "stem": "szó", "result": "szót", "ua": "слово (що?)" },
-    { "pattern": "suf-accusative", "stem": "levél", "result": "levelet", "ua": "лист (що?)" },
-    { "pattern": "suf-accusative", "stem": "kérdés", "result": "kérdést", "ua": "питання (що?)" },
-    { "pattern": "suf-accusative", "stem": "feladat", "result": "feladatot", "ua": "завдання (що?)" },
-    { "pattern": "suf-accusative", "stem": "toll", "result": "tollat", "ua": "ручку (що?)" },
+    { "pattern": "suf-accusative", "stem": "szó", "result": "szót", "ua": "(знаю) слово" },
+    { "pattern": "suf-accusative", "stem": "levél", "result": "levelet", "ua": "(пишу) листа" },
+    { "pattern": "suf-accusative", "stem": "kérdés", "result": "kérdést", "ua": "(маю) питання" },
+    { "pattern": "suf-accusative", "stem": "feladat", "result": "feladatot", "ua": "(роблю) завдання" },
+    { "pattern": "suf-accusative", "stem": "toll", "result": "tollat", "ua": "(прошу) ручку" },
     { "pattern": "suf-plural", "stem": "szó", "result": "szavak", "ua": "слова" },
     { "pattern": "suf-plural", "stem": "kérdés", "result": "kérdések", "ua": "питання (мн.)" },
     { "pattern": "suf-plural", "stem": "hiba", "result": "hibák", "ua": "помилки" },

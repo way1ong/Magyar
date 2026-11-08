@@ -136,12 +136,12 @@
     }
   ],
   "examples": [
-    { "pattern": "suf-accusative", "stem": "lakás", "result": "lakást", "ua": "квартиру (що?)" },
-    { "pattern": "suf-accusative", "stem": "kulcs", "result": "kulcsot", "ua": "ключ (що?)" },
-    { "pattern": "suf-accusative", "stem": "ágy", "result": "ágyat", "ua": "ліжко (що?)" },
-    { "pattern": "suf-accusative", "stem": "fal", "result": "falat", "ua": "стіну (що?)" },
-    { "pattern": "suf-accusative", "stem": "szekrény", "result": "szekrényt", "ua": "шафу (що?)" },
-    { "pattern": "suf-accusative", "stem": "fazék", "result": "fazekat", "ua": "каструлю (що?)" },
+    { "pattern": "suf-accusative", "stem": "lakás", "result": "lakást", "ua": "(шукаю) квартиру" },
+    { "pattern": "suf-accusative", "stem": "kulcs", "result": "kulcsot", "ua": "(шукаю) ключ" },
+    { "pattern": "suf-accusative", "stem": "ágy", "result": "ágyat", "ua": "(купую) ліжко" },
+    { "pattern": "suf-accusative", "stem": "fal", "result": "falat", "ua": "(фарбую) стіну" },
+    { "pattern": "suf-accusative", "stem": "szekrény", "result": "szekrényt", "ua": "(відчиняю) шафу" },
+    { "pattern": "suf-accusative", "stem": "fazék", "result": "fazekat", "ua": "(мию) каструлю" },
     { "pattern": "suf-plural", "stem": "emelet", "result": "emeletek", "ua": "поверхи" },
     { "pattern": "suf-plural", "stem": "szomszéd", "result": "szomszédok", "ua": "сусіди" },
     { "pattern": "suf-plural", "stem": "bútor", "result": "bútorok", "ua": "меблі (мн.)" },
