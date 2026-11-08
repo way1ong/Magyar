@@ -43,10 +43,11 @@ for (const { f, pack } of packs) {
     if (it.type === "word" && it.pos === "verb" && !it.hu.includes(" ") && !it.harmony) err(`${it.id}: verb needs "harmony" (for conjugation)`);
     if (it.conj) {
       if (it.pos !== "verb") err(`${it.id}: conj only makes sense on verbs`);
-      const ok = ["ik", "tr", "stem", "vstem", "pastStem", "past", "link", "forms"];
+      const ok = ["ik", "tr", "stem", "vstem", "pastStem", "past", "link", "forms", "imp"];
       for (const k of Object.keys(it.conj)) if (!ok.includes(k)) err(`${it.id}: unknown conj.${k}`);
       if (it.conj.past && !["t", "ott", "full", "tt"].includes(it.conj.past)) err(`${it.id}: bad conj.past "${it.conj.past}"`);
       if (it.conj.link !== undefined && it.conj.link !== false) err(`${it.id}: conj.link may only be false`);
+      if (it.conj.imp !== undefined && it.conj.imp !== false && typeof it.conj.imp !== "string") err(`${it.id}: conj.imp must be a stem or false`);
     }
     if (it.forms) {
       const ok = ["stem", "low", "j", "acc", "pl", "p1", "p2", "p3", "s", "comp", "ord", "adv", "u"];
