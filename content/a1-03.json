@@ -68,12 +68,12 @@
     { "id": "a1-03-unnep", "type": "word", "hu": "ünnep", "ua": "свято", "pos": "noun", "harmony": "front", "tags": ["time", "calendar", "last-syllable-rule"] },
     { "id": "a1-03-datum", "type": "word", "hu": "dátum", "ua": "дата", "pos": "noun", "harmony": "back", "tags": ["calendar"] },
 
-    { "id": "a1-03-gyors", "type": "word", "hu": "gyors", "ua": "швидкий", "pos": "adj", "harmony": "back" },
-    { "id": "a1-03-lassu", "type": "word", "hu": "lassú", "ua": "повільний", "pos": "adj", "harmony": "back" },
-    { "id": "a1-03-pontos", "type": "word", "hu": "pontos", "ua": "точний; пунктуальний", "pos": "adj", "harmony": "back", "example": { "hu": "A vonat pontos.", "ua": "Потяг прибуває вчасно." } },
-    { "id": "a1-03-szabad", "type": "word", "hu": "szabad", "ua": "вільний", "pos": "adj", "harmony": "back", "example": { "hu": "Holnap szabad vagyok.", "ua": "Завтра я вільний." } },
+    { "id": "a1-03-gyors", "type": "word", "hu": "gyors", "ua": "швидкий", "pos": "adj", "harmony": "back", "tags": ["grad"] },
+    { "id": "a1-03-lassu", "type": "word", "hu": "lassú", "ua": "повільний", "pos": "adj", "harmony": "back", "forms": {"comp": "lassabb"}, "tags": ["grad"] },
+    { "id": "a1-03-pontos", "type": "word", "hu": "pontos", "ua": "точний; пунктуальний", "pos": "adj", "harmony": "back", "example": { "hu": "A vonat pontos.", "ua": "Потяг прибуває вчасно." }, "tags": ["grad"] },
+    { "id": "a1-03-szabad", "type": "word", "hu": "szabad", "ua": "вільний", "pos": "adj", "harmony": "back", "example": { "hu": "Holnap szabad vagyok.", "ua": "Завтра я вільний." }, "tags": ["grad"] },
     { "id": "a1-03-foglalt", "type": "word", "hu": "foglalt", "ua": "зайнятий (місце, лінія)", "pos": "adj", "harmony": "back" },
-    { "id": "a1-03-keso", "type": "word", "hu": "késő", "ua": "пізній; пізно", "pos": "adj", "harmony": "front_rounded", "example": { "hu": "Már késő van.", "ua": "Уже пізно." } },
+    { "id": "a1-03-keso", "type": "word", "hu": "késő", "ua": "пізній; пізно", "pos": "adj", "harmony": "front_rounded", "forms": {"comp": "később"}, "example": { "hu": "Már késő van.", "ua": "Уже пізно." }, "tags": ["grad"] },
     { "id": "a1-03-kovetkezo", "type": "word", "hu": "következő", "ua": "наступний", "pos": "adj", "harmony": "front_rounded", "example": { "hu": "A következő héten.", "ua": "Наступного тижня." } },
 
     { "id": "a1-03-tegnap", "type": "word", "hu": "tegnap", "ua": "вчора", "pos": "adv" },
