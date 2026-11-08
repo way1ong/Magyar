@@ -144,12 +144,12 @@
     }
   ],
   "examples": [
-    { "pattern": "suf-accusative", "stem": "aláírás", "result": "aláírást", "ua": "підпис (що?)" },
-    { "pattern": "suf-accusative", "stem": "engedély", "result": "engedélyt", "ua": "дозвіл (що?)" },
-    { "pattern": "suf-accusative", "stem": "szerszám", "result": "szerszámot", "ua": "інструмент (що?)" },
-    { "pattern": "suf-accusative", "stem": "szemét", "result": "szemetet", "ua": "сміття (що?)" },
-    { "pattern": "suf-accusative", "stem": "alkatrész", "result": "alkatrészt", "ua": "запчастину (що?)" },
-    { "pattern": "suf-accusative", "stem": "létszám", "result": "létszámot", "ua": "чисельність (що?)" },
+    { "pattern": "suf-accusative", "stem": "aláírás", "result": "aláírást", "ua": "(прошу) підпис" },
+    { "pattern": "suf-accusative", "stem": "engedély", "result": "engedélyt", "ua": "(маю) дозвіл" },
+    { "pattern": "suf-accusative", "stem": "szerszám", "result": "szerszámot", "ua": "(беру) інструмент" },
+    { "pattern": "suf-accusative", "stem": "szemét", "result": "szemetet", "ua": "(виношу) сміття" },
+    { "pattern": "suf-accusative", "stem": "alkatrész", "result": "alkatrészt", "ua": "(замовляю) запчастину" },
+    { "pattern": "suf-accusative", "stem": "létszám", "result": "létszámot", "ua": "(перевіряю) чисельність" },
     { "pattern": "suf-plural", "stem": "szerszám", "result": "szerszámok", "ua": "інструменти" },
     { "pattern": "suf-plural", "stem": "dokumentum", "result": "dokumentumok", "ua": "документи" },
     { "pattern": "suf-plural", "stem": "szelep", "result": "szelepek", "ua": "клапани" },

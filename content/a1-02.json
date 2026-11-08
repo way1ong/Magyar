@@ -164,12 +164,12 @@
     }
   ],
   "examples": [
-    { "pattern": "suf-accusative", "stem": "sajt", "result": "sajtot", "ua": "сир (що?)" },
-    { "pattern": "suf-accusative", "stem": "hal", "result": "halat", "ua": "рибу (що?)" },
-    { "pattern": "suf-accusative", "stem": "cukor", "result": "cukrot", "ua": "цукор (що?)" },
-    { "pattern": "suf-accusative", "stem": "pohár", "result": "poharat", "ua": "склянку (що?)" },
-    { "pattern": "suf-accusative", "stem": "leves", "result": "levest", "ua": "суп (що?)" },
-    { "pattern": "suf-accusative", "stem": "tea", "result": "teát", "ua": "чай (що?)" },
+    { "pattern": "suf-accusative", "stem": "sajt", "result": "sajtot", "ua": "(купую) сир" },
+    { "pattern": "suf-accusative", "stem": "hal", "result": "halat", "ua": "(їм) рибу" },
+    { "pattern": "suf-accusative", "stem": "cukor", "result": "cukrot", "ua": "(прошу) цукор" },
+    { "pattern": "suf-accusative", "stem": "pohár", "result": "poharat", "ua": "(прошу) склянку" },
+    { "pattern": "suf-accusative", "stem": "leves", "result": "levest", "ua": "(їм) суп" },
+    { "pattern": "suf-accusative", "stem": "tea", "result": "teát", "ua": "(пʼю) чай" },
     { "pattern": "suf-plural", "stem": "tojás", "result": "tojások", "ua": "яйця" },
     { "pattern": "suf-plural", "stem": "pohár", "result": "poharak", "ua": "склянки" },
     { "pattern": "suf-poss1", "stem": "kártya", "result": "kártyám", "ua": "моя картка" },

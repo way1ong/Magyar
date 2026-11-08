@@ -146,12 +146,12 @@
     }
   ],
   "examples": [
-    { "pattern": "suf-accusative", "stem": "sisak", "result": "sisakot", "ua": "каску (що?)" },
-    { "pattern": "suf-accusative", "stem": "kesztyű", "result": "kesztyűt", "ua": "рукавиці (що?)" },
-    { "pattern": "suf-accusative", "stem": "gép", "result": "gépet", "ua": "верстат (що?)" },
-    { "pattern": "suf-accusative", "stem": "baleset", "result": "balesetet", "ua": "нещасний випадок (що?)" },
-    { "pattern": "suf-accusative", "stem": "műhely", "result": "műhelyt", "ua": "майстерню (що?)" },
-    { "pattern": "suf-accusative", "stem": "jegyzőkönyv", "result": "jegyzőkönyvet", "ua": "протокол (що?)" },
+    { "pattern": "suf-accusative", "stem": "sisak", "result": "sisakot", "ua": "(надягаю) каску" },
+    { "pattern": "suf-accusative", "stem": "kesztyű", "result": "kesztyűt", "ua": "(надягаю) рукавиці" },
+    { "pattern": "suf-accusative", "stem": "gép", "result": "gépet", "ua": "(вимикаю) верстат" },
+    { "pattern": "suf-accusative", "stem": "baleset", "result": "balesetet", "ua": "(повідомляю) нещасний випадок" },
+    { "pattern": "suf-accusative", "stem": "műhely", "result": "műhelyt", "ua": "(прибираю) майстерню" },
+    { "pattern": "suf-accusative", "stem": "jegyzőkönyv", "result": "jegyzőkönyvet", "ua": "(пишу) протокол" },
     { "pattern": "suf-plural", "stem": "gép", "result": "gépek", "ua": "верстати" },
     { "pattern": "suf-plural", "stem": "szabály", "result": "szabályok", "ua": "правила" },
     { "pattern": "suf-plural", "stem": "dolgozó", "result": "dolgozók", "ua": "працівники" },

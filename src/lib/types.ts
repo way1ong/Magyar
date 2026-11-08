@@ -40,6 +40,8 @@ export interface ItemForms {
   p1?: string;
   p2?: string;
   p3?: string;
+  /** -s adjective override (rare: ló → lovas is covered by `stem`). */
+  s?: string;
 }
 
 export interface Item {
@@ -86,7 +88,7 @@ export interface Pattern {
    * linking vowel and stem changes (inflect.ts); `forms` then only lists
    * the default o/e/ö endings for display.
    */
-  inflect?: "acc" | "pl" | "p1" | "p2" | "p3";
+  inflect?: "acc" | "pl" | "p1" | "p2" | "p3" | "s";
   /**
    * Parts of speech this suffix attaches to. Default: ["noun", "adj"].
    * E.g. -szor/-szer/-ször (times) only goes on numerals.

@@ -39,7 +39,7 @@ for (const { f, pack } of packs) {
       err(`${it.id}: noun/adj needs "harmony"`);
     }
     if (it.forms) {
-      const ok = ["stem", "low", "j", "acc", "pl", "p1", "p2", "p3"];
+      const ok = ["stem", "low", "j", "acc", "pl", "p1", "p2", "p3", "s"];
       for (const k of Object.keys(it.forms)) if (!ok.includes(k)) err(`${it.id}: unknown forms.${k}`);
       if (it.pos !== "noun") err(`${it.id}: forms only make sense on nouns`);
     }
@@ -70,7 +70,7 @@ for (const { f, pack } of packs) {
     }
     if (p.attachesTag !== undefined && typeof p.attachesTag !== "string") err(`${p.id}: attachesTag must be a string`);
     if (p.roles && (!Array.isArray(p.roles) || p.roles.some((r) => !ROLES.includes(r)))) err(`${p.id}: bad roles ${JSON.stringify(p.roles)}`);
-    if (p.inflect && !["acc", "pl", "p1", "p2", "p3"].includes(p.inflect)) err(`${p.id}: bad inflect "${p.inflect}"`);
+    if (p.inflect && !["acc", "pl", "p1", "p2", "p3", "s"].includes(p.inflect)) err(`${p.id}: bad inflect "${p.inflect}"`);
     if (!p.short) warn(`${p.id}: no "short" gloss — exercises fall back to the meaning`);
     if (p.afterVowel !== undefined && typeof p.afterVowel !== "string") err(`${p.id}: afterVowel must be a string`);
   }
