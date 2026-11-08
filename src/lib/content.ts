@@ -46,6 +46,7 @@ export function roleOf(item: Item): Role {
   if (tags.includes("person")) return "person";
   if (tags.includes("place")) return "place";
   if (tags.some((t) => TIME_TAGS.includes(t))) return "time";
+  if (tags.includes("food") || tags.includes("drink")) return "food";
   return "thing";
 }
 

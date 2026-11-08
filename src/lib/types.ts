@@ -19,9 +19,9 @@ export type PartOfSpeech =
 /**
  * Semantic role of a noun, derived from its tags (see roleOf in content.ts):
  * person ("person" tag), place ("place"), time (day/month/season/daytime/time),
- * else thing. Decides which suffixes make sense in the Harmony game.
+ * food ("food"/"drink"), else thing. Decides which suffixes make sense in the Harmony game.
  */
-export type Role = "person" | "place" | "thing" | "time";
+export type Role = "person" | "place" | "thing" | "time" | "food";
 
 export interface Item {
   /** Stable id, e.g. "a1-01-haz". Never reuse an id for another word. */

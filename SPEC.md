@@ -18,7 +18,7 @@
 | `pos` | noun, verb, adj, adv, pron, num, phrase, other |
 | `harmony` | `back` \| `front` \| `front_rounded` — для іменників/прикметників |
 | `example` | `{ hu, ua }` |
-| `tags` | вільні теги; семантичні ролі для іменників: `person`, `place`, `time` (також `day`/`month`/`season`/`daytime`), інакше — річ |
+| `tags` | вільні теги; семантичні ролі для іменників: `person`, `place`, `time` (також `day`/`month`/`season`/`daytime`), `food` (також `drink`), інакше — річ |
 
 ### Pattern
 `id`, `name` ("-ban / -ben"), `meaning`, `forms: { back, front, front_rounded }`, `linking?` (суфікс зі сполучною голосною: після голосної лише `-n`), `attachesTo?` (частини мови, до яких чіпляється суфікс; за замовчуванням `noun`, `adj` — напр. `-szor` лише до `num`), `assimilates?` (-val/-vel: після приголосної v подвоює його — busszal, vonattal; подвоєний диграф пишеться ggy/ssz, три однакові — tollal), `attachesTag?` (суфікс лише для слів із цим тегом: -ul/-ül → `language`), `roles?` (з якими ролями іменників суфікс має сенс: -nak лише `person`, -ban — `place`/`thing`/`time`; «Гармонія» не пропонує apában чи asztalnak), `noLengthen?` (кінцеве a/e не подовжується: órakor), `examples[]` (`{ stem, result, ua }`; `result` має дорівнювати `apply()` — це перевіряє `content:check`).

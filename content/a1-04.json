@@ -112,7 +112,7 @@
   "patterns": [
     {
       "id": "suf-instrumental",
-      "roles": ["person", "place", "thing"],
+      "roles": ["person", "place", "thing", "food"],
       "name": "-val / -vel",
       "meaning": "чим? з ким? (орудний) — metróval, busszal, vonattal; після приголосної v подвоює приголосний: busz+val = busszal",
       "forms": { "back": "val", "front": "vel", "front_rounded": "vel" },

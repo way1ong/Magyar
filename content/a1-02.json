@@ -130,7 +130,7 @@
     },
     {
       "id": "suf-causal",
-      "roles": ["thing", "person"],
+      "roles": ["thing", "person", "food"],
       "name": "-ért",
       "meaning": "за чимось (мета: піти за хлібом), за щось (ціна, причина) — kenyérért, almáért; форма одна для всіх слів",
       "forms": { "back": "ért", "front": "ért", "front_rounded": "ért" },

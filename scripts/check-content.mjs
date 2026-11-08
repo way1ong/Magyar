@@ -6,7 +6,7 @@ import { join } from "node:path";
 const dir = new URL("../content/", import.meta.url);
 const HARMONY = ["back", "front", "front_rounded"];
 const POS = ["noun", "verb", "adj", "adv", "pron", "num", "phrase", "other"];
-const ROLES = ["person", "place", "thing", "time"];
+const ROLES = ["person", "place", "thing", "time", "food"];
 // Tags that explain why the explicit harmony differs from guessHarmony().
 const EXCEPTION_TAGS = ["mixed-vowel", "compound", "exception"];
 
