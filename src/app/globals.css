@@ -165,3 +165,16 @@ nav.tabs span { display: block; font-size: 20px; }
 .guide-table th, .guide-table td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; vertical-align: top; white-space: nowrap; }
 .guide-table th { background: var(--card); font-weight: 600; }
 .guide-table td:first-child { color: var(--muted); }
+
+/* Home: pack list grouped by level */
+.pack-level { margin-bottom: 8px; }
+.pack-level > summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 10px 2px; font-size: 17px; }
+.pack-level > summary::-webkit-details-marker { display: none; }
+.pack-level > summary > span:last-child::after { content: " ▸"; color: var(--muted); display: inline-block; transition: transform 0.15s; }
+.pack-level[open] > summary > span:last-child::after { transform: rotate(90deg); }
+.pack-row { border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.pack-row:last-child { border-bottom: 0; }
+.pbar { position: relative; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.pbar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); opacity: 0.45; border-radius: 3px; }
+.pbar > i.known { opacity: 1; }
+.pack-note { margin: 6px 0 0; font-size: 13px; }

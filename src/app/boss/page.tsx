@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { packs } from "@/lib/content";
 import { bossQuestions, type BossQuestion } from "@/lib/boss";
-import { BOSS_PASS, bossResults, recordBoss, unlockedCount, type BossResult } from "@/lib/progress";
+import { BOSS_PASS, bossResults, packProgress, recordBoss, unlockedCount, type BossResult, type PackProgress } from "@/lib/progress";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 import type { ContentPack } from "@/lib/types";
@@ -21,6 +21,7 @@ const KIND_LABEL: Record<BossQuestion["kind"], string> = {
 export default function BossPage() {
   const [pack, setPack] = useState<ContentPack | null>(null);
   const [prev, setPrev] = useState<BossResult | undefined>();
+  const [prog, setProg] = useState<PackProgress | undefined>();
   const [qs, setQs] = useState<BossQuestion[]>([]);
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
@@ -35,8 +36,10 @@ export default function BossPage() {
     const res = await bossResults();
     const n = await unlockedCount(res);
     const p = packs[n - 1];
+    const prog = (await packProgress())[n - 1];
     setPack(p);
     setPrev(res.get(p.id));
+    setProg(prog);
     setQs(bossQuestions(p));
     setI(0);
     setPicked(null);
@@ -117,6 +120,12 @@ export default function BossPage() {
             {qs.length} питань упереміш: значення, слово, правильна форма. Без підказок і без повторного прослуховування.
             Треба {Math.round(BOSS_PASS * 100)}% — тоді відкриється наступний пакет.
           </p>
+          {prog && prog.total > 0 && (
+            <p className="muted">
+              Картки пакета: у роботі {prog.started} з {prog.total}, у повторенні {prog.known}.
+              {prog.started / prog.total < 0.5 ? " Краще спершу пройти більше карток — бос без підказок." : ""}
+            </p>
+          )}
           {prev && (
             <p className="muted" style={{ marginBottom: 0 }}>
               Спроб: {prev.attempts}, найкращий результат: {Math.round(prev.best * 100)}%{prev.passed ? " — пройдено" : ""}.

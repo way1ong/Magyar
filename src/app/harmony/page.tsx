@@ -1,12 +1,13 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { SessionDone } from "@/components/SessionDone";
 import { harmonyTaskById, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
 import { compare, type Verdict } from "@/lib/dictation";
 import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
 import { harmonyChoice } from "@/lib/harmony";
-import { answer, dueCards, Rating } from "@/lib/scheduler";
+import { aheadCards, answer, dueCards, Rating } from "@/lib/scheduler";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -43,12 +44,13 @@ export default function HarmonyPage() {
   const [score, setScore] = useState({ right: 0, total: 0 });
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (ahead = false) => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await dueCards("harmony", 20, 8)).filter((c) => harmonyTaskById(c.itemId));
+    const q = (await (ahead ? aheadCards("harmony", 8) : dueCards("harmony", 20, 8))).filter((c) => harmonyTaskById(c.itemId));
     setQueue(q.sort(() => Math.random() - 0.5));
     setI(0);
+    setScore({ right: 0, total: 0 });
     setPicked(null);
     setOutcome(null);
     shownAt.current = Date.now();
@@ -74,21 +76,7 @@ export default function HarmonyPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !choice) {
-    return (
-      <>
-        <h1 className="title">Гармонія голосних</h1>
-        <div className="card big">
-          <p className="hu">{score.total ? `${score.right} / ${score.total}` : "✓"}</p>
-          <p className="muted">
-            {score.total ? "Сесію завершено." : "Нічого не назбиралось — зайди пізніше."}
-          </p>
-        </div>
-        <Link href="/" className="btn">На головну</Link>
-        <button className="btn ghost" onClick={load} style={{ marginTop: 8 }}>
-          Ще раз
-        </button>
-      </>
-    );
+    return <SessionDone title="Гармонія голосних" score={score} exercises={["harmony"]} onAgain={() => load()} onAhead={() => load(true)} />;
   }
 
   const typing = shouldType(mode, row);

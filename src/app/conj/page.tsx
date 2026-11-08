@@ -1,10 +1,11 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { SessionDone } from "@/components/SessionDone";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
 import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, TENSE_UA } from "@/lib/conj";
 import { compare, type Verdict } from "@/lib/dictation";
-import { answer, dueCards, Rating, type Grade } from "@/lib/scheduler";
+import { aheadCards, answer, dueCards, Rating, type Grade } from "@/lib/scheduler";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -47,12 +48,13 @@ export default function ConjPage() {
   const [score, setScore] = useState({ right: 0, total: 0 });
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (ahead = false) => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await dueCards("conj", 20, 8)).filter((c) => conjTaskById(c.itemId));
+    const q = (await (ahead ? aheadCards("conj", 8) : dueCards("conj", 20, 8))).filter((c) => conjTaskById(c.itemId));
     setQueue(shuffle(q));
     setI(0);
+    setScore({ right: 0, total: 0 });
     setPicked(null);
     setOutcome(null);
     shownAt.current = Date.now();
@@ -90,21 +92,7 @@ export default function ConjPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !deal) {
-    return (
-      <>
-        <h1 className="title">Дієвідміна</h1>
-        <div className="card big">
-          <p className="hu">{score.total ? `${score.right} / ${score.total}` : "✓"}</p>
-          <p className="muted">
-            {score.total ? "Сесію завершено." : "Нічого не назбиралось — зайди пізніше."}
-          </p>
-        </div>
-        <Link href="/" className="btn">На головну</Link>
-        <button className="btn ghost" onClick={load} style={{ marginTop: 8 }}>
-          Ще раз
-        </button>
-      </>
-    );
+    return <SessionDone title="Дієвідміна" score={score} exercises={["conj"]} onAgain={() => load()} onAhead={() => load(true)} />;
   }
 
   const { item, tense, def } = task;

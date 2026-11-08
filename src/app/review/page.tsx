@@ -2,7 +2,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { itemById } from "@/lib/content";
-import { answer, dueCards, previewIntervals, Rating, type Grade } from "@/lib/scheduler";
+import { aheadCards, answer, dueCards, previewIntervals, Rating, type Grade } from "@/lib/scheduler";
+import { SessionDone } from "@/components/SessionDone";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speakItem } from "@/lib/tts";
@@ -18,12 +19,15 @@ export default function ReviewPage() {
   const [done, setDone] = useState(0);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (ahead = false) => {
     await seedCards();
-    const [a, b] = await Promise.all([dueCards("recognize", 15, 6), dueCards("recall", 15, 6)]);
+    const [a, b] = await Promise.all(
+      ahead ? [aheadCards("recognize", 5), aheadCards("recall", 5)] : [dueCards("recognize", 15, 6), dueCards("recall", 15, 6)],
+    );
     const all = [...a, ...b].sort(() => Math.random() - 0.5);
     setQueue(all);
     setI(0);
+    setDone(0);
     setFlipped(false);
     shownAt.current = Date.now();
   }, []);
@@ -48,18 +52,13 @@ export default function ReviewPage() {
 
   if (!row || !item) {
     return (
-      <>
-        <h1 className="title">Картки</h1>
-        <div className="card big">
-          <p className="hu">✓</p>
-          <p className="ua">{done ? `Зроблено ${done}` : "Нічого не назбиралось"}</p>
-          <p className="muted">Наступні картки зʼявляться, коли настане їхній час.</p>
-        </div>
-        <Link href="/" className="btn">На головну</Link>
-        <button className="btn ghost" onClick={load} style={{ marginTop: 8 }}>
-          Перевірити ще раз
-        </button>
-      </>
+      <SessionDone
+        title="Картки"
+        score={done}
+        exercises={["recognize", "recall"]}
+        onAgain={() => load()}
+        onAhead={() => load(true)}
+      />
     );
   }
 

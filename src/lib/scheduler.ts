@@ -76,3 +76,26 @@ export function previewIntervals(row: CardRow): Record<Grade, string> {
   }
   return out;
 }
+
+/**
+ * Cards to practise ahead of schedule when nothing is due: the ones due
+ * soonest (learning/relearning first), then new ones. Reviewing early is
+ * fine for FSRS — it just sees a shorter elapsed interval.
+ */
+export async function aheadCards(exercise: Exercise, limit = 8): Promise<CardRow[]> {
+  const all = await db.cards.where("exercise").equals(exercise).toArray();
+  const started = all.filter((c) => c.state !== 0).sort((a, b) => a.due - b.due);
+  const fresh = all.filter((c) => c.state === 0);
+  return [...started, ...fresh].slice(0, limit);
+}
+
+/** Epoch ms of the next card to come due (started cards only), or undefined. */
+export async function nextDue(exercises: Exercise[]): Promise<number | undefined> {
+  const now = Date.now();
+  let best: number | undefined;
+  for (const ex of exercises) {
+    const rows = await db.cards.where("exercise").equals(ex).and((c) => c.state !== 0 && c.due > now).toArray();
+    for (const r of rows) if (best === undefined || r.due < best) best = r.due;
+  }
+  return best;
+}

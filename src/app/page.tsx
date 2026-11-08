@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { packs } from "@/lib/content";
 import { dueCount } from "@/lib/scheduler";
@@ -8,8 +8,28 @@ import { seedCards } from "@/lib/seed";
 import { maybeAutoBackup } from "@/lib/backup";
 import { AUDIO_ENABLED } from "@/lib/config";
 import { streak, todayCount } from "@/lib/stats";
-import { bossResults, unlockedCount } from "@/lib/progress";
+import { BOSS_PASS, bossResults, packProgress, unlockedCount } from "@/lib/progress";
+import { PackList } from "@/components/PackList";
 import { db } from "@/lib/db";
+
+async function loadStats() {
+  const [rec, rcl, har, bld, dic, cnj, s, t, learned, total, boss, progress] = await Promise.all([
+    dueCount("recognize"),
+    dueCount("recall"),
+    dueCount("harmony"),
+    dueCount("builder"),
+    dueCount("dictation"),
+    dueCount("conj"),
+    streak(),
+    todayCount(),
+    db.cards.where("state").notEqual(0).count(),
+    db.cards.count(),
+    bossResults(),
+    packProgress(),
+  ]);
+  const open = await unlockedCount(boss);
+  return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, streak: s, today: t, learned, total, boss, open, progress };
+}
 
 export default function Home() {
   // Seed cards for every item of every open pack on first launch (idempotent).
@@ -18,30 +38,44 @@ export default function Home() {
     maybeAutoBackup();
   }, []);
 
+  // If the counts never arrive (IndexedDB blocked, a bug), say so instead of
+  // leaving "…" everywhere: the error text and a reload button after a pause.
+  const [err, setErr] = useState<string | null>(null);
+  const [slow, setSlow] = useState(false);
+
   const stats = useLiveQuery(async () => {
-    const [rec, rcl, har, bld, dic, cnj, s, t, learned, total, boss] = await Promise.all([
-      dueCount("recognize"),
-      dueCount("recall"),
-      dueCount("harmony"),
-      dueCount("builder"),
-      dueCount("dictation"),
-      dueCount("conj"),
-      streak(),
-      todayCount(),
-      db.cards.where("state").notEqual(0).count(),
-      db.cards.count(),
-      bossResults(),
-    ]);
-    const open = await unlockedCount(boss);
-    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, streak: s, today: t, learned, total, boss, open };
+    try {
+      return await loadStats();
+    } catch (e) {
+      setErr(e instanceof Error ? `${e.name}: ${e.message}` : String(e));
+      return null;
+    }
   });
 
+  useEffect(() => {
+    if (stats) return;
+    const t = setTimeout(() => setSlow(true), 6000);
+    return () => clearTimeout(t);
+  }, [stats]);
+
   const gate = stats ? packs[stats.open - 1] : undefined;
-  const gatePassed = gate ? stats?.boss.get(gate.id)?.passed : false;
+  const gateRes = gate ? stats?.boss.get(gate.id) : undefined;
+  const gatePassed = gateRes?.passed ?? false;
+
+  const problem =
+    err || (slow && !stats) ? (
+      <div className="card" style={{ borderColor: "var(--bad)" }}>
+        <p style={{ marginTop: 0 }}>{err ? `Не вдалось прочитати прогрес: ${err}` : "Прогрес рахується надто довго."}</p>
+        <button className="btn" onClick={() => window.location.reload()}>
+          Перезавантажити
+        </button>
+      </div>
+    ) : null;
 
   return (
     <>
       <h1 className="title">Сьогодні</h1>
+      {problem}
 
       <div className="card">
         <div className="stat">
@@ -79,30 +113,22 @@ export default function Home() {
       )}
 
       <h2 style={{ fontSize: 18, marginTop: 24 }}>Пакети</h2>
-      <div className="card" style={{ padding: "4px 18px" }}>
-        {packs.map((p, n) => {
-          const res = stats?.boss.get(p.id);
-          const open = stats ? n < stats.open : n === 0;
-          const icon = res?.passed ? "🏆" : open ? "📖" : "🔒";
-          return (
-            <div className="stat" key={p.id} style={{ opacity: open ? 1 : 0.55 }}>
-              <span>
-                {icon} <b>{p.id}</b> — {p.title}
-              </span>
-              <span className="muted" style={{ whiteSpace: "nowrap", marginLeft: 8 }}>
-                {res?.passed ? `${Math.round(res.best * 100)}%` : open ? "" : "закрито"}
-              </span>
-            </div>
-          );
-        })}
-      </div>
+      {stats ? (
+        <PackList open={stats.open} boss={stats.boss} progress={stats.progress} />
+      ) : (
+        <p className="muted">Рахую прогрес…</p>
+      )}
       {gate && (
         <Link href="/boss" className="btn" style={{ marginTop: 10 }}>
-          👑 {gatePassed ? `Бос ${gate.id} — пройдено, повторити` : `Бос пакета ${gate.id}`}
+          👑 {gatePassed
+            ? `Бос ${gate.id} — пройдено, повторити`
+            : gateRes
+              ? `Бос ${gate.id} — найкращий ${Math.round(gateRes.best * 100)}%, треба ${Math.round(BOSS_PASS * 100)}%`
+              : `Бос пакета ${gate.id}`}
         </Link>
       )}
       <p className="muted" style={{ fontSize: 14, marginTop: 10 }}>
-        Пройди боса (≥ 80% без підказок), щоб відкрити наступний пакет.
+        Пакети відкриваються по черзі: бос поточного пакета (20 питань без підказок, ≥ 80%) відкриває наступний.
       </p>
     </>
   );
