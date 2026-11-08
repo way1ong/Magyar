@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, exportProgress, importProgress } from "@/lib/db";
+import { backupToLaptop, IS_PREVIEW, lastBackup, shareProgress } from "@/lib/backup";
 import { allItems, allPatterns } from "@/lib/content";
 
 export default function SettingsPage() {
@@ -13,7 +14,27 @@ export default function SettingsPage() {
   const counts = useLiveQuery(async () => ({
     cards: await db.cards.count(),
     reviews: await db.reviews.count(),
+    backup: await lastBackup(),
   }));
+  const [busy, setBusy] = useState(false);
+
+  const doLaptop = async () => {
+    setBusy(true);
+    try {
+      const b = await backupToLaptop();
+      setMsg(`Збережено на ноутбуці: ${b.name}`);
+    } catch (e) {
+      setMsg((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const doShare = async () => {
+    if (!(await shareProgress())) {
+      setMsg("Цей браузер не вміє ділитися файлами — скористайся експортом нижче.");
+    }
+  };
 
   const doExport = async () => {
     const data = await exportProgress();
@@ -54,11 +75,27 @@ export default function SettingsPage() {
       </div>
 
       <h2 style={{ fontSize: 18 }}>Резервна копія</h2>
-      <p className="muted">Прогрес живе лише на цьому телефоні. Раз на тиждень — експорт у файл.</p>
+      <p className="muted">
+        Прогрес живе лише на цьому телефоні. Копія на ноутбук робиться сама, коли є нові повторення і ноутбук у тій самій
+        Wi-Fi; «Поділитися» кладе файл у Drive чи месенджер.
+      </p>
+      <p className="muted" style={{ fontSize: 14 }}>
+        Останній бекап на ноутбук:{" "}
+        {counts?.backup
+          ? `${new Date(counts.backup.ts).toLocaleString("uk-UA", { dateStyle: "short", timeStyle: "short" })} (${counts.backup.name})`
+          : "ще не було"}
+        {counts?.backup && counts.reviews > counts.backup.reviews && ` — відтоді ${counts.reviews - counts.backup.reviews} нових повторень`}
+      </p>
+      {!IS_PREVIEW && (
+        <button className="btn primary" onClick={doLaptop} disabled={busy} style={{ marginBottom: 10 }}>
+          💻 {busy ? "Зберігаю…" : "Бекап на ноутбук"}
+        </button>
+      )}
+      <button className="btn" onClick={doShare} style={{ marginBottom: 10 }}>📤 Поділитися файлом прогресу</button>
       <button className="btn" onClick={doExport} style={{ marginBottom: 10 }}>⬇️ Експорт прогресу (JSON)</button>
       {isPreview && (
         <p className="muted" style={{ fontSize: 14, marginTop: 0 }}>
-          У тестовій збірці файл не завантажиться — експорт перевіряй у застосунку на телефоні.
+          У тестовій збірці файл не завантажиться і бекапу на ноутбук нема — перевіряй у застосунку на телефоні.
         </p>
       )}
       <button className="btn" onClick={() => fileRef.current?.click()} style={{ marginBottom: 10 }}>⬆️ Імпорт прогресу</button>

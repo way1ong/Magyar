@@ -25,6 +25,7 @@ src/lib/dictation.ts порівняння відповідей для «Дикт
 src/lib/boss.ts     питання «Боса»; src/lib/progress.ts — відкриття пакетів
 src/app/            екрани: / (сьогодні), /review, /harmony, /builder, /dictation, /boss, /settings
 public/sw.js        офлайн-кеш
+backups/            копії прогресу з телефона (створює /api/backup; не в git)
 scripts/check-content.mjs  валідація контенту
 scripts/gen-audio.sh       озвучка слів через Piper → public/audio (маніфест content/audio.json)
 preview/            тестова збірка одним HTML-файлом (`npm run preview:build`)

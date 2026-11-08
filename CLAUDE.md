@@ -7,6 +7,7 @@
 - Next.js 15 (App Router), TypeScript, React 19. Без Tailwind — `src/app/globals.css` з CSS-змінними, light/dark.
 - Dexie (IndexedDB) — прогрес. `ts-fsrs` — розклад повторень. Web Speech API — вимова.
 - PWA: `public/manifest.json` + ручний `public/sw.js` (реєструється лише в production).
+- Бекап: `src/app/api/backup/route.ts` (Next API, пише `backups/` на ноутбуці, без автентифікації — лише домашня мережа) + `src/lib/backup.ts` (автобекап з головної, Web Share). У превʼю-збірці серверного шляху нема (`IS_PREVIEW`).
 - Вимова: записи Piper у `public/audio/<itemId>.mp3` (маніфест `content/audio.json`, генерація `scripts/gen-audio.sh`), системний TTS — лише запасний. Нові слова → прогнати `scripts/gen-audio.sh`; у тестову збірку аудіо публікується як `files` поруч зі сторінкою.
 
 ## Дві бази — не плутати
@@ -45,4 +46,4 @@ https://claude.ai/artifact/N4susdjABP9cPjeMj1uDDq — увесь застосу�
 
 ## Що далі (пріоритет)
 1. Озвучка похідних форм (házban, busszal) для «Гармонії», «Конструктора» і «Боса» — зараз вони через системний TTS; промова (SpeechRecognition hu-HU).
-2. Експорт прогресу на свій сервер (простий POST JSON) — лише як бекап.
+2. Пакети A2 (`a2-01…`): після A1 — за тим самим процесом (контент → `content:check` → аудіо → журнал).

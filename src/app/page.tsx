@@ -5,6 +5,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { packs } from "@/lib/content";
 import { dueCount } from "@/lib/scheduler";
 import { seedCards } from "@/lib/seed";
+import { maybeAutoBackup } from "@/lib/backup";
 import { streak, todayCount } from "@/lib/stats";
 import { bossResults, unlockedCount } from "@/lib/progress";
 import { db } from "@/lib/db";
@@ -13,6 +14,7 @@ export default function Home() {
   // Seed cards for every item of every open pack on first launch (idempotent).
   useEffect(() => {
     seedCards();
+    maybeAutoBackup();
   }, []);
 
   const stats = useLiveQuery(async () => {
