@@ -32,7 +32,7 @@ function note(t: BuilderTask): string | null {
     const lengthened = lengthenFinal(stem);
     if (t.base !== stem && t.base !== lengthened) return `Основа змінюється: ${stem} → ${t.base}- перед суфіксом.`;
     if (t.base === lengthened && lengthened !== stem)
-      return `Кінцеве -${stem.at(-1)} перед суфіксом завжди подовжується: ${stem} → ${lengthened}-.`;
+      return `Кінцеве -${stem.at(-1)} перед суфіксом завжди подовжується: ${stem} → ${lengthened}- (крім -kor, -i, -ként).`;
     if (t.stem.forms?.low) return "«Знижена» основа: сполучна голосна a/e, а не o/ö.";
     return null;
   }
