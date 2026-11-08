@@ -115,6 +115,7 @@
   "patterns": [
     {
       "id": "suf-inessive",
+      "short": "у чомусь, всередині (де?)",
       "roles": ["place", "thing", "time", "food"],
       "name": "-ban / -ben",
       "meaning": "у чомусь, всередині (де?) — házban, kertben, könyvben",
@@ -127,6 +128,7 @@
     },
     {
       "id": "suf-illative",
+      "short": "у щось, всередину (куди?)",
       "roles": ["place", "thing", "food"],
       "name": "-ba / -be",
       "meaning": "у щось, всередину (куди?) — boltba, kertbe",
@@ -139,6 +141,7 @@
     },
     {
       "id": "suf-elative",
+      "short": "із чогось, зсередини (звідки?)",
       "roles": ["place", "thing", "food"],
       "name": "-ból / -ből",
       "meaning": "із чогось, зсередини (звідки?) — házból, kertből",
@@ -151,6 +154,7 @@
     },
     {
       "id": "suf-superessive",
+      "short": "на чомусь (де?)",
       "roles": ["place", "thing", "time"],
       "name": "-on / -en / -ön",
       "meaning": "на чомусь, на поверхні (де?) — asztalon, széken, földön; після голосної лише -n: autón, almán",
@@ -164,6 +168,7 @@
     },
     {
       "id": "suf-sublative",
+      "short": "на щось (куди?)",
       "roles": ["place", "thing", "time", "food"],
       "name": "-ra / -re",
       "meaning": "на щось, на поверхню (куди?) — asztalra, székre",
@@ -176,6 +181,7 @@
     },
     {
       "id": "suf-delative",
+      "short": "з поверхні (звідки?); про щось",
       "roles": ["place", "thing", "person"],
       "name": "-ról / -ről",
       "meaning": "з поверхні (звідки?); також «про щось» — asztalról, munkáról",
@@ -188,6 +194,7 @@
     },
     {
       "id": "suf-allative",
+      "short": "до когось / чогось (куди?)",
       "roles": ["person", "place", "thing", "food"],
       "name": "-hoz / -hez / -höz",
       "meaning": "до когось / чогось, впритул (куди?) — házhoz, emberhez, tükörhöz",
@@ -200,6 +207,7 @@
     },
     {
       "id": "suf-adessive",
+      "short": "у когось, біля чогось (де?)",
       "roles": ["person", "place", "thing"],
       "name": "-nál / -nél",
       "meaning": "у когось, біля чогось (де?) — barátnál, embernél",
@@ -212,6 +220,7 @@
     },
     {
       "id": "suf-ablative",
+      "short": "від когось / чогось (звідки?)",
       "roles": ["person", "place", "thing", "time"],
       "name": "-tól / -től",
       "meaning": "від когось / чогось (звідки?) — háztól, embertől",
@@ -224,6 +233,7 @@
     },
     {
       "id": "suf-dative",
+      "short": "кому? чому?",
       "roles": ["person"],
       "name": "-nak / -nek",
       "meaning": "кому? чому? (давальний) — anyának, gyereknek, nőnek",
@@ -236,6 +246,7 @@
     },
     {
       "id": "suf-accusative",
+      "short": "кого? що? (обʼєкт дії)",
       "name": "-t (знахідний)",
       "meaning": "кого? що? — обʼєкт дії: Kérek egy kávét. Látom a házat. Сполучна голосна o/e/ö, у «знижених» словах a/e (házat); після l, r, n, ny, s, sz, z, zs, j, ly зазвичай без неї (asztalt)",
       "forms": { "back": "ot", "front": "et", "front_rounded": "öt" },
@@ -255,6 +266,7 @@
     },
     {
       "id": "suf-plural",
+      "short": "множина",
       "name": "-k (множина)",
       "meaning": "множина: házak, könyvek, autók; після приголосної — сполучна голосна (o/e/ö або a/e)",
       "forms": { "back": "ok", "front": "ek", "front_rounded": "ök" },
@@ -273,6 +285,7 @@
     },
     {
       "id": "suf-poss1",
+      "short": "мій, моя, моє",
       "name": "-m (мій)",
       "meaning": "мій, моя, моє: házam, könyvem, autóm — після приголосної зі сполучною голосною",
       "forms": { "back": "om", "front": "em", "front_rounded": "öm" },
@@ -290,6 +303,7 @@
     },
     {
       "id": "suf-poss2",
+      "short": "твій, твоя, твоє",
       "name": "-d (твій)",
       "meaning": "твій, твоя, твоє: házad, könyved, autód",
       "forms": { "back": "od", "front": "ed", "front_rounded": "öd" },
@@ -306,6 +320,7 @@
     },
     {
       "id": "suf-poss3",
+      "short": "його, її",
       "name": "-a / -e / -ja / -je (його, її)",
       "meaning": "його, її: háza, könyve, autója, barátja — після голосної завжди -ja/-je, після приголосної в частини слів теж (boltja, kertje)",
       "forms": { "back": "a", "front": "e", "front_rounded": "e" },

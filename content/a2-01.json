@@ -123,6 +123,7 @@
   "patterns": [
     {
       "id": "suf-adjectival-i",
+      "short": "який? (прикметник від іменника)",
       "name": "-i (який?)",
       "meaning": "прикметник від іменника: gyári — заводський, napi — щоденний, munkahelyi — на робочому місці; форма одна, кінцеве a/e не подовжує: utcai",
       "forms": { "back": "i", "front": "i", "front_rounded": "i" },

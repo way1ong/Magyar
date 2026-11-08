@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib/builder";
+import { patternShort } from "@/lib/content";
 import { endsWithVowel, finalConsonant, lengthenFinal } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
@@ -30,7 +31,8 @@ function note(t: BuilderTask): string | null {
   if (t.pattern.inflect) {
     const lengthened = lengthenFinal(stem);
     if (t.base !== stem && t.base !== lengthened) return `Основа змінюється: ${stem} → ${t.base}- перед суфіксом.`;
-    if (t.base === lengthened && lengthened !== stem) return `Кінцеве ${stem.at(-1)} → ${lengthened.at(-1)} перед суфіксом.`;
+    if (t.base === lengthened && lengthened !== stem)
+      return `Кінцеве -${stem.at(-1)} перед суфіксом завжди подовжується: ${stem} → ${lengthened}-.`;
     if (t.stem.forms?.low) return "«Знижена» основа: сполучна голосна a/e, а не o/ö.";
     return null;
   }
@@ -43,7 +45,7 @@ function note(t: BuilderTask): string | null {
       : `Після приголосної v подвоює приголосний: ${stem} + ${form} = ${t.result}.`;
   }
   const base = t.pattern.noLengthen ? stem : lengthenFinal(stem);
-  if (base !== stem) return `Кінцеве ${stem.at(-1)} → ${base.at(-1)} перед суфіксом.`;
+  if (base !== stem) return `Кінцеве -${stem.at(-1)} перед суфіксом завжди подовжується: ${stem} → ${base}- (крім -kor, -i, -ként).`;
   return null;
 }
 
@@ -179,7 +181,7 @@ export default function BuilderPage() {
               </p>
             )}
             <p style={{ margin: "6px 0 0" }}>
-              {task.pattern.name} · {task.stem.ua}
+              <b lang="hu">{task.stem.hu}</b> — {task.stem.ua} · <b lang="hu">{task.pattern.name}</b> — {patternShort(task.pattern)}
             </p>
             {why && <p style={{ margin: "6px 0 0" }}>{why}</p>}
           </div>

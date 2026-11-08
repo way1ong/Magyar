@@ -30,6 +30,9 @@ packs.forEach((p, n) => {
 });
 export const packIndexOf = (id: string) => packIndexById.get(id) ?? 0;
 
+/** Short Ukrainian gloss of a suffix for result lines ("у чомусь (де?)"). */
+export const patternShort = (p: Pattern) => p.short ?? p.meaning.split(" — ")[0];
+
 /** Words with a known harmony class, by Hungarian form — resolves pattern example stems. */
 const stemIndex = new Map<string, Item>();
 for (const i of allItems) {

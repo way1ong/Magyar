@@ -114,6 +114,7 @@
   "patterns": [
     {
       "id": "suf-multiplicative",
+      "short": "скільки разів?",
       "name": "-szor / -szer / -ször",
       "meaning": "скільки разів? — háromszor, négyszer, ötször",
       "forms": { "back": "szor", "front": "szer", "front_rounded": "ször" },
@@ -130,6 +131,7 @@
     },
     {
       "id": "suf-causal",
+      "short": "за чимось, заради (мета, причина)",
       "roles": ["thing", "person", "food"],
       "name": "-ért",
       "meaning": "за чимось (мета: піти за хлібом), за щось (ціна, причина) — kenyérért, almáért; форма одна для всіх слів",
@@ -146,6 +148,7 @@
     },
     {
       "id": "suf-terminative",
+      "short": "аж до (межа)",
       "roles": ["place", "time"],
       "name": "-ig",
       "meaning": "аж до (межа в просторі, часі, рахунку) — boltig, tízig; форма одна для всіх слів",

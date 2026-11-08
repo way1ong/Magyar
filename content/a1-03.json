@@ -105,6 +105,7 @@
   "patterns": [
     {
       "id": "suf-temporal",
+      "short": "о котрій? коли?",
       "roles": ["time"],
       "name": "-kor",
       "meaning": "о котрій? коли? (момент часу) — ötkor, éjfélkor; форма одна, кінцеве a/e не подовжує: órakor",

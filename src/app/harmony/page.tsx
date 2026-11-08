@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { harmonyPatternsFor, itemById } from "@/lib/content";
+import { harmonyPatternsFor, itemById, patternShort } from "@/lib/content";
 import { applyParts, endsWithVowel, harmonyChoice } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
@@ -106,7 +106,7 @@ export default function HarmonyPage() {
       </div>
 
       <div className="card big">
-        <p className="muted" style={{ margin: 0 }}>{pattern.meaning.split(" — ")[0]}</p>
+        <p className="muted" style={{ margin: 0 }}>{patternShort(pattern)}</p>
         <p className="hu">
           {item.hu}
           <span className="muted">-?</span>

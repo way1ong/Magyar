@@ -125,6 +125,7 @@
   "patterns": [
     {
       "id": "suf-language",
+      "short": "якою мовою; як",
       "name": "-ul / -ül",
       "meaning": "якою мовою; як — magyarul, németül, törökül; лише з назвами мов і народів (rosszul — виняток)",
       "forms": { "back": "ul", "front": "ül", "front_rounded": "ül" },
@@ -144,6 +145,7 @@
     },
     {
       "id": "suf-essive-formal",
+      "short": "як хто, у ролі кого",
       "roles": ["person", "thing"],
       "name": "-ként",
       "meaning": "як хто / у ролі кого — tanárként, orvosként; форма одна, кінцеве a/e не подовжує: példaként",

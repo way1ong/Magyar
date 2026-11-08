@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import guide from "@content/guide.json";
+import { allPatterns, patternShort } from "@/lib/content";
 
 interface Example {
   hu: string;
@@ -34,6 +35,9 @@ export default function GuidePage() {
   );
   const terms = guide.terms.filter((t) =>
     hit(t.term, t.def, t.diff ?? "", ...t.examples.flatMap((e) => [e.hu, e.ua]))
+  );
+  const suffixes = allPatterns.filter((p) =>
+    hit(p.name, patternShort(p), p.meaning, ...p.examples.flatMap((e) => [e.result, e.ua]))
   );
 
   return (
@@ -73,6 +77,20 @@ export default function GuidePage() {
               {t.diff}
             </p>
           )}
+        </details>
+      ))}
+
+      <h2 className="guide-h2" style={{ marginTop: 28 }}>Суфікси в застосунку</h2>
+      {suffixes.length === 0 && <p className="muted">Нічого не знайдено.</p>}
+      {suffixes.map((p) => (
+        <details key={p.id} className="guide-item" open={!!needle}>
+          <summary>
+            <span>
+              <b lang="hu">{p.name}</b> — {patternShort(p)}
+            </span>
+          </summary>
+          <p>{p.meaning}</p>
+          <Examples items={p.examples.slice(0, 5).map((e) => ({ hu: e.result, ua: e.ua }))} />
         </details>
       ))}
 

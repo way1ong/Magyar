@@ -71,6 +71,7 @@ for (const { f, pack } of packs) {
     if (p.attachesTag !== undefined && typeof p.attachesTag !== "string") err(`${p.id}: attachesTag must be a string`);
     if (p.roles && (!Array.isArray(p.roles) || p.roles.some((r) => !ROLES.includes(r)))) err(`${p.id}: bad roles ${JSON.stringify(p.roles)}`);
     if (p.inflect && !["acc", "pl", "p1", "p2", "p3"].includes(p.inflect)) err(`${p.id}: bad inflect "${p.inflect}"`);
+    if (!p.short) warn(`${p.id}: no "short" gloss — exercises fall back to the meaning`);
   }
 }
 

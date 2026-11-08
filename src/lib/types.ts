@@ -62,8 +62,10 @@ export interface Item {
 /** A suffix with its harmony variants. forms[harmony] is the variant used. */
 export interface Pattern {
   id: string; // e.g. "suf-inessive"
-  name: string; // "-ban/-ben — у чомусь (де?)"
-  meaning: string; // short Ukrainian explanation
+  name: string; // "-ban / -ben"
+  /** Two or three words for the exercises' result line: "у чомусь (де?)". */
+  short?: string;
+  meaning: string; // fuller Ukrainian explanation with examples
   /** Two-form suffixes have identical front and front_rounded. */
   forms: Record<Harmony, string>;
   /** Linking vowel rule for stems ending in a consonant (e.g. -on/-en/-ön). */
