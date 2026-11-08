@@ -166,7 +166,7 @@ export default function ConjPage() {
           {object && ` ${object}`}{mark}
         </p>
         <p className="ua">
-          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : imp ? "наказ / хай" : tenseLabel(tense)}
+          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : imp ? "наказ / хай" : tense === "cond" ? "умовний (би)" : tenseLabel(tense)}
         </p>
         {done && (
           <>

@@ -23,16 +23,20 @@ import type { Harmony, Item, VerbConj } from "./types";
  * válassz) — plus its own endings; the definite 2sg is the short form
  * (nézd, mondd, add); a separable prefix follows the verb (menj el, nézd meg).
  * `conj.imp` overrides the j-stem (lát → láss) or, as `false`, removes the
- * mood (tetszik); `npm run content:conj` prints every verb's paradigm.
+ * mood (tetszik). The conditional (feltételes mód) is stem + -n- + its
+ * endings (várnék, várnál, várna; várnám), with the same linking vowel as
+ * -asz/-anak (mondanék, tanítanék); the past conditional is past + volna.
+ * `npm run content:conj` prints every verb's paradigm.
  */
-export type Tense = "pres" | "past" | "fut" | "pot" | "imp";
+export type Tense = "pres" | "past" | "fut" | "pot" | "imp" | "cond";
+export const TENSES: Tense[] = ["pres", "past", "fut", "pot", "imp", "cond"];
 export type Person = "1sg" | "2sg" | "3sg" | "1pl" | "2pl" | "3pl";
 export const PERSONS: Person[] = ["1sg", "2sg", "3sg", "1pl", "2pl", "3pl"];
 export const PRONOUN: Record<Person, string> = { "1sg": "én", "2sg": "te", "3sg": "ő", "1pl": "mi", "2pl": "ti", "3pl": "ők" };
 export const PRONOUN_UA: Record<Person, string> = { "1sg": "я", "2sg": "ти", "3sg": "він / вона", "1pl": "ми", "2pl": "ви", "3pl": "вони" };
-export const TENSE_UA: Record<Tense, string> = { pres: "теперішній", past: "минулий", fut: "майбутній", pot: "можливість -hat/-het", imp: "наказовий" };
+export const TENSE_UA: Record<Tense, string> = { pres: "теперішній", past: "минулий", fut: "майбутній", pot: "можливість -hat/-het", imp: "наказовий", cond: "умовний" };
 /** Label with the right noun: "теперішній час", but "наказовий спосіб". */
-export const tenseLabel = (t: Tense) => (t === "pot" ? TENSE_UA[t] : t === "imp" ? "наказовий спосіб" : `${TENSE_UA[t]} час`);
+export const tenseLabel = (t: Tense) => (t === "pot" ? TENSE_UA[t] : t === "imp" || t === "cond" ? `${TENSE_UA[t]} спосіб` : `${TENSE_UA[t]} час`);
 
 export interface Slot {
   tense: Tense;
@@ -139,20 +143,26 @@ function impShort(stem: string, j: string): string {
 
 /** Irregular paradigms by base infinitive (prefixes are re-attached). */
 const IRREGULAR: Record<string, Record<string, string>> = {
-  menni: { ...p("megyek mész megy megyünk mentek mennek", null, "mentem mentél ment mentünk mentetek mentek", null), ...imp("menjek menj menjen menjünk menjetek menjenek", null) },
-  jönni: { ...p("jövök jössz jön jövünk jöttök jönnek", null, "jöttem jöttél jött jöttünk jöttetek jöttek", null), ...imp("jöjjek gyere jöjjön jöjjünk gyertek jöjjenek", null) },
-  enni: { ...p("eszem eszel eszik eszünk esztek esznek", "eszem eszed eszi esszük eszitek eszik", "ettem ettél evett ettünk ettetek ettek", "ettem etted ette ettük ettétek ették"), ...imp("egyek egyél egyen együnk egyetek egyenek", "egyem edd egye együk egyétek egyék") },
-  inni: { ...p("iszom iszol iszik iszunk isztok isznak", "iszom iszod issza isszuk isszátok isszák", "ittam ittál ivott ittunk ittatok ittak", "ittam ittad itta ittuk ittátok itták"), ...imp("igyak igyál igyon igyunk igyatok igyanak", "igyam idd igya igyuk igyátok igyák") },
-  venni: { ...p("veszek veszel vesz veszünk vesztek vesznek", "veszem veszed veszi vesszük veszitek veszik", "vettem vettél vett vettünk vettetek vettek", "vettem vetted vette vettük vettétek vették"), ...imp("vegyek vegyél vegyen vegyünk vegyetek vegyenek", "vegyem vedd vegye vegyük vegyétek vegyék") },
-  vinni: { ...p("viszek viszel visz viszünk visztek visznek", "viszem viszed viszi visszük viszitek viszik", "vittem vittél vitt vittünk vittetek vittek", "vittem vitted vitte vittük vittétek vitték"), ...imp("vigyek vigyél vigyen vigyünk vigyetek vigyenek", "vigyem vidd vigye vigyük vigyétek vigyék") },
-  tenni: { ...p("teszek teszel tesz teszünk tesztek tesznek", "teszem teszed teszi tesszük teszitek teszik", "tettem tettél tett tettünk tettetek tettek", "tettem tetted tette tettük tettétek tették"), ...imp("tegyek tegyél tegyen tegyünk tegyetek tegyenek", "tegyem tedd tegye tegyük tegyétek tegyék") },
-  hinni: { ...p("hiszek hiszel hisz hiszünk hisztek hisznek", "hiszem hiszed hiszi hisszük hiszitek hiszik", "hittem hittél hitt hittünk hittetek hittek", "hittem hitted hitte hittük hittétek hitték"), ...imp("higgyek higgyél higgyen higgyünk higgyetek higgyenek", "higgyem hidd higgye higgyük higgyétek higgyék") },
-  lenni: { ...p("vagyok vagy van vagyunk vagytok vannak", null, "voltam voltál volt voltunk voltatok voltak", null), ...fut("leszek leszel lesz leszünk lesztek lesznek"), ...imp("legyek légy legyen legyünk legyetek legyenek", null) },
+  menni: { ...p("megyek mész megy megyünk mentek mennek", null, "mentem mentél ment mentünk mentetek mentek", null), ...imp("menjek menj menjen menjünk menjetek menjenek", null), ...cond("mennék mennél menne mennénk mennétek mennének", null) },
+  jönni: { ...p("jövök jössz jön jövünk jöttök jönnek", null, "jöttem jöttél jött jöttünk jöttetek jöttek", null), ...imp("jöjjek gyere jöjjön jöjjünk gyertek jöjjenek", null), ...cond("jönnék jönnél jönne jönnénk jönnétek jönnének", null) },
+  enni: { ...p("eszem eszel eszik eszünk esztek esznek", "eszem eszed eszi esszük eszitek eszik", "ettem ettél evett ettünk ettetek ettek", "ettem etted ette ettük ettétek ették"), ...imp("egyek egyél egyen együnk egyetek egyenek", "egyem edd egye együk egyétek egyék"), ...cond("ennék ennél enne ennénk ennétek ennének", "enném ennéd enné ennénk ennétek ennék") },
+  inni: { ...p("iszom iszol iszik iszunk isztok isznak", "iszom iszod issza isszuk isszátok isszák", "ittam ittál ivott ittunk ittatok ittak", "ittam ittad itta ittuk ittátok itták"), ...imp("igyak igyál igyon igyunk igyatok igyanak", "igyam idd igya igyuk igyátok igyák"), ...cond("innék innál inna innánk innátok innának", "innám innád inná innánk innátok innák") },
+  venni: { ...p("veszek veszel vesz veszünk vesztek vesznek", "veszem veszed veszi vesszük veszitek veszik", "vettem vettél vett vettünk vettetek vettek", "vettem vetted vette vettük vettétek vették"), ...imp("vegyek vegyél vegyen vegyünk vegyetek vegyenek", "vegyem vedd vegye vegyük vegyétek vegyék"), ...cond("vennék vennél venne vennénk vennétek vennének", "venném vennéd venné vennénk vennétek vennék") },
+  vinni: { ...p("viszek viszel visz viszünk visztek visznek", "viszem viszed viszi visszük viszitek viszik", "vittem vittél vitt vittünk vittetek vittek", "vittem vitted vitte vittük vittétek vitték"), ...imp("vigyek vigyél vigyen vigyünk vigyetek vigyenek", "vigyem vidd vigye vigyük vigyétek vigyék"), ...cond("vinnék vinnél vinne vinnénk vinnétek vinnének", "vinném vinnéd vinné vinnénk vinnétek vinnék") },
+  tenni: { ...p("teszek teszel tesz teszünk tesztek tesznek", "teszem teszed teszi tesszük teszitek teszik", "tettem tettél tett tettünk tettetek tettek", "tettem tetted tette tettük tettétek tették"), ...imp("tegyek tegyél tegyen tegyünk tegyetek tegyenek", "tegyem tedd tegye tegyük tegyétek tegyék"), ...cond("tennék tennél tenne tennénk tennétek tennének", "tenném tennéd tenné tennénk tennétek tennék") },
+  hinni: { ...p("hiszek hiszel hisz hiszünk hisztek hisznek", "hiszem hiszed hiszi hisszük hiszitek hiszik", "hittem hittél hitt hittünk hittetek hittek", "hittem hitted hitte hittük hittétek hitték"), ...imp("higgyek higgyél higgyen higgyünk higgyetek higgyenek", "higgyem hidd higgye higgyük higgyétek higgyék"), ...cond("hinnék hinnél hinne hinnénk hinnétek hinnének", "hinném hinnéd hinné hinnénk hinnétek hinnék") },
+  lenni: { ...p("vagyok vagy van vagyunk vagytok vannak", null, "voltam voltál volt voltunk voltatok voltak", null), ...fut("leszek leszel lesz leszünk lesztek lesznek"), ...imp("legyek légy legyen legyünk legyetek legyenek", null), ...cond("lennék lennél lenne lennénk lennétek lennének", null) },
 };
 function imp(indef: string, def: string | null): Record<string, string> {
+  return mood("imp", indef, def);
+}
+function cond(indef: string, def: string | null): Record<string, string> {
+  return mood("cond", indef, def);
+}
+function mood(tense: Tense, indef: string, def: string | null): Record<string, string> {
   const out: Record<string, string> = {};
-  indef.split(" ").forEach((f, i) => (out[slotKey({ tense: "imp", def: false, person: PERSONS[i] })] = f));
-  def?.split(" ").forEach((f, i) => (out[slotKey({ tense: "imp", def: true, person: PERSONS[i] })] = f));
+  indef.split(" ").forEach((f, i) => (out[slotKey({ tense, def: false, person: PERSONS[i] })] = f));
+  def?.split(" ").forEach((f, i) => (out[slotKey({ tense, def: true, person: PERSONS[i] })] = f));
   return out;
 }
 function fut(s: string): Record<string, string> {
@@ -249,6 +259,7 @@ export function conjugate(item: Item, slot: Slot): string {
   const irr = IRREGULAR[P.base];
   if (slot.tense === "imp") return imperative(item, P, slot);
   if (irr?.[key]) return P.prefix + irr[key];
+  if (slot.tense === "cond" && !irr) return conditional(item, P, slot);
   if (slot.tense === "pot") {
     // -hat/-het on the full stem (parkolhat, érezhet, mozoghat), then present endings.
     const stem = POT_STEM[P.base] ?? P.stem + (harmonyOf(P.stem, item.harmony ?? "back") === "back" ? "hat" : "het");
@@ -367,11 +378,38 @@ function imperative(item: Item, P: Paradigm, slot: Slot): string {
   return separable && prefix ? `${form} ${prefix}` : prefix + form;
 }
 
-/** Every available slot for a verb: all tenses and the imperative, definite only when transitive. */
+/**
+ * Conditional (feltételes mód): stem + n + endings. The linking vowel is the
+ * one of -asz/-anak — after two consonants and after -ít or consonant + t
+ * (mondanék, értenék, tanítanék), not after a sibilant or short vowel + t
+ * (olvasnék, fizetnék, szeretnék). The sz/d verbs use the d-stem (aludnék).
+ *   indefinite  -nék, -nál/-nél, -na/-ne, -nánk/-nénk, -nátok/-nétek, -nának/-nének
+ *   definite    -nám/-ném, -nád/-néd, -ná/-né, -nánk/-nénk, -nátok/-nétek, -nák/-nék
+ * The prefix stays attached (megnézném). Past conditional = past + volna.
+ */
+function conditional(item: Item, P: Paradigm, slot: Slot): string {
+  const c = item.conj ?? {};
+  const stem = P.stem.endsWith("sz") && c.pastStem && c.pastStem !== P.stem ? c.pastStem : P.stem;
+  const h = harmonyOf(stem, item.harmony ?? "back");
+  const link = c.link !== false;
+  const fc = finalConsonant(stem);
+  const tFinal = fc === "t";
+  const before = tFinal ? (stem.slice(0, -1).at(-1) ?? "") : "";
+  const tLink = tFinal && (!VOWEL.test(before) || LONG.includes(before));
+  const base = stem + (link && (endsInCluster(stem) || tLink) ? A(h) : "") + "n";
+  const a = A(h), á = Á(h);
+  const e = h === "back" ? "o" : "e"; // -nátok / -nétek
+  const end = !slot.def
+    ? { "1sg": "ék", "2sg": á + "l", "3sg": a, "1pl": á + "nk", "2pl": á + "t" + e + "k", "3pl": á + "n" + a + "k" }[slot.person]
+    : { "1sg": á + "m", "2sg": á + "d", "3sg": á, "1pl": á + "nk", "2pl": á + "t" + e + "k", "3pl": á + "k" }[slot.person];
+  return P.prefix + base + end;
+}
+
+/** Every available slot for a verb: all tenses and moods, definite only when transitive. */
 export function slotsFor(item: Item): Slot[] {
   const tr = isTransitive(item);
   const out: Slot[] = [];
-  const tenses: Tense[] = hasImperative(item) ? ["pres", "past", "fut", "pot", "imp"] : ["pres", "past", "fut", "pot"];
+  const tenses: Tense[] = TENSES.filter((t) => t !== "imp" || hasImperative(item));
   for (const tense of tenses) for (const def of tr ? [false, true] : [false]) for (const person of PERSONS) out.push({ tense, def, person });
   return out;
 }
