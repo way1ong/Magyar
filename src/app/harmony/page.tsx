@@ -43,7 +43,7 @@ export default function HarmonyPage() {
   // vowel-final stems (there the answer is just "-n", not a harmony choice).
   useEffect(() => {
     if (!item) return;
-    const pool = harmonyPatternsFor(item).filter((p) => !(p.linking && endsWithVowel(item.hu)));
+    const pool = harmonyPatternsFor(item).filter((p) => !((p.linking || p.afterVowel) && endsWithVowel(item.hu)));
     const p = pool[Math.floor(Math.random() * pool.length)];
     setPattern(p);
     setChoice(item.harmony ? harmonyChoice(item.hu, p, item.harmony, item.forms) : null);
@@ -106,7 +106,7 @@ export default function HarmonyPage() {
       </div>
 
       <div className="card big">
-        <p className="muted" style={{ margin: 0 }}>{patternShort(pattern)}</p>
+        <p className="muted" style={{ margin: 0 }}>{patternShort(pattern, item)}</p>
         <p className="hu">
           {item.hu}
           <span className="muted">-?</span>

@@ -6,12 +6,13 @@ import a1_03 from "@content/a1-03.json";
 import a1_04 from "@content/a1-04.json";
 import a1_05 from "@content/a1-05.json";
 import a2_01 from "@content/a2-01.json";
+import a2_02 from "@content/a2-02.json";
 
 /**
  * Content registry. Add a pack: drop the JSON in /content and import it here.
  * Packs are bundled into the app, so they work offline with no fetch.
  */
-export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack, a1_04 as ContentPack, a1_05 as ContentPack, a2_01 as ContentPack];
+export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack, a1_04 as ContentPack, a1_05 as ContentPack, a2_01 as ContentPack, a2_02 as ContentPack];
 
 export const allItems: Item[] = packs.flatMap((p) => p.items);
 export const allPatterns: Pattern[] = packs.flatMap((p) => p.patterns);
@@ -30,8 +31,9 @@ packs.forEach((p, n) => {
 });
 export const packIndexOf = (id: string) => packIndexById.get(id) ?? 0;
 
-/** Short Ukrainian gloss of a suffix for result lines ("у чомусь (де?)"). */
-export const patternShort = (p: Pattern) => p.short ?? p.meaning.split(" — ")[0];
+/** Short Ukrainian gloss of a suffix for result lines ("у чомусь (де?)"); role-specific when the item is known. */
+export const patternShort = (p: Pattern, item?: Item) =>
+  (item && p.shortByRole?.[roleOf(item)]) ?? p.short ?? p.meaning.split(" — ")[0];
 
 /** Words with a known harmony class, by Hungarian form — resolves pattern example stems. */
 const stemIndex = new Map<string, Item>();

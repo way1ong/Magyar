@@ -112,6 +112,7 @@
   "patterns": [
     {
       "id": "suf-instrumental",
+      "shortByRole": { "person": "з ким? (разом)" },
       "short": "чим? з ким? (разом, за допомогою)",
       "roles": ["person", "place", "thing", "food"],
       "name": "-val / -vel",
