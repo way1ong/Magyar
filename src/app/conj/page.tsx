@@ -159,7 +159,7 @@ export default function ConjPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">Дієвідміна · {TENSE_UA[tense]} час</span>
+        <span className="muted">Дієвідміна · {tense === "pot" ? TENSE_UA[tense] : `${TENSE_UA[tense]} час`}</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}
@@ -176,7 +176,7 @@ export default function ConjPage() {
           {object && ` ${object}`}.
         </p>
         <p className="ua">
-          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {TENSE_UA[tense]} час
+          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : `${TENSE_UA[tense]} час`}
         </p>
         {done && (
           <>

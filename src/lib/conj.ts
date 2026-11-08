@@ -16,15 +16,17 @@ import type { Harmony, Item, VerbConj } from "./types";
  * Nine irregular verbs (menni, jönni, enni, inni, venni, vinni, tenni, hinni,
  * lenni) are spelled out below and apply to their prefixed compounds too
  * (átmenni, bevenni). The future is fog + infinitive, with a separable prefix
- * moved in front (el fogok menni); lenni has its own (leszek).
+ * moved in front (el fogok menni); lenni has its own (leszek). The potential
+ * (-hat/-het: parkolhat, mehet, ehet) is a derived stem conjugated like any
+ * present-tense verb.
  * `npm run content:conj` prints every verb's paradigm.
  */
-export type Tense = "pres" | "past" | "fut";
+export type Tense = "pres" | "past" | "fut" | "pot";
 export type Person = "1sg" | "2sg" | "3sg" | "1pl" | "2pl" | "3pl";
 export const PERSONS: Person[] = ["1sg", "2sg", "3sg", "1pl", "2pl", "3pl"];
 export const PRONOUN: Record<Person, string> = { "1sg": "én", "2sg": "te", "3sg": "ő", "1pl": "mi", "2pl": "ti", "3pl": "ők" };
 export const PRONOUN_UA: Record<Person, string> = { "1sg": "я", "2sg": "ти", "3sg": "він / вона", "1pl": "ми", "2pl": "ви", "3pl": "вони" };
-export const TENSE_UA: Record<Tense, string> = { pres: "теперішній", past: "минулий", fut: "майбутній" };
+export const TENSE_UA: Record<Tense, string> = { pres: "теперішній", past: "минулий", fut: "майбутній", pot: "можливість -hat/-het" };
 
 export interface Slot {
   tense: Tense;
@@ -110,6 +112,9 @@ function fut(s: string): Record<string, string> {
   s.split(" ").forEach((f, i) => (out[slotKey({ tense: "fut", def: false, person: PERSONS[i] })] = f));
   return out;
 }
+/** Potential stems of the irregular verbs (regular ones add -hat/-het to the stem). */
+const POT_STEM: Record<string, string> = { enni: "ehet", inni: "ihat", venni: "vehet", vinni: "vihet", tenni: "tehet", hinni: "hihet", menni: "mehet", jönni: "jöhet", lenni: "lehet", aludni: "alhat", feküdni: "fekhet" };
+
 /** fog in the present: the auxiliary of the future. */
 const FOG = { indef: "fogok fogsz fog fogunk fogtok fognak".split(" "), def: "fogom fogod fogja fogjuk fogjátok fogják".split(" ") };
 /** Verbs whose first syllables merely look like a prefix (be-szél, fel-el, lé-legez): never split for the future. */
@@ -195,6 +200,12 @@ export function conjugate(item: Item, slot: Slot): string {
   const P = analyse(item);
   const irr = IRREGULAR[P.base];
   if (irr?.[key]) return P.prefix + irr[key];
+  if (slot.tense === "pot") {
+    // -hat/-het on the full stem (parkolhat, érezhet, mozoghat), then present endings.
+    const stem = POT_STEM[P.base] ?? P.stem + (harmonyOf(P.stem, item.harmony ?? "back") === "back" ? "hat" : "het");
+    const derived: Item = { ...item, hu: P.prefix + stem + "ni", conj: { tr: c.tr, ik: false } };
+    return conjugate(derived, { ...slot, tense: "pres" });
+  }
   if (slot.tense === "fut") {
     // fog + infinitive; a separable prefix comes first: el fogok menni, meg fogom nézni.
     const [pre, base] = NOT_SEPARABLE.has(item.hu) ? ["", item.hu] : splitPrefix(item.hu);
@@ -263,7 +274,7 @@ export function conjugate(item: Item, slot: Slot): string {
 export function slotsFor(item: Item): Slot[] {
   const tr = isTransitive(item);
   const out: Slot[] = [];
-  for (const tense of ["pres", "past", "fut"] as Tense[]) for (const def of tr ? [false, true] : [false]) for (const person of PERSONS) out.push({ tense, def, person });
+  for (const tense of ["pres", "past", "fut", "pot"] as Tense[]) for (const def of tr ? [false, true] : [false]) for (const person of PERSONS) out.push({ tense, def, person });
   return out;
 }
 

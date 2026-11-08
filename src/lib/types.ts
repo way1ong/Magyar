@@ -99,9 +99,10 @@ export interface Pattern {
    * The suffix goes on a verb stem, which the content stores as the
    * infinitive: -ás/-és strips -ni / -ani / -eni (parkolni → parkol+ás,
    * takarítani → takarít+ás); `forms.stem` overrides irregular stems
-   * (vásárolni → vásárl+ás). Pair with attachesTo: ["verb"].
+   * (vásárolni → vásárl+ás). "plain" ignores `forms.stem` (the -hat/-het
+   * potential goes on the full stem: dohányozhat, but dohányzás). Pair with attachesTo: ["verb"].
    */
-  fromInfinitive?: boolean;
+  fromInfinitive?: boolean | "plain";
   /**
    * Accusative / plural / possessive: the ending depends on the stem's
    * linking vowel and stem changes (inflect.ts); `forms` then only lists

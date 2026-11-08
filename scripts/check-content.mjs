@@ -88,7 +88,7 @@ for (const { f, pack } of packs) {
     if (p.inflect && !["acc", "pl", "p1", "p2", "p3", "s", "comp", "ord", "adv", "u"].includes(p.inflect)) err(`${p.id}: bad inflect "${p.inflect}"`);
     if (!p.short) warn(`${p.id}: no "short" gloss — exercises fall back to the meaning`);
     if (p.afterVowel !== undefined && typeof p.afterVowel !== "string" && !(p.afterVowel?.back && p.afterVowel?.front && p.afterVowel?.front_rounded)) err(`${p.id}: afterVowel must be a string or {back, front, front_rounded}`);
-    if (p.fromInfinitive !== undefined && typeof p.fromInfinitive !== "boolean") err(`${p.id}: fromInfinitive must be a boolean`);
+    if (p.fromInfinitive !== undefined && typeof p.fromInfinitive !== "boolean" && p.fromInfinitive !== "plain") err(`${p.id}: fromInfinitive must be true/false or "plain"`);
     const FRAME_KEYS = [...ROLES, "adj", "verb", "num", "*"];
     for (const [k, fr] of Object.entries(p.frames ?? {})) {
       if (!FRAME_KEYS.includes(k) && !allTags.has(k)) err(`${p.id}: frames.${k} — unknown role/pos/tag`);
