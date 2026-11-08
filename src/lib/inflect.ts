@@ -15,7 +15,7 @@ import type { Harmony, ItemForms } from "./types";
  * Nouns without `forms` follow the default rules. content:forms prints
  * every derived form for review.
  */
-export type InflectKind = "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp" | "ord" | "adv";
+export type InflectKind = "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp" | "ord" | "adv" | "u";
 
 /** Accusative after these consonants takes no linking vowel (asztalt, embert, buszt). */
 const NO_LINK = new Set(["l", "r", "n", "ny", "s", "sz", "z", "zs", "j", "ly"]);
@@ -31,6 +31,7 @@ export const INFLECT_VARIANTS: Record<InflectKind, string[]> = {
   comp: ["bb", "abb", "ebb", "obb"],
   ord: ["odik", "edik", "ödik", "adik"],
   adv: ["an", "en", "on", "n", "ul"],
+  u: ["ú", "ű", "jú", "jű"],
 };
 
 function commonPrefix(a: string, b: string): string {
@@ -105,6 +106,11 @@ export function inflect(hu: string, h: Harmony, forms: ItemForms | undefined, ki
       // Adverb of an adjective: gyors → gyorsan, szép → szépen, tiszta → tisztán,
       // szomorú → szomorúan, érthető → érthetően; irregulars (jól, lassan, szabadon, rosszul) in forms.adv.
       suffix = vowelFinal && !/[úűő]$/.test(base) ? "n" : (h === "back" ? "a" : "e") + "n";
+      break;
+    case "u":
+      // "having such a …" adjective after a qualifier: hosszú hajú, kék szemű, jó minőségű;
+      // after a vowel -jú/-jű (formájú); stem changes as in the oblique stem (kéz → kezű).
+      suffix = (vowelFinal ? "j" : "") + (h === "back" ? "ú" : "ű");
       break;
   }
   return { base, suffix, result: base + suffix };

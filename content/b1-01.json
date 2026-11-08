@@ -92,7 +92,7 @@
     {"id": "b1-01-jelenlet", "type": "word", "hu": "jelenlét", "ua": "присутність", "pos": "noun", "harmony": "front", "tags": ["abstract", "compound"]},
     {"id": "b1-01-gond", "type": "word", "hu": "gond", "ua": "клопіт, проблема", "pos": "noun", "harmony": "back", "forms": {"j": true}, "tags": ["abstract"]},
     {"id": "b1-01-szag", "type": "word", "hu": "szag", "ua": "запах", "pos": "noun", "harmony": "back"},
-    {"id": "b1-01-ero", "type": "word", "hu": "erő", "ua": "сила", "pos": "noun", "harmony": "front_rounded", "forms": {"p3": "ereje"}, "tags": ["abstract"]},
+    {"id": "b1-01-ero", "type": "word", "hu": "erő", "ua": "сила", "pos": "noun", "harmony": "front_rounded", "forms": {"p3": "ereje", "u": "erejű"}, "tags": ["abstract"]},
     {"id": "b1-01-jel", "type": "word", "hu": "jel", "ua": "знак, сигнал", "pos": "noun", "harmony": "front", "forms": {"low": true}},
     {"id": "b1-01-ketseg", "type": "word", "hu": "kétség", "ua": "сумнів", "pos": "noun", "harmony": "front", "tags": ["abstract"]},
     {"id": "b1-01-veg", "type": "word", "hu": "vég", "ua": "кінець", "pos": "noun", "harmony": "front", "example": {"hu": "Vége a műszaknak.", "ua": "Зміна закінчилась."}},
