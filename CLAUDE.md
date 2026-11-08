@@ -19,14 +19,14 @@
 - Ключ картки: `${exercise}:${itemId}`. Вправи: `recognize` (HU→UA), `recall` (UA→HU), `harmony` (стем → вибір варіанта суфікса), `dictation` (TTS → ввід; `src/lib/dictation.ts`, слова з «/» чи «...» пропускаються), `builder` (UA → зібрати слово з блоків; `itemId` = `<id стема>+<id патерна>`, завдання беруться з `examples` патернів і з `examples` пакета (`{ pattern, stem, result, ua }` — приклади до суфіксів з інших пакетів) — `src/lib/builder.ts`).
 - `Pattern.attachesTo` — до яких частин мови чіпляється суфікс (за замовчуванням лише noun); `attachesTag` — лише до слів з таким тегом (-ul/-ül → `language`); `roles` — з якими ролями іменників має сенс (`roleOf()` у `content.ts`: теги `person` / `place` / `time`|`day`|`month`|`season`|`daytime` / `food`|`drink`, інакше річ). Новий іменник-людину чи місце обовʼязково тегувати, інакше «Гармонія» утворить apában. Приклади патернів мають точно дорівнювати `apply()` — інакше `content:check` падає.
 - Гармонія голосних: клас стема (`back | front | front_rounded`) задається в контенті явно; `guessHarmony()` — лише fallback. Змішані слова (kávé → back) — винятки, тому тег обовʼязковий.
-- `apply()` в `harmony.ts` подовжує кінцеві a/e (alma→almában; крім `noLengthen`: órakor), дає `-n` після голосної для `linking`-суфіксів (autón) і асимілює v для `assimilates` (-val/-vel: busz→busszal, hegy→heggyel). Зміни приголосного стема (ház→házat, sarok→sarkon) НЕ моделюються — не додавати знахідний відмінок у гру без окремої моделі і не ставити слова з випадною голосною (sarok, tükör) у приклади суфіксів.
+- `apply()` в `harmony.ts` подовжує кінцеві a/e (alma→almában; крім `noLengthen`: órakor), дає `-n` після голосної для `linking`-суфіксів (autón) і асимілює v для `assimilates` (-val/-vel: busz→busszal, hegy→heggyel). Знахідний, множина й присвійні (патерни з `inflect`) ідуть через `src/lib/inflect.ts`: сполучна голосна o/e/ö або a/e (`forms.low`), змінена основа (`forms.stem`: kéz → kez, tükör → tükr), -ja/-je (`forms.j`), повні винятки (`forms.p3: "anyja"`). Новий іменник = перевірити його форми в `npm run content:forms` і за потреби додати `forms`. Інші зміни основи (minden → mindent ok; -val після випадної голосної: tükörrel — ok) не моделюються.
 - Пакети відкриваються послідовно: бос пакета N (`src/lib/boss.ts`, результат у `meta` як `boss:<id>`, поріг `BOSS_PASS` у `progress.ts`) відкриває N+1; `seedCards()` сіє лише відкриті пакети (`packIndexOf`, `taskPackIndex`). Новий пакет = додати в `content.ts` у кінець масиву `packs` — порядок і є порядком відкриття.
 - Будь-яка нова вправа = новий `Exercise` у `db.ts` + `ensureCards(...)` у `seedCards()` (`src/lib/seed.ts`; її викликають головна й кожна вправа перед завантаженням черги).
 
 ## Команди
 - `npm run dev` — локально; на телефоні відкривати через IP ноутбука (`next dev -H 0.0.0.0`).
 - `npm run build && npm start` — продакшн-збірка; SW працює лише тут.
-- `npm run content:check` — валідація контент-пакетів.
+- `npm run content:check` — валідація контент-пакетів; `npm run content:forms` — таблиця відмінкових форм усіх іменників для перегляду.
 
 ## Журнал розробки (артефакт)
 Сторінка для користувача: https://claude.ai/artifact/BHeAHiBojGbpSEZm8jwgHR — дорожня карта, зміни, контент-пакети.

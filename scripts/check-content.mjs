@@ -16,17 +16,12 @@ let warnings = 0;
 const err = (m) => { console.error("✗", m); errors++; };
 const warn = (m) => { console.warn("!", m); warnings++; };
 
-// Use the app's own rules (src/lib/harmony.ts). Needs Node ≥ 22.18 (built-in
-// TypeScript type stripping); on older Node the apply() checks are skipped.
-let harmony = null;
-try {
-  harmony = await import(new URL("../src/lib/harmony.ts", import.meta.url));
-} catch (e) {
-  warn(`can't load src/lib/harmony.ts (${e.code ?? e.message}) — skipping apply()/guessHarmony checks; use Node ≥ 22.18`);
-}
+// Use the app's own rules (src/lib/harmony.ts), bundled with esbuild.
+import { loadLib } from "./load-lib.mjs";
+const harmony = await loadLib("src/lib/harmony.ts");
 
 const packs = readdirSync(dir)
-  .filter((f) => f.endsWith(".json"))
+  .filter((f) => /^a\d-\d\d\.json$/.test(f))
   .sort()
   .map((f) => ({ f, pack: JSON.parse(readFileSync(join(dir.pathname, f), "utf8")) }));
 
@@ -42,6 +37,11 @@ for (const { f, pack } of packs) {
     if (it.harmony && !HARMONY.includes(it.harmony)) err(`${it.id}: bad harmony`);
     if (it.type === "word" && (it.pos === "noun" || it.pos === "adj") && !it.harmony) {
       err(`${it.id}: noun/adj needs "harmony"`);
+    }
+    if (it.forms) {
+      const ok = ["stem", "low", "j", "acc", "pl", "p1", "p2", "p3"];
+      for (const k of Object.keys(it.forms)) if (!ok.includes(k)) err(`${it.id}: unknown forms.${k}`);
+      if (it.pos !== "noun") err(`${it.id}: forms only make sense on nouns`);
     }
     if (it.type === "word" && it.harmony) {
       if (stems.has(it.hu)) err(`${it.id}: stem "${it.hu}" already defined by ${stems.get(it.hu).id}`);
@@ -70,6 +70,7 @@ for (const { f, pack } of packs) {
     }
     if (p.attachesTag !== undefined && typeof p.attachesTag !== "string") err(`${p.id}: attachesTag must be a string`);
     if (p.roles && (!Array.isArray(p.roles) || p.roles.some((r) => !ROLES.includes(r)))) err(`${p.id}: bad roles ${JSON.stringify(p.roles)}`);
+    if (p.inflect && !["acc", "pl", "p1", "p2", "p3"].includes(p.inflect)) err(`${p.id}: bad inflect "${p.inflect}"`);
   }
 }
 
@@ -87,7 +88,7 @@ const checkExample = (where, p, ex) => {
   if (taskIds.has(id)) { warn(`${where}: duplicate builder task ${id} — only the first is used`); return 0; }
   taskIds.add(id);
   if (harmony) {
-    const got = harmony.apply(stem.hu, p, stem.harmony);
+    const got = harmony.apply(stem.hu, p, stem.harmony, stem.forms);
     if (got !== ex.result) err(`${where}: ${ex.stem} → apply() gives "${got}", example says "${ex.result}"`);
   }
   return 1;

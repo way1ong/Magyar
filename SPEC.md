@@ -17,11 +17,12 @@
 | `hu`, `ua` | слово/фраза та переклад |
 | `pos` | noun, verb, adj, adv, pron, num, phrase, other |
 | `harmony` | `back` \| `front` \| `front_rounded` — для іменників/прикметників |
+| `forms` | іменники: поведінка основи перед -t/-k/-m/-d/-a (`src/lib/inflect.ts`): `stem` (змінена основа: kéz → kez, tükör → tükr), `low` («знижена» сполучна голосна a/e: házat, könyvet), `j` (присвійне -ja/-je: boltja), точкові повні форми `acc`/`pl`/`p1`/`p2`/`p3` (anya → anyja, fiú → fia). Без `forms` — за замовчуванням (asztalt, asztalok). Таблиця всіх форм: `npm run content:forms` |
 | `example` | `{ hu, ua }` |
 | `tags` | вільні теги; семантичні ролі для іменників: `person`, `place`, `time` (також `day`/`month`/`season`/`daytime`), `food` (також `drink`), інакше — річ |
 
 ### Pattern
-`id`, `name` ("-ban / -ben"), `meaning`, `forms: { back, front, front_rounded }`, `linking?` (суфікс зі сполучною голосною: після голосної лише `-n`), `attachesTo?` (частини мови, до яких чіпляється суфікс; за замовчуванням `noun`, `adj` — напр. `-szor` лише до `num`), `assimilates?` (-val/-vel: після приголосної v подвоює його — busszal, vonattal; подвоєний диграф пишеться ggy/ssz, три однакові — tollal), `attachesTag?` (суфікс лише для слів із цим тегом: -ul/-ül → `language`), `roles?` (з якими ролями іменників суфікс має сенс: -nak лише `person`, -ban — `place`/`thing`/`time`; «Гармонія» не пропонує apában чи asztalnak), `noLengthen?` (кінцеве a/e не подовжується: órakor), `examples[]` (`{ stem, result, ua }`; `result` має дорівнювати `apply()` — це перевіряє `content:check`).
+`id`, `name` ("-ban / -ben"), `meaning`, `forms: { back, front, front_rounded }`, `linking?` (суфікс зі сполучною голосною: після голосної лише `-n`), `attachesTo?` (частини мови, до яких чіпляється суфікс; за замовчуванням `noun`, `adj` — напр. `-szor` лише до `num`), `assimilates?` (-val/-vel: після приголосної v подвоює його — busszal, vonattal; подвоєний диграф пишеться ggy/ssz, три однакові — tollal), `attachesTag?` (суфікс лише для слів із цим тегом: -ul/-ül → `language`), `roles?` (з якими ролями іменників суфікс має сенс: -nak лише `person`, -ban — `place`/`thing`/`time`; «Гармонія» не пропонує apában чи asztalnak), `noLengthen?` (кінцеве a/e не подовжується: órakor), `inflect?` (`acc` \| `pl` \| `p1` \| `p2` \| `p3` — знахідний, множина, присвійні: закінчення залежить від сполучної голосної й основи слова, `forms` патерна тоді лише типові o/e/ö для показу), `examples[]` (`{ stem, result, ua }`; `result` має дорівнювати `apply()` — це перевіряє `content:check`).
 
 ## Вправи (v0.1)
 | вправа | ключ картки | механіка | оцінка |
@@ -54,5 +55,5 @@
 ## Дорожня карта
 - v0.2 — пакети a1-02…a1-05 ✓; «Конструктор» ✓ (блоки стем+суфікс); бос пакета ✓.
 - v0.3 — диктант ✓, Piper-аудіо ✓ (усі слова й фрази; похідні форми — ще системний TTS), промова (SpeechRecognition hu-HU).
-- v0.4 — теплова карта знань, тижнева «ліга проти себе», генерація діалогів через Claude API.
+- v0.4 — модель словозміни ✓ (знахідний, множина, присвійні -m/-d/-a у Гармонії, Конструкторі й Босі); довідка з термінів і особливостей мови; теплова карта знань, тижнева «ліга проти себе», генерація діалогів через Claude API.
 - Бекап прогресу ✓ — на ноутбук (`/api/backup`) і через «Поділитися».

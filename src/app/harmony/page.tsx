@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { harmonyPatternsFor, itemById } from "@/lib/content";
-import { apply, endsWithVowel, variantsOf } from "@/lib/harmony";
+import { applyParts, endsWithVowel, harmonyChoice } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
 import type { Pattern } from "@/lib/types";
@@ -18,6 +18,7 @@ export default function HarmonyPage() {
   const [queue, setQueue] = useState<CardRow[] | null>(null);
   const [i, setI] = useState(0);
   const [pattern, setPattern] = useState<Pattern | null>(null);
+  const [choice, setChoice] = useState<{ correct: string; options: string[] } | null>(null);
   const [picked, setPicked] = useState<string | null>(null);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const shownAt = useRef(Date.now());
@@ -43,14 +44,16 @@ export default function HarmonyPage() {
   useEffect(() => {
     if (!item) return;
     const pool = harmonyPatternsFor(item).filter((p) => !(p.linking && endsWithVowel(item.hu)));
-    setPattern(pool[Math.floor(Math.random() * pool.length)]);
+    const p = pool[Math.floor(Math.random() * pool.length)];
+    setPattern(p);
+    setChoice(item.harmony ? harmonyChoice(item.hu, p, item.harmony, item.forms) : null);
     setPicked(null);
     shownAt.current = Date.now();
   }, [item]);
 
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
-  if (!row || !item || !item.harmony || !pattern) {
+  if (!row || !item || !item.harmony || !pattern || !choice) {
     return (
       <>
         <h1 className="title">Гармонія голосних</h1>
@@ -68,9 +71,11 @@ export default function HarmonyPage() {
     );
   }
 
-  const correct = pattern.forms[item.harmony];
-  const options = variantsOf(pattern);
-  const result = apply(item.hu, pattern, item.harmony);
+  const { correct, options } = choice;
+  const { base, result } = applyParts(item.hu, pattern, item.harmony, item.forms);
+  const stemNote = base !== item.hu && base !== item.hu.replace(/[ae]$/, (v) => (v === "a" ? "á" : "é"))
+    ? ` (${item.hu} → ${base}-)`
+    : "";
 
   const pick = async (v: string) => {
     if (picked) return;
@@ -110,12 +115,13 @@ export default function HarmonyPage() {
         {picked && (
           <p className="example" style={{ color: picked === correct ? "var(--ok)" : "var(--bad)" }}>
             {result}
+            {stemNote}
             {picked !== correct && ` — правильно: -${correct}`}
           </p>
         )}
       </div>
 
-      <div className="choices" style={{ gridTemplateColumns: `repeat(${options.length}, 1fr)` }}>
+      <div className="choices" style={{ gridTemplateColumns: `repeat(${Math.min(options.length, 3)}, 1fr)` }}>
         {options.map((v) => {
           let cls = "btn";
           if (picked) {

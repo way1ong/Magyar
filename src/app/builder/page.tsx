@@ -27,6 +27,13 @@ function makeBlocks(t: BuilderTask): Block[] {
 /** Why the result isn't just stem + suffix glued together (or null). */
 function note(t: BuilderTask): string | null {
   const stem = t.stem.hu;
+  if (t.pattern.inflect) {
+    const lengthened = lengthenFinal(stem);
+    if (t.base !== stem && t.base !== lengthened) return `Основа змінюється: ${stem} → ${t.base}- перед суфіксом.`;
+    if (t.base === lengthened && lengthened !== stem) return `Кінцеве ${stem.at(-1)} → ${lengthened.at(-1)} перед суфіксом.`;
+    if (t.stem.forms?.low) return "«Знижена» основа: сполучна голосна a/e, а не o/ö.";
+    return null;
+  }
   if (t.pattern.linking && endsWithVowel(stem)) return "Після голосної — лише -n.";
   const c = t.pattern.assimilates ? finalConsonant(stem) : null;
   if (c) {
