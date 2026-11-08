@@ -223,6 +223,11 @@ export default function ConjPage() {
         </>
       ) : (
         <>
+          {picked && (
+            <button className="btn primary" onClick={next} style={{ marginBottom: 12 }} ref={(el) => el?.scrollIntoView({ block: "nearest" })}>
+              Далі
+            </button>
+          )}
           <div className="choices" style={{ gridTemplateColumns: "1fr 1fr" }}>
             {options.map((v) => {
               let cls = "btn";
@@ -237,11 +242,6 @@ export default function ConjPage() {
               );
             })}
           </div>
-          {picked && (
-            <button className="btn primary" onClick={next} style={{ marginTop: 12 }}>
-              Далі
-            </button>
-          )}
         </>
       )}
     </>

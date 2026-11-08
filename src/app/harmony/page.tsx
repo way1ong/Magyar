@@ -212,6 +212,11 @@ export default function HarmonyPage() {
         </>
       ) : (
         <>
+          {picked && (
+            <button className="btn primary" onClick={next} style={{ marginBottom: 12 }} ref={(el) => el?.scrollIntoView({ block: "nearest" })}>
+              Далі
+            </button>
+          )}
           <div className="choices" style={{ gridTemplateColumns: `repeat(${Math.min(options.length, 3)}, 1fr)` }}>
             {options.map((v) => {
               let cls = "btn";
@@ -226,11 +231,6 @@ export default function HarmonyPage() {
               );
             })}
           </div>
-          {picked && (
-            <button className="btn primary" onClick={next} style={{ marginTop: 12 }}>
-              Далі
-            </button>
-          )}
         </>
       )}
     </>

@@ -12,6 +12,8 @@ import { BOSS_PASS, bossResults, packProgress, unlockedCount } from "@/lib/progr
 import { PackList } from "@/components/PackList";
 import { db } from "@/lib/db";
 
+type Stats = Awaited<ReturnType<typeof loadStats>>;
+
 async function loadStats() {
   const [rec, rcl, har, bld, dic, cnj, s, t, learned, total, boss, progress] = await Promise.all([
     dueCount("recognize"),
@@ -43,7 +45,7 @@ export default function Home() {
   const [err, setErr] = useState<string | null>(null);
   const [slow, setSlow] = useState(false);
 
-  const stats = useLiveQuery(async () => {
+  const live = useLiveQuery(async () => {
     try {
       return await loadStats();
     } catch (e) {
@@ -51,6 +53,21 @@ export default function Home() {
       return null;
     }
   });
+  // A plain read on mount and whenever the app comes back to the foreground:
+  // on some phones the live query did not deliver after navigating back home.
+  const [once, setOnce] = useState<Stats | null>(null);
+  useEffect(() => {
+    let alive = true;
+    const run = () => loadStats().then((s) => alive && setOnce(s)).catch(() => {});
+    run();
+    const onShow = () => document.visibilityState === "visible" && run();
+    document.addEventListener("visibilitychange", onShow);
+    return () => {
+      alive = false;
+      document.removeEventListener("visibilitychange", onShow);
+    };
+  }, []);
+  const stats = live ?? once;
 
   useEffect(() => {
     if (stats) return;
