@@ -1,0 +1,30 @@
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+import { Tabs } from "@/components/Tabs";
+import { RegisterSW } from "@/components/RegisterSW";
+
+export const metadata: Metadata = {
+  title: "Magyar",
+  description: "Особистий тренажер угорської",
+  manifest: "/manifest.json",
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "Magyar" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#b5452c",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="uk">
+      <body>
+        <main className="wrap">{children}</main>
+        <Tabs />
+        <RegisterSW />
+      </body>
+    </html>
+  );
+}

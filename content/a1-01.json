@@ -1,0 +1,228 @@
+{
+  "id": "a1-01",
+  "level": "A1",
+  "title": "Перші слова: привітання, люди, дім",
+  "items": [
+    { "id": "a1-01-szia", "type": "phrase", "hu": "Szia!", "ua": "Привіт! / Бувай! (до однієї людини)", "pos": "phrase", "tags": ["greeting"] },
+    { "id": "a1-01-sziasztok", "type": "phrase", "hu": "Sziasztok!", "ua": "Привіт усім!", "pos": "phrase", "tags": ["greeting"] },
+    { "id": "a1-01-jo-reggelt", "type": "phrase", "hu": "Jó reggelt!", "ua": "Доброго ранку!", "pos": "phrase", "tags": ["greeting"] },
+    { "id": "a1-01-jo-napot", "type": "phrase", "hu": "Jó napot kívánok!", "ua": "Добрий день!", "pos": "phrase", "tags": ["greeting"] },
+    { "id": "a1-01-jo-estet", "type": "phrase", "hu": "Jó estét!", "ua": "Добрий вечір!", "pos": "phrase", "tags": ["greeting"] },
+    { "id": "a1-01-viszlat", "type": "phrase", "hu": "Viszontlátásra!", "ua": "До побачення!", "pos": "phrase", "tags": ["greeting"] },
+    { "id": "a1-01-koszonom", "type": "phrase", "hu": "Köszönöm szépen.", "ua": "Дуже дякую.", "pos": "phrase", "tags": ["polite"] },
+    { "id": "a1-01-kerem", "type": "phrase", "hu": "Kérem.", "ua": "Будь ласка. / Прошу.", "pos": "phrase", "tags": ["polite"] },
+    { "id": "a1-01-elnezest", "type": "phrase", "hu": "Elnézést!", "ua": "Перепрошую! (щоб звернутися)", "pos": "phrase", "tags": ["polite"] },
+    { "id": "a1-01-bocsanat", "type": "phrase", "hu": "Bocsánat!", "ua": "Вибачте!", "pos": "phrase", "tags": ["polite"] },
+    { "id": "a1-01-nem-ertem", "type": "phrase", "hu": "Nem értem.", "ua": "Я не розумію.", "pos": "phrase", "tags": ["survival"] },
+    { "id": "a1-01-nem-beszelek", "type": "phrase", "hu": "Nem beszélek jól magyarul.", "ua": "Я погано говорю угорською.", "pos": "phrase", "tags": ["survival"] },
+    { "id": "a1-01-hogy-vagy", "type": "phrase", "hu": "Hogy vagy?", "ua": "Як ти?", "pos": "phrase", "tags": ["smalltalk"] },
+    { "id": "a1-01-jol-vagyok", "type": "phrase", "hu": "Jól vagyok, köszönöm.", "ua": "Добре, дякую.", "pos": "phrase", "tags": ["smalltalk"] },
+    { "id": "a1-01-hogy-hivnak", "type": "phrase", "hu": "Hogy hívnak?", "ua": "Як тебе звати?", "pos": "phrase", "tags": ["smalltalk"] },
+    { "id": "a1-01-mennyibe", "type": "phrase", "hu": "Mennyibe kerül?", "ua": "Скільки коштує?", "pos": "phrase", "tags": ["shop"] },
+    { "id": "a1-01-hol-van", "type": "phrase", "hu": "Hol van a ...?", "ua": "Де знаходиться ...?", "pos": "phrase", "tags": ["survival"] },
+    { "id": "a1-01-egeszsegedre", "type": "phrase", "hu": "Egészségedre!", "ua": "Будь здоровий! / Будьмо!", "pos": "phrase", "tags": ["smalltalk"] },
+
+    { "id": "a1-01-igen", "type": "word", "hu": "igen", "ua": "так", "pos": "adv" },
+    { "id": "a1-01-nem", "type": "word", "hu": "nem", "ua": "ні / не", "pos": "adv" },
+    { "id": "a1-01-en", "type": "word", "hu": "én", "ua": "я", "pos": "pron" },
+    { "id": "a1-01-te", "type": "word", "hu": "te", "ua": "ти", "pos": "pron" },
+    { "id": "a1-01-o", "type": "word", "hu": "ő", "ua": "він / вона", "pos": "pron" },
+    { "id": "a1-01-mi", "type": "word", "hu": "mi", "ua": "ми", "pos": "pron" },
+    { "id": "a1-01-ti", "type": "word", "hu": "ti", "ua": "ви (кілька людей)", "pos": "pron" },
+    { "id": "a1-01-ok", "type": "word", "hu": "ők", "ua": "вони", "pos": "pron" },
+    { "id": "a1-01-itt", "type": "word", "hu": "itt", "ua": "тут", "pos": "adv", "example": { "hu": "Itt lakom.", "ua": "Я живу тут." } },
+    { "id": "a1-01-ott", "type": "word", "hu": "ott", "ua": "там", "pos": "adv", "example": { "hu": "Ott van a bolt.", "ua": "Там магазин." } },
+    { "id": "a1-01-ma", "type": "word", "hu": "ma", "ua": "сьогодні", "pos": "adv", "example": { "hu": "Ma dolgozom.", "ua": "Сьогодні я працюю." } },
+    { "id": "a1-01-holnap", "type": "word", "hu": "holnap", "ua": "завтра", "pos": "adv" },
+    { "id": "a1-01-most", "type": "word", "hu": "most", "ua": "зараз", "pos": "adv" },
+    { "id": "a1-01-nagyon", "type": "word", "hu": "nagyon", "ua": "дуже", "pos": "adv", "example": { "hu": "Nagyon jó!", "ua": "Дуже добре!" } },
+    { "id": "a1-01-egy", "type": "word", "hu": "egy", "ua": "один; неозначений артикль", "pos": "num" },
+    { "id": "a1-01-ketto", "type": "word", "hu": "kettő / két", "ua": "два (két — перед іменником)", "pos": "num" },
+    { "id": "a1-01-harom", "type": "word", "hu": "három", "ua": "три", "pos": "num" },
+
+    { "id": "a1-01-haz", "type": "word", "hu": "ház", "ua": "дім, будинок", "pos": "noun", "harmony": "back", "example": { "hu": "A házban vagyok.", "ua": "Я в будинку." } },
+    { "id": "a1-01-asztal", "type": "word", "hu": "asztal", "ua": "стіл", "pos": "noun", "harmony": "back", "example": { "hu": "Az asztalon van a könyv.", "ua": "Книжка на столі." } },
+    { "id": "a1-01-ablak", "type": "word", "hu": "ablak", "ua": "вікно", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-ajto", "type": "word", "hu": "ajtó", "ua": "двері", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-szoba", "type": "word", "hu": "szoba", "ua": "кімната", "pos": "noun", "harmony": "back", "example": { "hu": "A szobában alszom.", "ua": "Я сплю в кімнаті." } },
+    { "id": "a1-01-konyha", "type": "word", "hu": "konyha", "ua": "кухня", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-auto", "type": "word", "hu": "autó", "ua": "автомобіль", "pos": "noun", "harmony": "back", "example": { "hu": "Autóval megyek.", "ua": "Я їду автомобілем." } },
+    { "id": "a1-01-bolt", "type": "word", "hu": "bolt", "ua": "магазин", "pos": "noun", "harmony": "back", "example": { "hu": "A boltba megyek.", "ua": "Я йду в магазин." } },
+    { "id": "a1-01-utca", "type": "word", "hu": "utca", "ua": "вулиця", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-varos", "type": "word", "hu": "város", "ua": "місто", "pos": "noun", "harmony": "back", "example": { "hu": "Nagy a város.", "ua": "Місто велике." } },
+    { "id": "a1-01-munka", "type": "word", "hu": "munka", "ua": "робота", "pos": "noun", "harmony": "back", "example": { "hu": "Munkában vagyok.", "ua": "Я на роботі." } },
+    { "id": "a1-01-iskola", "type": "word", "hu": "iskola", "ua": "школа", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-csalad", "type": "word", "hu": "család", "ua": "сімʼя", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-anya", "type": "word", "hu": "anya", "ua": "мама", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-apa", "type": "word", "hu": "apa", "ua": "тато", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-barat", "type": "word", "hu": "barát", "ua": "друг", "pos": "noun", "harmony": "back", "example": { "hu": "A barátomnál vagyok.", "ua": "Я у друга." } },
+    { "id": "a1-01-lany", "type": "word", "hu": "lány", "ua": "дівчина, дочка", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-fiu", "type": "word", "hu": "fiú", "ua": "хлопець, син", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-alma", "type": "word", "hu": "alma", "ua": "яблуко", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-kave", "type": "word", "hu": "kávé", "ua": "кава", "pos": "noun", "harmony": "back", "example": { "hu": "Kérek egy kávét.", "ua": "Прошу одну каву." }, "tags": ["mixed-vowel"] },
+    { "id": "a1-01-bor", "type": "word", "hu": "bor", "ua": "вино", "pos": "noun", "harmony": "back" },
+    { "id": "a1-01-nap", "type": "word", "hu": "nap", "ua": "день; сонце", "pos": "noun", "harmony": "back" },
+
+    { "id": "a1-01-ember", "type": "word", "hu": "ember", "ua": "людина", "pos": "noun", "harmony": "front", "example": { "hu": "Jó ember.", "ua": "Хороша людина." } },
+    { "id": "a1-01-gyerek", "type": "word", "hu": "gyerek", "ua": "дитина", "pos": "noun", "harmony": "front" },
+    { "id": "a1-01-kert", "type": "word", "hu": "kert", "ua": "сад, город", "pos": "noun", "harmony": "front", "example": { "hu": "A kertben vagyunk.", "ua": "Ми в саду." } },
+    { "id": "a1-01-kenyer", "type": "word", "hu": "kenyér", "ua": "хліб", "pos": "noun", "harmony": "front", "example": { "hu": "Kérek kenyeret.", "ua": "Прошу хліба." } },
+    { "id": "a1-01-tej", "type": "word", "hu": "tej", "ua": "молоко", "pos": "noun", "harmony": "front" },
+    { "id": "a1-01-viz", "type": "word", "hu": "víz", "ua": "вода", "pos": "noun", "harmony": "front", "example": { "hu": "Kérek egy pohár vizet.", "ua": "Прошу склянку води." } },
+    { "id": "a1-01-szek", "type": "word", "hu": "szék", "ua": "стілець", "pos": "noun", "harmony": "front" },
+    { "id": "a1-01-kez", "type": "word", "hu": "kéz", "ua": "рука (кисть)", "pos": "noun", "harmony": "front" },
+    { "id": "a1-01-etel", "type": "word", "hu": "étel", "ua": "їжа, страва", "pos": "noun", "harmony": "front" },
+    { "id": "a1-01-penz", "type": "word", "hu": "pénz", "ua": "гроші", "pos": "noun", "harmony": "front", "example": { "hu": "Nincs pénzem.", "ua": "У мене нема грошей." } },
+    { "id": "a1-01-het", "type": "word", "hu": "hét", "ua": "тиждень; сім", "pos": "noun", "harmony": "front" },
+    { "id": "a1-01-uveg", "type": "word", "hu": "üveg", "ua": "пляшка; скло", "pos": "noun", "harmony": "front", "tags": ["last-syllable-rule"] },
+    { "id": "a1-01-fuzet", "type": "word", "hu": "füzet", "ua": "зошит", "pos": "noun", "harmony": "front", "tags": ["last-syllable-rule"] },
+
+    { "id": "a1-01-no", "type": "word", "hu": "nő", "ua": "жінка", "pos": "noun", "harmony": "front_rounded" },
+    { "id": "a1-01-konyv", "type": "word", "hu": "könyv", "ua": "книжка", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "A könyvben van.", "ua": "Це в книжці." } },
+    { "id": "a1-01-fold", "type": "word", "hu": "föld", "ua": "земля; підлога", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "A földön van.", "ua": "Це на підлозі." } },
+    { "id": "a1-01-sor", "type": "word", "hu": "sör", "ua": "пиво", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "Kérek egy sört.", "ua": "Прошу одне пиво." } },
+    { "id": "a1-01-gyumolcs", "type": "word", "hu": "gyümölcs", "ua": "фрукт", "pos": "noun", "harmony": "front_rounded" },
+    { "id": "a1-01-tukor", "type": "word", "hu": "tükör", "ua": "дзеркало", "pos": "noun", "harmony": "front_rounded" },
+    { "id": "a1-01-furdo", "type": "word", "hu": "fürdő", "ua": "ванна кімната; купальня", "pos": "noun", "harmony": "front_rounded" },
+    { "id": "a1-01-tuz", "type": "word", "hu": "tűz", "ua": "вогонь", "pos": "noun", "harmony": "front_rounded" },
+
+    { "id": "a1-01-nagy", "type": "word", "hu": "nagy", "ua": "великий", "pos": "adj", "harmony": "back" },
+    { "id": "a1-01-kicsi", "type": "word", "hu": "kicsi", "ua": "малий", "pos": "adj" },
+    { "id": "a1-01-jo", "type": "word", "hu": "jó", "ua": "добрий, хороший", "pos": "adj", "harmony": "back" },
+    { "id": "a1-01-rossz", "type": "word", "hu": "rossz", "ua": "поганий", "pos": "adj", "harmony": "back" },
+    { "id": "a1-01-szep", "type": "word", "hu": "szép", "ua": "гарний", "pos": "adj", "harmony": "front" },
+    { "id": "a1-01-uj", "type": "word", "hu": "új", "ua": "новий", "pos": "adj", "harmony": "back" },
+    { "id": "a1-01-draga", "type": "word", "hu": "drága", "ua": "дорогий", "pos": "adj", "harmony": "back", "example": { "hu": "Ez nagyon drága.", "ua": "Це дуже дорого." } },
+    { "id": "a1-01-olcso", "type": "word", "hu": "olcsó", "ua": "дешевий", "pos": "adj", "harmony": "back" },
+    { "id": "a1-01-meleg", "type": "word", "hu": "meleg", "ua": "теплий", "pos": "adj", "harmony": "front" },
+    { "id": "a1-01-hideg", "type": "word", "hu": "hideg", "ua": "холодний", "pos": "adj", "harmony": "front" },
+    { "id": "a1-01-zold", "type": "word", "hu": "zöld", "ua": "зелений", "pos": "adj", "harmony": "front_rounded" },
+
+    { "id": "a1-01-menni", "type": "word", "hu": "menni", "ua": "іти, їхати", "pos": "verb", "example": { "hu": "Haza megyek.", "ua": "Я йду додому." } },
+    { "id": "a1-01-jonni", "type": "word", "hu": "jönni", "ua": "приходити", "pos": "verb", "example": { "hu": "Jövök!", "ua": "Іду! (вже йду до вас)" } },
+    { "id": "a1-01-enni", "type": "word", "hu": "enni", "ua": "їсти", "pos": "verb", "example": { "hu": "Eszem egy almát.", "ua": "Я їм яблуко." } },
+    { "id": "a1-01-inni", "type": "word", "hu": "inni", "ua": "пити", "pos": "verb", "example": { "hu": "Iszom egy kávét.", "ua": "Я пʼю каву." } },
+    { "id": "a1-01-aludni", "type": "word", "hu": "aludni", "ua": "спати", "pos": "verb" },
+    { "id": "a1-01-dolgozni", "type": "word", "hu": "dolgozni", "ua": "працювати", "pos": "verb", "example": { "hu": "Gyárban dolgozom.", "ua": "Я працюю на заводі." } },
+    { "id": "a1-01-tanulni", "type": "word", "hu": "tanulni", "ua": "вчитися, вчити", "pos": "verb", "example": { "hu": "Magyarul tanulok.", "ua": "Я вчу угорську." } },
+    { "id": "a1-01-beszelni", "type": "word", "hu": "beszélni", "ua": "говорити", "pos": "verb", "example": { "hu": "Beszélsz angolul?", "ua": "Ти говориш англійською?" } },
+    { "id": "a1-01-erteni", "type": "word", "hu": "érteni", "ua": "розуміти", "pos": "verb", "example": { "hu": "Értem.", "ua": "Розумію." } },
+    { "id": "a1-01-tudni", "type": "word", "hu": "tudni", "ua": "знати; вміти, могти", "pos": "verb", "example": { "hu": "Nem tudom.", "ua": "Я не знаю." } },
+    { "id": "a1-01-szeretni", "type": "word", "hu": "szeretni", "ua": "любити", "pos": "verb", "example": { "hu": "Szeretem a kávét.", "ua": "Я люблю каву." } },
+    { "id": "a1-01-kerni", "type": "word", "hu": "kérni", "ua": "просити", "pos": "verb", "example": { "hu": "Kérek egy sört.", "ua": "Прошу одне пиво." } },
+    { "id": "a1-01-lakni", "type": "word", "hu": "lakni", "ua": "мешкати", "pos": "verb", "example": { "hu": "Budapesten lakom.", "ua": "Я мешкаю в Будапешті." } }
+  ],
+  "patterns": [
+    {
+      "id": "suf-inessive",
+      "name": "-ban / -ben",
+      "meaning": "у чомусь, всередині (де?) — házban, kertben, könyvben",
+      "forms": { "back": "ban", "front": "ben", "front_rounded": "ben" },
+      "examples": [
+        { "stem": "ház", "result": "házban", "ua": "у будинку" },
+        { "stem": "kert", "result": "kertben", "ua": "у саду" },
+        { "stem": "könyv", "result": "könyvben", "ua": "у книжці" }
+      ]
+    },
+    {
+      "id": "suf-illative",
+      "name": "-ba / -be",
+      "meaning": "у щось, всередину (куди?) — boltba, kertbe",
+      "forms": { "back": "ba", "front": "be", "front_rounded": "be" },
+      "examples": [
+        { "stem": "bolt", "result": "boltba", "ua": "у магазин" },
+        { "stem": "kert", "result": "kertbe", "ua": "у сад" },
+        { "stem": "fürdő", "result": "fürdőbe", "ua": "у ванну" }
+      ]
+    },
+    {
+      "id": "suf-elative",
+      "name": "-ból / -ből",
+      "meaning": "із чогось, зсередини (звідки?) — házból, kertből",
+      "forms": { "back": "ból", "front": "ből", "front_rounded": "ből" },
+      "examples": [
+        { "stem": "ház", "result": "házból", "ua": "з будинку" },
+        { "stem": "üveg", "result": "üvegből", "ua": "з пляшки" },
+        { "stem": "könyv", "result": "könyvből", "ua": "з книжки" }
+      ]
+    },
+    {
+      "id": "suf-superessive",
+      "name": "-on / -en / -ön",
+      "meaning": "на чомусь, на поверхні (де?) — asztalon, széken, földön; після голосної лише -n: autón, almán",
+      "forms": { "back": "on", "front": "en", "front_rounded": "ön" },
+      "linking": true,
+      "examples": [
+        { "stem": "asztal", "result": "asztalon", "ua": "на столі" },
+        { "stem": "szék", "result": "széken", "ua": "на стільці" },
+        { "stem": "föld", "result": "földön", "ua": "на землі / на підлозі" }
+      ]
+    },
+    {
+      "id": "suf-sublative",
+      "name": "-ra / -re",
+      "meaning": "на щось, на поверхню (куди?) — asztalra, székre",
+      "forms": { "back": "ra", "front": "re", "front_rounded": "re" },
+      "examples": [
+        { "stem": "asztal", "result": "asztalra", "ua": "на стіл" },
+        { "stem": "szék", "result": "székre", "ua": "на стілець" },
+        { "stem": "föld", "result": "földre", "ua": "на землю" }
+      ]
+    },
+    {
+      "id": "suf-delative",
+      "name": "-ról / -ről",
+      "meaning": "з поверхні (звідки?); також «про щось» — asztalról, munkáról",
+      "forms": { "back": "ról", "front": "ről", "front_rounded": "ről" },
+      "examples": [
+        { "stem": "asztal", "result": "asztalról", "ua": "зі столу" },
+        { "stem": "szék", "result": "székről", "ua": "зі стільця" },
+        { "stem": "könyv", "result": "könyvről", "ua": "про книжку" }
+      ]
+    },
+    {
+      "id": "suf-allative",
+      "name": "-hoz / -hez / -höz",
+      "meaning": "до когось / чогось, впритул (куди?) — házhoz, emberhez, tükörhöz",
+      "forms": { "back": "hoz", "front": "hez", "front_rounded": "höz" },
+      "examples": [
+        { "stem": "ház", "result": "házhoz", "ua": "до будинку" },
+        { "stem": "ember", "result": "emberhez", "ua": "до людини" },
+        { "stem": "tükör", "result": "tükörhöz", "ua": "до дзеркала" }
+      ]
+    },
+    {
+      "id": "suf-adessive",
+      "name": "-nál / -nél",
+      "meaning": "у когось, біля чогось (де?) — barátnál, embernél",
+      "forms": { "back": "nál", "front": "nél", "front_rounded": "nél" },
+      "examples": [
+        { "stem": "barát", "result": "barátnál", "ua": "у друга" },
+        { "stem": "ember", "result": "embernél", "ua": "біля людини" },
+        { "stem": "nő", "result": "nőnél", "ua": "у жінки" }
+      ]
+    },
+    {
+      "id": "suf-ablative",
+      "name": "-tól / -től",
+      "meaning": "від когось / чогось (звідки?) — háztól, embertől",
+      "forms": { "back": "tól", "front": "től", "front_rounded": "től" },
+      "examples": [
+        { "stem": "ház", "result": "háztól", "ua": "від будинку" },
+        { "stem": "ember", "result": "embertől", "ua": "від людини" },
+        { "stem": "nő", "result": "nőtől", "ua": "від жінки" }
+      ]
+    },
+    {
+      "id": "suf-dative",
+      "name": "-nak / -nek",
+      "meaning": "кому? чому? (давальний) — anyának, gyereknek, nőnek",
+      "forms": { "back": "nak", "front": "nek", "front_rounded": "nek" },
+      "examples": [
+        { "stem": "anya", "result": "anyának", "ua": "мамі" },
+        { "stem": "gyerek", "result": "gyereknek", "ua": "дитині" },
+        { "stem": "nő", "result": "nőnek", "ua": "жінці" }
+      ]
+    }
+  ]
+}
