@@ -187,8 +187,8 @@ function pastGroup(stem: string, _h: Harmony): PastGroup {
   }
   if (SONORANT.has(c) && !endsInCluster(stem)) return "t";
   if (stem.endsWith("ll")) return LONG.includes(stem.slice(0, -2).at(-1) ?? "") ? "t" : "full";
-  // A cluster ending in a sibilant keeps the vowel everywhere: tetszett, tetszettem; játszottam.
-  if (SIBILANT.has(c) && endsInCluster(stem)) return "full";
+  // A cluster ending in a sibilant or in l/r keeps the vowel everywhere: tetszettem, játszottam, romlottam, ugrottam.
+  if ((SIBILANT.has(c) || c === "l" || c === "r") && endsInCluster(stem)) return "full";
   return "ott";
 }
 
