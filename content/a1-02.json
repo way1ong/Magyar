@@ -72,13 +72,13 @@
 
     { "id": "a1-02-friss", "type": "word", "hu": "friss", "ua": "свіжий", "pos": "adj", "harmony": "front", "example": { "hu": "Friss a kenyér?", "ua": "Хліб свіжий?" }, "tags": ["grad"] },
     { "id": "a1-02-finom", "type": "word", "hu": "finom", "ua": "смачний", "pos": "adj", "harmony": "back", "example": { "hu": "A leves finom.", "ua": "Суп смачний." }, "tags": ["grad", "mixed-vowel"] },
-    { "id": "a1-02-edes", "type": "word", "hu": "édes", "ua": "солодкий", "pos": "adj", "harmony": "front", "tags": ["grad"] },
+    { "id": "a1-02-edes", "type": "word", "hu": "édes", "ua": "солодкий", "pos": "adj", "harmony": "front", "tags": ["quality", "grad"] },
     { "id": "a1-02-sos", "type": "word", "hu": "sós", "ua": "солоний", "pos": "adj", "harmony": "back", "example": { "hu": "A leves túl sós.", "ua": "Суп занадто солоний." }, "tags": ["grad"] },
-    { "id": "a1-02-savanyu", "type": "word", "hu": "savanyú", "ua": "кислий", "pos": "adj", "harmony": "back", "example": { "hu": "A citrom savanyú.", "ua": "Лимон кислий." }, "tags": ["grad"] },
+    { "id": "a1-02-savanyu", "type": "word", "hu": "savanyú", "ua": "кислий", "pos": "adj", "harmony": "back", "example": { "hu": "A citrom savanyú.", "ua": "Лимон кислий." }, "tags": ["quality", "grad"] },
     { "id": "a1-02-csipos", "type": "word", "hu": "csípős", "ua": "гострий (на смак)", "pos": "adj", "harmony": "front_rounded", "tags": ["grad"] },
     { "id": "a1-02-ehes", "type": "word", "hu": "éhes", "ua": "голодний", "pos": "adj", "harmony": "front", "example": { "hu": "Éhes vagyok.", "ua": "Я голодний." }, "tags": ["grad"] },
     { "id": "a1-02-szomjas", "type": "word", "hu": "szomjas", "ua": "спраглий (хоче пити)", "pos": "adj", "harmony": "back", "example": { "hu": "Szomjas vagyok.", "ua": "Я хочу пити." }, "tags": ["grad"] },
-    { "id": "a1-02-ures", "type": "word", "hu": "üres", "ua": "порожній", "pos": "adj", "harmony": "front", "example": { "hu": "A pohár üres.", "ua": "Склянка порожня." }, "tags": ["grad", "last-syllable-rule"] },
+    { "id": "a1-02-ures", "type": "word", "hu": "üres", "ua": "порожній", "pos": "adj", "harmony": "front", "example": { "hu": "A pohár üres.", "ua": "Склянка порожня." }, "tags": ["quality", "grad", "last-syllable-rule"] },
     { "id": "a1-02-kesz", "type": "word", "hu": "kész", "ua": "готовий", "pos": "adj", "harmony": "front", "example": { "hu": "Kész a vacsora!", "ua": "Вечеря готова!" } },
 
     { "id": "a1-02-negy", "type": "word", "hu": "négy", "ua": "чотири", "pos": "num", "harmony": "front", "tags": ["numbers"] },

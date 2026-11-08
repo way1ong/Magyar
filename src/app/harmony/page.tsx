@@ -72,9 +72,17 @@ export default function HarmonyPage() {
   }
 
   const { correct, options } = choice;
-  const { base, result } = applyParts(item.hu, pattern, item.harmony, item.forms);
+  const { base, suffix, result } = applyParts(item.hu, pattern, item.harmony, item.forms);
   const stemNote = base !== item.hu && base !== item.hu.replace(/[ae]$/, (v) => (v === "a" ? "á" : "é"))
     ? ` (${item.hu} → ${base}-)`
+    : "";
+  // The chosen variant and the ending actually written differ for -val/-vel
+  // after a consonant (bor+val → borral) and for linking suffixes after a
+  // vowel (autó+on → autón) — say so, or the answer looks unrelated to the buttons.
+  const suffixNote = !pattern.inflect && suffix !== correct
+    ? pattern.assimilates
+      ? ` — -${correct} після приголосної: v уподібнюється (${base} + ${correct} → ${result})`
+      : ` — після голосної -${correct} скорочується до -${suffix}`
     : "";
 
   const pick = async (v: string) => {
@@ -117,6 +125,7 @@ export default function HarmonyPage() {
             {result}
             {stemNote}
             {picked !== correct && ` — правильно: -${correct}`}
+            {suffixNote}
           </p>
         )}
       </div>
