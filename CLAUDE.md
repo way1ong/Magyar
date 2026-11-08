@@ -7,6 +7,7 @@
 - Next.js 15 (App Router), TypeScript, React 19. Без Tailwind — `src/app/globals.css` з CSS-змінними, light/dark.
 - Dexie (IndexedDB) — прогрес. `ts-fsrs` — розклад повторень. Web Speech API — вимова.
 - PWA: `public/manifest.json` + ручний `public/sw.js` (реєструється лише в production).
+- Вимова: записи Piper у `public/audio/<itemId>.mp3` (маніфест `content/audio.json`, генерація `scripts/gen-audio.sh`), системний TTS — лише запасний. Нові слова → прогнати `scripts/gen-audio.sh`; у тестову збірку аудіо публікується як `files` поруч зі сторінкою.
 
 ## Дві бази — не плутати
 - **Контент** (`content/*.json`) — слова, фрази, суфіксальні патерни. Read-only на телефоні, редагується в репо, бандлиться в застосунок (`src/lib/content.ts`). Перевірка: `npm run content:check`.
@@ -43,5 +44,5 @@ https://claude.ai/artifact/N4susdjABP9cPjeMj1uDDq — увесь застосу�
 - Сторінки й `src/lib` мають працювати в обох збірках: без `next/*`, окрім `next/link` і `next/navigation`; без `confirm()`/`alert()` (в артефакті не працюють). Прогрес у превʼю — IndexedDB браузера, експорт файлу там не працює.
 
 ## Що далі (пріоритет)
-1. Piper-аудіо замість системного TTS (диктант ✓ готовий на системному TTS); промова (SpeechRecognition hu-HU).
+1. Piper-аудіо: проба на 10 словах ✓ — після схвалення якості згенерувати решту (`scripts/gen-audio.sh`); промова (SpeechRecognition hu-HU).
 2. Експорт прогресу на свій сервер (простий POST JSON) — лише як бекап.

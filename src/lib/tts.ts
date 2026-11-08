@@ -1,8 +1,35 @@
+import audio from "@content/audio.json";
+
 /**
- * Pronunciation via the system TTS (Web Speech API). On Android this is the
- * Google TTS engine, which has a Hungarian voice once it is installed. Later
- * this can be swapped for pre-generated Piper audio files in /public/audio.
+ * Pronunciation: a recorded file (Piper, /public/audio/<itemId>.mp3, listed
+ * in content/audio.json) when the item has one, otherwise the system TTS
+ * (Web Speech API; on Android the Google engine with a Hungarian voice).
  */
+const recorded = new Set<string>(audio.ids);
+/** Preview build serves audio next to the page; the app serves it from the root. */
+const AUDIO_BASE = process.env.NEXT_PUBLIC_MAGYAR_PREVIEW === "1" ? "audio/" : "/audio/";
+
+export const hasRecording = (itemId: string) => recorded.has(itemId);
+
+let current: HTMLAudioElement | null = null;
+
+/** Play the recording of a content item. Resolves false if there is none or it fails. */
+export function playRecording(itemId: string): Promise<boolean> {
+  if (typeof window === "undefined" || !recorded.has(itemId)) return Promise.resolve(false);
+  return new Promise((resolve) => {
+    current?.pause();
+    const a = new Audio(`${AUDIO_BASE}${itemId}.mp3`);
+    current = a;
+    a.onerror = () => resolve(false);
+    a.play().then(() => resolve(true), () => resolve(false));
+  });
+}
+
+/** Say a content item: its recording, else TTS of `text`. */
+export async function speakItem(itemId: string, text: string) {
+  if (await playRecording(itemId)) return true;
+  return speak(text);
+}
 const isHungarian = (v: SpeechSynthesisVoice) => v.lang.toLowerCase().replace("_", "-").startsWith("hu");
 
 /**
@@ -24,6 +51,7 @@ export function hungarianVoice(): SpeechSynthesisVoice | null | undefined {
 export function speak(text: string, lang = "hu-HU") {
   const voice = hungarianVoice();
   if (voice === null) return false;
+  current?.pause();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = lang;
   u.rate = 0.85;

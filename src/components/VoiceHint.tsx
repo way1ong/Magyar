@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { hungarianVoice } from "@/lib/tts";
 
 /** Tells the learner why nothing is heard: no TTS at all, or no Hungarian voice. */
-export function VoiceHint() {
+export function VoiceHint({ hasRecording = false }: { hasRecording?: boolean }) {
   const [state, setState] = useState<"unknown" | "ok" | "no-voice" | "none">("unknown");
   useEffect(() => {
     if (!("speechSynthesis" in window)) {
@@ -19,7 +19,7 @@ export function VoiceHint() {
     window.speechSynthesis.addEventListener("voiceschanged", check);
     return () => window.speechSynthesis.removeEventListener("voiceschanged", check);
   }, []);
-  if (state === "ok" || state === "unknown") return null;
+  if (hasRecording || state === "ok" || state === "unknown") return null;
   return (
     <p className="muted" style={{ fontSize: 14, margin: "6px 0 10px" }}>
       {state === "none"

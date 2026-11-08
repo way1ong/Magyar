@@ -5,8 +5,9 @@ import { itemById } from "@/lib/content";
 import { answer, dueCards, previewIntervals, Rating, type Grade } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
-import { speak } from "@/lib/tts";
+import { speakItem } from "@/lib/tts";
 import { VoiceHint } from "@/components/VoiceHint";
+import { hasRecording } from "@/lib/tts";
 
 /** One session: due "recognize" (HU→UA) and "recall" (UA→HU) cards, shuffled together. */
 export default function ReviewPage() {
@@ -96,11 +97,11 @@ export default function ReviewPage() {
       </button>
 
       <div className="row" style={{ marginBottom: 10 }}>
-        <button className="btn ghost" onClick={() => speak(item.hu)}>
+        <button className="btn ghost" onClick={() => speakItem(item.id, item.hu)}>
           🔊 Вимова
         </button>
       </div>
-      <VoiceHint />
+      <VoiceHint hasRecording={hasRecording(item.id)} />
 
       {flipped ? (
         <div className="grade">

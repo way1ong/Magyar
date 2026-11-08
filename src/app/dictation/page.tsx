@@ -7,8 +7,9 @@ import { shuffle } from "@/lib/builder";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
-import { speak } from "@/lib/tts";
+import { speakItem } from "@/lib/tts";
 import { VoiceHint } from "@/components/VoiceHint";
+import { hasRecording } from "@/lib/tts";
 
 /** An exact answer faster than this counts as Easy (listen + type). */
 const FAST_MS = 8000;
@@ -58,7 +59,7 @@ export default function DictationPage() {
     setTyped("");
     setOutcome(null);
     shownAt.current = Date.now();
-    speak(item.hu);
+    speakItem(item.id, item.hu);
     inputRef.current?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- cardKey identifies the card
   }, [cardKey]);
@@ -135,10 +136,10 @@ export default function DictationPage() {
       </div>
 
       <div className="card" style={{ textAlign: "center" }}>
-        <button className="btn" onClick={() => speak(item.hu)} style={{ fontSize: 22, minHeight: 72 }}>
+        <button className="btn" onClick={() => speakItem(item.id, item.hu)} style={{ fontSize: 22, minHeight: 72 }}>
           🔊 Послухати ще раз
         </button>
-        <VoiceHint />
+        <VoiceHint hasRecording={hasRecording(item.id)} />
         {done && (
           <div style={{ marginTop: 14 }}>
             <p className="muted" style={{ margin: 0, color }}>{VERDICT_TEXT[outcome]}</p>
