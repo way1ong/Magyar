@@ -1,6 +1,6 @@
 # Magyar
 
-Особистий PWA-тренажер угорської: картки за FSRS + гра «Гармонія голосних». Офлайн, без акаунтів.
+Особистий PWA-тренажер угорської: картки за FSRS + гра «Гармонія голосних» + «Конструктор» слів. Офлайн, без акаунтів.
 
 ## Запуск
 ```bash
@@ -20,7 +20,8 @@ src/lib/content.ts  реєстр пакетів (додати імпорт но�
 src/lib/db.ts       Dexie: cards, reviews, meta; експорт/імпорт
 src/lib/scheduler.ts FSRS: черга, відповідь, превʼю інтервалів
 src/lib/harmony.ts  правила гармонії голосних і застосування суфіксів
-src/app/            екрани: / (сьогодні), /review, /harmony, /settings
+src/lib/builder.ts  завдання й блоки для «Конструктора»
+src/app/            екрани: / (сьогодні), /review, /harmony, /builder, /settings
 public/sw.js        офлайн-кеш
 scripts/check-content.mjs  валідація контенту
 ```

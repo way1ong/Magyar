@@ -70,6 +70,24 @@ button { font: inherit; color: inherit; }
 .choices .btn.right { background: var(--ok); color: #fff; border-color: var(--ok); }
 .choices .btn.wrong { background: var(--bad); color: #fff; border-color: var(--bad); }
 
+/* Builder: tap blocks to assemble a word. */
+.prompt { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 6px 0 0; }
+.slots {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px;
+  min-height: 72px; margin-top: 20px; padding: 8px; border: 2px dashed var(--line); border-radius: 12px;
+}
+.slots .plus { color: var(--muted); font-size: 20px; }
+.blocks { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 12px; }
+.block {
+  border: 1px solid var(--line); background: var(--card); border-radius: 10px; cursor: pointer;
+  padding: 8px 16px; min-height: 52px; min-width: 64px; font-size: 22px; font-weight: 600;
+}
+.block.stem { border-color: var(--accent); }
+.block.used { opacity: 0.25; }
+.block:active { transform: translateY(1px); }
+.slots.right { border-color: var(--ok); border-style: solid; }
+.slots.wrong { border-color: var(--bad); border-style: solid; }
+
 .progress { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; margin: 8px 0 16px; }
 .progress > div { height: 100%; background: var(--accent); transition: width 0.2s; }
 
@@ -82,6 +100,10 @@ nav.tabs {
   background: var(--card); border-top: 1px solid var(--line);
   padding: 8px max(8px, env(safe-area-inset-left)) max(10px, env(safe-area-inset-bottom));
 }
-nav.tabs a { flex: 1; text-align: center; padding: 8px 0; font-size: 13px; color: var(--muted); }
+nav.tabs a {
+  /* Width follows the label, so "Конструктор" fits next to "Ще" on a 320px screen. */
+  flex: 1 1 auto; min-width: 0; text-align: center; padding: 8px 2px; font-size: 13px; color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 nav.tabs a.active { color: var(--accent); font-weight: 600; }
 nav.tabs span { display: block; font-size: 20px; }
