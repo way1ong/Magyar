@@ -5,6 +5,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db, exportProgress, importProgress } from "@/lib/db";
 import { backupToLaptop, IS_PREVIEW, lastBackup, shareProgress } from "@/lib/backup";
 import { allItems, allPatterns } from "@/lib/content";
+import { getTypingMode, setTypingMode, TYPING_LABELS, type TypingMode } from "@/lib/settings";
 
 export default function SettingsPage() {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -17,6 +18,7 @@ export default function SettingsPage() {
     reviews: await db.reviews.count(),
     backup: await lastBackup(),
   }));
+  const typing = useLiveQuery(getTypingMode);
   const [busy, setBusy] = useState(false);
 
   const doLaptop = async () => {
@@ -79,7 +81,26 @@ export default function SettingsPage() {
         <div className="stat"><span>Повторень у журналі</span><b>{counts?.reviews ?? "…"}</b></div>
       </div>
 
-      <h2 style={{ fontSize: 18 }}>Резервна копія</h2>
+      <h2 style={{ fontSize: 18 }}>Гармонія: набір тексту</h2>
+      <p className="muted">
+        Замість кнопок із варіантами суфікса — набрати все слово. Довгі голосні перевіряються окремо (á/a — «майже»).
+      </p>
+      <div className="seg" role="radiogroup" aria-label="Коли набирати текст">
+        {(["auto", "always", "never"] as TypingMode[]).map((m) => (
+          <button
+            key={m}
+            type="button"
+            role="radio"
+            aria-checked={typing === m}
+            className={`btn${typing === m ? " on" : ""}`}
+            onClick={() => setTypingMode(m)}
+          >
+            {TYPING_LABELS[m]}
+          </button>
+        ))}
+      </div>
+
+      <h2 style={{ fontSize: 18, marginTop: 28 }}>Резервна копія</h2>
       <p className="muted">
         Прогрес живе лише на цьому телефоні. Копія на ноутбук робиться сама, коли є нові повторення і ноутбук у тій самій
         Wi-Fi; «Поділитися» кладе файл у Drive чи месенджер.
