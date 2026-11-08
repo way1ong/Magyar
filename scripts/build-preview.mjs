@@ -21,6 +21,8 @@ const result = await build({
   define: {
     "process.env.NODE_ENV": '"production"',
     "process.env.NEXT_PUBLIC_MAGYAR_PREVIEW": '"1"',
+    "process.env.NEXT_PUBLIC_MAGYAR_STATIC": '"0"',
+    "process.env.NEXT_PUBLIC_BASE_PATH": '""',
   },
   logLevel: "warning",
   logOverride: { "unsupported-directive": "silent" },

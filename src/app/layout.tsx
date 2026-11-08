@@ -6,7 +6,7 @@ import { RegisterSW } from "@/components/RegisterSW";
 export const metadata: Metadata = {
   title: "Magyar",
   description: "Особистий тренажер угорської",
-  manifest: "/manifest.json",
+  manifest: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/manifest.json`,
   appleWebApp: { capable: true, statusBarStyle: "default", title: "Magyar" },
 };
 
