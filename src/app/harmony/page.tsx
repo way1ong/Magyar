@@ -1,23 +1,24 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { harmonyPatternsFor, itemById, patternShort } from "@/lib/content";
-import { applyParts, endsWithVowel, harmonyChoice } from "@/lib/harmony";
+import { harmonyTaskById, type BuilderTask } from "@/lib/builder";
+import { patternShort } from "@/lib/content";
+import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
+import { harmonyChoice } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
-import type { Pattern } from "@/lib/types";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 
 /**
- * Harmony game. Card = a stem (noun/adj with a known vowel class).
- * Each time it comes up, a random suffix pattern is drawn: pick the right form.
+ * Harmony game. Card = a curated (stem, suffix) task — the same verified
+ * examples the Builder uses, so only real forms come up (postán, bankban),
+ * shown in a short context sentence. Pick the right harmony variant.
  * Right → Good (fast right → Easy), wrong → Again.
  */
 export default function HarmonyPage() {
   const [queue, setQueue] = useState<CardRow[] | null>(null);
   const [i, setI] = useState(0);
-  const [pattern, setPattern] = useState<Pattern | null>(null);
   const [choice, setChoice] = useState<{ correct: string; options: string[] } | null>(null);
   const [picked, setPicked] = useState<string | null>(null);
   const [score, setScore] = useState({ right: 0, total: 0 });
@@ -25,7 +26,7 @@ export default function HarmonyPage() {
 
   const load = useCallback(async () => {
     await seedCards();
-    const q = await dueCards("harmony", 20, 8);
+    const q = (await dueCards("harmony", 20, 8)).filter((c) => harmonyTaskById(c.itemId));
     setQueue(q.sort(() => Math.random() - 0.5));
     setI(0);
     setPicked(null);
@@ -37,23 +38,18 @@ export default function HarmonyPage() {
   }, [load]);
 
   const row = queue?.[i];
-  const item = row ? itemById(row.itemId) : undefined;
+  const task: BuilderTask | undefined = row ? harmonyTaskById(row.itemId) : undefined;
 
-  // Draw a pattern for the current stem. Skip linking-vowel suffixes for
-  // vowel-final stems (there the answer is just "-n", not a harmony choice).
   useEffect(() => {
-    if (!item) return;
-    const pool = harmonyPatternsFor(item).filter((p) => !((p.linking || p.afterVowel) && endsWithVowel(item.hu)));
-    const p = pool[Math.floor(Math.random() * pool.length)];
-    setPattern(p);
-    setChoice(item.harmony ? harmonyChoice(item.hu, p, item.harmony, item.forms) : null);
+    if (!task) return;
+    setChoice(harmonyChoice(task.stem.hu, task.pattern, task.stem.harmony, task.stem.forms));
     setPicked(null);
     shownAt.current = Date.now();
-  }, [item]);
+  }, [task]);
 
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
-  if (!row || !item || !item.harmony || !pattern || !choice) {
+  if (!row || !task || !choice) {
     return (
       <>
         <h1 className="title">Гармонія голосних</h1>
@@ -72,9 +68,9 @@ export default function HarmonyPage() {
   }
 
   const { correct, options } = choice;
-  const { base, suffix, result } = applyParts(item.hu, pattern, item.harmony, item.forms);
-  const stemNote = base !== item.hu && base !== item.hu.replace(/[ae]$/, (v) => (v === "a" ? "á" : "é"))
-    ? ` (${item.hu} → ${base}-)`
+  const { stem, pattern, base, suffix, result, frame } = task;
+  const stemNote = base !== stem.hu && base !== stem.hu.replace(/[ae]$/, (v) => (v === "a" ? "á" : "é"))
+    ? ` (${stem.hu} → ${base}-)`
     : "";
   // The chosen variant and the ending actually written differ for -val/-vel
   // after a consonant (bor+val → borral) and for linking suffixes after a
@@ -84,6 +80,8 @@ export default function HarmonyPage() {
       ? ` — -${correct} після приголосної: v уподібнюється (${base} + ${correct} → ${result})`
       : ` — після голосної -${correct} скорочується до -${suffix}`
     : "";
+  const gap = frame ? splitFrame(frame.hu, `${stem.hu}-?`) : null;
+  const uaLine = frame ? fillFrame(frame.ua, glossForFrame(task.ua)) : task.ua;
 
   const pick = async (v: string) => {
     if (picked) return;
@@ -114,15 +112,26 @@ export default function HarmonyPage() {
       </div>
 
       <div className="card big">
-        <p className="muted" style={{ margin: 0 }}>{patternShort(pattern, item)}</p>
-        <p className="hu">
-          {item.hu}
-          <span className="muted">-?</span>
-        </p>
-        <p className="ua">{item.ua}</p>
+        <p className="muted" style={{ margin: 0 }}>{patternShort(pattern, stem)}</p>
+        {gap ? (
+          <p className="hu" lang="hu" style={{ fontSize: 26 }}>
+            {gap[0]}
+            <b>
+              {stem.hu}
+              <span className="muted">-?</span>
+            </b>
+            {gap[2]}
+          </p>
+        ) : (
+          <p className="hu">
+            {stem.hu}
+            <span className="muted">-?</span>
+          </p>
+        )}
+        <p className="ua">{picked ? uaLine : `${stem.ua} · ${uaLine}`}</p>
         {picked && (
           <p className="example" style={{ color: picked === correct ? "var(--ok)" : "var(--bad)" }}>
-            {result}
+            {frame ? fillFrame(frame.hu, result) : result}
             {stemNote}
             {picked !== correct && ` — правильно: -${correct}`}
             {suffixNote}

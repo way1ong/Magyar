@@ -114,6 +114,7 @@
   "patterns": [
     {
       "id": "suf-adjectival-s",
+      "frames": {"*": { "hu": "Ez ___.", "ua": "Це ___." }},
       "name": "-s / -os / -es / -ös / -as (з чимось)",
       "short": "який має, з чимось (прикметник)",
       "meaning": "прикметник «що має, з …»: kertes ház — будинок із садом, kétszobás lakás — двокімнатна, cukros — з цукром, zajos — шумний; сполучна голосна як у множини (házas, könyves, cukros)",

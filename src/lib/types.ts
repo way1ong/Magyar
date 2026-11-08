@@ -114,12 +114,24 @@ export interface Pattern {
    */
   roles?: Role[];
   /**
+   * Context sentences for exercises: "A ___ vagyok." / "Я в ___.", keyed by
+   * the stem's role (nouns) or part of speech (adj/verb/num), "*" for any.
+   * "___" is the inflected word; "a ___" is rendered "az ___" before a vowel.
+   */
+  frames?: Partial<Record<string, Frame>>;
+  /**
    * Worked examples. Each one whose `stem` is an item with a known harmony
    * class also becomes a Builder task (card `builder:<itemId>+<patternId>`),
    * so `ua` must be a natural Ukrainian gloss of `result`, and `result`
    * must equal apply(stem) — `npm run content:check` verifies that.
    */
-  examples: { stem: string; result: string; ua: string }[];
+  examples: { stem: string; result: string; ua: string; frame?: Frame }[];
+}
+
+/** A sentence with a "___" gap for the inflected word, and its translation. */
+export interface Frame {
+  hu: string;
+  ua: string;
 }
 
 /** An extra worked example for a pattern defined in any pack (e.g. a1-01's -on/-en/-ön). */
@@ -128,6 +140,8 @@ export interface PackExample {
   stem: string;
   result: string;
   ua: string;
+  /** Overrides the pattern's frame for this example. */
+  frame?: Frame;
 }
 
 export interface ContentPack {

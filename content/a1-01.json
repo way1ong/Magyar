@@ -115,6 +115,7 @@
   "patterns": [
     {
       "id": "suf-inessive",
+      "frames": {"place": { "hu": "A ___ vagyok.", "ua": "Я ___." }, "thing": { "hu": "Mi van a ___?", "ua": "Що ___?" }, "time": { "hu": "___ hideg van.", "ua": "___ холодно." }, "food": { "hu": "Só van a ___.", "ua": "___ є сіль." }, "group": { "hu": "A ___ öten vagyunk.", "ua": "___ нас пʼятеро." }, "abstract": { "hu": "___ vagyunk.", "ua": "Ми ___." }},
       "short": "у чомусь, всередині (де?)",
       "roles": ["place", "thing", "time", "food", "group", "abstract"],
       "name": "-ban / -ben",
@@ -128,6 +129,7 @@
     },
     {
       "id": "suf-illative",
+      "frames": {"place": { "hu": "Megyek a ___.", "ua": "Я йду ___." }, "thing": { "hu": "Beteszem a ___.", "ua": "Я кладу це ___." }, "food": { "hu": "Cukrot teszek a ___.", "ua": "Я кладу цукор ___." }, "group": { "hu": "Belépek a ___.", "ua": "Я вступаю ___." }, "abstract": { "hu": "___ kerültünk.", "ua": "Ми потрапили ___." }},
       "short": "у щось, всередину (куди?)",
       "roles": ["place", "thing", "food", "group", "abstract"],
       "name": "-ba / -be",
@@ -141,6 +143,7 @@
     },
     {
       "id": "suf-elative",
+      "frames": {"place": { "hu": "Jövök a ___.", "ua": "Я йду ___." }, "thing": { "hu": "Kiveszem a ___.", "ua": "Я дістаю це ___." }, "food": { "hu": "Kérek a ___.", "ua": "Я беру ___." }, "group": { "hu": "Kilépek a ___.", "ua": "Я виходжу ___." }, "abstract": { "hu": "Kikerültünk a ___.", "ua": "Ми вибралися ___." }},
       "short": "із чогось, зсередини (звідки?)",
       "roles": ["place", "thing", "food", "group", "abstract"],
       "name": "-ból / -ből",
@@ -154,6 +157,7 @@
     },
     {
       "id": "suf-superessive",
+      "frames": {"place": { "hu": "A ___ vagyok.", "ua": "Я ___." }, "thing": { "hu": "Ott van a ___.", "ua": "Це ___." }, "time": { "hu": "___ dolgozom.", "ua": "___ я працюю." }},
       "short": "на чомусь (де?)",
       "roles": ["place", "thing", "time"],
       "name": "-on / -en / -ön",
@@ -168,6 +172,7 @@
     },
     {
       "id": "suf-sublative",
+      "frames": {"place": { "hu": "Megyek a ___.", "ua": "Я йду ___." }, "thing": { "hu": "Ráteszem a ___.", "ua": "Я кладу це ___." }, "time": { "hu": "___ kész lesz.", "ua": "___ буде готово." }, "food": { "hu": "Vajat kenek a ___.", "ua": "Я намащую масло ___." }},
       "short": "на щось (куди?)",
       "roles": ["place", "thing", "time", "food"],
       "name": "-ra / -re",
@@ -181,6 +186,7 @@
     },
     {
       "id": "suf-delative",
+      "frames": {"place": { "hu": "Jövök a ___.", "ua": "Я йду ___." }, "thing": { "hu": "Leveszem a ___.", "ua": "Я знімаю це ___." }, "person": { "hu": "Beszélünk a ___.", "ua": "Ми говоримо ___." }, "group": { "hu": "Beszélünk a ___.", "ua": "Ми говоримо ___." }, "abstract": { "hu": "Beszélünk a ___.", "ua": "Ми говоримо ___." }},
       "shortByRole": { "person": "про когось (про кого?)" },
       "short": "з поверхні (звідки?); про щось",
       "roles": ["place", "thing", "person", "group", "abstract"],
@@ -190,11 +196,12 @@
       "examples": [
         { "stem": "asztal", "result": "asztalról", "ua": "зі столу" },
         { "stem": "szék", "result": "székről", "ua": "зі стільця" },
-        { "stem": "könyv", "result": "könyvről", "ua": "про книжку" }
+        { "stem": "könyv", "result": "könyvről", "ua": "про книжку", "frame": { "hu": "Beszélünk a ___.", "ua": "Ми говоримо ___." } }
       ]
     },
     {
       "id": "suf-allative",
+      "frames": {"person": { "hu": "Megyek a ___.", "ua": "Я йду ___." }, "place": { "hu": "Megyek a ___.", "ua": "Я йду ___." }, "thing": { "hu": "Odamegyek a ___.", "ua": "Я підходжу ___." }, "food": { "hu": "Kérek kenyeret a ___.", "ua": "Прошу хліба ___." }, "group": { "hu": "Csatlakozom a ___.", "ua": "Я приєднуюся ___." }},
       "shortByRole": { "person": "до когось (до кого?)" },
       "short": "до когось / чогось (куди?)",
       "roles": ["person", "place", "thing", "food", "group"],
@@ -209,6 +216,7 @@
     },
     {
       "id": "suf-adessive",
+      "frames": {"person": { "hu": "A ___ vagyok.", "ua": "Я ___." }, "place": { "hu": "A ___ vagyok.", "ua": "Я ___." }, "thing": { "hu": "A ___ ülök.", "ua": "Я сиджу ___." }, "group": { "hu": "A ___ dolgozom.", "ua": "Я працюю ___." }},
       "shortByRole": { "person": "у когось (у кого?)", "place": "біля чогось (де?)" },
       "short": "у когось, біля чогось (де?)",
       "roles": ["person", "place", "thing", "group"],
@@ -223,6 +231,7 @@
     },
     {
       "id": "suf-ablative",
+      "frames": {"person": { "hu": "Kaptam egy levelet a ___.", "ua": "Я отримав листа ___." }, "place": { "hu": "Jövök a ___.", "ua": "Я йду ___." }, "thing": { "hu": "Messze van a ___.", "ua": "Це далеко ___." }, "time": { "hu": "___ dolgozom.", "ua": "Я працюю ___." }, "group": { "hu": "Kaptam egy levelet a ___.", "ua": "Я отримав листа ___." }, "abstract": { "hu": "Félek a ___.", "ua": "Я боюся ___." }},
       "shortByRole": { "person": "від когось (від кого?)" },
       "short": "від когось / чогось (звідки?)",
       "roles": ["person", "place", "thing", "time", "group", "abstract"],
@@ -237,6 +246,7 @@
     },
     {
       "id": "suf-dative",
+      "frames": {"animal": { "hu": "Adok enni a ___.", "ua": "Я даю їсти ___." }, "person": { "hu": "Adok egy könyvet a ___.", "ua": "Я даю книжку ___." }, "group": { "hu": "Írok a ___.", "ua": "Я пишу ___." }},
       "short": "кому? чому?",
       "roles": ["person", "group"],
       "name": "-nak / -nek",
@@ -250,6 +260,7 @@
     },
     {
       "id": "suf-accusative",
+      "frames": {"thing": { "hu": "Látom a ___.", "ua": "Я бачу ___." }, "place": { "hu": "Látom a ___.", "ua": "Я бачу ___." }, "person": { "hu": "Látom a ___.", "ua": "Я бачу ___." }, "food": { "hu": "Kérem a ___.", "ua": "Прошу ___." }, "time": { "hu": "Várom a ___.", "ua": "Я чекаю на ___." }, "group": { "hu": "Szeretem a ___.", "ua": "Я люблю ___." }, "abstract": { "hu": "Nem szeretem a ___.", "ua": "Я не люблю ___." }},
       "short": "кого? що? (обʼєкт дії)",
       "name": "-t (знахідний)",
       "meaning": "кого? що? — обʼєкт дії: Kérek egy kávét. Látom a házat. Сполучна голосна o/e/ö, у «знижених» словах a/e (házat); після l, r, n, ny, s, sz, z, zs, j, ly зазвичай без неї (asztalt)",
@@ -270,6 +281,7 @@
     },
     {
       "id": "suf-plural",
+      "frames": {"person": { "hu": "Itt vannak a ___.", "ua": "Ось ___." }, "place": { "hu": "Itt vannak a ___.", "ua": "Ось ___." }, "thing": { "hu": "Itt vannak a ___.", "ua": "Ось ___." }, "food": { "hu": "Itt vannak a ___.", "ua": "Ось ___." }, "group": { "hu": "Itt vannak a ___.", "ua": "Ось ___." }, "abstract": { "hu": "Vannak ___.", "ua": "Бувають ___." }, "time": { "hu": "Szépek a ___.", "ua": "___ гарні." }},
       "short": "множина",
       "name": "-k (множина)",
       "meaning": "множина: házak, könyvek, autók; після приголосної — сполучна голосна (o/e/ö або a/e)",
@@ -289,6 +301,7 @@
     },
     {
       "id": "suf-poss1",
+      "frames": {"*": { "hu": "Ez a ___.", "ua": "Це ___." }},
       "short": "мій, моя, моє",
       "name": "-m (мій)",
       "meaning": "мій, моя, моє: házam, könyvem, autóm — після приголосної зі сполучною голосною",
@@ -307,6 +320,7 @@
     },
     {
       "id": "suf-poss2",
+      "frames": {"*": { "hu": "Ez a ___.", "ua": "Це ___." }},
       "short": "твій, твоя, твоє",
       "name": "-d (твій)",
       "meaning": "твій, твоя, твоє: házad, könyved, autód",
@@ -324,6 +338,7 @@
     },
     {
       "id": "suf-poss3",
+      "frames": {"*": { "hu": "Ez a ___.", "ua": "Це ___." }},
       "short": "його, її",
       "name": "-a / -e / -ja / -je (його, її)",
       "meaning": "його, її: háza, könyve, autója, barátja — після голосної завжди -ja/-je, після приголосної в частини слів теж (boltja, kertje)",

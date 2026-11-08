@@ -123,6 +123,7 @@
   "patterns": [
     {
       "id": "suf-adjectival-i",
+      "frames": {"*": { "hu": "Ez egy ___ dolog.", "ua": "Це ___." }},
       "short": "який? (прикметник від іменника)",
       "name": "-i (який?)",
       "meaning": "прикметник від іменника: gyári — заводський, napi — щоденний, munkahelyi — на робочому місці; форма одна, кінцеве a/e не подовжує: utcai",
@@ -179,6 +180,6 @@
     { "pattern": "suf-allative", "stem": "vezető", "result": "vezetőhöz", "ua": "до керівника" },
     { "pattern": "suf-terminative", "stem": "vészkijárat", "result": "vészkijáratig", "ua": "аж до аварійного виходу" },
     { "pattern": "suf-causal", "stem": "biztonság", "result": "biztonságért", "ua": "за безпеку" },
-    { "pattern": "suf-delative", "stem": "baleset", "result": "balesetről", "ua": "про нещасний випадок" }
+    { "pattern": "suf-delative", "stem": "baleset", "result": "balesetről", "ua": "про нещасний випадок", "frame": { "hu": "Beszélünk a ___.", "ua": "Ми говоримо ___." } }
   ]
 }

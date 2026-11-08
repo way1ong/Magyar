@@ -27,6 +27,7 @@ const packs = readdirSync(dir)
 
 // Pass 1: items and ids across all packs (examples may reference earlier packs).
 const stems = new Map(); // hu → item, for words with a harmony class
+const allTags = new Set();
 for (const { f, pack } of packs) {
   if (!pack.id || !pack.level || !Array.isArray(pack.items)) err(`${f}: bad pack shape`);
   for (const it of pack.items) {
@@ -34,6 +35,7 @@ for (const { f, pack } of packs) {
     if (ids.has(it.id)) err(`${f}: duplicate id ${it.id}`);
     ids.add(it.id);
     if (!POS.includes(it.pos)) err(`${it.id}: bad pos "${it.pos}"`);
+    for (const t of it.tags ?? []) allTags.add(t);
     if (it.harmony && !HARMONY.includes(it.harmony)) err(`${it.id}: bad harmony`);
     if (it.type === "word" && (it.pos === "noun" || it.pos === "adj") && !it.harmony) {
       err(`${it.id}: noun/adj needs "harmony"`);
@@ -76,6 +78,12 @@ for (const { f, pack } of packs) {
     if (!p.short) warn(`${p.id}: no "short" gloss — exercises fall back to the meaning`);
     if (p.afterVowel !== undefined && typeof p.afterVowel !== "string") err(`${p.id}: afterVowel must be a string`);
     if (p.fromInfinitive !== undefined && typeof p.fromInfinitive !== "boolean") err(`${p.id}: fromInfinitive must be a boolean`);
+    const FRAME_KEYS = [...ROLES, "adj", "verb", "num", "*"];
+    for (const [k, fr] of Object.entries(p.frames ?? {})) {
+      if (!FRAME_KEYS.includes(k) && !allTags.has(k)) err(`${p.id}: frames.${k} — unknown role/pos/tag`);
+      if (!fr?.hu?.includes("___") || !fr?.ua?.includes("___")) err(`${p.id}: frames.${k} needs "___" in hu and ua`);
+    }
+    if (!p.frames) warn(`${p.id}: no "frames" — Harmony and Builder show the word without a sentence`);
     if (p.fromInfinitive && !(p.attachesTo ?? []).includes("verb")) err(`${p.id}: fromInfinitive needs attachesTo: ["verb"]`);
     if (p.attachesTag && (p.attachesTo ?? []).includes("verb")) {
       for (const { pack: q } of packs) for (const it of q.items) {

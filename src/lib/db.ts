@@ -26,7 +26,8 @@ export interface CardRow {
 
 /**
  * recognize/recall: itemId = content item id.
- * harmony: itemId = stem item id (a random pattern is drawn each time).
+ * harmony: itemId = `${stemItemId}+${patternId}` (curated task, see lib/builder.ts harmonyTasks;
+ *   before v0.5 it was the stem id alone — seed.ts migrates those).
  * builder: itemId = `${stemItemId}+${patternId}` (see lib/builder.ts).
  * dictation: itemId = content item id (hear it, type it; lib/dictation.ts).
  */

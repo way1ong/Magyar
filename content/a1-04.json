@@ -112,6 +112,7 @@
   "patterns": [
     {
       "id": "suf-instrumental",
+      "frames": {"transport": { "hu": "___ megyek.", "ua": "Я їду ___." }, "vehicle": { "hu": "___ megyek.", "ua": "Я їду ___." }, "person": { "hu": "A ___ beszélek.", "ua": "Я розмовляю ___." }, "group": { "hu": "A ___ beszélek.", "ua": "Я розмовляю ___." }, "place": { "hu": "Mi a helyzet a ___?", "ua": "Що ___?" }, "thing": { "hu": "Mi a helyzet a ___?", "ua": "Що ___?" }, "abstract": { "hu": "Mi a helyzet a ___?", "ua": "Що ___?" }, "food": { "hu": "Kérem ___.", "ua": "Прошу ___." }},
       "shortByRole": { "person": "з ким? (разом)" },
       "short": "чим? з ким? (разом, за допомогою)",
       "roles": ["person", "place", "thing", "food", "group", "abstract"],

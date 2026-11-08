@@ -125,6 +125,7 @@
   "patterns": [
     {
       "id": "suf-distributive",
+      "frames": {"place": { "hu": "___ egy.", "ua": "___ по одному." }, "thing": { "hu": "___ fizetünk.", "ua": "Ми платимо ___." }, "time": { "hu": "___ jövök.", "ua": "Я приходжу ___." }, "person": { "hu": "___ egy.", "ua": "___ по одному." }, "group": { "hu": "___ egy.", "ua": "___ по одному." }},
       "name": "-nként / -onként / -enként / -önként",
       "short": "кожен, по (розподіл)",
       "meaning": "по кожному, щоразу: óránként — щогодини, darabonként — поштучно, műszakonként — кожної зміни; після голосної лише -nként (óra → óránként)",
@@ -177,7 +178,7 @@
     { "pattern": "suf-terminative", "stem": "karbantartás", "result": "karbantartásig", "ua": "до техобслуговування" },
     { "pattern": "suf-causal", "stem": "javítás", "result": "javításért", "ua": "за ремонт" },
     { "pattern": "suf-causal", "stem": "engedély", "result": "engedélyért", "ua": "за дозволом" },
-    { "pattern": "suf-delative", "stem": "meghibásodás", "result": "meghibásodásról", "ua": "про поломку" },
+    { "pattern": "suf-delative", "stem": "meghibásodás", "result": "meghibásodásról", "ua": "про поломку", "frame": { "hu": "Beszélünk a ___.", "ua": "Ми говоримо ___." } },
     { "pattern": "suf-adjectival-i", "stem": "karbantartás", "result": "karbantartási", "ua": "ремонтний (щодо ТО)" },
     { "pattern": "suf-adjectival-i", "stem": "biztonság", "result": "biztonsági", "ua": "безпековий, захисний" },
     { "pattern": "suf-adjectival-i", "stem": "éjszaka", "result": "éjszakai", "ua": "нічний" },

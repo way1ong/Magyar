@@ -38,7 +38,7 @@
     {"id": "a2-07-forgalom", "type": "word", "hu": "forgalom", "ua": "рух, трафік", "pos": "noun", "harmony": "back", "forms": {"stem": "forgalm", "low": true}, "example": {"hu": "Nagy a forgalom.", "ua": "Великий трафік."}},
     {"id": "a2-07-kozlekedes", "type": "word", "hu": "közlekedés", "ua": "транспорт; рух", "pos": "noun", "harmony": "front", "tags": ["compound"]},
     {"id": "a2-07-buszmegallo", "type": "word", "hu": "buszmegálló", "ua": "автобусна зупинка", "pos": "noun", "harmony": "back", "tags": ["place", "compound"]},
-    {"id": "a2-07-kerekpar", "type": "word", "hu": "kerékpár", "ua": "велосипед", "pos": "noun", "harmony": "back", "forms": {"j": true}, "tags": ["compound"]},
+    {"id": "a2-07-kerekpar", "type": "word", "hu": "kerékpár", "ua": "велосипед", "pos": "noun", "harmony": "back", "forms": {"j": true}, "tags": ["vehicle", "compound"]},
     {"id": "a2-07-pad", "type": "word", "hu": "pad", "ua": "лавка", "pos": "noun", "harmony": "back", "forms": {"j": true}},
     {"id": "a2-07-szokokut", "type": "word", "hu": "szökőkút", "ua": "фонтан", "pos": "noun", "harmony": "back", "forms": {"stem": "szökőkut", "low": true, "p3": "szökőkútja"}, "tags": ["compound"]},
     {"id": "a2-07-emlekmu", "type": "word", "hu": "emlékmű", "ua": "памʼятник", "pos": "noun", "harmony": "front_rounded", "forms": {"stem": "emlékműv", "low": true}, "tags": ["compound"]},
@@ -130,7 +130,7 @@
     {"id": "a2-07-at", "type": "word", "hu": "át", "ua": "через", "pos": "adv", "example": {"hu": "A hídon át.", "ua": "Через міст."}}
   ],
   "patterns": [
-    {"id": "suf-nominal", "name": "-ás / -és (дія → іменник)", "short": "дія як іменник (-ання, -ння)", "meaning": "іменник дії від дієслова: parkolni → parkolás (паркування), fizetni → fizetés (оплата), foglalni → foglalás (бронювання); основа — інфінітив без -ni (-ani/-eni): takarítani → takarítás; часто це готове слово: lakás (квартира), állás (робота), utazás (подорож), bejárat ← bejárni; нерегулярні основи: vásárolni → vásárlás, enni → evés, inni → ivás, aludni → alvás", "forms": {"back": "ás", "front": "és", "front_rounded": "és"}, "attachesTo": ["verb"], "attachesTag": "nominal", "fromInfinitive": true, "examples": [
+    {"id": "suf-nominal", "frames": {"verb": { "hu": "A ___ nehéz.", "ua": "___ — це важко." }}, "name": "-ás / -és (дія → іменник)", "short": "дія як іменник (-ання, -ння)", "meaning": "іменник дії від дієслова: parkolni → parkolás (паркування), fizetni → fizetés (оплата), foglalni → foglalás (бронювання); основа — інфінітив без -ni (-ani/-eni): takarítani → takarítás; часто це готове слово: lakás (квартира), állás (робота), utazás (подорож), bejárat ← bejárni; нерегулярні основи: vásárolni → vásárlás, enni → evés, inni → ivás, aludni → alvás", "forms": {"back": "ás", "front": "és", "front_rounded": "és"}, "attachesTo": ["verb"], "attachesTag": "nominal", "fromInfinitive": true, "examples": [
       {"stem": "parkolni", "result": "parkolás", "ua": "паркування"},
       {"stem": "fizetni", "result": "fizetés", "ua": "оплата; зарплата"},
       {"stem": "foglalni", "result": "foglalás", "ua": "бронювання"},

@@ -114,6 +114,7 @@
   "patterns": [
     {
       "id": "suf-multiplicative",
+      "frames": {"num": { "hu": "___ voltam ott.", "ua": "Я був там ___." }},
       "short": "скільки разів?",
       "name": "-szor / -szer / -ször",
       "meaning": "скільки разів? — háromszor, négyszer, ötször",
@@ -131,6 +132,7 @@
     },
     {
       "id": "suf-causal",
+      "frames": {"place": { "hu": "Sokat fizetek a ___.", "ua": "Я багато плачу ___." }, "thing": { "hu": "Elmegyek a ___.", "ua": "Я піду ___." }, "person": { "hu": "Elmegyek a ___.", "ua": "Я піду ___." }, "food": { "hu": "Elmegyek a ___.", "ua": "Я піду ___." }, "group": { "hu": "Mindent a ___.", "ua": "Усе ___." }, "abstract": { "hu": "A ___ dolgozunk.", "ua": "Ми працюємо ___." }},
       "short": "за чимось, заради (мета, причина)",
       "roles": ["thing", "person", "food", "group", "abstract"],
       "name": "-ért",
@@ -148,6 +150,7 @@
     },
     {
       "id": "suf-terminative",
+      "frames": {"thing": { "hu": "Várunk a ___.", "ua": "Чекаємо ___." }, "place": { "hu": "Elmegyek a ___.", "ua": "Я дійду ___." }, "time": { "hu": "___ dolgozom.", "ua": "Я працюю ___." }, "num": { "hu": "___ dolgozom.", "ua": "Я працюю ___." }},
       "short": "аж до (межа)",
       "roles": ["place", "time"],
       "name": "-ig",

@@ -1,6 +1,7 @@
 import { allPatterns, attaches, packIndexOf, packs, patternById, stemByHu } from "./content";
 import { applyParts, suffixFor, variantsOf } from "./harmony";
-import type { Item, Pattern } from "./types";
+import { frameFor } from "./frames";
+import type { Frame, Item, Pattern } from "./types";
 
 /**
  * Builder exercise: show a Ukrainian gloss ("у будинку"), assemble the
@@ -20,6 +21,8 @@ export interface BuilderTask {
   suffix: string;
   /** The stem as it appears in the result (kez-, tükr-); differs from stem.hu when the stem changes. */
   base: string;
+  /** Context sentence with a "___" gap (from the example or the pattern's frames), if any. */
+  frame?: Frame;
 }
 
 /** Pattern examples plus packs' extra examples for patterns defined anywhere. */
@@ -49,14 +52,25 @@ for (const { pattern, ex } of examples) {
     result,
     suffix,
     base,
+    frame: ex.frame ?? frameFor(pattern, stem),
   });
 }
+
 
 export const builderTasks: BuilderTask[] = [...tasks.values()];
 
 /** A task belongs to the later of its stem's and its suffix's pack. */
 export const taskPackIndex = (t: BuilderTask) => Math.max(packIndexOf(t.stem.id), packIndexOf(t.pattern.id));
 export const builderTaskById = (id: string) => tasks.get(id);
+
+/**
+ * Harmony cards: the same curated tasks, but only where the suffix has more
+ * than one harmony variant to choose from (-ért, -ig, -kor, -i, -ként are no
+ * choice). Card key: `harmony:<stemItemId>+<patternId>`.
+ */
+export const harmonyTasks: BuilderTask[] = builderTasks.filter((t) => variantsOf(t.pattern).length > 1);
+const harmonyIds = new Set(harmonyTasks.map((t) => t.id));
+export const harmonyTaskById = (id: string) => (harmonyIds.has(id) ? tasks.get(id) : undefined);
 
 export function shuffle<T>(xs: T[]): T[] {
   const a = [...xs];

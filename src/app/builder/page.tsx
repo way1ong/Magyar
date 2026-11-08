@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
+import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
 import { endsWithVowel, finalConsonant, lengthenFinal } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
@@ -155,7 +156,21 @@ export default function BuilderPage() {
       </div>
 
       <div className="card big">
-        <p className="prompt">{task.ua}</p>
+        {task.frame && (
+          <p className="muted" lang="hu" style={{ margin: "0 0 4px" }}>
+            {(() => {
+              const [a, , b] = splitFrame(task.frame.hu, "___");
+              return (
+                <>
+                  {a}
+                  <b>___</b>
+                  {b}
+                </>
+              );
+            })()}
+          </p>
+        )}
+        <p className="prompt">{task.frame ? fillFrame(task.frame.ua, glossForFrame(task.ua)) : task.ua}</p>
 
         <div className={`slots${done ? (verdict ? " right" : " wrong") : ""}`}>
           {placedBlocks.length === 0 && <span className="muted">торкнись блоків нижче</span>}
@@ -176,6 +191,11 @@ export default function BuilderPage() {
             <p className="hu" style={{ color: verdict ? "var(--ok)" : "var(--bad)", fontSize: 30 }}>
               {task.result}
             </p>
+            {task.frame && (
+              <p lang="hu" style={{ margin: "4px 0 0" }}>
+                {fillFrame(task.frame.hu, task.result)}
+              </p>
+            )}
             {!verdict && (
               <p style={{ margin: "6px 0 0" }}>
                 правильно: {task.stem.hu} + -{task.suffix}
