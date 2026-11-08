@@ -3,8 +3,8 @@
  * - Navigations: network-first, fall back to cached page, then to "/".
  * Bump CACHE when you change caching logic; Next asset hashes handle the rest.
  */
-const CACHE = "magyar-v6";
-const SHELL = ["/", "/review", "/harmony", "/builder", "/dictation", "/boss", "/guide", "/settings", "/manifest.json", "/icons/icon.svg"];
+const CACHE = "magyar-v7";
+const SHELL = ["/", "/review", "/harmony", "/builder", "/conj", "/dictation", "/boss", "/guide", "/settings", "/manifest.json", "/icons/icon.svg"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

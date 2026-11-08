@@ -85,16 +85,16 @@
     { "id": "a2-05-divatos", "type": "word", "hu": "divatos", "ua": "модний", "pos": "adj", "harmony": "back", "tags": ["grad", "mixed-vowel"] },
     { "id": "a2-05-elegans", "type": "word", "hu": "elegáns", "ua": "елегантний", "pos": "adj", "harmony": "back", "tags": ["grad", "mixed-vowel"] },
 
-    { "id": "a2-05-felprobalni", "type": "word", "hu": "felpróbálni", "ua": "приміряти", "pos": "verb" },
-    { "id": "a2-05-felvenni", "type": "word", "hu": "felvenni", "ua": "надягти", "pos": "verb", "example": { "hu": "Felveszem a kabátot.", "ua": "Я надягаю куртку." } },
-    { "id": "a2-05-levenni", "type": "word", "hu": "levenni", "ua": "зняти (одяг)", "pos": "verb" },
-    { "id": "a2-05-hordani", "type": "word", "hu": "hordani", "ua": "носити (одяг, регулярно)", "pos": "verb", "example": { "hu": "Szemüveget hordok.", "ua": "Я ношу окуляри." } },
-    { "id": "a2-05-visszavinni", "type": "word", "hu": "visszavinni", "ua": "повернути (товар)", "pos": "verb" },
-    { "id": "a2-05-valasztani", "type": "word", "hu": "választani", "ua": "вибирати", "pos": "verb", "example": { "hu": "Nem tudok választani.", "ua": "Не можу вибрати." } },
-    { "id": "a2-05-nezelodni", "type": "word", "hu": "nézelődni", "ua": "роздивлятися", "pos": "verb" },
-    { "id": "a2-05-kolteni", "type": "word", "hu": "költeni", "ua": "витрачати (гроші)", "pos": "verb", "example": { "hu": "Sokat költöttem.", "ua": "Я багато витратив." } },
-    { "id": "a2-05-sporolni", "type": "word", "hu": "spórolni", "ua": "економити", "pos": "verb" },
-    { "id": "a2-05-illeni", "type": "word", "hu": "illeni", "ua": "пасувати (до чогось)", "pos": "verb", "example": { "hu": "Illik hozzád.", "ua": "Це тобі пасує." } }
+    {"id": "a2-05-felprobalni", "type": "word", "hu": "felpróbálni", "ua": "приміряти", "pos": "verb", "harmony": "back", "conj": {"tr": true}},
+    {"id": "a2-05-felvenni", "type": "word", "hu": "felvenni", "ua": "надягти", "pos": "verb", "harmony": "front", "example": {"hu": "Felveszem a kabátot.", "ua": "Я надягаю куртку."}},
+    {"id": "a2-05-levenni", "type": "word", "hu": "levenni", "ua": "зняти (одяг)", "pos": "verb", "harmony": "front"},
+    {"id": "a2-05-hordani", "type": "word", "hu": "hordani", "ua": "носити (одяг, регулярно)", "pos": "verb", "harmony": "back", "example": {"hu": "Szemüveget hordok.", "ua": "Я ношу окуляри."}, "conj": {"tr": true}},
+    {"id": "a2-05-visszavinni", "type": "word", "hu": "visszavinni", "ua": "повернути (товар)", "pos": "verb", "harmony": "front", "tags": ["exception"]},
+    {"id": "a2-05-valasztani", "type": "word", "hu": "választani", "ua": "вибирати", "pos": "verb", "harmony": "back", "example": {"hu": "Nem tudok választani.", "ua": "Не можу вибрати."}, "conj": {"tr": true}},
+    {"id": "a2-05-nezelodni", "type": "word", "hu": "nézelődni", "ua": "роздивлятися", "pos": "verb", "harmony": "front_rounded", "conj": {"ik": true}},
+    {"id": "a2-05-kolteni", "type": "word", "hu": "költeni", "ua": "витрачати (гроші)", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Sokat költöttem.", "ua": "Я багато витратив."}, "conj": {"tr": true}},
+    {"id": "a2-05-sporolni", "type": "word", "hu": "spórolni", "ua": "економити", "pos": "verb", "harmony": "back"},
+    {"id": "a2-05-illeni", "type": "word", "hu": "illeni", "ua": "пасувати (до чогось)", "pos": "verb", "harmony": "front", "example": {"hu": "Illik hozzád.", "ua": "Це тобі пасує."}, "conj": {"ik": true}}
   ],
   "patterns": [
     {

@@ -65,6 +65,8 @@ export interface Item {
   example?: { hu: string; ua: string };
   /** Free tags: theme, register, etc. */
   tags?: string[];
+  /** Verbs: conjugation flags (lib/conj.ts). */
+  conj?: VerbConj;
 }
 
 /** A suffix with its harmony variants. forms[harmony] is the variant used. */
@@ -128,6 +130,29 @@ export interface Pattern {
    * must equal apply(stem) — `npm run content:check` verifies that.
    */
   examples: { stem: string; result: string; ua: string; frame?: Frame }[];
+}
+
+/**
+ * Per-verb conjugation flags (see lib/conj.ts). Absent = fully regular.
+ * Only `tr` is about meaning; the rest describe the stem.
+ */
+export interface VerbConj {
+  /** -ik verb: lakik, dolgozik (1sg lakom, 3sg lakik). */
+  ik?: boolean;
+  /** Transitive: has the definite conjugation (látom, látod, látja). */
+  tr?: boolean;
+  /** Present stem when not the infinitive minus -ni: alszik → "alsz". */
+  stem?: string;
+  /** Stem before vowel-initial endings (fleeting vowel): érez → "érz" (érzek, de éreztek). */
+  vstem?: string;
+  /** Past stem: aludni → "alud" (aludtam). */
+  pastStem?: string;
+  /** Past-tense group when the rule guesses wrong: "t" (állt), "ott" (látott/láttam), "full" (hallottam), "tt" (lőtt). */
+  past?: "t" | "ott" | "full" | "tt";
+  /** No linking vowels despite a final consonant cluster: áll → állsz, állnak. */
+  link?: false;
+  /** Full-form overrides by slot key ("past.indef.3sg": "…"). */
+  forms?: Record<string, string>;
 }
 
 /** A sentence with a "___" gap for the inflected word, and its translation. */

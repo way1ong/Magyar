@@ -155,3 +155,13 @@ nav.tabs span { display: block; font-size: 20px; }
 .hu-row button.wide { flex: 2 1 0; font-size: 14px; }
 .hu-row button.space { flex: 4 1 0; }
 .hu-row button:active { transform: translateY(1px); }
+
+.conj-table { border-collapse: collapse; margin: 10px auto 0; font-size: 17px; }
+.conj-table td { padding: 3px 10px; text-align: left; }
+.conj-table tr.hit td { font-weight: 700; color: var(--accent); }
+.guide-h3 { font-size: 16px; margin: 14px 0 6px; }
+.guide-table-wrap { overflow-x: auto; margin: 6px 0 14px; }
+.guide-table { border-collapse: collapse; font-size: 14px; min-width: 100%; }
+.guide-table th, .guide-table td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; vertical-align: top; white-space: nowrap; }
+.guide-table th { background: var(--card); font-weight: 600; }
+.guide-table td:first-child { color: var(--muted); }

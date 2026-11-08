@@ -40,6 +40,14 @@ for (const { f, pack } of packs) {
     if (it.type === "word" && (it.pos === "noun" || it.pos === "adj") && !it.harmony) {
       err(`${it.id}: noun/adj needs "harmony"`);
     }
+    if (it.type === "word" && it.pos === "verb" && !it.hu.includes(" ") && !it.harmony) err(`${it.id}: verb needs "harmony" (for conjugation)`);
+    if (it.conj) {
+      if (it.pos !== "verb") err(`${it.id}: conj only makes sense on verbs`);
+      const ok = ["ik", "tr", "stem", "vstem", "pastStem", "past", "link", "forms"];
+      for (const k of Object.keys(it.conj)) if (!ok.includes(k)) err(`${it.id}: unknown conj.${k}`);
+      if (it.conj.past && !["t", "ott", "full", "tt"].includes(it.conj.past)) err(`${it.id}: bad conj.past "${it.conj.past}"`);
+      if (it.conj.link !== undefined && it.conj.link !== false) err(`${it.id}: conj.link may only be false`);
+    }
     if (it.forms) {
       const ok = ["stem", "low", "j", "acc", "pl", "p1", "p2", "p3", "s", "comp", "ord"];
       for (const k of Object.keys(it.forms)) if (!ok.includes(k)) err(`${it.id}: unknown forms.${k}`);
@@ -53,7 +61,8 @@ for (const { f, pack } of packs) {
       if (stems.has(it.hu)) err(`${it.id}: stem "${it.hu}" already defined by ${stems.get(it.hu).id}`);
       else stems.set(it.hu, it);
       if (harmony) {
-        const guess = harmony.guessHarmony(it.hu);
+        // Verbs: the class is that of the stem, not of the infinitive's -ni (főzni → főz → front_rounded).
+        const guess = harmony.guessHarmony(it.pos === "verb" ? (it.conj?.stem ?? harmony.infinitiveStem(it.hu)) : it.hu);
         const explained = (it.tags ?? []).some((t) => EXCEPTION_TAGS.includes(t));
         if (guess !== it.harmony && !explained) {
           warn(`${it.id}: harmony "${it.harmony}" ≠ guess "${guess}" — tag it mixed-vowel/compound/exception if intended`);
