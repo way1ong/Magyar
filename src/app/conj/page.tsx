@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
+import { pickCloze, type Cloze } from "@/lib/conjcloze";
 import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, tenseLabel } from "@/lib/conj";
 import { compare, type Verdict } from "@/lib/dictation";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
@@ -71,14 +72,16 @@ export default function ConjPage() {
   // The person and the button options are fixed per card showing.
   const deal = useMemo(() => {
     if (!task) return null;
-    const person = randomPerson();
+    // A real sentence from the content when one uses this verb in this tense; its person is fixed.
+    const cloze: Cloze | null = pickCloze(task);
+    const person = cloze?.person ?? randomPerson();
     const correct = conjugate(task.item, { tense: task.tense, def: task.def, person });
     const pool = slotsFor(task.item)
       .map((s) => ({ s, f: conjugate(task.item, s) }))
       .filter((x) => x.f && x.f !== correct)
       .sort((a, b) => Number(b.s.tense === task.tense) - Number(a.s.tense === task.tense) || Math.random() - 0.5);
     const others = [...new Set(pool.map((x) => x.f))].slice(0, 3);
-    return { person, correct, options: shuffle([correct, ...others]) };
+    return { person, correct, cloze, options: shuffle([correct, ...others]) };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- cardKey identifies the showing
   }, [cardKey]);
 
@@ -96,7 +99,7 @@ export default function ConjPage() {
   }
 
   const { item, tense, def } = task;
-  const { person, correct, options } = deal;
+  const { person, correct, options, cloze } = deal;
   const typing = shouldType(mode, row);
   const done = typing ? outcome !== null : picked !== null;
   const ok = typing ? outcome === "exact" : picked === correct;
@@ -161,19 +164,27 @@ export default function ConjPage() {
 
       <div className="card big">
         <p className="muted" style={{ margin: 0 }}>{defLabel}</p>
-        <p className="hu" lang="hu" style={{ fontSize: 26 }}>
-          ({PRONOUN[person]}) <b>___</b>
-          {object && ` ${object}`}{mark}
-        </p>
-        <p className="ua">
+        {cloze ? (
+          <>
+            <p className="hu" lang="hu" style={{ fontSize: 24 }}>
+              {cloze.hu} <span className="muted" style={{ fontSize: 18 }}>({PRONOUN[person]})</span>
+            </p>
+            <p className="ua" style={{ marginTop: 0 }}>{cloze.ua}</p>
+          </>
+        ) : (
+          <p className="hu" lang="hu" style={{ fontSize: 26 }}>
+            ({PRONOUN[person]}) <b>___</b>
+            {object && ` ${object}`}{mark}
+          </p>
+        )}
+        <p className="ua" style={{ fontSize: 16 }}>
           <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : imp ? "наказ / хай" : tense === "cond" ? "умовний (би)" : tenseLabel(tense)}
         </p>
         {done && (
           <>
             {typing && outcome && <p className="muted" style={{ margin: "0 0 4px", color }}>{VERDICT_TEXT[outcome]}</p>}
             <p className="example" lang="hu" style={{ color, fontSize: 24 }}>
-              ({PRONOUN[person]}) {correct}
-              {object && ` ${object}`}{mark}
+              {cloze ? cloze.full : `(${PRONOUN[person]}) ${correct}${object ? ` ${object}` : ""}${mark}`}
             </p>
             {typing && outcome === "wrong" && typed.trim() && (
               <p className="muted" style={{ fontSize: 15, margin: 0 }}>
