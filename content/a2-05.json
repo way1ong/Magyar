@@ -99,6 +99,7 @@
   "patterns": [
     {
       "id": "suf-comparative",
+      "frames": {"adj": { "hu": "Ez ___, mint az.", "ua": "Це ___, ніж те." }},
       "name": "-bb / -abb / -ebb (порівняння)",
       "short": "більший, -іший (порівняльний ступінь)",
       "meaning": "порівняльний ступінь прикметника: olcsó → olcsóbb (дешевший), drága → drágább, hideg → hidegebb, magas → magasabb; після голосної лише -bb; винятки: nagy → nagyobb, kicsi → kisebb, jó → jobb, szép → szebb, sok → több. Найвищий ступінь — leg…bb: legolcsóbb",

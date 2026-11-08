@@ -105,6 +105,7 @@
   "patterns": [
     {
       "id": "suf-temporal",
+      "frames": {"time": { "hu": "___ otthon vagyok.", "ua": "___ я вдома." }, "num": { "hu": "___ kelek.", "ua": "___ я встаю." }},
       "short": "о котрій? коли?",
       "roles": ["time"],
       "name": "-kor",

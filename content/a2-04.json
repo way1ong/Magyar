@@ -142,7 +142,7 @@
     { "pattern": "suf-allative", "stem": "fogorvos", "result": "fogorvoshoz", "ua": "до стоматолога" },
     { "pattern": "suf-allative", "stem": "nővér", "result": "nővérhez", "ua": "до медсестри" },
     { "pattern": "suf-ablative", "stem": "orvos", "result": "orvostól", "ua": "від лікаря" },
-    { "pattern": "suf-delative", "stem": "betegség", "result": "betegségről", "ua": "про хворобу" },
+    { "pattern": "suf-delative", "stem": "betegség", "result": "betegségről", "ua": "про хворобу", "frame": { "hu": "Beszélünk a ___.", "ua": "Ми говоримо ___." } },
     { "pattern": "suf-causal", "stem": "gyógyszer", "result": "gyógyszerért", "ua": "за ліками" },
     { "pattern": "suf-instrumental", "stem": "víz", "result": "vízzel", "ua": "(запити) водою" },
     { "pattern": "suf-instrumental", "stem": "páciens", "result": "pácienssel", "ua": "з пацієнтом" },

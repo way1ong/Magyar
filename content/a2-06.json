@@ -152,7 +152,7 @@
     {"id": "a2-06-plusz", "type": "word", "hu": "plusz", "ua": "плюс", "pos": "other"}
   ],
   "patterns": [
-    {"id": "suf-abstract", "name": "-ság / -ség (-ість, -ота)", "short": "-ість, -ота (іменник від прикметника)", "meaning": "іменник-якість від прикметника: szép → szépség (краса), sötét → sötétség (темрява), száraz → szárazság (посуха), nedves → nedvesség (вологість); кінцеве -a/-e НЕ подовжується: tiszta → tisztaság; лише з прикметниками, позначеними в застосунку (нерегулярні: friss → frissesség, gyors → gyorsaság, egészséges → egészség)", "forms": {"back": "ság", "front": "ség", "front_rounded": "ség"}, "attachesTo": ["adj"], "attachesTag": "quality", "noLengthen": true, "examples": [
+    {"id": "suf-abstract", "frames": {"adj": { "hu": "Fontos a ___.", "ua": "Головне — ___." }}, "name": "-ság / -ség (-ість, -ота)", "short": "-ість, -ота (іменник від прикметника)", "meaning": "іменник-якість від прикметника: szép → szépség (краса), sötét → sötétség (темрява), száraz → szárazság (посуха), nedves → nedvesség (вологість); кінцеве -a/-e НЕ подовжується: tiszta → tisztaság; лише з прикметниками, позначеними в застосунку (нерегулярні: friss → frissesség, gyors → gyorsaság, egészséges → egészség)", "forms": {"back": "ság", "front": "ség", "front_rounded": "ség"}, "attachesTo": ["adj"], "attachesTag": "quality", "noLengthen": true, "examples": [
       {"stem": "szép", "result": "szépség", "ua": "краса"},
       {"stem": "sötét", "result": "sötétség", "ua": "темрява"},
       {"stem": "világos", "result": "világosság", "ua": "світло, ясність"},

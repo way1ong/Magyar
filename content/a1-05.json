@@ -125,6 +125,7 @@
   "patterns": [
     {
       "id": "suf-language",
+      "frames": {"adj": { "hu": "Beszélek ___.", "ua": "Я розмовляю ___." }},
       "short": "якою мовою; як",
       "name": "-ul / -ül",
       "meaning": "якою мовою; як — magyarul, németül, törökül; лише з назвами мов і народів (rosszul — виняток)",
@@ -145,6 +146,7 @@
     },
     {
       "id": "suf-essive-formal",
+      "frames": {"person": { "hu": "___ dolgozom.", "ua": "Я працюю ___." }, "thing": { "hu": "___ használom.", "ua": "Я використовую це ___." }, "group": { "hu": "___ dolgozunk.", "ua": "Ми працюємо ___." }},
       "short": "як хто, у ролі кого",
       "roles": ["person", "thing", "group"],
       "name": "-ként",
