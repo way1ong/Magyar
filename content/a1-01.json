@@ -102,7 +102,7 @@
     {"id": "a1-01-jonni", "type": "word", "hu": "jönni", "ua": "приходити", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Jövök!", "ua": "Іду! (вже йду до вас)"}},
     {"id": "a1-01-enni", "type": "word", "hu": "enni", "ua": "їсти", "pos": "verb", "harmony": "front", "forms": {"stem": "ev"}, "example": {"hu": "Eszem egy almát.", "ua": "Я їм яблуко."}, "tags": ["nominal"]},
     {"id": "a1-01-inni", "type": "word", "hu": "inni", "ua": "пити", "pos": "verb", "harmony": "back", "forms": {"stem": "iv"}, "example": {"hu": "Iszom egy kávét.", "ua": "Я пʼю каву."}, "tags": ["nominal", "exception"]},
-    {"id": "a1-01-aludni", "type": "word", "hu": "aludni", "ua": "спати", "pos": "verb", "harmony": "back", "forms": {"stem": "alv"}, "tags": ["nominal"], "conj": {"stem": "alsz", "pastStem": "alud", "past": "t", "ik": true}},
+    {"id": "a1-01-aludni", "type": "word", "hu": "aludni", "ua": "спати", "pos": "verb", "harmony": "back", "example": {"hu": "Jól aludtam.", "ua": "Я добре спав."}, "forms": {"stem": "alv"}, "tags": ["nominal"], "conj": {"stem": "alsz", "pastStem": "alud", "past": "t", "ik": true}},
     {"id": "a1-01-dolgozni", "type": "word", "hu": "dolgozni", "ua": "працювати", "pos": "verb", "harmony": "back", "example": {"hu": "Gyárban dolgozom.", "ua": "Я працюю на заводі."}, "conj": {"ik": true}},
     {"id": "a1-01-tanulni", "type": "word", "hu": "tanulni", "ua": "вчитися, вчити", "pos": "verb", "harmony": "back", "example": {"hu": "Magyarul tanulok.", "ua": "Я вчу угорську."}, "tags": ["nominal"], "conj": {"tr": true}},
     {"id": "a1-01-beszelni", "type": "word", "hu": "beszélni", "ua": "говорити", "pos": "verb", "harmony": "front", "example": {"hu": "Beszélsz angolul?", "ua": "Ти говориш англійською?"}},
