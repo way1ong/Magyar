@@ -7,6 +7,7 @@ import Home from "@/app/page";
 import ReviewPage from "@/app/review/page";
 import HarmonyPage from "@/app/harmony/page";
 import BuilderPage from "@/app/builder/page";
+import DictationPage from "@/app/dictation/page";
 import SettingsPage from "@/app/settings/page";
 import { usePath } from "./router";
 
@@ -20,6 +21,7 @@ const PAGES: Record<string, ComponentType> = {
   "/review": ReviewPage,
   "/harmony": HarmonyPage,
   "/builder": BuilderPage,
+  "/dictation": DictationPage,
   "/settings": SettingsPage,
 };
 

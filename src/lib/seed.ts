@@ -1,5 +1,6 @@
 import { allItems, harmonyStems } from "./content";
 import { builderTasks } from "./builder";
+import { dictationItems } from "./dictation";
 import { ensureCards } from "./scheduler";
 
 let seeding: Promise<void> | null = null;
@@ -17,6 +18,7 @@ export function seedCards(): Promise<void> {
     await ensureCards("recall", ids);
     await ensureCards("harmony", harmonyStems.map((i) => i.id));
     await ensureCards("builder", builderTasks.map((t) => t.id));
+    await ensureCards("dictation", dictationItems.map((i) => i.id));
   })().catch((e) => {
     seeding = null;
     throw e;

@@ -101,9 +101,27 @@ nav.tabs {
   padding: 8px max(8px, env(safe-area-inset-left)) max(10px, env(safe-area-inset-bottom));
 }
 nav.tabs a {
-  /* Width follows the label, so "Конструктор" fits next to "Ще" on a 320px screen. */
-  flex: 1 1 auto; min-width: 0; text-align: center; padding: 8px 2px; font-size: 13px; color: var(--muted);
+  /* Width follows the label, so six tabs fit on a 375px screen (320px: smaller type). */
+  flex: 1 1 auto; min-width: 0; text-align: center; padding: 8px 2px; font-size: 12px; color: var(--muted);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 nav.tabs a.active { color: var(--accent); font-weight: 600; }
 nav.tabs span { display: block; font-size: 20px; }
+@media (max-width: 350px) {
+  nav.tabs a { font-size: 10px; padding: 8px 1px; }
+  nav.tabs span { font-size: 18px; }
+}
+
+/* Dictation: type what you hear. */
+.dictation-input {
+  width: 100%; font: inherit; font-size: 24px; padding: 12px 14px; margin-top: 4px;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--ink);
+}
+.dictation-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.dictation-input:disabled { opacity: 0.6; }
+.accents { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px; }
+.accents button {
+  flex: 1 0 34px; min-height: 44px; font-size: 20px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--card); border-radius: 10px;
+}
+.accents button:active { transform: translateY(1px); }

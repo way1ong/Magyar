@@ -10,6 +10,7 @@ const ROUTES: Record<string, string> = {
   "/review": "review",
   "/harmony": "harmony",
   "/builder": "builder",
+  "/dictation": "dictation",
   "/settings": "more",
 };
 

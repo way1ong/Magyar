@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { allItems, harmonyStems, packs } from "@/lib/content";
 import { builderTasks } from "@/lib/builder";
+import { dictationItems } from "@/lib/dictation";
 import { dueCount } from "@/lib/scheduler";
 import { seedCards } from "@/lib/seed";
 import { streak, todayCount } from "@/lib/stats";
@@ -16,16 +17,17 @@ export default function Home() {
   }, []);
 
   const stats = useLiveQuery(async () => {
-    const [rec, rcl, har, bld, s, t, total] = await Promise.all([
+    const [rec, rcl, har, bld, dic, s, t, total] = await Promise.all([
       dueCount("recognize"),
       dueCount("recall"),
       dueCount("harmony"),
       dueCount("builder"),
+      dueCount("dictation"),
       streak(),
       todayCount(),
       db.cards.where("state").notEqual(0).count(),
     ]);
-    return { cards: rec + rcl, harmony: har, builder: bld, streak: s, today: t, learned: total };
+    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, streak: s, today: t, learned: total };
   });
 
   return (
@@ -44,7 +46,7 @@ export default function Home() {
         <div className="stat">
           <span>Карток у роботі</span>
           <b>
-            {stats?.learned ?? "…"} / {allItems.length * 2 + harmonyStems.length + builderTasks.length}
+            {stats?.learned ?? "…"} / {allItems.length * 2 + harmonyStems.length + builderTasks.length + dictationItems.length}
           </b>
         </div>
       </div>
@@ -57,6 +59,9 @@ export default function Home() {
       </Link>
       <Link href="/builder" className="btn" style={{ marginBottom: 10 }}>
         🧩 Конструктор <span className="badge">{stats?.builder ?? "…"}</span>
+      </Link>
+      <Link href="/dictation" className="btn" style={{ marginBottom: 10 }}>
+        ✍️ Диктант <span className="badge">{stats?.dictation ?? "…"}</span>
       </Link>
 
       <p className="muted" style={{ marginTop: 24 }}>
