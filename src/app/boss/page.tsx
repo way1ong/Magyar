@@ -12,6 +12,7 @@ const KIND_LABEL: Record<BossQuestion["kind"], string> = {
   recognize: "Що це означає?",
   recall: "Як це угорською?",
   form: "Яка форма правильна?",
+  conj: "Яка форма дієслова?",
 };
 
 /**
@@ -154,7 +155,8 @@ export default function BossPage() {
       </div>
 
       <div className="card big">
-        <p className="hu" style={{ fontSize: q.kind === "recognize" ? 34 : 28 }}>{q.prompt}</p>
+        <p className="hu" lang={q.kind === "recall" ? undefined : "hu"} style={{ fontSize: q.kind === "recognize" ? 34 : q.kind === "conj" ? 24 : 28 }}>{q.prompt}</p>
+        {q.hint && <p className="ua" style={{ marginTop: 0, fontSize: 16 }}>{q.hint}</p>}
       </div>
 
       <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
