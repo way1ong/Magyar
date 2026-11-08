@@ -499,8 +499,24 @@
       "text": "«Може, можна» виражає суфікс -hat/-het на основі дієслова, після якого йдуть звичайні закінчення: parkol → parkolhat → parkolhatok (я можу паркуватися), parkolhatsz, parkolhatunk; означена: megnézhetem (я можу це подивитися). Запитання «Itt parkolhatok?» = «Тут можна паркуватися?». Неправильні: enni → ehet, inni → ihat, venni → vehet, menni → mehet, jönni → jöhet, lenni → lehet (lehet = можливо, можна), aludni → alhat."
     },
     {
-      "title": "Майбутній час і наказ",
-      "text": "Майбутнє найчастіше виражають теперішнім часом з обставиною: Holnap dolgozom. Окрема форма — fog + інфінітив: Holnap fogok dolgozni (fogok, fogsz, fog, fogunk, fogtok, fognak; означена: fogom, fogod, fogja, fogjuk, fogjátok, fogják). Відокремлюваний префікс стає перед fog: el fogok menni, meg fogom nézni. У lenni свій майбутній: leszek, leszel, lesz (Orvos leszek). Наказовий спосіб (olvass! nézd!) — окрема тема, її в застосунку поки нема."
+      "title": "Майбутній час",
+      "text": "Майбутнє найчастіше виражають теперішнім часом з обставиною: Holnap dolgozom. Окрема форма — fog + інфінітив: Holnap fogok dolgozni (fogok, fogsz, fog, fogunk, fogtok, fognak; означена: fogom, fogod, fogja, fogjuk, fogjátok, fogják). Відокремлюваний префікс стає перед fog: el fogok menni, meg fogom nézni. У lenni свій майбутній: leszek, leszel, lesz (Orvos leszek)."
+    },
+    {
+      "title": "Наказовий спосіб: -j і його злиття",
+      "text": "Наказ, прохання й «хай» (felszólító mód) будуються на основі з -j: vár → várj! (чекай), várjon! (хай чекає / чекайте, ви), várjunk! (чекаймо). Після s, sz, z -j зливається в подвоєний приголосний: olvass!, nézz!, főzz!. Після t за короткою голосною t + j → ss: fizess!, nyiss!, szeress!; після довгої голосної чи приголосної → ts: taníts!, érts!, tarts!; після st/szt t зникає: fess!, válassz!. Решта лишає -j: mondj!, ülj!, írj!."
+    },
+    {
+      "title": "Наказ з означеним обʼєктом: nézd!",
+      "text": "Якщо обʼєкт конкретний, наказ бере означені закінчення: Nézd meg a filmet! Olvasd el a levelet! Add ide! У 2-й особі однини коротка форма — основа без -j плюс -d: várd, mondd, add, nézd, olvasd, fizesd, tanítsd (довга: várjad, nézzed — рідше). Решта осіб: nézzem, nézze, nézzük, nézzétek, nézzék. Неперехідні дієслова мають лише неозначений наказ: menj!, ülj le!, aludj!"
+    },
+    {
+      "title": "Префікс у наказі стоїть після дієслова",
+      "text": "У прямому наказі відокремлюваний префікс переходить за дієслово: elmenni → Menj el! megnézni → Nézd meg! bevenni → Vedd be a gyógyszert! felkelni → Kelj fel! Так само в усіх особах: Menjünk el! Nézzétek meg! Але в підрядному реченні з hogy префікс лишається спереду: Azt kérem, hogy elmenj. Заперечний наказ — ne + та сама форма: Ne menj el! Ne nézd meg!"
+    },
+    {
+      "title": "Неправильні в наказі та ввічливі прохання",
+      "text": "enni → egyél! / edd meg!; inni → igyál! / idd meg!; venni → vegyél! / vedd!; vinni → vigyél! / vidd!; tenni → tegyél! / tedd!; hinni → higgyél! / hidd el!; menni → menj!; jönni → gyere! (ti: gyertek!), ő: jöjjön!; lenni → légy / legyél!, legyen!; látni → láss! / lásd!; aludni → aludj!. Ввічливо (önözés) наказ іде в 3-й особі: Jöjjön be! Várjon egy kicsit! Legyen szíves… (будьте ласкаві), Tessék! (прошу, будь ласка), Kérem (прошу)."
     }
   ]
 }

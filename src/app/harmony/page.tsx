@@ -7,7 +7,7 @@ import { patternShort } from "@/lib/content";
 import { compare, type Verdict } from "@/lib/dictation";
 import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
 import { harmonyChoice } from "@/lib/harmony";
-import { aheadCards, answer, dueCards, Rating } from "@/lib/scheduler";
+import { answer, Rating, sessionCards } from "@/lib/scheduler";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -44,10 +44,10 @@ export default function HarmonyPage() {
   const [score, setScore] = useState({ right: 0, total: 0 });
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async (ahead = false) => {
+  const load = useCallback(async () => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await (ahead ? aheadCards("harmony", 8) : dueCards("harmony", 20, 8))).filter((c) => harmonyTaskById(c.itemId));
+    const q = (await sessionCards("harmony", 20, 8)).filter((c) => harmonyTaskById(c.itemId));
     setQueue(q.sort(() => Math.random() - 0.5));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -76,7 +76,7 @@ export default function HarmonyPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !choice) {
-    return <SessionDone title="Гармонія голосних" score={score} exercises={["harmony"]} onAgain={() => load()} onAhead={() => load(true)} />;
+    return <SessionDone title="Гармонія голосних" score={score} onAgain={load} />;
   }
 
   const typing = shouldType(mode, row);
@@ -212,6 +212,11 @@ export default function HarmonyPage() {
         </>
       ) : (
         <>
+          {picked && (
+            <button className="btn primary" onClick={next} style={{ marginBottom: 12 }} ref={(el) => el?.scrollIntoView({ block: "nearest" })}>
+              Далі
+            </button>
+          )}
           <div className="choices" style={{ gridTemplateColumns: `repeat(${Math.min(options.length, 3)}, 1fr)` }}>
             {options.map((v) => {
               let cls = "btn";
@@ -226,11 +231,6 @@ export default function HarmonyPage() {
               );
             })}
           </div>
-          {picked && (
-            <button className="btn primary" onClick={next} style={{ marginTop: 12 }}>
-              Далі
-            </button>
-          )}
         </>
       )}
     </>

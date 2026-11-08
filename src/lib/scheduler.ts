@@ -78,24 +78,25 @@ export function previewIntervals(row: CardRow): Record<Grade, string> {
 }
 
 /**
- * Cards to practise ahead of schedule when nothing is due: the ones due
- * soonest (learning/relearning first), then new ones. Reviewing early is
- * fine for FSRS — it just sees a shorter elapsed interval.
+ * One session's worth of cards. Due cards first (started ones before new,
+ * at most `newLimit` new), and when fewer than `minimum` are due, the
+ * queue is topped up with the soonest cards ahead of schedule — learning
+ * cards due in minutes, then reviews, then more new ones — so "Ще раз"
+ * always has something to practise. Reviewing early is fine for FSRS.
  */
-export async function aheadCards(exercise: Exercise, limit = 8): Promise<CardRow[]> {
-  const all = await db.cards.where("exercise").equals(exercise).toArray();
-  const started = all.filter((c) => c.state !== 0).sort((a, b) => a.due - b.due);
-  const fresh = all.filter((c) => c.state === 0);
-  return [...started, ...fresh].slice(0, limit);
-}
-
-/** Epoch ms of the next card to come due (started cards only), or undefined. */
-export async function nextDue(exercises: Exercise[]): Promise<number | undefined> {
+export async function sessionCards(exercise: Exercise, limit = 20, newLimit = 10, minimum = 8): Promise<CardRow[]> {
   const now = Date.now();
-  let best: number | undefined;
-  for (const ex of exercises) {
-    const rows = await db.cards.where("exercise").equals(ex).and((c) => c.state !== 0 && c.due > now).toArray();
-    for (const r of rows) if (best === undefined || r.due < best) best = r.due;
+  const all = await db.cards.where("exercise").equals(exercise).toArray();
+  const due = all.filter((c) => c.due <= now);
+  const review = due.filter((c) => c.state !== 0).sort((a, b) => a.due - b.due);
+  const fresh = due.filter((c) => c.state === 0).slice(0, newLimit);
+  const q = [...review, ...fresh].slice(0, limit);
+  if (q.length < minimum) {
+    const have = new Set(q.map((c) => c.key));
+    const ahead = all
+      .filter((c) => !have.has(c.key))
+      .sort((a, b) => Number(a.state === 0) - Number(b.state === 0) || a.due - b.due);
+    q.push(...ahead.slice(0, minimum - q.length));
   }
-  return best;
+  return q;
 }

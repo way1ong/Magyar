@@ -3,9 +3,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
-import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, TENSE_UA } from "@/lib/conj";
+import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, tenseLabel } from "@/lib/conj";
 import { compare, type Verdict } from "@/lib/dictation";
-import { aheadCards, answer, dueCards, Rating, type Grade } from "@/lib/scheduler";
+import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -48,10 +48,10 @@ export default function ConjPage() {
   const [score, setScore] = useState({ right: 0, total: 0 });
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async (ahead = false) => {
+  const load = useCallback(async () => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await (ahead ? aheadCards("conj", 8) : dueCards("conj", 20, 8))).filter((c) => conjTaskById(c.itemId));
+    const q = (await sessionCards("conj", 20, 8)).filter((c) => conjTaskById(c.itemId));
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -92,7 +92,7 @@ export default function ConjPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !deal) {
-    return <SessionDone title="Дієвідміна" score={score} exercises={["conj"]} onAgain={() => load()} onAhead={() => load(true)} />;
+    return <SessionDone title="Дієвідміна" score={score} onAgain={load} />;
   }
 
   const { item, tense, def } = task;
@@ -103,6 +103,8 @@ export default function ConjPage() {
   const color = !done ? undefined : ok ? "var(--ok)" : outcome === "accents" ? "var(--warn)" : "var(--bad)";
   const tr = isTransitive(item);
   const object = def ? "azt" : tr ? "valamit" : "";
+  const imp = tense === "imp";
+  const mark = imp ? "!" : ".";
   const defLabel = def
     ? "означена відміна — конкретний обʼєкт (azt, a könyvet)"
     : tr
@@ -147,7 +149,7 @@ export default function ConjPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">Дієвідміна · {tense === "pot" ? TENSE_UA[tense] : `${TENSE_UA[tense]} час`}</span>
+        <span className="muted">Дієвідміна · {tenseLabel(tense)}</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}
@@ -161,17 +163,17 @@ export default function ConjPage() {
         <p className="muted" style={{ margin: 0 }}>{defLabel}</p>
         <p className="hu" lang="hu" style={{ fontSize: 26 }}>
           ({PRONOUN[person]}) <b>___</b>
-          {object && ` ${object}`}.
+          {object && ` ${object}`}{mark}
         </p>
         <p className="ua">
-          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : `${TENSE_UA[tense]} час`}
+          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : imp ? "наказ / хай" : tenseLabel(tense)}
         </p>
         {done && (
           <>
             {typing && outcome && <p className="muted" style={{ margin: "0 0 4px", color }}>{VERDICT_TEXT[outcome]}</p>}
             <p className="example" lang="hu" style={{ color, fontSize: 24 }}>
               ({PRONOUN[person]}) {correct}
-              {object && ` ${object}`}.
+              {object && ` ${object}`}{mark}
             </p>
             {typing && outcome === "wrong" && typed.trim() && (
               <p className="muted" style={{ fontSize: 15, margin: 0 }}>
@@ -221,6 +223,11 @@ export default function ConjPage() {
         </>
       ) : (
         <>
+          {picked && (
+            <button className="btn primary" onClick={next} style={{ marginBottom: 12 }} ref={(el) => el?.scrollIntoView({ block: "nearest" })}>
+              Далі
+            </button>
+          )}
           <div className="choices" style={{ gridTemplateColumns: "1fr 1fr" }}>
             {options.map((v) => {
               let cls = "btn";
@@ -235,11 +242,6 @@ export default function ConjPage() {
               );
             })}
           </div>
-          {picked && (
-            <button className="btn primary" onClick={next} style={{ marginTop: 12 }}>
-              Далі
-            </button>
-          )}
         </>
       )}
     </>

@@ -99,7 +99,7 @@
     {"id": "b1-04-megerkezni", "type": "word", "hu": "megérkezni", "ua": "прибути", "pos": "verb", "harmony": "front", "conj": {"ik": true}},
     {"id": "b1-04-elindulni", "type": "word", "hu": "elindulni", "ua": "вирушити", "pos": "verb", "harmony": "back"},
     {"id": "b1-04-sikerulni", "type": "word", "hu": "sikerülni", "ua": "вдаватися", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Sikerült!", "ua": "Вдалося!"}},
-    {"id": "b1-04-tetszeni", "type": "word", "hu": "tetszeni", "ua": "подобатися", "pos": "verb", "harmony": "front", "example": {"hu": "Tetszik a város.", "ua": "Місто подобається."}, "conj": {"ik": true}},
+    {"id": "b1-04-tetszeni", "type": "word", "hu": "tetszeni", "ua": "подобатися", "pos": "verb", "harmony": "front", "example": {"hu": "Tetszik a város.", "ua": "Місто подобається."}, "conj": {"ik": true, "imp": false}},
     {"id": "b1-04-megunnepelni", "type": "word", "hu": "megünnepelni", "ua": "відсвяткувати", "pos": "verb", "harmony": "front", "forms": {"stem": "megünnepl"}, "tags": ["nominal"], "conj": {"tr": true, "vstem": "megünnepl"}},
     {"id": "b1-04-ajandekozni", "type": "word", "hu": "ajándékozni", "ua": "дарувати", "pos": "verb", "harmony": "back", "tags": ["nominal"], "conj": {"tr": true}},
     {"id": "b1-04-eljonni", "type": "word", "hu": "eljönni", "ua": "прийти", "pos": "verb", "harmony": "front_rounded"},
