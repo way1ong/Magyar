@@ -2,7 +2,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { itemById } from "@/lib/content";
-import { ACCENTS, compare, type Verdict } from "@/lib/dictation";
+import { compare, type Verdict } from "@/lib/dictation";
+import { HuInput } from "@/components/HuInput";
 import { shuffle } from "@/lib/builder";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
@@ -16,13 +17,6 @@ import { hasRecording } from "@/lib/tts";
 const FAST_MS = 8000;
 
 type Outcome = Verdict | "revealed";
-
-/** Compact Hungarian keyboard for phones without a Latin layout. */
-const KEYBOARD = [
-  ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ő", "ú"],
-  ["a", "s", "d", "f", "g", "h", "j", "k", "l", "é", "á", "ű"],
-  ["y", "x", "c", "v", "b", "n", "m", "ö", "ü", "ó", "í"],
-];
 
 const VERDICT_TEXT: Record<Outcome, string> = {
   exact: "Правильно!",
@@ -42,9 +36,7 @@ export default function DictationPage() {
   const [typed, setTyped] = useState("");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   const [score, setScore] = useState({ right: 0, total: 0 });
-  const [keyboard, setKeyboard] = useState(false);
   const shownAt = useRef(Date.now());
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const load = useCallback(async () => {
     await seedCards();
@@ -69,7 +61,6 @@ export default function DictationPage() {
     setOutcome(null);
     shownAt.current = Date.now();
     speakItem(item.id, item.hu);
-    inputRef.current?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- cardKey identifies the card
   }, [cardKey]);
 
@@ -129,23 +120,6 @@ export default function DictationPage() {
     setI((n) => n + 1);
   };
 
-  /** Insert a letter at the caret and keep the caret after it ("" = backspace). */
-  const insert = (ch: string) => {
-    const el = inputRef.current;
-    const s = el?.selectionStart ?? typed.length;
-    const e = el?.selectionEnd ?? s;
-    const from = ch === "" && s === e ? Math.max(0, s - 1) : s;
-    const next = typed.slice(0, from) + ch + typed.slice(e);
-    const caret = from + ch.length;
-    setTyped(next);
-    // With the on-screen keyboard open, keep the phone's own keyboard closed.
-    if (keyboard) return;
-    requestAnimationFrame(() => {
-      el?.focus();
-      el?.setSelectionRange(caret, caret);
-    });
-  };
-
   const color =
     outcome === "exact" ? "var(--ok)" : outcome === "accents" ? "var(--warn)" : "var(--bad)";
 
@@ -181,72 +155,15 @@ export default function DictationPage() {
         )}
       </div>
 
-      <input
-        ref={inputRef}
+      <HuInput
         id="dictation-input"
-        className="dictation-input"
-        lang="hu"
         value={typed}
-        onChange={(e) => setTyped(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key !== "Enter") return;
-          e.preventDefault();
-          if (done) next();
-          else check();
-        }}
-        placeholder="Напиши угорською…"
-        autoCapitalize="off"
-        autoCorrect="off"
-        autoComplete="off"
-        spellCheck={false}
-        enterKeyHint="done"
+        onChange={setTyped}
+        onEnter={() => (done ? next() : check())}
         disabled={done}
-        readOnly={keyboard}
-        inputMode={keyboard ? "none" : "text"}
-        aria-label="Відповідь угорською"
+        done={done}
+        focusKey={cardKey}
       />
-
-      {!done && !keyboard && (
-        <>
-          <p className="muted" style={{ fontSize: 13, margin: "6px 0 4px" }}>
-            Літери, яких нема на клавіатурі; решту — з латинської розкладки, або{" "}
-            <button type="button" className="linkish" onClick={() => setKeyboard(true)}>
-              відкрий угорську клавіатуру
-            </button>
-          </p>
-          <div className="accents" aria-label="Угорські літери">
-            {ACCENTS.map((ch) => (
-              <button key={ch} type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => insert(ch)}>
-                {ch}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-      {!done && keyboard && (
-        <div className="hu-keyboard" aria-label="Угорська клавіатура">
-          {KEYBOARD.map((row, r) => (
-            <div className="hu-row" key={r}>
-              {row.map((ch) => (
-                <button key={ch} type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => insert(ch)}>
-                  {ch}
-                </button>
-              ))}
-            </div>
-          ))}
-          <div className="hu-row">
-            <button type="button" className="wide" onMouseDown={(e) => e.preventDefault()} onClick={() => setKeyboard(false)}>
-              сховати
-            </button>
-            <button type="button" className="wide space" onMouseDown={(e) => e.preventDefault()} onClick={() => insert(" ")}>
-              пробіл
-            </button>
-            <button type="button" className="wide" onMouseDown={(e) => e.preventDefault()} onClick={() => insert("")}>
-              ⌫
-            </button>
-          </div>
-        </div>
-      )}
 
       {done ? (
         <button className="btn primary" onClick={next}>

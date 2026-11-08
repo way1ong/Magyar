@@ -136,7 +136,9 @@ nav.tabs span { display: block; font-size: 20px; }
   border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--ink);
 }
 .dictation-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-.dictation-input:disabled { opacity: 0.6; }
+.dictation-input:disabled, .dictation-input.done { opacity: 0.6; }
+.seg { display: grid; gap: 8px; margin-bottom: 8px; }
+.seg .btn.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, var(--card)); font-weight: 600; }
 .accents { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px; }
 .accents button {
   flex: 1 0 34px; min-height: 44px; font-size: 20px; cursor: pointer;
