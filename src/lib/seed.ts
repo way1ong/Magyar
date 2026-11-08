@@ -2,6 +2,7 @@ import { allItems, harmonyStems, packIndexOf } from "./content";
 import { builderTasks, taskPackIndex } from "./builder";
 import { dictationItems } from "./dictation";
 import { unlockedCount } from "./progress";
+import { AUDIO_ENABLED } from "./config";
 import { ensureCards } from "./scheduler";
 
 let seeding: Promise<void> | null = null;
@@ -23,7 +24,7 @@ export function seedCards(force = false): Promise<void> {
     await ensureCards("recall", ids);
     await ensureCards("harmony", harmonyStems.filter((i) => inOpen(i.id)).map((i) => i.id));
     await ensureCards("builder", builderTasks.filter((t) => taskPackIndex(t) < open).map((t) => t.id));
-    await ensureCards("dictation", dictationItems.filter((i) => inOpen(i.id)).map((i) => i.id));
+    if (AUDIO_ENABLED) await ensureCards("dictation", dictationItems.filter((i) => inOpen(i.id)).map((i) => i.id));
   })().catch((e) => {
     seeding = null;
     throw e;

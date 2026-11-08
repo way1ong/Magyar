@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AUDIO_ENABLED } from "@/lib/config";
 
 const tabs = [
   { href: "/", icon: "☀️", label: "Сьогодні" },
@@ -9,7 +10,7 @@ const tabs = [
   { href: "/builder", icon: "🧩", label: "Конструктор" },
   { href: "/dictation", icon: "✍️", label: "Диктант" },
   { href: "/settings", icon: "⚙️", label: "Ще" },
-];
+].filter((t) => AUDIO_ENABLED || t.href !== "/dictation");
 
 export function Tabs() {
   const path = usePathname();

@@ -9,6 +9,7 @@ import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speakItem } from "@/lib/tts";
 import { VoiceHint } from "@/components/VoiceHint";
+import { AUDIO_ENABLED } from "@/lib/config";
 import { hasRecording } from "@/lib/tts";
 
 /** An exact answer faster than this counts as Easy (listen + type). */
@@ -71,6 +72,19 @@ export default function DictationPage() {
     inputRef.current?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- cardKey identifies the card
   }, [cardKey]);
+
+  if (!AUDIO_ENABLED) {
+    return (
+      <>
+        <h1 className="title">Диктант</h1>
+        <div className="card big">
+          <p className="hu">🔇</p>
+          <p className="muted">Диктант вимкнено, поки нема якісної угорської озвучки.</p>
+        </div>
+        <Link href="/" className="btn">На головну</Link>
+      </>
+    );
+  }
 
   if (queue === null) return <p className="muted">Завантажую…</p>;
 

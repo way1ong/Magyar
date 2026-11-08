@@ -1,7 +1,7 @@
 // Builds the app as ONE self-contained HTML file (preview/dist/magyar-preview.html)
 // for publishing as a Claude artifact: inline JS + CSS, hash routing, no SW.
 import { build } from "esbuild";
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const root = new URL("..", import.meta.url).pathname;
 const result = await build({
@@ -42,7 +42,8 @@ writeFileSync(`${root}preview/dist/magyar-preview.html`, html);
 // Audio for the preview: one JSON per pack ({itemId: base64 mp3}), because a
 // claude.ai artifact may hold only a few hundred files.
 const byPack = {};
-for (const f of readdirSync(`${root}public/audio`).filter((f) => f.endsWith(".mp3"))) {
+const audioDir = `${root}public/audio`;
+for (const f of (existsSync(audioDir) ? readdirSync(audioDir) : []).filter((f) => f.endsWith(".mp3"))) {
   const id = f.slice(0, -4);
   (byPack[id.slice(0, 5)] ??= {})[id] = readFileSync(`${root}public/audio/${f}`).toString("base64");
 }

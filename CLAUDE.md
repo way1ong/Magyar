@@ -8,7 +8,7 @@
 - Dexie (IndexedDB) — прогрес. `ts-fsrs` — розклад повторень. Web Speech API — вимова.
 - PWA: `public/manifest.json` + ручний `public/sw.js` (реєструється лише в production).
 - Бекап: `src/app/api/backup/route.ts` (Next API, пише `backups/` на ноутбуці, без автентифікації — лише домашня мережа) + `src/lib/backup.ts` (автобекап з головної, Web Share). У превʼю-збірці серверного шляху нема (`IS_PREVIEW`).
-- Вимова: записи Piper у `public/audio/<itemId>.mp3` (маніфест `content/audio.json`, генерація `scripts/gen-audio.sh`), системний TTS — лише запасний. Нові слова → прогнати `scripts/gen-audio.sh`; у тестову збірку аудіо публікується як `files` поруч зі сторінкою — по одному JSON на пакет (`preview/dist/audio/<pack>.json`, {id: base64}; артефакт тримає ≤ 511 файлів, тому не по mp3 на слово).
+- Аудіо ВИМКНЕНО (`AUDIO_ENABLED = false` у `src/lib/config.ts`): Piper ковтає короткі слова, системний TTS без угорського голосу. Ховає «Вимову», вкладку й сіяння «Диктанту». Інфраструктура лишилась: `public/audio/<itemId>.mp3` + маніфест `content/audio.json` (`scripts/audio-manifest.mjs`), генерація `scripts/gen-audio.sh` (Piper); у превʼю аудіо йде по одному JSON на пакет (`preview/dist/audio/<pack>.json`, {id: base64}, бо артефакт тримає ≤ 511 файлів). Коли буде якісний голос (Google Cloud TTS hu-HU WaveNet, Azure, записи з Wikimedia Commons) — згенерувати файли, увімкнути прапорець.
 
 ## Дві бази — не плутати
 - **Контент** (`content/*.json`) — слова, фрази, суфіксальні патерни; `content/guide.json` — довідка (особливості мови, терміни), `content/audio.json` — маніфест аудіо. Read-only на телефоні, редагується в репо, бандлиться в застосунок (`src/lib/content.ts`). Перевірка: `npm run content:check`.
@@ -45,5 +45,5 @@ https://claude.ai/artifact/N4susdjABP9cPjeMj1uDDq — увесь застосу�
 - Сторінки й `src/lib` мають працювати в обох збірках: без `next/*`, окрім `next/link` і `next/navigation`; без `confirm()`/`alert()` (в артефакті не працюють). Прогрес у превʼю — IndexedDB браузера, експорт файлу там не працює.
 
 ## Що далі (пріоритет)
-1. Озвучка похідних форм (házban, busszal) для «Гармонії», «Конструктора» і «Боса» — зараз вони через системний TTS; промова (SpeechRecognition hu-HU).
+1. Якісна озвучка (хмарний TTS або живі записи) → увімкнути `AUDIO_ENABLED`, повернути «Диктант»; потім озвучка похідних форм (házban, busszal); промова (SpeechRecognition hu-HU).
 2. Пакети A2: `a2-01` (завод, охорона праці, пожежна безпека — сфера користувача) готовий; далі `a2-02` дім і побут, `a2-03` здоровʼя й тіло, `a2-04` одяг і покупки, `a2-05` погода й природа, `a2-06` місто й послуги, `a2-07` подорожі — за тим самим процесом (контент → `content:check` + `content:forms` → `scripts/gen-audio.sh <id>` → журнал). Нові суфікси для A2: -i (gyári) ✓; кандидати далі: -s (prikметник: sós ✓ лексично), -ság/-ség, -nként.

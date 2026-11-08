@@ -1,7 +1,8 @@
 // Rebuilds content/audio.json: the item ids that have public/audio/<id>.mp3.
 // The app bundles this list so it knows when to play a file instead of TTS.
-import { readdirSync, writeFileSync } from "node:fs";
-const ids = readdirSync(new URL("../public/audio/", import.meta.url))
+import { existsSync, readdirSync, writeFileSync } from "node:fs";
+const dir = new URL("../public/audio/", import.meta.url);
+const ids = (existsSync(dir) ? readdirSync(dir) : [])
   .filter((f) => f.endsWith(".mp3"))
   .map((f) => f.slice(0, -4))
   .sort();

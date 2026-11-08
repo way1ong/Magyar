@@ -1,4 +1,5 @@
 import audio from "@content/audio.json";
+import { AUDIO_ENABLED } from "./config";
 
 /**
  * Pronunciation: a recorded file (Piper, /public/audio/<itemId>.mp3, listed
@@ -8,7 +9,7 @@ import audio from "@content/audio.json";
 const recorded = new Set<string>(audio.ids);
 const IS_PREVIEW = process.env.NEXT_PUBLIC_MAGYAR_PREVIEW === "1";
 
-export const hasRecording = (itemId: string) => recorded.has(itemId);
+export const hasRecording = (itemId: string) => AUDIO_ENABLED && recorded.has(itemId);
 
 let current: HTMLAudioElement | null = null;
 
@@ -53,6 +54,7 @@ export async function playRecording(itemId: string): Promise<boolean> {
 
 /** Say a content item: its recording, else TTS of `text`. */
 export async function speakItem(itemId: string, text: string) {
+  if (!AUDIO_ENABLED) return false;
   if (await playRecording(itemId)) return true;
   return speak(text);
 }
@@ -75,6 +77,7 @@ export function hungarianVoice(): SpeechSynthesisVoice | null | undefined {
  * the wrong thing. With an empty voice list the engine picks by `lang`.
  */
 export function speak(text: string, lang = "hu-HU") {
+  if (!AUDIO_ENABLED) return false;
   const voice = hungarianVoice();
   if (voice === null) return false;
   current?.pause();

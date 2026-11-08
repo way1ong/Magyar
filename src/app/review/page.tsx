@@ -7,6 +7,7 @@ import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speakItem } from "@/lib/tts";
 import { VoiceHint } from "@/components/VoiceHint";
+import { AUDIO_ENABLED } from "@/lib/config";
 import { hasRecording } from "@/lib/tts";
 
 /** One session: due "recognize" (HU→UA) and "recall" (UA→HU) cards, shuffled together. */
@@ -96,12 +97,16 @@ export default function ReviewPage() {
         {!flipped && <p className="muted" style={{ marginTop: 16 }}>торкнись, щоб відкрити</p>}
       </button>
 
-      <div className="row" style={{ marginBottom: 10 }}>
-        <button className="btn ghost" onClick={() => speakItem(item.id, item.hu)}>
-          🔊 Вимова
-        </button>
-      </div>
-      <VoiceHint hasRecording={hasRecording(item.id)} />
+      {AUDIO_ENABLED && (
+        <>
+          <div className="row" style={{ marginBottom: 10 }}>
+            <button className="btn ghost" onClick={() => speakItem(item.id, item.hu)}>
+              🔊 Вимова
+            </button>
+          </div>
+          <VoiceHint hasRecording={hasRecording(item.id)} />
+        </>
+      )}
 
       {flipped ? (
         <div className="grade">

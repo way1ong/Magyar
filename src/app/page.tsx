@@ -6,6 +6,7 @@ import { packs } from "@/lib/content";
 import { dueCount } from "@/lib/scheduler";
 import { seedCards } from "@/lib/seed";
 import { maybeAutoBackup } from "@/lib/backup";
+import { AUDIO_ENABLED } from "@/lib/config";
 import { streak, todayCount } from "@/lib/stats";
 import { bossResults, unlockedCount } from "@/lib/progress";
 import { db } from "@/lib/db";
@@ -67,9 +68,11 @@ export default function Home() {
       <Link href="/builder" className="btn" style={{ marginBottom: 10 }}>
         🧩 Конструктор <span className="badge">{stats?.builder ?? "…"}</span>
       </Link>
-      <Link href="/dictation" className="btn" style={{ marginBottom: 10 }}>
-        ✍️ Диктант <span className="badge">{stats?.dictation ?? "…"}</span>
-      </Link>
+      {AUDIO_ENABLED && (
+        <Link href="/dictation" className="btn" style={{ marginBottom: 10 }}>
+          ✍️ Диктант <span className="badge">{stats?.dictation ?? "…"}</span>
+        </Link>
+      )}
 
       <h2 style={{ fontSize: 18, marginTop: 24 }}>Пакети</h2>
       <div className="card" style={{ padding: "4px 18px" }}>
