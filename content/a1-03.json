@@ -94,7 +94,7 @@
     { "id": "a1-03-naponta", "type": "word", "hu": "naponta", "ua": "щодня", "pos": "adv" },
 
     {"id": "a1-03-kelni", "type": "word", "hu": "kelni", "ua": "вставати", "pos": "verb", "harmony": "front", "example": {"hu": "Hatkor kelek.", "ua": "Я встаю о шостій."}},
-    {"id": "a1-03-fekudni", "type": "word", "hu": "feküdni", "ua": "лягати; лежати", "pos": "verb", "harmony": "front", "example": {"hu": "Tizenegykor fekszem le.", "ua": "Я лягаю об одинадцятій."}, "conj": {"stem": "feksz", "pastStem": "feküd", "past": "t", "ik": true}},
+    {"id": "a1-03-fekudni", "type": "word", "hu": "feküdni", "ua": "лежати; лягати", "pos": "verb", "harmony": "front", "example": {"hu": "Tizenegykor fekszem le.", "ua": "Я лягаю об одинадцятій."}, "conj": {"stem": "feksz", "pastStem": "feküd", "past": "t", "ik": true}},
     {"id": "a1-03-kezdeni", "type": "word", "hu": "kezdeni", "ua": "починати", "pos": "verb", "harmony": "front", "example": {"hu": "Holnap kezdem a munkát.", "ua": "Завтра я починаю роботу."}, "conj": {"tr": true}},
     {"id": "a1-03-befejezni", "type": "word", "hu": "befejezni", "ua": "закінчувати", "pos": "verb", "harmony": "front", "example": {"hu": "Befejeztem a munkát.", "ua": "Я закінчив роботу."}, "conj": {"tr": true}},
     {"id": "a1-03-varni", "type": "word", "hu": "várni", "ua": "чекати", "pos": "verb", "harmony": "back", "example": {"hu": "Várok rád.", "ua": "Я чекаю на тебе."}, "tags": ["nominal"], "conj": {"tr": true}},

@@ -37,7 +37,7 @@
     { "id": "a1-04-repuloter", "type": "word", "hu": "repülőtér", "ua": "аеропорт", "pos": "noun", "harmony": "front", "forms": {"stem": "repülőter"}, "example": { "hu": "A repülőtérre megyek.", "ua": "Я їду в аеропорт." }, "tags": ["place", "compound"] },
     { "id": "a1-04-jegy", "type": "word", "hu": "jegy", "ua": "квиток", "pos": "noun", "harmony": "front", "example": { "hu": "Hol lehet jegyet venni?", "ua": "Де можна купити квиток?" }, "tags": ["transport"] },
     { "id": "a1-04-berlet", "type": "word", "hu": "bérlet", "ua": "проїзний", "pos": "noun", "harmony": "front", "example": { "hu": "Havi bérletem van.", "ua": "У мене є місячний проїзний." }, "tags": ["transport"] },
-    { "id": "a1-04-vagany", "type": "word", "hu": "vágány", "ua": "колія, платформа", "pos": "noun", "harmony": "back", "tags": ["transport"] },
+    { "id": "a1-04-vagany", "type": "word", "hu": "vágány", "ua": "колія (на вокзалі)", "pos": "noun", "harmony": "back", "tags": ["transport"] },
     { "id": "a1-04-menetrend", "type": "word", "hu": "menetrend", "ua": "розклад (транспорту)", "pos": "noun", "harmony": "front", "forms": {"j": true}, "tags": ["transport", "compound"] },
     { "id": "a1-04-keses", "type": "word", "hu": "késés", "ua": "запізнення, затримка", "pos": "noun", "harmony": "front", "example": { "hu": "A vonat késéssel érkezik.", "ua": "Потяг прибуває із запізненням." }, "tags": ["transport"] },
     { "id": "a1-04-utas", "type": "word", "hu": "utas", "ua": "пасажир", "pos": "noun", "harmony": "back", "tags": ["person", "transport"] },

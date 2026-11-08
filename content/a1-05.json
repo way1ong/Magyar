@@ -128,7 +128,7 @@
       "frames": {"adj": { "hu": "Beszélek ___.", "ua": "Я розмовляю ___." }},
       "short": "якою мовою; як",
       "name": "-ul / -ül",
-      "meaning": "якою мовою; як — magyarul, németül, törökül; лише з назвами мов і народів (rosszul — виняток)",
+      "meaning": "якою мовою; як — magyarul, németül, törökül; у тренажері — лише з назвами мов і народів (той самий суфікс дає й прислівники: rosszul, vakul)",
       "forms": { "back": "ul", "front": "ül", "front_rounded": "ül" },
       "attachesTo": ["adj"],
       "attachesTag": "language",

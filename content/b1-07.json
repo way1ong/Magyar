@@ -104,7 +104,7 @@
     {"id": "b1-07-veny-nelkul", "type": "word", "hu": "vény nélkül", "ua": "без рецепта", "pos": "adv"}
   ],
   "patterns": [
-    {"id": "suf-quantity", "name": "-nyi (кількість, міра)", "short": "кількість у мірі чогось (egy kanálnyi — ложка чогось)", "meaning": "міра або кількість «на один …»: kanál → egy kanálnyi szirup (ложка сиропу), pohár → egy pohárnyi víz, hét → egy hétnyi munka (тиждень роботи), kilométer → kilométernyi (на кілометр); одна форма -nyi, кінцеве -a/-e подовжується: óra → órányi, tabletta → tablettányi", "forms": {"back": "nyi", "front": "nyi", "front_rounded": "nyi"}, "roles": ["thing", "time", "food"], "frames": {"*": {"hu": "Egy ___ elég.", "ua": "Одного ___ досить."}}, "examples": [
+    {"id": "suf-quantity", "name": "-nyi (кількість, міра)", "short": "кількість у мірі чогось (egy kanálnyi — ложка чогось)", "meaning": "міра або кількість «на один …»: kanál → egy kanálnyi szirup (ложка сиропу), pohár → egy pohárnyi víz, hét → egy hétnyi munka (тиждень роботи), kilométer → kilométernyi (завдовжки з кілометр); одна форма -nyi, кінцеве -a/-e подовжується: óra → órányi, tabletta → tablettányi", "forms": {"back": "nyi", "front": "nyi", "front_rounded": "nyi"}, "roles": ["thing", "time", "food"], "frames": {"*": {"hu": "Egy ___ elég.", "ua": "Одного ___ досить."}}, "examples": [
       {"stem": "kanál", "result": "kanálnyi", "ua": "ложка (чогось)"},
       {"stem": "pohár", "result": "pohárnyi", "ua": "склянка (чогось)"},
       {"stem": "üveg", "result": "üvegnyi", "ua": "пляшка (чогось)"},
@@ -126,18 +126,18 @@
     ] }
   ],
   "examples": [
-    {"pattern": "suf-accusative", "stem": "beutaló", "result": "beutalót", "ua": "(kérek) направлення"},
-    {"pattern": "suf-accusative", "stem": "lelet", "result": "leletet", "ua": "(várom) результат аналізу"},
-    {"pattern": "suf-accusative", "stem": "kenőcs", "result": "kenőcsöt", "ua": "(kérek) мазь"},
-    {"pattern": "suf-accusative", "stem": "szirup", "result": "szirupot", "ua": "(adok) сироп"},
-    {"pattern": "suf-accusative", "stem": "kapszula", "result": "kapszulát", "ua": "(beveszem) капсулу"},
-    {"pattern": "suf-accusative", "stem": "oltás", "result": "oltást", "ua": "(kapok) щеплення"},
-    {"pattern": "suf-accusative", "stem": "gipsz", "result": "gipszet", "ua": "(leveszik) гіпс"},
-    {"pattern": "suf-accusative", "stem": "mankó", "result": "mankót", "ua": "(kapok) милицю"},
-    {"pattern": "suf-accusative", "stem": "tünet", "result": "tünetet", "ua": "(észlelek) симптом"},
-    {"pattern": "suf-accusative", "stem": "diagnózis", "result": "diagnózist", "ua": "(kapok) діагноз"},
-    {"pattern": "suf-accusative", "stem": "tenyér", "result": "tenyeret", "ua": "(mutatom) долоню"},
-    {"pattern": "suf-accusative", "stem": "marék", "result": "markot", "ua": "(fogok) жменю"},
+    {"pattern": "suf-accusative", "stem": "beutaló", "result": "beutalót", "ua": "(прошу) направлення"},
+    {"pattern": "suf-accusative", "stem": "lelet", "result": "leletet", "ua": "(чекаю) результат аналізу"},
+    {"pattern": "suf-accusative", "stem": "kenőcs", "result": "kenőcsöt", "ua": "(прошу) мазь"},
+    {"pattern": "suf-accusative", "stem": "szirup", "result": "szirupot", "ua": "(даю) сироп"},
+    {"pattern": "suf-accusative", "stem": "kapszula", "result": "kapszulát", "ua": "(приймаю) капсулу"},
+    {"pattern": "suf-accusative", "stem": "oltás", "result": "oltást", "ua": "(отримую) щеплення"},
+    {"pattern": "suf-accusative", "stem": "gipsz", "result": "gipszet", "ua": "(знімають) гіпс"},
+    {"pattern": "suf-accusative", "stem": "mankó", "result": "mankót", "ua": "(отримую) милицю"},
+    {"pattern": "suf-accusative", "stem": "tünet", "result": "tünetet", "ua": "(помічаю) симптом"},
+    {"pattern": "suf-accusative", "stem": "diagnózis", "result": "diagnózist", "ua": "(отримую) діагноз"},
+    {"pattern": "suf-accusative", "stem": "tenyér", "result": "tenyeret", "ua": "(показую) долоню"},
+    {"pattern": "suf-accusative", "stem": "marék", "result": "markot", "ua": "(набираю) жменю"},
     {"pattern": "suf-plural", "stem": "tünet", "result": "tünetek", "ua": "симптоми"},
     {"pattern": "suf-plural", "stem": "kapszula", "result": "kapszulák", "ua": "капсули"},
     {"pattern": "suf-plural", "stem": "csepp", "result": "cseppek", "ua": "краплі"},
@@ -215,7 +215,7 @@
     {"pattern": "suf-nominal", "stem": "megvizsgálni", "result": "megvizsgálás", "ua": "обстеження"},
     {"pattern": "suf-potential", "stem": "szedni", "result": "szedhet", "ua": "може приймати"},
     {"pattern": "suf-potential", "stem": "kezelni", "result": "kezelhet", "ua": "може лікувати"},
-    {"pattern": "suf-potential", "stem": "szédülni", "result": "szédülhet", "ua": "може паморочитися"},
+    {"pattern": "suf-potential", "stem": "szédülni", "result": "szédülhet", "ua": "у нього може паморочитися голова"},
     {"pattern": "suf-potential", "stem": "felépülni", "result": "felépülhet", "ua": "може відновитися"}
   ]
 }
