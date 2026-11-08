@@ -5,6 +5,7 @@ import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib
 import { endsWithVowel, lengthenFinal } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
+import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 
 /** A correct answer faster than this counts as Easy (three taps + reading). */
@@ -48,6 +49,7 @@ export default function BuilderPage() {
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
+    await seedCards();
     const q = (await dueCards("builder", 20, 8)).filter((r) => builderTaskById(r.itemId));
     setQueue(shuffle(q));
     setI(0);

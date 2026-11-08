@@ -4,6 +4,7 @@ import Link from "next/link";
 import { itemById } from "@/lib/content";
 import { answer, dueCards, previewIntervals, Rating, type Grade } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
+import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 
 /** One session: due "recognize" (HU→UA) and "recall" (UA→HU) cards, shuffled together. */
@@ -15,6 +16,7 @@ export default function ReviewPage() {
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
+    await seedCards();
     const [a, b] = await Promise.all([dueCards("recognize", 15, 6), dueCards("recall", 15, 6)]);
     const all = [...a, ...b].sort(() => Math.random() - 0.5);
     setQueue(all);

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "content:check": "node --no-warnings scripts/check-content.mjs"
+    "content:check": "node --no-warnings scripts/check-content.mjs",
+    "preview:build": "node scripts/build-preview.mjs"
   },
   "dependencies": {
     "dexie": "^4.0.10",
@@ -21,6 +22,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "esbuild": "^0.25.12",
     "typescript": "^5"
   }
 }

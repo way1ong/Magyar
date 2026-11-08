@@ -6,6 +6,7 @@ import { apply, endsWithVowel, variantsOf } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
 import type { Pattern } from "@/lib/types";
+import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 
 /**
@@ -22,6 +23,7 @@ export default function HarmonyPage() {
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
+    await seedCards();
     const q = await dueCards("harmony", 20, 8);
     setQueue(q.sort(() => Math.random() - 0.5));
     setI(0);

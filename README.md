@@ -24,6 +24,7 @@ src/lib/builder.ts  завдання й блоки для «Конструкто
 src/app/            екрани: / (сьогодні), /review, /harmony, /builder, /settings
 public/sw.js        офлайн-кеш
 scripts/check-content.mjs  валідація контенту
+preview/            тестова збірка одним HTML-файлом (`npm run preview:build`)
 ```
 
 Деталі — `SPEC.md`; правила для Claude Code — `CLAUDE.md`.

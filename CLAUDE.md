@@ -18,7 +18,7 @@
 - `Pattern.attachesTo` — до яких частин мови чіпляється суфікс (за замовчуванням noun, adj). Приклади патернів мають точно дорівнювати `apply()` — інакше `content:check` падає.
 - Гармонія голосних: клас стема (`back | front | front_rounded`) задається в контенті явно; `guessHarmony()` — лише fallback. Змішані слова (kávé → back) — винятки, тому тег обовʼязковий.
 - `apply()` в `harmony.ts` подовжує кінцеві a/e (alma→almában) і дає `-n` після голосної для `linking`-суфіксів (autón). Зміни приголосного стема (ház→házat) НЕ моделюються — не додавати знахідний відмінок у гру без окремої моделі.
-- Будь-яка нова вправа = новий `Exercise` у `db.ts` + `ensureCards(...)` на головній.
+- Будь-яка нова вправа = новий `Exercise` у `db.ts` + `ensureCards(...)` у `seedCards()` (`src/lib/seed.ts`; її викликають головна й кожна вправа перед завантаженням черги).
 
 ## Команди
 - `npm run dev` — локально; на телефоні відкривати через IP ноутбука (`next dev -H 0.0.0.0`).
@@ -34,6 +34,12 @@
 - `packs/<packId>` — `order`, `id`, `title`, `items`, `byKind` (за `pos`; фрази як `phrase`), `harmony` (`back`/`front`/`front_rounded`), `patterns[]`, `builderTasks` (числа — з `npm run content:check`).
 - `meta/summary` — `updated`, `branch`, `inMain`, `packs`, `items`, `cards` (сума по вправах), `exercises[]` (`{ key, name, cards }`).
 Перед записом у наявний документ прочитати його й передати `if_version`.
+
+## Тестова збірка (артефакт)
+https://claude.ai/artifact/N4susdjABP9cPjeMj1uDDq — увесь застосунок одним HTML-файлом, щоб користувач перевіряв зміни в браузері.
+- `npm run preview:build` → `preview/dist/magyar-preview.html` (esbuild; шими `next/link` і `next/navigation` у `preview/shims`, навігація через `#`; `#settings` зарезервований claude.ai, тому «Ще» = `#more`).
+- Після кожної зміни застосунку чи контенту: перезібрати й перепублікувати цей файл у той самий `url` (інструмент `Artifact`, `url` вище).
+- Сторінки й `src/lib` мають працювати в обох збірках: без `next/*`, окрім `next/link` і `next/navigation`; без `confirm()`/`alert()` (в артефакті не працюють). Прогрес у превʼю — IndexedDB браузера, експорт файлу там не працює.
 
 ## Що далі (пріоритет)
 1. Пакети `a1-03…` (час, дорога/транспорт, робота). Джерело — частотний список Wiktionary 10k. (`a1-02` — їжа/магазин/числа — готовий.)

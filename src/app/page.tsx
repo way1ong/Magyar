@@ -4,18 +4,15 @@ import { useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { allItems, harmonyStems, packs } from "@/lib/content";
 import { builderTasks } from "@/lib/builder";
-import { ensureCards, dueCount } from "@/lib/scheduler";
+import { dueCount } from "@/lib/scheduler";
+import { seedCards } from "@/lib/seed";
 import { streak, todayCount } from "@/lib/stats";
 import { db } from "@/lib/db";
 
 export default function Home() {
   // Seed cards for every item on first launch (idempotent).
   useEffect(() => {
-    const ids = allItems.map((i) => i.id);
-    ensureCards("recognize", ids);
-    ensureCards("recall", ids);
-    ensureCards("harmony", harmonyStems.map((i) => i.id));
-    ensureCards("builder", builderTasks.map((t) => t.id));
+    seedCards();
   }, []);
 
   const stats = useLiveQuery(async () => {
