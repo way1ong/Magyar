@@ -6,7 +6,8 @@
 ## Стек
 - Next.js 15 (App Router), TypeScript, React 19. Без Tailwind — `src/app/globals.css` з CSS-змінними, light/dark.
 - Dexie (IndexedDB) — прогрес. `ts-fsrs` — розклад повторень. Web Speech API — вимова.
-- PWA: `public/manifest.json` + ручний `public/sw.js` (реєструється лише в production).
+- PWA: `public/manifest.json` + ручний `public/sw.js` (реєструється лише в production; усі шляхи рахує від власного `scope`, тож працює і в корені, і під `/Magyar/`).
+- **Установка на телефон — GitHub Pages**: https://way1ong.github.io/Magyar/ — статична збірка (`npm run build:static` → `scripts/build-static.mjs`: `MAGYAR_STATIC=1`, `output: "export"`, `basePath: "/Magyar"`, `trailingSlash`, API-маршрут на час збірки відкладається вбік, `out/.nojekyll`). Публікує `.github/workflows/pages.yml` на кожен push у `main`, тож злиття PR = оновлення застосунку на телефоні (SW підхоплює нову версію при наступному відкритті). У статичній збірці нема бекапу на ноутбук (`IS_STATIC`/`NO_LAPTOP` у `backup.ts`) — лише «Поділитися»/експорт. Посилання на manifest/sw беруть `NEXT_PUBLIC_BASE_PATH` (задає `next.config.ts`; у превʼю визначено як порожній).
 - Бекап: `src/app/api/backup/route.ts` (Next API, пише `backups/` на ноутбуці, без автентифікації — лише домашня мережа) + `src/lib/backup.ts` (автобекап з головної, Web Share). У превʼю-збірці серверного шляху нема (`IS_PREVIEW`).
 - Аудіо ВИМКНЕНО (`AUDIO_ENABLED = false` у `src/lib/config.ts`): Piper ковтає короткі слова, системний TTS без угорського голосу. Ховає «Вимову», вкладку й сіяння «Диктанту». Інфраструктура лишилась: `public/audio/<itemId>.mp3` + маніфест `content/audio.json` (`scripts/audio-manifest.mjs`), генерація `scripts/gen-audio.sh` (Piper); у превʼю аудіо йде по одному JSON на пакет (`preview/dist/audio/<pack>.json`, {id: base64}, бо артефакт тримає ≤ 511 файлів). Коли буде якісний голос (Google Cloud TTS hu-HU WaveNet, Azure, записи з Wikimedia Commons) — згенерувати файли, увімкнути прапорець.
 
@@ -29,7 +30,7 @@
 
 ## Команди
 - `npm run dev` — локально; на телефоні відкривати через IP ноутбука (`next dev -H 0.0.0.0`).
-- `npm run build && npm start` — продакшн-збірка; SW працює лише тут.
+- `npm run build && npm start` — продакшн-збірка на ноутбуці (з бекапом на диск); SW працює лише в production. `npm run build:static` — статична збірка для GitHub Pages (`out/`).
 - `npm run content:check` — валідація контент-пакетів; `npm run content:forms` — таблиця відмінкових форм усіх іменників для перегляду; `npm run content:conj` — таблиця дієвідміни всіх дієслів.
 
 ## Журнал розробки (артефакт)

@@ -5,9 +5,12 @@ import { db, exportProgress } from "./db";
  *  - the laptop that serves the app (POST /api/backup → backups/ there);
  *    tried automatically from Home when there are new reviews;
  *  - the share sheet (Web Share API) to put the JSON into Drive/Telegram/…
- * The single-file preview build has no server: the laptop path is off there.
+ * The single-file preview build and the static GitHub Pages build have no
+ * server: the laptop path is off there (NO_LAPTOP).
  */
 export const IS_PREVIEW = process.env.NEXT_PUBLIC_MAGYAR_PREVIEW === "1";
+export const IS_STATIC = process.env.NEXT_PUBLIC_MAGYAR_STATIC === "1";
+export const NO_LAPTOP = IS_PREVIEW || IS_STATIC;
 
 export interface BackupState {
   /** Epoch ms of the last successful laptop backup. */
@@ -24,7 +27,7 @@ export const lastBackup = async () => (await db.meta.get(META_KEY))?.v as Backup
 
 /** POST the full export to the laptop. Throws with a readable message on failure. */
 export async function backupToLaptop(): Promise<BackupState> {
-  if (IS_PREVIEW) throw new Error("У тестовій збірці нема ноутбука-сервера.");
+  if (NO_LAPTOP) throw new Error("У цій збірці нема ноутбука-сервера.");
   const data = await exportProgress();
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 8000);
@@ -50,7 +53,7 @@ export async function backupToLaptop(): Promise<BackupState> {
 
 /** Silent backup when there are new reviews and the last one is old enough. */
 export async function maybeAutoBackup(): Promise<void> {
-  if (IS_PREVIEW) return;
+  if (NO_LAPTOP) return;
   const last = await lastBackup();
   const reviews = await db.reviews.count();
   if (reviews === 0) return;

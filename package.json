@@ -10,7 +10,8 @@
     "content:check": "node --no-warnings scripts/check-content.mjs",
     "content:forms": "node --no-warnings scripts/forms-table.mjs",
     "content:conj": "node --no-warnings scripts/conj-table.mjs",
-    "preview:build": "node scripts/build-preview.mjs"
+    "preview:build": "node scripts/build-preview.mjs",
+    "build:static": "node scripts/build-static.mjs"
   },
   "dependencies": {
     "dexie": "^4.0.10",

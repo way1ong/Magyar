@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, exportProgress, importProgress } from "@/lib/db";
-import { backupToLaptop, IS_PREVIEW, lastBackup, shareProgress } from "@/lib/backup";
+import { backupToLaptop, IS_STATIC, NO_LAPTOP, lastBackup, shareProgress } from "@/lib/backup";
 import { allItems, allPatterns } from "@/lib/content";
 import { getTypingMode, setTypingMode, TYPING_LABELS, type TypingMode } from "@/lib/settings";
 
@@ -102,17 +102,19 @@ export default function SettingsPage() {
 
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Резервна копія</h2>
       <p className="muted">
-        Прогрес живе лише на цьому телефоні. Копія на ноутбук робиться сама, коли є нові повторення і ноутбук у тій самій
-        Wi-Fi; «Поділитися» кладе файл у Drive чи месенджер.
+        Прогрес живе лише на цьому телефоні.{" "}
+        {IS_STATIC
+          ? "Застосунок встановлено з GitHub Pages, тож бекапу на ноутбук тут нема — раз на тиждень натискай «Поділитися» й клади файл у Drive чи месенджер."
+          : "Копія на ноутбук робиться сама, коли є нові повторення і ноутбук у тій самій Wi-Fi; «Поділитися» кладе файл у Drive чи месенджер."}
       </p>
-      <p className="muted" style={{ fontSize: 14 }}>
+      {!NO_LAPTOP && <p className="muted" style={{ fontSize: 14 }}>
         Останній бекап на ноутбук:{" "}
         {counts?.backup
           ? `${new Date(counts.backup.ts).toLocaleString("uk-UA", { dateStyle: "short", timeStyle: "short" })} (${counts.backup.name})`
           : "ще не було"}
         {counts?.backup && counts.reviews > counts.backup.reviews && ` — відтоді ${counts.reviews - counts.backup.reviews} нових повторень`}
-      </p>
-      {!IS_PREVIEW && (
+      </p>}
+      {!NO_LAPTOP && (
         <button className="btn primary" onClick={doLaptop} disabled={busy} style={{ marginBottom: 10 }}>
           💻 {busy ? "Зберігаю…" : "Бекап на ноутбук"}
         </button>
