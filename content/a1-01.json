@@ -86,10 +86,10 @@
     { "id": "a1-01-furdo", "type": "word", "hu": "fürdő", "ua": "ванна кімната; купальня", "pos": "noun", "harmony": "front_rounded", "tags": ["place"] },
     { "id": "a1-01-tuz", "type": "word", "hu": "tűz", "ua": "вогонь", "pos": "noun", "harmony": "front_rounded", "forms": {"stem": "tüz", "low": true} },
 
-    { "id": "a1-01-nagy", "type": "word", "hu": "nagy", "ua": "великий", "pos": "adj", "harmony": "back", "forms": {"comp": "nagyobb"}, "tags": ["quality", "grad"] },
+    {"id": "a1-01-nagy", "type": "word", "hu": "nagy", "ua": "великий", "pos": "adj", "harmony": "back", "forms": {"comp": "nagyobb", "adv": "nagyon"}, "tags": ["quality", "grad"]},
     { "id": "a1-01-kicsi", "type": "word", "hu": "kicsi", "ua": "малий", "pos": "adj", "harmony": "front", "forms": {"comp": "kisebb"}, "tags": ["grad"] },
-    { "id": "a1-01-jo", "type": "word", "hu": "jó", "ua": "добрий, хороший", "pos": "adj", "harmony": "back", "forms": {"comp": "jobb"}, "tags": ["quality", "grad"] },
-    { "id": "a1-01-rossz", "type": "word", "hu": "rossz", "ua": "поганий", "pos": "adj", "harmony": "back", "tags": ["grad"] },
+    {"id": "a1-01-jo", "type": "word", "hu": "jó", "ua": "добрий, хороший", "pos": "adj", "harmony": "back", "forms": {"comp": "jobb", "adv": "jól"}, "tags": ["quality", "grad"]},
+    {"id": "a1-01-rossz", "type": "word", "hu": "rossz", "ua": "поганий", "pos": "adj", "harmony": "back", "forms": {"adv": "rosszul"}, "tags": ["grad"]},
     { "id": "a1-01-szep", "type": "word", "hu": "szép", "ua": "гарний", "pos": "adj", "harmony": "front", "forms": {"comp": "szebb"}, "tags": ["quality", "grad"] },
     { "id": "a1-01-uj", "type": "word", "hu": "új", "ua": "новий", "pos": "adj", "harmony": "back", "tags": ["grad"] },
     { "id": "a1-01-draga", "type": "word", "hu": "drága", "ua": "дорогий", "pos": "adj", "harmony": "back", "example": { "hu": "Ez nagyon drága.", "ua": "Це дуже дорого." }, "tags": ["grad"] },

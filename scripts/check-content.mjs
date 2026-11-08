@@ -49,7 +49,7 @@ for (const { f, pack } of packs) {
       if (it.conj.link !== undefined && it.conj.link !== false) err(`${it.id}: conj.link may only be false`);
     }
     if (it.forms) {
-      const ok = ["stem", "low", "j", "acc", "pl", "p1", "p2", "p3", "s", "comp", "ord"];
+      const ok = ["stem", "low", "j", "acc", "pl", "p1", "p2", "p3", "s", "comp", "ord", "adv"];
       for (const k of Object.keys(it.forms)) if (!ok.includes(k)) err(`${it.id}: unknown forms.${k}`);
       if (it.pos === "verb") {
         if (Object.keys(it.forms).some((k) => k !== "stem")) err(`${it.id}: a verb's forms may only override "stem" (for -ás/-és)`);
@@ -85,7 +85,7 @@ for (const { f, pack } of packs) {
     }
     if (p.attachesTag !== undefined && typeof p.attachesTag !== "string") err(`${p.id}: attachesTag must be a string`);
     if (p.roles && (!Array.isArray(p.roles) || p.roles.some((r) => !ROLES.includes(r)))) err(`${p.id}: bad roles ${JSON.stringify(p.roles)}`);
-    if (p.inflect && !["acc", "pl", "p1", "p2", "p3", "s", "comp", "ord"].includes(p.inflect)) err(`${p.id}: bad inflect "${p.inflect}"`);
+    if (p.inflect && !["acc", "pl", "p1", "p2", "p3", "s", "comp", "ord", "adv"].includes(p.inflect)) err(`${p.id}: bad inflect "${p.inflect}"`);
     if (!p.short) warn(`${p.id}: no "short" gloss — exercises fall back to the meaning`);
     if (p.afterVowel !== undefined && typeof p.afterVowel !== "string" && !(p.afterVowel?.back && p.afterVowel?.front && p.afterVowel?.front_rounded)) err(`${p.id}: afterVowel must be a string or {back, front, front_rounded}`);
     if (p.fromInfinitive !== undefined && typeof p.fromInfinitive !== "boolean") err(`${p.id}: fromInfinitive must be a boolean`);
