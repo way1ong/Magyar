@@ -17,6 +17,7 @@ const ENDINGS = [
   ["ti", "-tok / -tek / -tök", "-játok / -itek", "-tatok / -tetek", "-tátok / -tétek"],
   ["ők", "-nak / -nek · після двох приголосних та -ít: -anak / -enek", "-ják / -ik", "-tak / -tek", "-ták / -ték"],
 ];
+const POTENTIAL = "Можливість -hat/-het («може, можна»): до основи додається -hat (задні) / -het (передні), далі звичайні закінчення теперішнього часу: parkolhatok, parkolhatsz, parkolhat; означена: megnézhetem, megnézheted. Неправильні: ehet, ihat, vehet, vihet, tehet, hihet, mehet, jöhet, lehet, alhat. Minden lehet. Itt parkolhatok?";
 const FUTURE = "Майбутній: fog + інфінітив — fogok, fogsz, fog, fogunk, fogtok, fognak (означена: fogom, fogod, fogja, fogjuk, fogjátok, fogják) + dolgozni; відокремлюваний префікс іде наперед: el fogok menni, meg fogom nézni. lenni: leszek, leszel, lesz, leszünk, lesztek, lesznek.";
 
 const MODELS: [string, string][] = [
@@ -41,7 +42,7 @@ function verb(hu: string, ua = ""): Item {
 }
 
 function Paradigm({ item, note }: { item: Item; note?: string }) {
-  const cols: [Tense, boolean, string][] = [["pres", false, "теперішній"], ["pres", true, "теп. означена"], ["past", false, "минулий"], ["past", true, "мин. означена"], ["fut", false, "майбутній"]];
+  const cols: [Tense, boolean, string][] = [["pres", false, "теперішній"], ["pres", true, "теп. означена"], ["past", false, "минулий"], ["past", true, "мин. означена"], ["fut", false, "майбутній"], ["pot", false, "може (-hat/-het)"]];
   const has = cols.filter(([t, d]) => conjugate(item, { tense: t, def: d, person: "1sg" }));
   return (
     <div className="guide-table-wrap">
@@ -68,8 +69,8 @@ function Paradigm({ item, note }: { item: Item; note?: string }) {
 /** Plain text of everything the tables show — for the guide's search box. */
 export function conjGuideText(): string {
   const items = [...MODELS.map(([hu]) => verb(hu)), ...IRREGULAR_HU.map(([hu, ua]) => verb(hu, ua))];
-  const forms = items.flatMap((it) => ["pres", "past", "fut"].flatMap((t) => [false, true].flatMap((d) => PERSONS.map((p) => conjugate(it, { tense: t as Tense, def: d, person: p })))));
-  return [...ENDINGS.flat(), FUTURE, ...MODELS.flat(), ...IRREGULAR_HU.flat(), ...forms].join(" ");
+  const forms = items.flatMap((it) => ["pres", "past", "fut", "pot"].flatMap((t) => [false, true].flatMap((d) => PERSONS.map((p) => conjugate(it, { tense: t as Tense, def: d, person: p })))));
+  return [...ENDINGS.flat(), FUTURE, POTENTIAL, ...MODELS.flat(), ...IRREGULAR_HU.flat(), ...forms].join(" ");
 }
 
 export function ConjTables() {
@@ -89,6 +90,7 @@ export function ConjTables() {
         </table>
       </div>
       <p style={{ fontSize: 15 }}>{FUTURE}</p>
+      <p style={{ fontSize: 15 }}>{POTENTIAL}</p>
       <h3 className="guide-h3">Зразки за типом основи</h3>
       {MODELS.map(([hu, note]) => <Paradigm key={hu} item={verb(hu)} note={note} />)}
       <h3 className="guide-h3">Неправильні дієслова</h3>

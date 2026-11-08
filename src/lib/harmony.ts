@@ -69,7 +69,7 @@ export const infinitiveStem = (inf: string) => inf.replace(/ni$/, "").replace(/[
  */
 export function applyParts(stem: string, p: Pattern, h: Harmony, forms?: ItemForms): { base: string; suffix: string; result: string } {
   if (p.fromInfinitive) {
-    const base = forms?.stem ?? infinitiveStem(stem);
+    const base = (p.fromInfinitive === "plain" ? undefined : forms?.stem) ?? infinitiveStem(stem);
     return { base, suffix: p.forms[h], result: base + p.forms[h] };
   }
   if (p.inflect) return inflect(stem, h, forms, p.inflect);
