@@ -99,7 +99,7 @@
     { "id": "a2-03-berelni", "type": "word", "hu": "bérelni", "ua": "орендувати", "pos": "verb", "example": { "hu": "Lakást bérelek.", "ua": "Я орендую квартиру." } },
     { "id": "a2-03-kiadni", "type": "word", "hu": "kiadni", "ua": "здавати в оренду", "pos": "verb" },
     { "id": "a2-03-koltozni", "type": "word", "hu": "költözni", "ua": "переїжджати", "pos": "verb", "example": { "hu": "Jövő héten költözünk.", "ua": "Наступного тижня ми переїжджаємо." } },
-    { "id": "a2-03-mosni", "type": "word", "hu": "mosni", "ua": "прати; мити", "pos": "verb" },
+    { "id": "a2-03-mosni", "type": "word", "hu": "mosni", "ua": "прати; мити", "pos": "verb", "harmony": "back", "tags": ["nominal"] },
     { "id": "a2-03-mosogatni", "type": "word", "hu": "mosogatni", "ua": "мити посуд", "pos": "verb", "example": { "hu": "Én mosogatok.", "ua": "Посуд мию я." } },
     { "id": "a2-03-porszivozni", "type": "word", "hu": "porszívózni", "ua": "пилососити", "pos": "verb" },
     { "id": "a2-03-vasalni", "type": "word", "hu": "vasalni", "ua": "прасувати", "pos": "verb" },
@@ -119,7 +119,7 @@
       "meaning": "прикметник «що має, з …»: kertes ház — будинок із садом, kétszobás lakás — двокімнатна, cukros — з цукром, zajos — шумний; сполучна голосна як у множини (házas, könyves, cukros)",
       "forms": { "back": "os", "front": "es", "front_rounded": "ös" },
       "inflect": "s",
-      "roles": ["place", "thing", "food"],
+      "roles": ["place", "thing", "food", "group"],
       "examples": [
         { "stem": "kert", "result": "kertes", "ua": "із садом" },
         { "stem": "szoba", "result": "szobás", "ua": "-кімнатний (kétszobás)" },

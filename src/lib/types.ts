@@ -18,10 +18,12 @@ export type PartOfSpeech =
 
 /**
  * Semantic role of a noun, derived from its tags (see roleOf in content.ts):
- * person ("person" tag), place ("place"), time (day/month/season/daytime/time),
- * food ("food"/"drink"), else thing. Decides which suffixes make sense in the Harmony game.
+ * group ("group": család, csapat — a set of people), person ("person" tag),
+ * place ("place"), time (day/month/season/daytime/time), food ("food"/"drink"),
+ * abstract ("abstract": betegség, veszély — no "on" or "onto" it), else thing.
+ * Decides which suffixes make sense in the Harmony game.
  */
-export type Role = "person" | "place" | "thing" | "time" | "food";
+export type Role = "person" | "place" | "thing" | "time" | "food" | "group" | "abstract";
 
 /**
  * Stem behaviour before the accusative, plural and possessive suffixes
@@ -85,6 +87,13 @@ export interface Pattern {
   assimilates?: boolean;
   /** Final a/e do NOT lengthen before this suffix (óra+kor → órakor). */
   noLengthen?: boolean;
+  /**
+   * The suffix goes on a verb stem, which the content stores as the
+   * infinitive: -ás/-és strips -ni / -ani / -eni (parkolni → parkol+ás,
+   * takarítani → takarít+ás); `forms.stem` overrides irregular stems
+   * (vásárolni → vásárl+ás). Pair with attachesTo: ["verb"].
+   */
+  fromInfinitive?: boolean;
   /**
    * Accusative / plural / possessive: the ending depends on the stem's
    * linking vowel and stem changes (inflect.ts); `forms` then only lists

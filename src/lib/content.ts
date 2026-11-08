@@ -11,12 +11,13 @@ import a2_03 from "@content/a2-03.json";
 import a2_04 from "@content/a2-04.json";
 import a2_05 from "@content/a2-05.json";
 import a2_06 from "@content/a2-06.json";
+import a2_07 from "@content/a2-07.json";
 
 /**
  * Content registry. Add a pack: drop the JSON in /content and import it here.
  * Packs are bundled into the app, so they work offline with no fetch.
  */
-export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack, a1_04 as ContentPack, a1_05 as ContentPack, a2_01 as ContentPack, a2_02 as ContentPack, a2_03 as ContentPack, a2_04 as ContentPack, a2_05 as ContentPack, a2_06 as ContentPack];
+export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack, a1_04 as ContentPack, a1_05 as ContentPack, a2_01 as ContentPack, a2_02 as ContentPack, a2_03 as ContentPack, a2_04 as ContentPack, a2_05 as ContentPack, a2_06 as ContentPack, a2_07 as ContentPack];
 
 export const allItems: Item[] = packs.flatMap((p) => p.items);
 export const allPatterns: Pattern[] = packs.flatMap((p) => p.patterns);
@@ -53,6 +54,8 @@ const TIME_TAGS = ["time", "day", "month", "season", "daytime"];
 /** Semantic role of a noun, from its tags. */
 export function roleOf(item: Item): Role {
   const tags = item.tags ?? [];
+  if (tags.includes("group")) return "group";
+  if (tags.includes("abstract")) return "abstract";
   if (tags.includes("person")) return "person";
   if (tags.includes("place")) return "place";
   if (tags.some((t) => TIME_TAGS.includes(t))) return "time";
@@ -76,11 +79,11 @@ export const attaches = (p: Pattern, item: Item) =>
 export const harmonyPatternsFor = (item: Item) =>
   allPatterns.filter((p) => attaches(p, item) && variantsOf(p).length > 1);
 
-/** Nouns/adjectives with a known harmony class — the stems for the Harmony game. */
+/** Nouns/adjectives (and verbs that take -ás/-és) with a known harmony class — the stems for the Harmony game. */
 export const harmonyStems = allItems.filter(
   (i) =>
     i.type === "word" &&
     i.harmony &&
-    (i.pos === "noun" || i.pos === "adj") &&
+    (i.pos === "noun" || i.pos === "adj" || i.pos === "verb") &&
     harmonyPatternsFor(i).length > 0
 );
