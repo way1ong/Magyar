@@ -51,10 +51,10 @@
     { "id": "a1-02-ebed", "type": "word", "hu": "ebéd", "ua": "обід", "pos": "noun", "harmony": "front", "example": { "hu": "Mi van ebédre?", "ua": "Що на обід?" }, "tags": ["meal"] },
     { "id": "a1-02-vacsora", "type": "word", "hu": "vacsora", "ua": "вечеря", "pos": "noun", "harmony": "back", "example": { "hu": "Vacsorára halat eszünk.", "ua": "На вечерю ми їмо рибу." }, "tags": ["meal"] },
 
-    { "id": "a1-02-piac", "type": "word", "hu": "piac", "ua": "ринок, базар", "pos": "noun", "harmony": "back", "example": { "hu": "Szombaton a piacon vásárolok.", "ua": "У суботу я купую на ринку." }, "tags": ["shop"] },
-    { "id": "a1-02-pekseg", "type": "word", "hu": "pékség", "ua": "пекарня", "pos": "noun", "harmony": "front", "example": { "hu": "A pékségben friss a kenyér.", "ua": "У пекарні свіжий хліб." }, "tags": ["shop"] },
+    { "id": "a1-02-piac", "type": "word", "hu": "piac", "ua": "ринок, базар", "pos": "noun", "harmony": "back", "example": { "hu": "Szombaton a piacon vásárolok.", "ua": "У суботу я купую на ринку." }, "tags": ["place", "shop"] },
+    { "id": "a1-02-pekseg", "type": "word", "hu": "pékség", "ua": "пекарня", "pos": "noun", "harmony": "front", "example": { "hu": "A pékségben friss a kenyér.", "ua": "У пекарні свіжий хліб." }, "tags": ["place", "shop"] },
     { "id": "a1-02-zacsko", "type": "word", "hu": "zacskó", "ua": "пакет, кульок", "pos": "noun", "harmony": "back", "tags": ["shop"] },
-    { "id": "a1-02-penztar", "type": "word", "hu": "pénztár", "ua": "каса", "pos": "noun", "harmony": "back", "example": { "hu": "A pénztárnál fizetek.", "ua": "Я плачу на касі." }, "tags": ["shop", "last-syllable-rule"] },
+    { "id": "a1-02-penztar", "type": "word", "hu": "pénztár", "ua": "каса", "pos": "noun", "harmony": "back", "example": { "hu": "A pénztárnál fizetek.", "ua": "Я плачу на касі." }, "tags": ["place", "shop", "last-syllable-rule"] },
     { "id": "a1-02-ar", "type": "word", "hu": "ár", "ua": "ціна", "pos": "noun", "harmony": "back", "example": { "hu": "Mennyi az ára?", "ua": "Яка в нього ціна?" }, "tags": ["shop"] },
     { "id": "a1-02-forint", "type": "word", "hu": "forint", "ua": "форинт", "pos": "noun", "harmony": "back", "example": { "hu": "Ez ötszáz forint.", "ua": "Це пʼятсот форинтів." }, "tags": ["shop", "mixed-vowel"] },
     { "id": "a1-02-kartya", "type": "word", "hu": "kártya", "ua": "картка (банківська)", "pos": "noun", "harmony": "back", "tags": ["shop"] },
@@ -68,7 +68,7 @@
     { "id": "a1-02-kanal", "type": "word", "hu": "kanál", "ua": "ложка", "pos": "noun", "harmony": "back", "tags": ["table"] },
     { "id": "a1-02-villa", "type": "word", "hu": "villa", "ua": "виделка", "pos": "noun", "harmony": "back", "tags": ["table", "mixed-vowel"] },
     { "id": "a1-02-kes", "type": "word", "hu": "kés", "ua": "ніж", "pos": "noun", "harmony": "front", "tags": ["table"] },
-    { "id": "a1-02-etterem", "type": "word", "hu": "étterem", "ua": "ресторан", "pos": "noun", "harmony": "front", "example": { "hu": "Ma étteremben ebédelünk.", "ua": "Сьогодні ми обідаємо в ресторані." }, "tags": ["restaurant"] },
+    { "id": "a1-02-etterem", "type": "word", "hu": "étterem", "ua": "ресторан", "pos": "noun", "harmony": "front", "example": { "hu": "Ma étteremben ebédelünk.", "ua": "Сьогодні ми обідаємо в ресторані." }, "tags": ["place", "restaurant"] },
 
     { "id": "a1-02-friss", "type": "word", "hu": "friss", "ua": "свіжий", "pos": "adj", "harmony": "front", "example": { "hu": "Friss a kenyér?", "ua": "Хліб свіжий?" } },
     { "id": "a1-02-finom", "type": "word", "hu": "finom", "ua": "смачний", "pos": "adj", "harmony": "back", "example": { "hu": "A leves finom.", "ua": "Суп смачний." }, "tags": ["mixed-vowel"] },
@@ -130,6 +130,7 @@
     },
     {
       "id": "suf-causal",
+      "roles": ["thing", "person"],
       "name": "-ért",
       "meaning": "за чимось (мета: піти за хлібом), за щось (ціна, причина) — kenyérért, almáért; форма одна для всіх слів",
       "forms": { "back": "ért", "front": "ért", "front_rounded": "ért" },
@@ -145,6 +146,7 @@
     },
     {
       "id": "suf-terminative",
+      "roles": ["place", "time"],
       "name": "-ig",
       "meaning": "аж до (межа в просторі, часі, рахунку) — boltig, tízig; форма одна для всіх слів",
       "forms": { "back": "ig", "front": "ig", "front_rounded": "ig" },

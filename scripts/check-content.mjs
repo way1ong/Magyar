@@ -6,6 +6,7 @@ import { join } from "node:path";
 const dir = new URL("../content/", import.meta.url);
 const HARMONY = ["back", "front", "front_rounded"];
 const POS = ["noun", "verb", "adj", "adv", "pron", "num", "phrase", "other"];
+const ROLES = ["person", "place", "thing", "time"];
 // Tags that explain why the explicit harmony differs from guessHarmony().
 const EXCEPTION_TAGS = ["mixed-vowel", "compound", "exception"];
 
@@ -68,6 +69,7 @@ for (const { f, pack } of packs) {
       err(`${p.id}: bad attachesTo ${JSON.stringify(p.attachesTo)}`);
     }
     if (p.attachesTag !== undefined && typeof p.attachesTag !== "string") err(`${p.id}: attachesTag must be a string`);
+    if (p.roles && (!Array.isArray(p.roles) || p.roles.some((r) => !ROLES.includes(r)))) err(`${p.id}: bad roles ${JSON.stringify(p.roles)}`);
   }
 }
 

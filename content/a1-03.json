@@ -62,10 +62,10 @@
     { "id": "a1-03-ev", "type": "word", "hu": "év", "ua": "рік", "pos": "noun", "harmony": "front", "tags": ["calendar"] },
     { "id": "a1-03-evszak", "type": "word", "hu": "évszak", "ua": "пора року", "pos": "noun", "harmony": "back", "tags": ["calendar", "compound"] },
     { "id": "a1-03-naptar", "type": "word", "hu": "naptár", "ua": "календар", "pos": "noun", "harmony": "back", "tags": ["calendar"] },
-    { "id": "a1-03-hetvege", "type": "word", "hu": "hétvége", "ua": "вихідні", "pos": "noun", "harmony": "front", "example": { "hu": "Hétvégén pihenek.", "ua": "На вихідних я відпочиваю." }, "tags": ["calendar", "compound"] },
+    { "id": "a1-03-hetvege", "type": "word", "hu": "hétvége", "ua": "вихідні", "pos": "noun", "harmony": "front", "example": { "hu": "Hétvégén pihenek.", "ua": "На вихідних я відпочиваю." }, "tags": ["time", "calendar", "compound"] },
     { "id": "a1-03-szuletesnap", "type": "word", "hu": "születésnap", "ua": "день народження", "pos": "noun", "harmony": "back", "tags": ["calendar", "compound"] },
-    { "id": "a1-03-szabadsag", "type": "word", "hu": "szabadság", "ua": "відпустка; свобода", "pos": "noun", "harmony": "back", "example": { "hu": "Augusztusban szabadságon vagyok.", "ua": "У серпні я у відпустці." }, "tags": ["calendar"] },
-    { "id": "a1-03-unnep", "type": "word", "hu": "ünnep", "ua": "свято", "pos": "noun", "harmony": "front", "tags": ["calendar", "last-syllable-rule"] },
+    { "id": "a1-03-szabadsag", "type": "word", "hu": "szabadság", "ua": "відпустка; свобода", "pos": "noun", "harmony": "back", "example": { "hu": "Augusztusban szabadságon vagyok.", "ua": "У серпні я у відпустці." }, "tags": ["time", "calendar"] },
+    { "id": "a1-03-unnep", "type": "word", "hu": "ünnep", "ua": "свято", "pos": "noun", "harmony": "front", "tags": ["time", "calendar", "last-syllable-rule"] },
     { "id": "a1-03-datum", "type": "word", "hu": "dátum", "ua": "дата", "pos": "noun", "harmony": "back", "tags": ["calendar"] },
 
     { "id": "a1-03-gyors", "type": "word", "hu": "gyors", "ua": "швидкий", "pos": "adj", "harmony": "back" },
@@ -105,6 +105,7 @@
   "patterns": [
     {
       "id": "suf-temporal",
+      "roles": ["time"],
       "name": "-kor",
       "meaning": "о котрій? коли? (момент часу) — ötkor, éjfélkor; форма одна, кінцеве a/e не подовжує: órakor",
       "noLengthen": true,

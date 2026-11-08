@@ -1,4 +1,4 @@
-import type { ContentPack, Item, PartOfSpeech, Pattern } from "./types";
+import type { ContentPack, Item, PartOfSpeech, Pattern, Role } from "./types";
 import { variantsOf } from "./harmony";
 import a1_01 from "@content/a1-01.json";
 import a1_02 from "@content/a1-02.json";
@@ -36,12 +36,27 @@ for (const i of allItems) {
 }
 export const stemByHu = (hu: string) => stemIndex.get(hu);
 
-const DEFAULT_ATTACH: PartOfSpeech[] = ["noun", "adj"];
+/** Adjectives take no case suffixes by default (-ul/-ül opts in via attachesTo). */
+const DEFAULT_ATTACH: PartOfSpeech[] = ["noun"];
+const TIME_TAGS = ["time", "day", "month", "season", "daytime"];
 
-/** Does this suffix go on this word (part of speech, and tag if the pattern requires one)? */
+/** Semantic role of a noun, from its tags. */
+export function roleOf(item: Item): Role {
+  const tags = item.tags ?? [];
+  if (tags.includes("person")) return "person";
+  if (tags.includes("place")) return "place";
+  if (tags.some((t) => TIME_TAGS.includes(t))) return "time";
+  return "thing";
+}
+
+/**
+ * Does this suffix go on this word? Part of speech, the tag a pattern may
+ * require, and for nouns the semantic role (no "apában", no "asztalnak").
+ */
 export const attaches = (p: Pattern, item: Item) =>
   (p.attachesTo ?? DEFAULT_ATTACH).includes(item.pos) &&
-  (!p.attachesTag || (item.tags ?? []).includes(p.attachesTag));
+  (!p.attachesTag || (item.tags ?? []).includes(p.attachesTag)) &&
+  (!p.roles || item.pos !== "noun" || p.roles.includes(roleOf(item)));
 
 /**
  * Patterns usable in the Harmony game for a stem: they attach to its part of

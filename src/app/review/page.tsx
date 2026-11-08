@@ -6,6 +6,7 @@ import { answer, dueCards, previewIntervals, Rating, type Grade } from "@/lib/sc
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
+import { VoiceHint } from "@/components/VoiceHint";
 
 /** One session: due "recognize" (HU→UA) and "recall" (UA→HU) cards, shuffled together. */
 export default function ReviewPage() {
@@ -99,6 +100,7 @@ export default function ReviewPage() {
           🔊 Вимова
         </button>
       </div>
+      <VoiceHint />
 
       {flipped ? (
         <div className="grade">

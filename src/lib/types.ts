@@ -16,6 +16,13 @@ export type PartOfSpeech =
   | "phrase"
   | "other";
 
+/**
+ * Semantic role of a noun, derived from its tags (see roleOf in content.ts):
+ * person ("person" tag), place ("place"), time (day/month/season/daytime/time),
+ * else thing. Decides which suffixes make sense in the Harmony game.
+ */
+export type Role = "person" | "place" | "thing" | "time";
+
 export interface Item {
   /** Stable id, e.g. "a1-01-haz". Never reuse an id for another word. */
   id: string;
@@ -54,6 +61,12 @@ export interface Pattern {
   attachesTo?: PartOfSpeech[];
   /** Only stems carrying this tag take the suffix (-ul/-ül → "language" adjectives). */
   attachesTag?: string;
+  /**
+   * Noun roles this suffix makes sense with (default: all). -ban on a person
+   * ("apában") or -nak on a table are grammatical but nonsense — the Harmony
+   * game only draws suffixes whose roles include the stem's role.
+   */
+  roles?: Role[];
   /**
    * Worked examples. Each one whose `stem` is an item with a known harmony
    * class also becomes a Builder task (card `builder:<itemId>+<patternId>`),

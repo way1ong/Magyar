@@ -40,10 +40,10 @@
     { "id": "a1-04-vagany", "type": "word", "hu": "vágány", "ua": "колія, платформа", "pos": "noun", "harmony": "back", "tags": ["transport"] },
     { "id": "a1-04-menetrend", "type": "word", "hu": "menetrend", "ua": "розклад (транспорту)", "pos": "noun", "harmony": "front", "tags": ["transport", "compound"] },
     { "id": "a1-04-keses", "type": "word", "hu": "késés", "ua": "запізнення, затримка", "pos": "noun", "harmony": "front", "example": { "hu": "A vonat késéssel érkezik.", "ua": "Потяг прибуває із запізненням." }, "tags": ["transport"] },
-    { "id": "a1-04-utas", "type": "word", "hu": "utas", "ua": "пасажир", "pos": "noun", "harmony": "back", "tags": ["transport"] },
-    { "id": "a1-04-sofor", "type": "word", "hu": "sofőr", "ua": "водій", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "A sofőr kedves.", "ua": "Водій привітний." }, "tags": ["transport"] },
-    { "id": "a1-04-ellenor", "type": "word", "hu": "ellenőr", "ua": "контролер", "pos": "noun", "harmony": "front_rounded", "tags": ["transport"] },
-    { "id": "a1-04-gyalogos", "type": "word", "hu": "gyalogos", "ua": "пішохід", "pos": "noun", "harmony": "back", "tags": ["transport"] },
+    { "id": "a1-04-utas", "type": "word", "hu": "utas", "ua": "пасажир", "pos": "noun", "harmony": "back", "tags": ["person", "transport"] },
+    { "id": "a1-04-sofor", "type": "word", "hu": "sofőr", "ua": "водій", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "A sofőr kedves.", "ua": "Водій привітний." }, "tags": ["person", "transport"] },
+    { "id": "a1-04-ellenor", "type": "word", "hu": "ellenőr", "ua": "контролер", "pos": "noun", "harmony": "front_rounded", "tags": ["person", "transport"] },
+    { "id": "a1-04-gyalogos", "type": "word", "hu": "gyalogos", "ua": "пішохід", "pos": "noun", "harmony": "back", "tags": ["person", "transport"] },
     { "id": "a1-04-ut", "type": "word", "hu": "út", "ua": "дорога, шлях; подорож", "pos": "noun", "harmony": "back", "example": { "hu": "Úton vagyok.", "ua": "Я в дорозі." }, "tags": ["place"] },
     { "id": "a1-04-ter", "type": "word", "hu": "tér", "ua": "площа", "pos": "noun", "harmony": "front", "example": { "hu": "A téren van a piac.", "ua": "Ринок на площі." }, "tags": ["place"] },
     { "id": "a1-04-hid", "type": "word", "hu": "híd", "ua": "міст", "pos": "noun", "harmony": "back", "example": { "hu": "A hídon állunk.", "ua": "Ми стоїмо на мосту." }, "tags": ["place", "exception"] },
@@ -112,6 +112,7 @@
   "patterns": [
     {
       "id": "suf-instrumental",
+      "roles": ["person", "place", "thing"],
       "name": "-val / -vel",
       "meaning": "чим? з ким? (орудний) — metróval, busszal, vonattal; після приголосної v подвоює приголосний: busz+val = busszal",
       "forms": { "back": "val", "front": "vel", "front_rounded": "vel" },

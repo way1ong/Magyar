@@ -8,6 +8,7 @@ import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
+import { VoiceHint } from "@/components/VoiceHint";
 
 /** An exact answer faster than this counts as Easy (listen + type). */
 const FAST_MS = 8000;
@@ -32,7 +33,6 @@ export default function DictationPage() {
   const [typed, setTyped] = useState("");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   const [score, setScore] = useState({ right: 0, total: 0 });
-  const [tts, setTts] = useState<"unknown" | "ok" | "no-voice" | "none">("unknown");
   const shownAt = useRef(Date.now());
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -47,22 +47,6 @@ export default function DictationPage() {
   useEffect(() => {
     load();
   }, [load]);
-
-  // Is there a Hungarian voice? Voices load asynchronously on some platforms.
-  useEffect(() => {
-    if (!("speechSynthesis" in window)) {
-      setTts("none");
-      return;
-    }
-    const check = () => {
-      const voices = window.speechSynthesis.getVoices();
-      if (voices.length === 0) return; // not loaded yet
-      setTts(voices.some((v) => v.lang.toLowerCase().startsWith("hu")) ? "ok" : "no-voice");
-    };
-    check();
-    window.speechSynthesis.addEventListener("voiceschanged", check);
-    return () => window.speechSynthesis.removeEventListener("voiceschanged", check);
-  }, []);
 
   const row = queue?.[i];
   const item = row ? itemById(row.itemId) : undefined;
@@ -154,16 +138,7 @@ export default function DictationPage() {
         <button className="btn" onClick={() => speak(item.hu)} style={{ fontSize: 22, minHeight: 72 }}>
           🔊 Послухати ще раз
         </button>
-        {tts === "none" && (
-          <p className="muted" style={{ fontSize: 14, marginBottom: 0 }}>
-            У цьому браузері нема озвучки — натисни «Показати», щоб побачити слово.
-          </p>
-        )}
-        {tts === "no-voice" && (
-          <p className="muted" style={{ fontSize: 14, marginBottom: 0 }}>
-            Угорського голосу не знайдено. На Android: Налаштування → Мова → Синтез мовлення → додати угорську.
-          </p>
-        )}
+        <VoiceHint />
         {done && (
           <div style={{ marginTop: 14 }}>
             <p className="muted" style={{ margin: 0, color }}>{VERDICT_TEXT[outcome]}</p>
