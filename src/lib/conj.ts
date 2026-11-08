@@ -44,6 +44,7 @@ type PastGroup = NonNullable<VerbConj["past"]>;
 /** Verbal prefixes, longest first — stripped to find the base verb. */
 const PREFIXES = [
   "keresztül", "vissza", "össze", "előre", "hátra", "végig", "körül", "tovább", "hozzá", "ellen", "félre", "haza", "neki", "bele", "után",
+  "tönkre", "létre", "helyre", "közbe", "újra", "abba",
   "meg", "el", "ki", "be", "fel", "föl", "le", "át", "oda", "ide", "szét", "rá", "alá", "elő", "túl", "fenn", "benn", "lenn", "kinn",
 ].sort((a, b) => b.length - a.length);
 
