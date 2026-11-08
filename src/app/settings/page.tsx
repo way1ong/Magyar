@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, exportProgress, importProgress } from "@/lib/db";
@@ -20,6 +20,23 @@ export default function SettingsPage() {
   }));
   const typing = useLiveQuery(getTypingMode);
   const [busy, setBusy] = useState(false);
+  // The last crash caught by app/error.tsx, so it can be reported after the fact.
+  const [lastError, setLastError] = useState("");
+  useEffect(() => {
+    try {
+      setLastError(localStorage.getItem("magyar:lastError") ?? "");
+    } catch {
+      // Storage unavailable — nothing to show.
+    }
+  }, []);
+  const clearError = () => {
+    try {
+      localStorage.removeItem("magyar:lastError");
+    } catch {
+      // ignore
+    }
+    setLastError("");
+  };
 
   const doLaptop = async () => {
     setBusy(true);
@@ -137,6 +154,14 @@ export default function SettingsPage() {
       {msg && <p>{msg}</p>}
 
       <h2 style={{ fontSize: 18, marginTop: 32 }}>Небезпечна зона</h2>
+      {lastError && (
+        <div className="card" style={{ marginTop: 16 }}>
+          <p style={{ marginTop: 0 }}><b>Остання помилка</b> (зроби скриншот і надішли розробнику):</p>
+          <pre className="muted" style={{ whiteSpace: "pre-wrap", fontSize: 13, margin: "0 0 10px" }}>{lastError}</pre>
+          <button className="btn ghost" onClick={clearError}>Приховати</button>
+        </div>
+      )}
+
       {confirming ? (
         <div className="card">
           <p style={{ marginTop: 0 }}>Стерти всі картки й журнал повторень на цьому пристрої? Це не можна скасувати.</p>
