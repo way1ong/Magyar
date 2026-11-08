@@ -57,10 +57,21 @@ export function finalConsonant(stem: string): string | null {
 }
 
 /**
+ * Verb stem from the dictionary infinitive: parkolni → parkol, takarítani →
+ * takarít, érteni → ért (the -a-/-e- before -ni is a linking vowel; no
+ * Hungarian verb stem ends in a short a/e).
+ */
+export const infinitiveStem = (inf: string) => inf.replace(/ni$/, "").replace(/[ae]$/, "");
+
+/**
  * Stem + suffix + whole word for a pattern on a stem. `forms` carries the
  * noun's stem behaviour for inflecting patterns (kéz → kez+et).
  */
 export function applyParts(stem: string, p: Pattern, h: Harmony, forms?: ItemForms): { base: string; suffix: string; result: string } {
+  if (p.fromInfinitive) {
+    const base = forms?.stem ?? infinitiveStem(stem);
+    return { base, suffix: p.forms[h], result: base + p.forms[h] };
+  }
   if (p.inflect) return inflect(stem, h, forms, p.inflect);
   const base = p.noLengthen ? stem : lengthenFinal(stem);
   const form = p.forms[h];
