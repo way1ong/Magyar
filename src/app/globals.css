@@ -112,6 +112,18 @@ nav.tabs span { display: block; font-size: 20px; }
   nav.tabs span { font-size: 18px; }
 }
 
+/* Guide: collapsible reference entries. */
+.guide-h2 { font-size: 18px; margin: 0 0 8px; }
+.guide-item { border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 0 16px; margin-bottom: 8px; }
+.guide-item summary { cursor: pointer; padding: 12px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.guide-item summary::-webkit-details-marker { display: none; }
+.guide-item summary::after { content: "+"; color: var(--muted); font-weight: 400; font-size: 20px; }
+.guide-item[open] summary::after { content: "–"; }
+.guide-item p { margin: 0 0 10px; font-size: 16px; line-height: 1.5; }
+.guide-ex { margin: 0 0 12px; padding-left: 18px; font-size: 15px; }
+.guide-ex li { margin-bottom: 4px; }
+.guide-diff { border-left: 3px solid var(--accent); padding-left: 10px; font-size: 15px; }
+
 /* Dictation: type what you hear. */
 .dictation-input {
   width: 100%; font: inherit; font-size: 24px; padding: 12px 14px; margin-top: 4px;

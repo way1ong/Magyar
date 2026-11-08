@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, exportProgress, importProgress } from "@/lib/db";
 import { backupToLaptop, IS_PREVIEW, lastBackup, shareProgress } from "@/lib/backup";
@@ -66,6 +67,10 @@ export default function SettingsPage() {
   return (
     <>
       <h1 className="title">Ще</h1>
+
+      <Link href="/guide" className="btn" style={{ marginBottom: 14 }}>
+        📖 Довідка: терміни й особливості угорської
+      </Link>
 
       <div className="card">
         <div className="stat"><span>Слів і фраз у контенті</span><b>{allItems.length}</b></div>

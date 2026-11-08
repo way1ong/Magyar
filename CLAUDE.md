@@ -11,7 +11,7 @@
 - Вимова: записи Piper у `public/audio/<itemId>.mp3` (маніфест `content/audio.json`, генерація `scripts/gen-audio.sh`), системний TTS — лише запасний. Нові слова → прогнати `scripts/gen-audio.sh`; у тестову збірку аудіо публікується як `files` поруч зі сторінкою.
 
 ## Дві бази — не плутати
-- **Контент** (`content/*.json`) — слова, фрази, суфіксальні патерни. Read-only на телефоні, редагується в репо, бандлиться в застосунок (`src/lib/content.ts`). Перевірка: `npm run content:check`.
+- **Контент** (`content/*.json`) — слова, фрази, суфіксальні патерни; `content/guide.json` — довідка (особливості мови, терміни), `content/audio.json` — маніфест аудіо. Read-only на телефоні, редагується в репо, бандлиться в застосунок (`src/lib/content.ts`). Перевірка: `npm run content:check`.
 - **Прогрес** (IndexedDB `magyar`, `src/lib/db.ts`) — таблиці `cards` (стан FSRS), `reviews` (повний журнал — ніколи не видаляти, по ньому перенавчаються параметри FSRS), `meta`.
 
 ## Ключові правила
