@@ -1,11 +1,12 @@
-import { allPatterns, attaches, stemByHu } from "./content";
+import { allPatterns, attaches, packs, patternById, stemByHu } from "./content";
 import { apply, lengthenFinal, variantsOf } from "./harmony";
 import type { Item, Pattern } from "./types";
 
 /**
  * Builder exercise: show a Ukrainian gloss ("у будинку"), assemble the
  * Hungarian word from blocks (stem + suffix). Tasks come from pattern
- * examples whose stem is a known word with a harmony class.
+ * examples and packs' extra `examples` whose stem is a known word with a
+ * harmony class.
  * Card key: `builder:<stemItemId>+<patternId>`.
  */
 export interface BuilderTask {
@@ -24,24 +25,33 @@ export function suffixFor(stem: string, p: Pattern, h: NonNullable<Item["harmony
   return apply(stem, p, h).slice(lengthenFinal(stem).length);
 }
 
+/** Pattern examples plus packs' extra examples for patterns defined anywhere. */
+const examples = [
+  ...allPatterns.flatMap((pattern) => pattern.examples.map((ex) => ({ pattern, ex }))),
+  ...packs.flatMap((pack) =>
+    (pack.examples ?? []).flatMap((ex) => {
+      const pattern = patternById(ex.pattern);
+      return pattern ? [{ pattern, ex }] : [];
+    })
+  ),
+];
+
 const tasks = new Map<string, BuilderTask>();
-for (const pattern of allPatterns) {
-  for (const ex of pattern.examples) {
-    const stem = stemByHu(ex.stem);
-    if (!stem?.harmony) continue;
-    const id = `${stem.id}+${pattern.id}`;
-    const result = apply(stem.hu, pattern, stem.harmony);
-    // content:check guarantees these agree; never teach a form we can't model.
-    if (tasks.has(id) || result !== ex.result) continue;
-    tasks.set(id, {
-      id,
-      stem: stem as BuilderTask["stem"],
-      pattern,
-      ua: ex.ua,
-      result,
-      suffix: suffixFor(stem.hu, pattern, stem.harmony),
-    });
-  }
+for (const { pattern, ex } of examples) {
+  const stem = stemByHu(ex.stem);
+  if (!stem?.harmony) continue;
+  const id = `${stem.id}+${pattern.id}`;
+  const result = apply(stem.hu, pattern, stem.harmony);
+  // content:check guarantees these agree; never teach a form we can't model.
+  if (tasks.has(id) || result !== ex.result) continue;
+  tasks.set(id, {
+    id,
+    stem: stem as BuilderTask["stem"],
+    pattern,
+    ua: ex.ua,
+    result,
+    suffix: suffixFor(stem.hu, pattern, stem.harmony),
+  });
 }
 
 export const builderTasks: BuilderTask[] = [...tasks.values()];

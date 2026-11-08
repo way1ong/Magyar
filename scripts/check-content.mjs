@@ -56,29 +56,46 @@ for (const { f, pack } of packs) {
   }
 }
 
-// Pass 2: patterns and their examples.
+// Pass 2: patterns (all packs), so pack-level examples can use any of them.
+const patterns = new Map();
 for (const { f, pack } of packs) {
-  let tasks = 0;
   for (const p of pack.patterns ?? []) {
     if (!p.id || !p.forms?.back || !p.forms?.front || !p.forms?.front_rounded) err(`${f}: pattern ${p.id} missing forms`);
     if (ids.has(p.id)) err(`${f}: duplicate id ${p.id}`);
     ids.add(p.id);
+    patterns.set(p.id, p);
     if (p.attachesTo && (!Array.isArray(p.attachesTo) || p.attachesTo.some((x) => !POS.includes(x)))) {
       err(`${p.id}: bad attachesTo ${JSON.stringify(p.attachesTo)}`);
     }
-    for (const ex of p.examples ?? []) {
-      if (!ex.stem || !ex.result || !ex.ua) { err(`${p.id}: example missing fields: ${JSON.stringify(ex)}`); continue; }
-      const stem = stems.get(ex.stem);
-      if (!stem) {
-        warn(`${p.id}: example stem "${ex.stem}" is not a word with harmony — not used by the Builder`);
-        continue;
-      }
-      tasks++;
-      if (harmony) {
-        const got = harmony.apply(stem.hu, p, stem.harmony);
-        if (got !== ex.result) err(`${p.id}: ${ex.stem} → apply() gives "${got}", example says "${ex.result}"`);
-      }
-    }
+  }
+}
+
+// Pass 3: examples. Each one whose stem is a known word becomes a Builder task,
+// so its result must be exactly what apply() produces.
+const taskIds = new Set();
+const checkExample = (where, p, ex) => {
+  if (!ex.stem || !ex.result || !ex.ua) { err(`${where}: example missing fields: ${JSON.stringify(ex)}`); return 0; }
+  const stem = stems.get(ex.stem);
+  if (!stem) {
+    warn(`${where}: example stem "${ex.stem}" is not a word with harmony — not used by the Builder`);
+    return 0;
+  }
+  const id = `${stem.id}+${p.id}`;
+  if (taskIds.has(id)) { warn(`${where}: duplicate builder task ${id} — only the first is used`); return 0; }
+  taskIds.add(id);
+  if (harmony) {
+    const got = harmony.apply(stem.hu, p, stem.harmony);
+    if (got !== ex.result) err(`${where}: ${ex.stem} → apply() gives "${got}", example says "${ex.result}"`);
+  }
+  return 1;
+};
+for (const { f, pack } of packs) {
+  let tasks = 0;
+  for (const p of pack.patterns ?? []) for (const ex of p.examples ?? []) tasks += checkExample(p.id, p, ex);
+  for (const ex of pack.examples ?? []) {
+    const p = patterns.get(ex.pattern);
+    if (!p) { err(`${f}: example for unknown pattern "${ex.pattern}"`); continue; }
+    tasks += checkExample(`${f} examples/${p.id}`, p, ex);
   }
   console.log(`✓ ${f}: ${pack.items.length} items, ${(pack.patterns ?? []).length} patterns, ${tasks} builder tasks`);
 }

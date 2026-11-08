@@ -54,10 +54,23 @@ export interface Pattern {
   examples: { stem: string; result: string; ua: string }[];
 }
 
+/** An extra worked example for a pattern defined in any pack (e.g. a1-01's -on/-en/-ön). */
+export interface PackExample {
+  pattern: string; // pattern id
+  stem: string;
+  result: string;
+  ua: string;
+}
+
 export interface ContentPack {
   id: string; // "a1-01"
   level: "A0" | "A1" | "A2" | "B1";
   title: string;
   items: Item[];
   patterns: Pattern[];
+  /**
+   * Builder tasks for this pack's words with suffixes from any pack
+   * ("hétfőn" — у понеділок). Same rules as Pattern.examples.
+   */
+  examples?: PackExample[];
 }

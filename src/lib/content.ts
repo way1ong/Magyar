@@ -2,12 +2,13 @@ import type { ContentPack, Item, PartOfSpeech, Pattern } from "./types";
 import { variantsOf } from "./harmony";
 import a1_01 from "@content/a1-01.json";
 import a1_02 from "@content/a1-02.json";
+import a1_03 from "@content/a1-03.json";
 
 /**
  * Content registry. Add a pack: drop the JSON in /content and import it here.
  * Packs are bundled into the app, so they work offline with no fetch.
  */
-export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack];
+export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack];
 
 export const allItems: Item[] = packs.flatMap((p) => p.items);
 export const allPatterns: Pattern[] = packs.flatMap((p) => p.patterns);
