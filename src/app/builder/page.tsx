@@ -1,11 +1,12 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { SessionDone } from "@/components/SessionDone";
 import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
 import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
 import { endsWithVowel, finalConsonant, lengthenFinal } from "@/lib/harmony";
-import { answer, dueCards, Rating } from "@/lib/scheduler";
+import { aheadCards, answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
@@ -67,9 +68,9 @@ export default function BuilderPage() {
   const [score, setScore] = useState({ right: 0, total: 0 });
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (ahead = false) => {
     await seedCards();
-    const q = (await dueCards("builder", 20, 8)).filter((r) => builderTaskById(r.itemId));
+    const q = (await (ahead ? aheadCards("builder", 8) : dueCards("builder", 20, 8))).filter((r) => builderTaskById(r.itemId));
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -97,21 +98,7 @@ export default function BuilderPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task) {
-    return (
-      <>
-        <h1 className="title">Конструктор</h1>
-        <div className="card big">
-          <p className="hu">{score.total ? `${score.right} / ${score.total}` : "✓"}</p>
-          <p className="muted">
-            {score.total ? "Сесію завершено." : "Нічого не назбиралось — зайди пізніше."}
-          </p>
-        </div>
-        <Link href="/" className="btn">На головну</Link>
-        <button className="btn ghost" onClick={load} style={{ marginTop: 8 }}>
-          Ще раз
-        </button>
-      </>
-    );
+    return <SessionDone title="Конструктор" score={score} exercises={["builder"]} onAgain={() => load()} onAhead={() => load(true)} />;
   }
 
   const blocks = deal?.key === dealKey ? deal.blocks : [];

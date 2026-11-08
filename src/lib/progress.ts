@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { packs } from "./content";
+import { packIndexOf, packs } from "./content";
 
 /**
  * Pack gating. Pack 1 is always open; pack N+1 opens when the Boss of pack
@@ -45,4 +45,32 @@ export async function recordBoss(packId: string, score: number): Promise<BossRes
   };
   await db.meta.put({ k: key, v: next });
   return next;
+}
+
+/** Per-pack card counts, to show how far a pack is from its Boss. */
+export interface PackProgress {
+  /** Cards seeded for this pack across all exercises. */
+  total: number;
+  /** Cards that were answered at least once (FSRS state ≠ New). */
+  started: number;
+  /** Cards in the Review state — the ones that stuck. */
+  known: number;
+}
+
+/**
+ * Pack a card belongs to: the later pack of its parts. Composite ids are
+ * `<stem>+<pattern>` (harmony/builder) or `<verb>+<tense>.<def>` (conj);
+ * a part that is not a content id maps to pack 0 and never wins.
+ */
+export const cardPackIndex = (itemId: string) => Math.max(...itemId.split("+").map(packIndexOf));
+
+export async function packProgress(): Promise<PackProgress[]> {
+  const out: PackProgress[] = packs.map(() => ({ total: 0, started: 0, known: 0 }));
+  await db.cards.each((c) => {
+    const p = out[cardPackIndex(c.itemId)];
+    p.total++;
+    if (c.state !== 0) p.started++;
+    if (c.state === 2) p.known++;
+  });
+  return out;
 }
