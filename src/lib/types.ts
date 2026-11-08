@@ -40,6 +40,17 @@ export interface Pattern {
   forms: Record<Harmony, string>;
   /** Linking vowel rule for stems ending in a consonant (e.g. -on/-en/-ön). */
   linking?: boolean;
+  /**
+   * Parts of speech this suffix attaches to. Default: ["noun", "adj"].
+   * E.g. -szor/-szer/-ször (times) only goes on numerals.
+   */
+  attachesTo?: PartOfSpeech[];
+  /**
+   * Worked examples. Each one whose `stem` is an item with a known harmony
+   * class also becomes a Builder task (card `builder:<itemId>+<patternId>`),
+   * so `ua` must be a natural Ukrainian gloss of `result`, and `result`
+   * must equal apply(stem) — `npm run content:check` verifies that.
+   */
   examples: { stem: string; result: string; ua: string }[];
 }
 

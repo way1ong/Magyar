@@ -87,7 +87,7 @@
     { "id": "a1-01-tuz", "type": "word", "hu": "tűz", "ua": "вогонь", "pos": "noun", "harmony": "front_rounded" },
 
     { "id": "a1-01-nagy", "type": "word", "hu": "nagy", "ua": "великий", "pos": "adj", "harmony": "back" },
-    { "id": "a1-01-kicsi", "type": "word", "hu": "kicsi", "ua": "малий", "pos": "adj" },
+    { "id": "a1-01-kicsi", "type": "word", "hu": "kicsi", "ua": "малий", "pos": "adj", "harmony": "front" },
     { "id": "a1-01-jo", "type": "word", "hu": "jó", "ua": "добрий, хороший", "pos": "adj", "harmony": "back" },
     { "id": "a1-01-rossz", "type": "word", "hu": "rossz", "ua": "поганий", "pos": "adj", "harmony": "back" },
     { "id": "a1-01-szep", "type": "word", "hu": "szép", "ua": "гарний", "pos": "adj", "harmony": "front" },

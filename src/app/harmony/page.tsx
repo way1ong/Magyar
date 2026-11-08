@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { allPatterns, itemById } from "@/lib/content";
+import { harmonyPatternsFor, itemById } from "@/lib/content";
 import { apply, endsWithVowel, variantsOf } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
@@ -40,7 +40,7 @@ export default function HarmonyPage() {
   // vowel-final stems (there the answer is just "-n", not a harmony choice).
   useEffect(() => {
     if (!item) return;
-    const pool = allPatterns.filter((p) => !(p.linking && endsWithVowel(item.hu)));
+    const pool = harmonyPatternsFor(item).filter((p) => !(p.linking && endsWithVowel(item.hu)));
     setPattern(pool[Math.floor(Math.random() * pool.length)]);
     setPicked(null);
     shownAt.current = Date.now();

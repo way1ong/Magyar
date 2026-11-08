@@ -20,7 +20,7 @@
 | `tags` | вільні теги |
 
 ### Pattern
-`id`, `name` ("-ban / -ben"), `meaning`, `forms: { back, front, front_rounded }`, `linking?` (суфікс зі сполучною голосною: після голосної лише `-n`), `examples[]`.
+`id`, `name` ("-ban / -ben"), `meaning`, `forms: { back, front, front_rounded }`, `linking?` (суфікс зі сполучною голосною: після голосної лише `-n`), `attachesTo?` (частини мови, до яких чіпляється суфікс; за замовчуванням `noun`, `adj` — напр. `-szor` лише до `num`), `examples[]` (`{ stem, result, ua }`; `result` має дорівнювати `apply()` — це перевіряє `content:check`).
 
 ## Вправи (v0.1)
 | вправа | ключ картки | механіка | оцінка |

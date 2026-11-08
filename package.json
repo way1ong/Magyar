@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "content:check": "node scripts/check-content.mjs"
+    "content:check": "node --no-warnings scripts/check-content.mjs"
   },
   "dependencies": {
     "dexie": "^4.0.10",
