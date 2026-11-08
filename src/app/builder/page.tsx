@@ -6,7 +6,7 @@ import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib
 import { patternShort } from "@/lib/content";
 import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
 import { endsWithVowel, finalConsonant, lengthenFinal } from "@/lib/harmony";
-import { aheadCards, answer, dueCards, Rating } from "@/lib/scheduler";
+import { answer, Rating, sessionCards } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
@@ -68,9 +68,9 @@ export default function BuilderPage() {
   const [score, setScore] = useState({ right: 0, total: 0 });
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async (ahead = false) => {
+  const load = useCallback(async () => {
     await seedCards();
-    const q = (await (ahead ? aheadCards("builder", 8) : dueCards("builder", 20, 8))).filter((r) => builderTaskById(r.itemId));
+    const q = (await sessionCards("builder", 20, 8)).filter((r) => builderTaskById(r.itemId));
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -98,7 +98,7 @@ export default function BuilderPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task) {
-    return <SessionDone title="Конструктор" score={score} exercises={["builder"]} onAgain={() => load()} onAhead={() => load(true)} />;
+    return <SessionDone title="Конструктор" score={score} onAgain={load} />;
   }
 
   const blocks = deal?.key === dealKey ? deal.blocks : [];

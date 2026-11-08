@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { itemById } from "@/lib/content";
-import { aheadCards, answer, dueCards, previewIntervals, Rating, type Grade } from "@/lib/scheduler";
+import { answer, previewIntervals, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { SessionDone } from "@/components/SessionDone";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -19,11 +19,9 @@ export default function ReviewPage() {
   const [done, setDone] = useState(0);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async (ahead = false) => {
+  const load = useCallback(async () => {
     await seedCards();
-    const [a, b] = await Promise.all(
-      ahead ? [aheadCards("recognize", 5), aheadCards("recall", 5)] : [dueCards("recognize", 15, 6), dueCards("recall", 15, 6)],
-    );
+    const [a, b] = await Promise.all([sessionCards("recognize", 15, 6, 5), sessionCards("recall", 15, 6, 5)]);
     const all = [...a, ...b].sort(() => Math.random() - 0.5);
     setQueue(all);
     setI(0);
@@ -55,9 +53,7 @@ export default function ReviewPage() {
       <SessionDone
         title="Картки"
         score={done}
-        exercises={["recognize", "recall"]}
-        onAgain={() => load()}
-        onAhead={() => load(true)}
+        onAgain={load}
       />
     );
   }

@@ -5,7 +5,7 @@ import { SessionDone } from "@/components/SessionDone";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
 import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, TENSE_UA } from "@/lib/conj";
 import { compare, type Verdict } from "@/lib/dictation";
-import { aheadCards, answer, dueCards, Rating, type Grade } from "@/lib/scheduler";
+import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -48,10 +48,10 @@ export default function ConjPage() {
   const [score, setScore] = useState({ right: 0, total: 0 });
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async (ahead = false) => {
+  const load = useCallback(async () => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await (ahead ? aheadCards("conj", 8) : dueCards("conj", 20, 8))).filter((c) => conjTaskById(c.itemId));
+    const q = (await sessionCards("conj", 20, 8)).filter((c) => conjTaskById(c.itemId));
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -92,7 +92,7 @@ export default function ConjPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !deal) {
-    return <SessionDone title="Дієвідміна" score={score} exercises={["conj"]} onAgain={() => load()} onAhead={() => load(true)} />;
+    return <SessionDone title="Дієвідміна" score={score} onAgain={load} />;
   }
 
   const { item, tense, def } = task;
