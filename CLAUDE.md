@@ -8,7 +8,7 @@
 - Dexie (IndexedDB) — прогрес. `ts-fsrs` — розклад повторень. Web Speech API — вимова.
 - PWA: `public/manifest.json` + ручний `public/sw.js` (реєструється лише в production).
 - Бекап: `src/app/api/backup/route.ts` (Next API, пише `backups/` на ноутбуці, без автентифікації — лише домашня мережа) + `src/lib/backup.ts` (автобекап з головної, Web Share). У превʼю-збірці серверного шляху нема (`IS_PREVIEW`).
-- Вимова: записи Piper у `public/audio/<itemId>.mp3` (маніфест `content/audio.json`, генерація `scripts/gen-audio.sh`), системний TTS — лише запасний. Нові слова → прогнати `scripts/gen-audio.sh`; у тестову збірку аудіо публікується як `files` поруч зі сторінкою.
+- Вимова: записи Piper у `public/audio/<itemId>.mp3` (маніфест `content/audio.json`, генерація `scripts/gen-audio.sh`), системний TTS — лише запасний. Нові слова → прогнати `scripts/gen-audio.sh`; у тестову збірку аудіо публікується як `files` поруч зі сторінкою — по одному JSON на пакет (`preview/dist/audio/<pack>.json`, {id: base64}; артефакт тримає ≤ 511 файлів, тому не по mp3 на слово).
 
 ## Дві бази — не плутати
 - **Контент** (`content/*.json`) — слова, фрази, суфіксальні патерни; `content/guide.json` — довідка (особливості мови, терміни), `content/audio.json` — маніфест аудіо. Read-only на телефоні, редагується в репо, бандлиться в застосунок (`src/lib/content.ts`). Перевірка: `npm run content:check`.
