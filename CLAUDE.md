@@ -25,6 +25,16 @@
 - `npm run build && npm start` — продакшн-збірка; SW працює лише тут.
 - `npm run content:check` — валідація контент-пакетів.
 
+## Журнал розробки (артефакт)
+Сторінка для користувача: https://claude.ai/artifact/BHeAHiBojGbpSEZm8jwgHR — дорожня карта, зміни, контент-пакети.
+Дані живуть у базі артефакту (інструмент `ArtifactData`, той самий `url`), не в HTML — сторінку не перепубліковувати заради даних.
+Наприкінці кожної сесії, де щось закомічено, оновити журнал одним `batch`:
+- `changes/<cNN-slug>` — новий запис: `order` (наступне число), `date` (YYYY-MM-DD), `title`, `status` (`branch` | `main`), `points[]` (українською, що змінилось для користувача), `commits[]` (`{ sha, msg }`). Коли гілку злито в `main` — оновити `status` у відповідних записах.
+- `roadmap/<rNN-slug>` — `order`, `version`, `title`, `detail`, `status` (`done` | `next` | `todo`); тримати в синхроні з розділом «Що далі» нижче.
+- `packs/<packId>` — `order`, `id`, `title`, `items`, `byKind` (за `pos`; фрази як `phrase`), `harmony` (`back`/`front`/`front_rounded`), `patterns[]`, `builderTasks` (числа — з `npm run content:check`).
+- `meta/summary` — `updated`, `branch`, `inMain`, `packs`, `items`, `cards` (сума по вправах), `exercises[]` (`{ key, name, cards }`).
+Перед записом у наявний документ прочитати його й передати `if_version`.
+
 ## Що далі (пріоритет)
 1. Пакети `a1-03…` (час, дорога/транспорт, робота). Джерело — частотний список Wiktionary 10k. (`a1-02` — їжа/магазин/числа — готовий.)
 2. Диктант: TTS → ввід тексту. Потім Piper-аудіо замість системного TTS.
