@@ -2,22 +2,21 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { allItems, harmonyStems, packs } from "@/lib/content";
-import { builderTasks } from "@/lib/builder";
-import { dictationItems } from "@/lib/dictation";
+import { packs } from "@/lib/content";
 import { dueCount } from "@/lib/scheduler";
 import { seedCards } from "@/lib/seed";
 import { streak, todayCount } from "@/lib/stats";
+import { bossResults, unlockedCount } from "@/lib/progress";
 import { db } from "@/lib/db";
 
 export default function Home() {
-  // Seed cards for every item on first launch (idempotent).
+  // Seed cards for every item of every open pack on first launch (idempotent).
   useEffect(() => {
     seedCards();
   }, []);
 
   const stats = useLiveQuery(async () => {
-    const [rec, rcl, har, bld, dic, s, t, total] = await Promise.all([
+    const [rec, rcl, har, bld, dic, s, t, learned, total, boss] = await Promise.all([
       dueCount("recognize"),
       dueCount("recall"),
       dueCount("harmony"),
@@ -26,9 +25,15 @@ export default function Home() {
       streak(),
       todayCount(),
       db.cards.where("state").notEqual(0).count(),
+      db.cards.count(),
+      bossResults(),
     ]);
-    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, streak: s, today: t, learned: total };
+    const open = await unlockedCount(boss);
+    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, streak: s, today: t, learned, total, boss, open };
   });
+
+  const gate = stats ? packs[stats.open - 1] : undefined;
+  const gatePassed = gate ? stats?.boss.get(gate.id)?.passed : false;
 
   return (
     <>
@@ -46,7 +51,7 @@ export default function Home() {
         <div className="stat">
           <span>Карток у роботі</span>
           <b>
-            {stats?.learned ?? "…"} / {allItems.length * 2 + harmonyStems.length + builderTasks.length + dictationItems.length}
+            {stats?.learned ?? "…"} / {stats?.total ?? "…"}
           </b>
         </div>
       </div>
@@ -64,8 +69,31 @@ export default function Home() {
         ✍️ Диктант <span className="badge">{stats?.dictation ?? "…"}</span>
       </Link>
 
-      <p className="muted" style={{ marginTop: 24 }}>
-        Пакети: {packs.map((p) => `${p.id} — ${p.title}`).join("; ")}
+      <h2 style={{ fontSize: 18, marginTop: 24 }}>Пакети</h2>
+      <div className="card" style={{ padding: "4px 18px" }}>
+        {packs.map((p, n) => {
+          const res = stats?.boss.get(p.id);
+          const open = stats ? n < stats.open : n === 0;
+          const icon = res?.passed ? "🏆" : open ? "📖" : "🔒";
+          return (
+            <div className="stat" key={p.id} style={{ opacity: open ? 1 : 0.55 }}>
+              <span>
+                {icon} <b>{p.id}</b> — {p.title}
+              </span>
+              <span className="muted" style={{ whiteSpace: "nowrap", marginLeft: 8 }}>
+                {res?.passed ? `${Math.round(res.best * 100)}%` : open ? "" : "закрито"}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      {gate && (
+        <Link href="/boss" className="btn" style={{ marginTop: 10 }}>
+          👑 {gatePassed ? `Бос ${gate.id} — пройдено, повторити` : `Бос пакета ${gate.id}`}
+        </Link>
+      )}
+      <p className="muted" style={{ fontSize: 14, marginTop: 10 }}>
+        Пройди боса (≥ 80% без підказок), щоб відкрити наступний пакет.
       </p>
     </>
   );

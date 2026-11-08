@@ -22,7 +22,8 @@ src/lib/scheduler.ts FSRS: черга, відповідь, превʼю інте
 src/lib/harmony.ts  правила гармонії голосних і застосування суфіксів
 src/lib/builder.ts  завдання й блоки для «Конструктора»
 src/lib/dictation.ts порівняння відповідей для «Диктанту»
-src/app/            екрани: / (сьогодні), /review, /harmony, /builder, /dictation, /settings
+src/lib/boss.ts     питання «Боса»; src/lib/progress.ts — відкриття пакетів
+src/app/            екрани: / (сьогодні), /review, /harmony, /builder, /dictation, /boss, /settings
 public/sw.js        офлайн-кеш
 scripts/check-content.mjs  валідація контенту
 preview/            тестова збірка одним HTML-файлом (`npm run preview:build`)

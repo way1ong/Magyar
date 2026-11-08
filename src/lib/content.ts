@@ -21,6 +21,14 @@ const patternIndex = new Map(allPatterns.map((p) => [p.id, p]));
 export const itemById = (id: string) => itemIndex.get(id);
 export const patternById = (id: string) => patternIndex.get(id);
 
+/** Which pack (0-based position in `packs`) an item or pattern id belongs to. */
+const packIndexById = new Map<string, number>();
+packs.forEach((p, n) => {
+  for (const i of p.items) packIndexById.set(i.id, n);
+  for (const pt of p.patterns) packIndexById.set(pt.id, n);
+});
+export const packIndexOf = (id: string) => packIndexById.get(id) ?? 0;
+
 /** Words with a known harmony class, by Hungarian form — resolves pattern example stems. */
 const stemIndex = new Map<string, Item>();
 for (const i of allItems) {

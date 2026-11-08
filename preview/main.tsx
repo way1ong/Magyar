@@ -8,6 +8,7 @@ import ReviewPage from "@/app/review/page";
 import HarmonyPage from "@/app/harmony/page";
 import BuilderPage from "@/app/builder/page";
 import DictationPage from "@/app/dictation/page";
+import BossPage from "@/app/boss/page";
 import SettingsPage from "@/app/settings/page";
 import { usePath } from "./router";
 
@@ -22,6 +23,7 @@ const PAGES: Record<string, ComponentType> = {
   "/harmony": HarmonyPage,
   "/builder": BuilderPage,
   "/dictation": DictationPage,
+  "/boss": BossPage,
   "/settings": SettingsPage,
 };
 

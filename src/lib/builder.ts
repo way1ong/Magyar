@@ -1,4 +1,4 @@
-import { allPatterns, attaches, packs, patternById, stemByHu } from "./content";
+import { allPatterns, attaches, packIndexOf, packs, patternById, stemByHu } from "./content";
 import { apply, suffixFor, variantsOf } from "./harmony";
 import type { Item, Pattern } from "./types";
 
@@ -50,6 +50,9 @@ for (const { pattern, ex } of examples) {
 }
 
 export const builderTasks: BuilderTask[] = [...tasks.values()];
+
+/** A task belongs to the later of its stem's and its suffix's pack. */
+export const taskPackIndex = (t: BuilderTask) => Math.max(packIndexOf(t.stem.id), packIndexOf(t.pattern.id));
 export const builderTaskById = (id: string) => tasks.get(id);
 
 export function shuffle<T>(xs: T[]): T[] {
