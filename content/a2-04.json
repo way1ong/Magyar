@@ -79,8 +79,8 @@
 
     { "id": "a2-04-egeszseges", "type": "word", "hu": "egészséges", "ua": "здоровий", "pos": "adj", "harmony": "front", "example": { "hu": "Egészséges vagyok.", "ua": "Я здоровий / здорова." }, "tags": ["grad"] },
     { "id": "a2-04-lazas", "type": "word", "hu": "lázas", "ua": "з температурою, гарячковий", "pos": "adj", "harmony": "back" },
-    { "id": "a2-04-gyenge", "type": "word", "hu": "gyenge", "ua": "слабкий", "pos": "adj", "harmony": "front", "tags": ["grad"] },
-    { "id": "a2-04-eros", "type": "word", "hu": "erős", "ua": "сильний; міцний", "pos": "adj", "harmony": "front_rounded", "tags": ["grad"] },
+    { "id": "a2-04-gyenge", "type": "word", "hu": "gyenge", "ua": "слабкий", "pos": "adj", "harmony": "front", "tags": ["quality", "grad"] },
+    { "id": "a2-04-eros", "type": "word", "hu": "erős", "ua": "сильний; міцний", "pos": "adj", "harmony": "front_rounded", "tags": ["quality", "grad"] },
     { "id": "a2-04-kover", "type": "word", "hu": "kövér", "ua": "товстий", "pos": "adj", "harmony": "front", "tags": ["grad"] },
     { "id": "a2-04-sovany", "type": "word", "hu": "sovány", "ua": "худий", "pos": "adj", "harmony": "back", "tags": ["grad"] },
     { "id": "a2-04-allergias", "type": "word", "hu": "allergiás", "ua": "алергічний, з алергією", "pos": "adj", "harmony": "back", "tags": ["mixed-vowel"] },
