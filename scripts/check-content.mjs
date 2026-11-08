@@ -21,7 +21,7 @@ import { loadLib } from "./load-lib.mjs";
 const harmony = await loadLib("src/lib/harmony.ts");
 
 const packs = readdirSync(dir)
-  .filter((f) => /^a\d-\d\d\.json$/.test(f))
+  .filter((f) => /^[ab]\d-\d\d\.json$/.test(f))
   .sort()
   .map((f) => ({ f, pack: JSON.parse(readFileSync(join(dir.pathname, f), "utf8")) }));
 
@@ -87,7 +87,7 @@ for (const { f, pack } of packs) {
     if (p.roles && (!Array.isArray(p.roles) || p.roles.some((r) => !ROLES.includes(r)))) err(`${p.id}: bad roles ${JSON.stringify(p.roles)}`);
     if (p.inflect && !["acc", "pl", "p1", "p2", "p3", "s", "comp", "ord"].includes(p.inflect)) err(`${p.id}: bad inflect "${p.inflect}"`);
     if (!p.short) warn(`${p.id}: no "short" gloss — exercises fall back to the meaning`);
-    if (p.afterVowel !== undefined && typeof p.afterVowel !== "string") err(`${p.id}: afterVowel must be a string`);
+    if (p.afterVowel !== undefined && typeof p.afterVowel !== "string" && !(p.afterVowel?.back && p.afterVowel?.front && p.afterVowel?.front_rounded)) err(`${p.id}: afterVowel must be a string or {back, front, front_rounded}`);
     if (p.fromInfinitive !== undefined && typeof p.fromInfinitive !== "boolean") err(`${p.id}: fromInfinitive must be a boolean`);
     const FRAME_KEYS = [...ROLES, "adj", "verb", "num", "*"];
     for (const [k, fr] of Object.entries(p.frames ?? {})) {
