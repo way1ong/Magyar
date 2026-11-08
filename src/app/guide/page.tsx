@@ -23,7 +23,9 @@ function Examples({ items }: { items: Example[] }) {
 
 /**
  * Reference: how Hungarian differs from Ukrainian, and the grammar terms the
- * exercises use. Content lives in content/guide.json.
+ * exercises use. Content lives in content/guide.json. The three sections are
+ * collapsible (closed by default, forced open while searching); the browser
+ * keeps a <details> toggle, so nothing is stored.
  */
 export default function GuidePage() {
   const [q, setQ] = useState("");
@@ -54,7 +56,8 @@ export default function GuidePage() {
         aria-label="Пошук у довідці"
       />
 
-      <h2 className="guide-h2">Чим угорська не схожа на українську</h2>
+      <details className="guide-section" open={!!needle || undefined}>
+      <summary><h2 className="guide-h2">Чим угорська не схожа на українську <span className="muted">({specifics.length})</span></h2></summary>
       {specifics.length === 0 && <p className="muted">Нічого не знайдено.</p>}
       {specifics.map((s) => (
         <details key={s.id} className="guide-item" open={!!needle}>
@@ -64,7 +67,10 @@ export default function GuidePage() {
         </details>
       ))}
 
-      <h2 className="guide-h2" style={{ marginTop: 28 }}>Словник термінів</h2>
+      </details>
+
+      <details className="guide-section" open={!!needle || undefined}>
+      <summary><h2 className="guide-h2">Словник термінів <span className="muted">({terms.length})</span></h2></summary>
       {terms.length === 0 && <p className="muted">Нічого не знайдено.</p>}
       {terms.map((t) => (
         <details key={t.term} className="guide-item" open={!!needle}>
@@ -80,7 +86,10 @@ export default function GuidePage() {
         </details>
       ))}
 
-      <h2 className="guide-h2" style={{ marginTop: 28 }}>Суфікси в застосунку</h2>
+      </details>
+
+      <details className="guide-section" open={!!needle || undefined}>
+      <summary><h2 className="guide-h2">Суфікси в застосунку <span className="muted">({suffixes.length})</span></h2></summary>
       {suffixes.length === 0 && <p className="muted">Нічого не знайдено.</p>}
       {suffixes.map((p) => (
         <details key={p.id} className="guide-item" open={!!needle}>
@@ -93,6 +102,7 @@ export default function GuidePage() {
           <Examples items={p.examples.slice(0, 5).map((e) => ({ hu: e.result, ua: e.ua }))} />
         </details>
       ))}
+      </details>
 
       <Link href="/settings" className="btn ghost" style={{ marginTop: 20 }}>← Назад до «Ще»</Link>
     </>

@@ -36,9 +36,9 @@
     { "id": "a1-01-holnap", "type": "word", "hu": "holnap", "ua": "завтра", "pos": "adv" },
     { "id": "a1-01-most", "type": "word", "hu": "most", "ua": "зараз", "pos": "adv" },
     { "id": "a1-01-nagyon", "type": "word", "hu": "nagyon", "ua": "дуже", "pos": "adv", "example": { "hu": "Nagyon jó!", "ua": "Дуже добре!" } },
-    { "id": "a1-01-egy", "type": "word", "hu": "egy", "ua": "один; неозначений артикль", "pos": "num" },
+    { "id": "a1-01-egy", "type": "word", "hu": "egy", "ua": "один; неозначений артикль", "pos": "num", "harmony": "front", "forms": {"ord": "első"} },
     { "id": "a1-01-ketto", "type": "word", "hu": "kettő / két", "ua": "два (két — перед іменником)", "pos": "num" },
-    { "id": "a1-01-harom", "type": "word", "hu": "három", "ua": "три", "pos": "num" },
+    { "id": "a1-01-harom", "type": "word", "hu": "három", "ua": "три", "pos": "num", "harmony": "back", "forms": {"stem": "harm", "low": true} },
 
     { "id": "a1-01-haz", "type": "word", "hu": "ház", "ua": "дім, будинок", "pos": "noun", "harmony": "back", "forms": {"low": true}, "example": { "hu": "A házban vagyok.", "ua": "Я в будинку." }, "tags": ["place"] },
     { "id": "a1-01-asztal", "type": "word", "hu": "asztal", "ua": "стіл", "pos": "noun", "harmony": "back", "example": { "hu": "Az asztalon van a könyv.", "ua": "Книжка на столі." } },

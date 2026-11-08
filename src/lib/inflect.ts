@@ -4,7 +4,7 @@ import type { Harmony, ItemForms } from "./types";
 /**
  * Noun inflection that changes more than the suffix: accusative, plural,
  * the singular possessives, the "-s" adjective (kertes, cukros) and the
- * comparative of adjectives (olcsóbb, nagyobb). The suffix itself is regular; what varies is
+ * comparative of adjectives (olcsóbb, nagyobb) and ordinal numerals (ötödik). The suffix itself is regular; what varies is
  *  - the linking vowel: o/e/ö by harmony, or a/e for "lowering" stems
  *    (ház → házat, könyv → könyvet) — `forms.low`;
  *  - the stem: shortening (kéz → kezet), fleeting vowel (tükör → tükröt),
@@ -15,7 +15,7 @@ import type { Harmony, ItemForms } from "./types";
  * Nouns without `forms` follow the default rules. content:forms prints
  * every derived form for review.
  */
-export type InflectKind = "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp";
+export type InflectKind = "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp" | "ord";
 
 /** Accusative after these consonants takes no linking vowel (asztalt, embert, buszt). */
 const NO_LINK = new Set(["l", "r", "n", "ny", "s", "sz", "z", "zs", "j", "ly"]);
@@ -29,6 +29,7 @@ export const INFLECT_VARIANTS: Record<InflectKind, string[]> = {
   p3: ["a", "e", "ja", "je"],
   s: ["s", "os", "es", "ös", "as"],
   comp: ["bb", "abb", "ebb", "obb"],
+  ord: ["odik", "edik", "ödik", "adik"],
 };
 
 function commonPrefix(a: string, b: string): string {
@@ -93,6 +94,11 @@ export function inflect(hu: string, h: Harmony, forms: ItemForms | undefined, ki
       // Comparative of adjectives: olcsóbb, drágább; after a consonant -abb/-ebb
       // (nagyobb, szebb, jobb, kisebb, több are overrides in `forms.comp`).
       suffix = vowelFinal ? "bb" : (h === "back" ? "a" : "e") + "bb";
+      break;
+    case "ord":
+      // Ordinal numerals: hat → hatodik, öt → ötödik, nyolc → nyolcadik (low),
+      // három → harmadik / tíz → tizedik via forms.stem; első, második are overrides.
+      suffix = (vowelFinal ? "" : lv) + "dik";
       break;
   }
   return { base, suffix, result: base + suffix };

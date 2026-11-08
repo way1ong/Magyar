@@ -114,6 +114,12 @@ nav.tabs span { display: block; font-size: 20px; }
 
 /* Guide: collapsible reference entries. */
 .guide-h2 { font-size: 18px; margin: 0 0 8px; }
+.guide-section { margin-bottom: 12px; }
+.guide-section > summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+.guide-section > summary::-webkit-details-marker { display: none; }
+.guide-section > summary .guide-h2 { margin: 0; }
+.guide-section > summary::after { content: "▸"; color: var(--muted); font-size: 18px; transition: transform 0.15s; }
+.guide-section[open] > summary::after { transform: rotate(90deg); }
 .guide-item { border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 0 16px; margin-bottom: 8px; }
 .guide-item summary { cursor: pointer; padding: 12px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
 .guide-item summary::-webkit-details-marker { display: none; }

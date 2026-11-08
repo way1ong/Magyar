@@ -46,6 +46,8 @@ export interface ItemForms {
   s?: string;
   /** Comparative override for adjectives: nagy → nagyobb, jó → jobb, kicsi → kisebb. */
   comp?: string;
+  /** Ordinal of a numeral when irregular: egy → "első", kettő → "második". */
+  ord?: string;
 }
 
 export interface Item {
@@ -99,7 +101,7 @@ export interface Pattern {
    * linking vowel and stem changes (inflect.ts); `forms` then only lists
    * the default o/e/ö endings for display.
    */
-  inflect?: "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp";
+  inflect?: "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp" | "ord";
   /**
    * Parts of speech this suffix attaches to. Default: ["noun", "adj"].
    * E.g. -szor/-szer/-ször (times) only goes on numerals.
