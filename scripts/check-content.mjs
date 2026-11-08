@@ -67,6 +67,7 @@ for (const { f, pack } of packs) {
     if (p.attachesTo && (!Array.isArray(p.attachesTo) || p.attachesTo.some((x) => !POS.includes(x)))) {
       err(`${p.id}: bad attachesTo ${JSON.stringify(p.attachesTo)}`);
     }
+    if (p.attachesTag !== undefined && typeof p.attachesTag !== "string") err(`${p.id}: attachesTag must be a string`);
   }
 }
 

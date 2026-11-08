@@ -79,5 +79,7 @@ export function apply(stem: string, p: Pattern, h: Harmony): string {
   const c = p.assimilates ? finalConsonant(stem) : null;
   // Doubled digraph is spelled with its first letter doubled: hegy+gyel → heggyel.
   if (c && c.length > 1) return base.slice(0, -c.length) + c[0] + c + suffix.slice(c.length);
+  // Three identical consonants simplify to two: toll+val → tollal, jobb+val → jobbal.
+  if (c && base.endsWith(c + c)) return base + suffix.slice(1);
   return base + suffix;
 }

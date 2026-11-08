@@ -75,8 +75,8 @@ export function suffixOptions(t: BuilderTask, count = 4): string[] {
   }
   const others = allPatterns.filter((p) => p.id !== pattern.id);
   const pool = [
-    ...shuffle(others.filter((p) => attaches(p, stem.pos))),
-    ...shuffle(others.filter((p) => !attaches(p, stem.pos))),
+    ...shuffle(others.filter((p) => attaches(p, stem))),
+    ...shuffle(others.filter((p) => !attaches(p, stem))),
   ];
   for (const p of pool) {
     if (opts.size >= count) break;

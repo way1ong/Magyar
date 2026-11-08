@@ -52,6 +52,8 @@ export interface Pattern {
    * E.g. -szor/-szer/-ször (times) only goes on numerals.
    */
   attachesTo?: PartOfSpeech[];
+  /** Only stems carrying this tag take the suffix (-ul/-ül → "language" adjectives). */
+  attachesTag?: string;
   /**
    * Worked examples. Each one whose `stem` is an item with a known harmony
    * class also becomes a Builder task (card `builder:<itemId>+<patternId>`),

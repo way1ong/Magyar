@@ -4,12 +4,13 @@ import a1_01 from "@content/a1-01.json";
 import a1_02 from "@content/a1-02.json";
 import a1_03 from "@content/a1-03.json";
 import a1_04 from "@content/a1-04.json";
+import a1_05 from "@content/a1-05.json";
 
 /**
  * Content registry. Add a pack: drop the JSON in /content and import it here.
  * Packs are bundled into the app, so they work offline with no fetch.
  */
-export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack, a1_04 as ContentPack];
+export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack, a1_04 as ContentPack, a1_05 as ContentPack];
 
 export const allItems: Item[] = packs.flatMap((p) => p.items);
 export const allPatterns: Pattern[] = packs.flatMap((p) => p.patterns);
@@ -29,16 +30,17 @@ export const stemByHu = (hu: string) => stemIndex.get(hu);
 
 const DEFAULT_ATTACH: PartOfSpeech[] = ["noun", "adj"];
 
-/** Does this suffix go on this part of speech? */
-export const attaches = (p: Pattern, pos: PartOfSpeech) =>
-  (p.attachesTo ?? DEFAULT_ATTACH).includes(pos);
+/** Does this suffix go on this word (part of speech, and tag if the pattern requires one)? */
+export const attaches = (p: Pattern, item: Item) =>
+  (p.attachesTo ?? DEFAULT_ATTACH).includes(item.pos) &&
+  (!p.attachesTag || (item.tags ?? []).includes(p.attachesTag));
 
 /**
  * Patterns usable in the Harmony game for a stem: they attach to its part of
  * speech and have more than one variant (single-form -ért/-ig is no choice).
  */
 export const harmonyPatternsFor = (item: Item) =>
-  allPatterns.filter((p) => attaches(p, item.pos) && variantsOf(p).length > 1);
+  allPatterns.filter((p) => attaches(p, item) && variantsOf(p).length > 1);
 
 /** Nouns/adjectives with a known harmony class — the stems for the Harmony game. */
 export const harmonyStems = allItems.filter(
