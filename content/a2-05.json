@@ -94,7 +94,7 @@
     {"id": "a2-05-nezelodni", "type": "word", "hu": "nézelődni", "ua": "роздивлятися", "pos": "verb", "harmony": "front_rounded", "conj": {"ik": true}},
     {"id": "a2-05-kolteni", "type": "word", "hu": "költeni", "ua": "витрачати (гроші)", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Sokat költöttem.", "ua": "Я багато витратив."}, "conj": {"tr": true}},
     {"id": "a2-05-sporolni", "type": "word", "hu": "spórolni", "ua": "економити", "pos": "verb", "harmony": "back"},
-    {"id": "a2-05-illeni", "type": "word", "hu": "illeni", "ua": "пасувати (до чогось)", "pos": "verb", "harmony": "front", "example": {"hu": "Illik hozzád.", "ua": "Це тобі пасує."}, "conj": {"ik": true}}
+    {"id": "a2-05-illeni", "type": "word", "hu": "illeni", "ua": "пасувати (до чогось)", "pos": "verb", "harmony": "front", "example": {"hu": "Illik hozzád.", "ua": "Це тобі пасує."}, "conj": {"ik": true, "imp": false}}
   ],
   "patterns": [
     {

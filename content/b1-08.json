@@ -121,7 +121,7 @@
     {"id": "b1-08-izgulni", "type": "word", "hu": "izgulni", "ua": "хвилюватися", "pos": "verb", "harmony": "back", "tags": ["nominal"]},
     {"id": "b1-08-aggodni", "type": "word", "hu": "aggódni", "ua": "переживати, тривожитися", "pos": "verb", "harmony": "back", "tags": ["nominal"], "conj": {"ik": true}},
     {"id": "b1-08-csalodni", "type": "word", "hu": "csalódni", "ua": "розчаровуватися", "pos": "verb", "harmony": "back", "tags": ["nominal"], "conj": {"ik": true}},
-    {"id": "b1-08-megbocsatani", "type": "word", "hu": "megbocsátani", "ua": "пробачити", "pos": "verb", "harmony": "back", "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "b1-08-megbocsatani", "type": "word", "hu": "megbocsátani", "ua": "пробачити", "pos": "verb", "harmony": "back", "tags": ["nominal"], "conj": {"tr": true, "imp": "megbocsáss"}},
     {"id": "b1-08-megsertodni", "type": "word", "hu": "megsértődni", "ua": "образитися", "pos": "verb", "harmony": "front_rounded", "tags": ["nominal"], "conj": {"ik": true}},
     {"id": "b1-08-veszekedni", "type": "word", "hu": "veszekedni", "ua": "сваритися", "pos": "verb", "harmony": "front", "tags": ["nominal"], "conj": {"ik": true}},
     {"id": "b1-08-kibekulni", "type": "word", "hu": "kibékülni", "ua": "помиритися", "pos": "verb", "harmony": "front_rounded", "tags": ["nominal"]},

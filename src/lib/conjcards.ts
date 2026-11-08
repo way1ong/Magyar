@@ -1,9 +1,9 @@
 import { allItems, packIndexOf } from "./content";
-import { isConjugable, isTransitive, parseSlot, PERSONS, type Person, type Tense } from "./conj";
+import { hasImperative, isConjugable, isTransitive, parseSlot, PERSONS, type Person, type Tense } from "./conj";
 import type { Item } from "./types";
 
 /**
- * Conjugation exercise cards: one per verb and tense (present, past, future, potential -hat/-het) × definiteness
+ * Conjugation exercise cards: one per verb and tense (present, past, future, potential -hat/-het, imperative) × definiteness
  * (definite only for transitive verbs); the person is drawn at random each
  * time, since every verb has all six. Card key: `conj:<itemId>+<tense>.<def>`.
  */
@@ -17,7 +17,8 @@ export interface ConjTask {
 const tasks = new Map<string, ConjTask>();
 for (const item of allItems) {
   if (!isConjugable(item)) continue;
-  for (const tense of ["pres", "past", "fut", "pot"] as Tense[]) {
+  const tenses: Tense[] = hasImperative(item) ? ["pres", "past", "fut", "pot", "imp"] : ["pres", "past", "fut", "pot"];
+  for (const tense of tenses) {
     for (const def of isTransitive(item) ? [false, true] : [false]) {
       const id = `${item.id}+${tense}.${def ? "def" : "indef"}`;
       tasks.set(id, { id, item, tense, def });

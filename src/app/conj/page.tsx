@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
-import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, TENSE_UA } from "@/lib/conj";
+import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, tenseLabel } from "@/lib/conj";
 import { compare, type Verdict } from "@/lib/dictation";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
@@ -103,6 +103,8 @@ export default function ConjPage() {
   const color = !done ? undefined : ok ? "var(--ok)" : outcome === "accents" ? "var(--warn)" : "var(--bad)";
   const tr = isTransitive(item);
   const object = def ? "azt" : tr ? "valamit" : "";
+  const imp = tense === "imp";
+  const mark = imp ? "!" : ".";
   const defLabel = def
     ? "означена відміна — конкретний обʼєкт (azt, a könyvet)"
     : tr
@@ -147,7 +149,7 @@ export default function ConjPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">Дієвідміна · {tense === "pot" ? TENSE_UA[tense] : `${TENSE_UA[tense]} час`}</span>
+        <span className="muted">Дієвідміна · {tenseLabel(tense)}</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}
@@ -161,17 +163,17 @@ export default function ConjPage() {
         <p className="muted" style={{ margin: 0 }}>{defLabel}</p>
         <p className="hu" lang="hu" style={{ fontSize: 26 }}>
           ({PRONOUN[person]}) <b>___</b>
-          {object && ` ${object}`}.
+          {object && ` ${object}`}{mark}
         </p>
         <p className="ua">
-          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : `${TENSE_UA[tense]} час`}
+          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : imp ? "наказ / хай" : tenseLabel(tense)}
         </p>
         {done && (
           <>
             {typing && outcome && <p className="muted" style={{ margin: "0 0 4px", color }}>{VERDICT_TEXT[outcome]}</p>}
             <p className="example" lang="hu" style={{ color, fontSize: 24 }}>
               ({PRONOUN[person]}) {correct}
-              {object && ` ${object}`}.
+              {object && ` ${object}`}{mark}
             </p>
             {typing && outcome === "wrong" && typed.trim() && (
               <p className="muted" style={{ fontSize: 15, margin: 0 }}>

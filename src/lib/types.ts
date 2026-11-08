@@ -152,6 +152,8 @@ export interface VerbConj {
   vstem?: string;
   /** Past stem: aludni → "alud" (aludtam). */
   pastStem?: string;
+  /** Imperative j-stem when the rule guesses wrong (lát → "láss", bocsát → "bocsáss"), or false: no imperative (tetszik). */
+  imp?: string | false;
   /** Past-tense group when the rule guesses wrong: "t" (állt), "ott" (látott/láttam), "full" (hallottam), "tt" (lőtt). */
   past?: "t" | "ott" | "full" | "tt";
   /** No linking vowels despite a final consonant cluster: áll → állsz, állnak. */
