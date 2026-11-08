@@ -42,6 +42,8 @@ export interface ItemForms {
   p3?: string;
   /** -s adjective override (rare: ló → lovas is covered by `stem`). */
   s?: string;
+  /** Comparative override for adjectives: nagy → nagyobb, jó → jobb, kicsi → kisebb. */
+  comp?: string;
 }
 
 export interface Item {
@@ -53,7 +55,7 @@ export interface Item {
   pos: PartOfSpeech;
   /** Only for nouns/adjectives that take suffixes. */
   harmony?: Harmony;
-  /** Nouns: stem changes before -t, -k, -m/-d/-a (inflect.ts). */
+  /** Nouns: stem changes before -t, -k, -m/-d/-a; adjectives: comparative override (inflect.ts). */
   forms?: ItemForms;
   /** Example sentence (hu) + translation (ua). */
   example?: { hu: string; ua: string };
@@ -88,7 +90,7 @@ export interface Pattern {
    * linking vowel and stem changes (inflect.ts); `forms` then only lists
    * the default o/e/ö endings for display.
    */
-  inflect?: "acc" | "pl" | "p1" | "p2" | "p3" | "s";
+  inflect?: "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp";
   /**
    * Parts of speech this suffix attaches to. Default: ["noun", "adj"].
    * E.g. -szor/-szer/-ször (times) only goes on numerals.
