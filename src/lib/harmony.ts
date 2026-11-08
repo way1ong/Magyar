@@ -64,7 +64,8 @@ export function applyParts(stem: string, p: Pattern, h: Harmony, forms?: ItemFor
   if (p.inflect) return inflect(stem, h, forms, p.inflect);
   const base = p.noLengthen ? stem : lengthenFinal(stem);
   const form = p.forms[h];
-  if (p.linking && endsWithVowel(stem)) return { base, suffix: "n", result: base + "n" };
+  const av = p.afterVowel ?? (p.linking ? "n" : undefined);
+  if (av && endsWithVowel(stem)) return { base, suffix: av, result: base + av };
   const c = p.assimilates ? finalConsonant(stem) : null;
   if (!c) return { base, suffix: form, result: base + form };
   const suffix = c + form.slice(1);

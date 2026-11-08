@@ -36,7 +36,8 @@ function note(t: BuilderTask): string | null {
     if (t.stem.forms?.low) return "«Знижена» основа: сполучна голосна a/e, а не o/ö.";
     return null;
   }
-  if (t.pattern.linking && endsWithVowel(stem)) return "Після голосної — лише -n.";
+  const av = t.pattern.afterVowel ?? (t.pattern.linking ? "n" : undefined);
+  if (av && endsWithVowel(stem)) return `Після голосної — лише -${av}.`;
   const c = t.pattern.assimilates ? finalConsonant(stem) : null;
   if (c) {
     const form = t.pattern.forms[t.stem.harmony];
@@ -181,7 +182,7 @@ export default function BuilderPage() {
               </p>
             )}
             <p style={{ margin: "6px 0 0" }}>
-              <b lang="hu">{task.stem.hu}</b> — {task.stem.ua} · <b lang="hu">{task.pattern.name}</b> — {patternShort(task.pattern)}
+              <b lang="hu">{task.stem.hu}</b> — {task.stem.ua} · <b lang="hu">{task.pattern.name}</b> — {patternShort(task.pattern, task.stem)}
             </p>
             {why && <p style={{ margin: "6px 0 0" }}>{why}</p>}
           </div>

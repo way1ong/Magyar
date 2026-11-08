@@ -181,6 +181,7 @@
     },
     {
       "id": "suf-delative",
+      "shortByRole": { "person": "про когось (про кого?)" },
       "short": "з поверхні (звідки?); про щось",
       "roles": ["place", "thing", "person"],
       "name": "-ról / -ről",
@@ -194,6 +195,7 @@
     },
     {
       "id": "suf-allative",
+      "shortByRole": { "person": "до когось (до кого?)" },
       "short": "до когось / чогось (куди?)",
       "roles": ["person", "place", "thing", "food"],
       "name": "-hoz / -hez / -höz",
@@ -207,6 +209,7 @@
     },
     {
       "id": "suf-adessive",
+      "shortByRole": { "person": "у когось (у кого?)", "place": "біля чогось (де?)" },
       "short": "у когось, біля чогось (де?)",
       "roles": ["person", "place", "thing"],
       "name": "-nál / -nél",
@@ -220,6 +223,7 @@
     },
     {
       "id": "suf-ablative",
+      "shortByRole": { "person": "від когось (від кого?)" },
       "short": "від когось / чогось (звідки?)",
       "roles": ["person", "place", "thing", "time"],
       "name": "-tól / -től",

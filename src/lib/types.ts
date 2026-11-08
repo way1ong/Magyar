@@ -65,11 +65,15 @@ export interface Pattern {
   name: string; // "-ban / -ben"
   /** Two or three words for the exercises' result line: "у чомусь (де?)". */
   short?: string;
+  /** Role-specific gloss when the meaning differs by role: -ról on a person = "про когось". */
+  shortByRole?: Partial<Record<Role, string>>;
   meaning: string; // fuller Ukrainian explanation with examples
   /** Two-form suffixes have identical front and front_rounded. */
   forms: Record<Harmony, string>;
-  /** Linking vowel rule for stems ending in a consonant (e.g. -on/-en/-ön). */
+  /** Linking vowel rule for stems ending in a consonant (e.g. -on/-en/-ön): after a vowel just "-n". */
   linking?: boolean;
+  /** The form used after a vowel-final stem, when it differs (-nként: óra → óránként). `linking` = "n". */
+  afterVowel?: string;
   /**
    * -val/-vel: after a consonant the v assimilates to it (busz+val → busszal,
    * vonat+val → vonattal; a digraph doubles its first letter: hegy → heggyel).
