@@ -108,19 +108,19 @@
     { "id": "a1-05-talan", "type": "word", "hu": "talán", "ua": "можливо", "pos": "adv" },
     { "id": "a1-05-persze", "type": "word", "hu": "persze", "ua": "звісно", "pos": "adv" },
 
-    { "id": "a1-05-tanitani", "type": "word", "hu": "tanítani", "ua": "навчати, викладати", "pos": "verb", "harmony": "back", "example": { "hu": "Magyart tanítok.", "ua": "Я викладаю угорську." }, "tags": ["nominal"] },
-    { "id": "a1-05-irni", "type": "word", "hu": "írni", "ua": "писати", "pos": "verb", "example": { "hu": "Levelet írok.", "ua": "Я пишу листа." } },
-    { "id": "a1-05-olvasni", "type": "word", "hu": "olvasni", "ua": "читати", "pos": "verb", "harmony": "back", "example": { "hu": "Könyvet olvasok.", "ua": "Я читаю книжку." }, "tags": ["nominal"] },
-    { "id": "a1-05-valaszolni", "type": "word", "hu": "válaszolni", "ua": "відповідати", "pos": "verb" },
-    { "id": "a1-05-gyakorolni", "type": "word", "hu": "gyakorolni", "ua": "практикувати, тренувати", "pos": "verb", "example": { "hu": "Minden nap gyakorolok.", "ua": "Я тренуюся щодня." } },
-    { "id": "a1-05-ismetelni", "type": "word", "hu": "ismételni", "ua": "повторювати", "pos": "verb" },
-    { "id": "a1-05-forditani", "type": "word", "hu": "fordítani", "ua": "перекладати", "pos": "verb" },
-    { "id": "a1-05-jelenteni", "type": "word", "hu": "jelenteni", "ua": "означати; повідомляти", "pos": "verb", "harmony": "front", "tags": ["nominal"] },
-    { "id": "a1-05-segiteni", "type": "word", "hu": "segíteni", "ua": "допомагати", "pos": "verb", "example": { "hu": "Segítek neked.", "ua": "Я тобі допоможу." } },
-    { "id": "a1-05-pihenni", "type": "word", "hu": "pihenni", "ua": "відпочивати", "pos": "verb" },
-    { "id": "a1-05-telefonalni", "type": "word", "hu": "telefonálni", "ua": "телефонувати", "pos": "verb" },
-    { "id": "a1-05-talalkozni", "type": "word", "hu": "találkozni", "ua": "зустрічатися", "pos": "verb", "example": { "hu": "Holnap találkozunk.", "ua": "Зустрінемось завтра." } },
-    { "id": "a1-05-kuldeni", "type": "word", "hu": "küldeni", "ua": "надсилати", "pos": "verb", "example": { "hu": "E-mailt küldök.", "ua": "Я надсилаю імейл." } }
+    {"id": "a1-05-tanitani", "type": "word", "hu": "tanítani", "ua": "навчати, викладати", "pos": "verb", "harmony": "back", "example": {"hu": "Magyart tanítok.", "ua": "Я викладаю угорську."}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "a1-05-irni", "type": "word", "hu": "írni", "ua": "писати", "pos": "verb", "harmony": "back", "example": {"hu": "Levelet írok.", "ua": "Я пишу листа."}, "conj": {"tr": true}, "tags": ["exception"]},
+    {"id": "a1-05-olvasni", "type": "word", "hu": "olvasni", "ua": "читати", "pos": "verb", "harmony": "back", "example": {"hu": "Könyvet olvasok.", "ua": "Я читаю книжку."}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "a1-05-valaszolni", "type": "word", "hu": "válaszolni", "ua": "відповідати", "pos": "verb", "harmony": "back"},
+    {"id": "a1-05-gyakorolni", "type": "word", "hu": "gyakorolni", "ua": "практикувати, тренувати", "pos": "verb", "harmony": "back", "example": {"hu": "Minden nap gyakorolok.", "ua": "Я тренуюся щодня."}, "conj": {"vstem": "gyakorl", "tr": true}},
+    {"id": "a1-05-ismetelni", "type": "word", "hu": "ismételni", "ua": "повторювати", "pos": "verb", "harmony": "front", "conj": {"vstem": "ismétl", "tr": true}},
+    {"id": "a1-05-forditani", "type": "word", "hu": "fordítani", "ua": "перекладати", "pos": "verb", "harmony": "back", "conj": {"tr": true}},
+    {"id": "a1-05-jelenteni", "type": "word", "hu": "jelenteni", "ua": "означати; повідомляти", "pos": "verb", "harmony": "front", "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "a1-05-segiteni", "type": "word", "hu": "segíteni", "ua": "допомагати", "pos": "verb", "harmony": "front", "example": {"hu": "Segítek neked.", "ua": "Я тобі допоможу."}},
+    {"id": "a1-05-pihenni", "type": "word", "hu": "pihenni", "ua": "відпочивати", "pos": "verb", "harmony": "front"},
+    {"id": "a1-05-telefonalni", "type": "word", "hu": "telefonálni", "ua": "телефонувати", "pos": "verb", "harmony": "back"},
+    {"id": "a1-05-talalkozni", "type": "word", "hu": "találkozni", "ua": "зустрічатися", "pos": "verb", "harmony": "back", "example": {"hu": "Holnap találkozunk.", "ua": "Зустрінемось завтра."}, "conj": {"ik": true}},
+    {"id": "a1-05-kuldeni", "type": "word", "hu": "küldeni", "ua": "надсилати", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "E-mailt küldök.", "ua": "Я надсилаю імейл."}, "conj": {"tr": true}}
   ],
   "patterns": [
     {

@@ -81,9 +81,9 @@ export default function SettingsPage() {
         <div className="stat"><span>Повторень у журналі</span><b>{counts?.reviews ?? "…"}</b></div>
       </div>
 
-      <h2 style={{ fontSize: 18 }}>Гармонія: набір тексту</h2>
+      <h2 style={{ fontSize: 18 }}>Гармонія і Дієвідміна: набір тексту</h2>
       <p className="muted">
-        Замість кнопок із варіантами суфікса — набрати все слово. Довгі голосні перевіряються окремо (á/a — «майже»).
+        Замість кнопок із варіантами — набрати все слово. Довгі голосні перевіряються окремо (á/a — «майже»).
       </p>
       <div className="seg" role="radiogroup" aria-label="Коли набирати текст">
         {(["auto", "always", "never"] as TypingMode[]).map((m) => (

@@ -30,8 +30,9 @@ export interface CardRow {
  *   before v0.5 it was the stem id alone — seed.ts migrates those).
  * builder: itemId = `${stemItemId}+${patternId}` (see lib/builder.ts).
  * dictation: itemId = content item id (hear it, type it; lib/dictation.ts).
+ * conj: itemId = `${verbItemId}+${tense}.${indef|def}` (lib/conjcards.ts; a random person each time).
  */
-export type Exercise = "recognize" | "recall" | "harmony" | "builder" | "dictation";
+export type Exercise = "recognize" | "recall" | "harmony" | "builder" | "dictation" | "conj";
 
 /** Full review log — keep every event, FSRS can be re-optimised from it. */
 export interface ReviewRow {

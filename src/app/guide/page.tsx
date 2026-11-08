@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import guide from "@content/guide.json";
 import { allPatterns, patternShort } from "@/lib/content";
+import { ConjTables, conjGuideText } from "@/components/ConjGuide";
 
 interface Example {
   hu: string;
@@ -41,6 +42,8 @@ export default function GuidePage() {
   const suffixes = allPatterns.filter((p) =>
     hit(p.name, patternShort(p), p.meaning, ...p.examples.flatMap((e) => [e.result, e.ua]))
   );
+  const conjNotes = guide.conjugation.filter((c) => hit(c.title, c.text));
+  const conjTables = hit("дієвідміна дієслово відміна", conjGuideText());
 
   return (
     <>
@@ -102,6 +105,23 @@ export default function GuidePage() {
           <Examples items={p.examples.slice(0, 5).map((e) => ({ hu: e.result, ua: e.ua }))} />
         </details>
       ))}
+      </details>
+
+      <details className="guide-section" open={!!needle || undefined}>
+      <summary><h2 className="guide-h2">Дієвідміна <span className="muted">({conjNotes.length + (conjTables ? 1 : 0)})</span></h2></summary>
+      {conjNotes.length === 0 && !conjTables && <p className="muted">Нічого не знайдено.</p>}
+      {conjNotes.map((c) => (
+        <details key={c.title} className="guide-item" open={!!needle}>
+          <summary>{c.title}</summary>
+          <p>{c.text}</p>
+        </details>
+      ))}
+      {conjTables && (
+        <details className="guide-item" open={!!needle}>
+          <summary>Таблиці: закінчення, зразки, неправильні дієслова</summary>
+          <ConjTables />
+        </details>
+      )}
       </details>
 
       <Link href="/settings" className="btn ghost" style={{ marginTop: 20 }}>← Назад до «Ще»</Link>

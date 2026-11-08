@@ -19,12 +19,13 @@ export default function Home() {
   }, []);
 
   const stats = useLiveQuery(async () => {
-    const [rec, rcl, har, bld, dic, s, t, learned, total, boss] = await Promise.all([
+    const [rec, rcl, har, bld, dic, cnj, s, t, learned, total, boss] = await Promise.all([
       dueCount("recognize"),
       dueCount("recall"),
       dueCount("harmony"),
       dueCount("builder"),
       dueCount("dictation"),
+      dueCount("conj"),
       streak(),
       todayCount(),
       db.cards.where("state").notEqual(0).count(),
@@ -32,7 +33,7 @@ export default function Home() {
       bossResults(),
     ]);
     const open = await unlockedCount(boss);
-    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, streak: s, today: t, learned, total, boss, open };
+    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, streak: s, today: t, learned, total, boss, open };
   });
 
   const gate = stats ? packs[stats.open - 1] : undefined;
@@ -67,6 +68,9 @@ export default function Home() {
       </Link>
       <Link href="/builder" className="btn" style={{ marginBottom: 10 }}>
         🧩 Конструктор <span className="badge">{stats?.builder ?? "…"}</span>
+      </Link>
+      <Link href="/conj" className="btn" style={{ marginBottom: 10 }}>
+        🔤 Дієвідміна <span className="badge">{stats?.conj ?? "…"}</span>
       </Link>
       {AUDIO_ENABLED && (
         <Link href="/dictation" className="btn" style={{ marginBottom: 10 }}>

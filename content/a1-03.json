@@ -93,14 +93,14 @@
     { "id": "a1-03-mikor", "type": "word", "hu": "mikor", "ua": "коли?", "pos": "adv", "example": { "hu": "Mikor jössz?", "ua": "Коли ти прийдеш?" } },
     { "id": "a1-03-naponta", "type": "word", "hu": "naponta", "ua": "щодня", "pos": "adv" },
 
-    { "id": "a1-03-kelni", "type": "word", "hu": "kelni", "ua": "вставати", "pos": "verb", "example": { "hu": "Hatkor kelek.", "ua": "Я встаю о шостій." } },
-    { "id": "a1-03-fekudni", "type": "word", "hu": "feküdni", "ua": "лягати; лежати", "pos": "verb", "example": { "hu": "Tizenegykor fekszem le.", "ua": "Я лягаю об одинадцятій." } },
-    { "id": "a1-03-kezdeni", "type": "word", "hu": "kezdeni", "ua": "починати", "pos": "verb" },
-    { "id": "a1-03-befejezni", "type": "word", "hu": "befejezni", "ua": "закінчувати", "pos": "verb" },
-    { "id": "a1-03-varni", "type": "word", "hu": "várni", "ua": "чекати", "pos": "verb", "harmony": "back", "example": { "hu": "Várok rád.", "ua": "Я чекаю на тебе." }, "tags": ["nominal"] },
-    { "id": "a1-03-kesni", "type": "word", "hu": "késni", "ua": "запізнюватися", "pos": "verb" },
-    { "id": "a1-03-tartani", "type": "word", "hu": "tartani", "ua": "тривати; тримати", "pos": "verb", "example": { "hu": "A film két óráig tart.", "ua": "Фільм триває дві години." } },
-    { "id": "a1-03-sietni", "type": "word", "hu": "sietni", "ua": "поспішати", "pos": "verb", "example": { "hu": "Sietek!", "ua": "Я поспішаю!" } }
+    {"id": "a1-03-kelni", "type": "word", "hu": "kelni", "ua": "вставати", "pos": "verb", "harmony": "front", "example": {"hu": "Hatkor kelek.", "ua": "Я встаю о шостій."}},
+    {"id": "a1-03-fekudni", "type": "word", "hu": "feküdni", "ua": "лягати; лежати", "pos": "verb", "harmony": "front", "example": {"hu": "Tizenegykor fekszem le.", "ua": "Я лягаю об одинадцятій."}, "conj": {"stem": "feksz", "pastStem": "feküd", "past": "t", "ik": true}},
+    {"id": "a1-03-kezdeni", "type": "word", "hu": "kezdeni", "ua": "починати", "pos": "verb", "harmony": "front", "conj": {"tr": true}},
+    {"id": "a1-03-befejezni", "type": "word", "hu": "befejezni", "ua": "закінчувати", "pos": "verb", "harmony": "front", "conj": {"tr": true}},
+    {"id": "a1-03-varni", "type": "word", "hu": "várni", "ua": "чекати", "pos": "verb", "harmony": "back", "example": {"hu": "Várok rád.", "ua": "Я чекаю на тебе."}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "a1-03-kesni", "type": "word", "hu": "késni", "ua": "запізнюватися", "pos": "verb", "harmony": "front", "conj": {"ik": true}},
+    {"id": "a1-03-tartani", "type": "word", "hu": "tartani", "ua": "тривати; тримати", "pos": "verb", "harmony": "back", "example": {"hu": "A film két óráig tart.", "ua": "Фільм триває дві години."}, "conj": {"tr": true}},
+    {"id": "a1-03-sietni", "type": "word", "hu": "sietni", "ua": "поспішати", "pos": "verb", "harmony": "front", "example": {"hu": "Sietek!", "ua": "Я поспішаю!"}}
   ],
   "patterns": [
     {
