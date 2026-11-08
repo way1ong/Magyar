@@ -87,7 +87,7 @@
     { "id": "a2-02-tiszta", "type": "word", "hu": "tiszta", "ua": "чистий", "pos": "adj", "harmony": "back", "tags": ["quality", "grad", "mixed-vowel"] },
     { "id": "a2-02-piszkos", "type": "word", "hu": "piszkos", "ua": "брудний", "pos": "adj", "harmony": "back", "tags": ["grad", "mixed-vowel"] },
     { "id": "a2-02-nedves", "type": "word", "hu": "nedves", "ua": "мокрий, вологий", "pos": "adj", "harmony": "front", "example": { "hu": "Nedves a padló.", "ua": "Підлога мокра." }, "tags": ["quality", "grad"] },
-    { "id": "a2-02-szaraz", "type": "word", "hu": "száraz", "ua": "сухий", "pos": "adj", "harmony": "back", "tags": ["quality", "grad"] },
+    {"id": "a2-02-szaraz", "type": "word", "hu": "száraz", "ua": "сухий", "pos": "adj", "harmony": "back", "forms": {"adv": "szárazon"}, "tags": ["quality", "grad"]},
     { "id": "a2-02-zart", "type": "word", "hu": "zárt", "ua": "закритий", "pos": "adj", "harmony": "back" },
     { "id": "a2-02-nyitott", "type": "word", "hu": "nyitott", "ua": "відкритий", "pos": "adj", "harmony": "back", "tags": ["mixed-vowel"] },
     { "id": "a2-02-magas", "type": "word", "hu": "magas", "ua": "високий", "pos": "adj", "harmony": "back", "tags": ["quality", "grad"] },

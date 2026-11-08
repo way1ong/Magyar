@@ -48,6 +48,8 @@ export interface ItemForms {
   comp?: string;
   /** Ordinal of a numeral when irregular: egy → "első", kettő → "második". */
   ord?: string;
+  /** Adverb of an adjective when irregular: jó → "jól", lassú → "lassan", szabad → "szabadon". */
+  adv?: string;
 }
 
 export interface Item {
@@ -103,7 +105,7 @@ export interface Pattern {
    * linking vowel and stem changes (inflect.ts); `forms` then only lists
    * the default o/e/ö endings for display.
    */
-  inflect?: "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp" | "ord";
+  inflect?: "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp" | "ord" | "adv";
   /**
    * Parts of speech this suffix attaches to. Default: ["noun", "adj"].
    * E.g. -szor/-szer/-ször (times) only goes on numerals.

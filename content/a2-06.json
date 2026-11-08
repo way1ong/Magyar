@@ -113,7 +113,7 @@
     {"id": "a2-06-szeles-wide", "type": "word", "hu": "széles", "ua": "широкий", "pos": "adj", "harmony": "front", "tags": ["grad", "quality"]},
     {"id": "a2-06-meredek", "type": "word", "hu": "meredek", "ua": "крутий (схил)", "pos": "adj", "harmony": "front", "tags": ["grad"]},
     {"id": "a2-06-lapos", "type": "word", "hu": "lapos", "ua": "плоский, рівнинний", "pos": "adj", "harmony": "back", "tags": ["grad"]},
-    {"id": "a2-06-suru", "type": "word", "hu": "sűrű", "ua": "густий", "pos": "adj", "harmony": "front_rounded", "tags": ["grad"]},
+    {"id": "a2-06-suru", "type": "word", "hu": "sűrű", "ua": "густий", "pos": "adj", "harmony": "front_rounded", "forms": {"adv": "sűrűn"}, "tags": ["grad"]},
     {"id": "a2-06-ritka", "type": "word", "hu": "ritka", "ua": "рідкісний; рідкий", "pos": "adj", "harmony": "back", "tags": ["grad"]},
     {"id": "a2-06-vad", "type": "word", "hu": "vad", "ua": "дикий", "pos": "adj", "harmony": "back", "tags": ["grad"]},
     {"id": "a2-06-szelid", "type": "word", "hu": "szelíd", "ua": "свійський, лагідний", "pos": "adj", "harmony": "front", "tags": ["grad"]},
