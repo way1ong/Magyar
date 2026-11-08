@@ -2,8 +2,8 @@ import { endsWithVowel, finalConsonant, lengthenFinal } from "./harmony";
 import type { Harmony, ItemForms } from "./types";
 
 /**
- * Noun inflection that changes more than the suffix: accusative, plural and
- * the singular possessives. The suffix itself is regular; what varies is
+ * Noun inflection that changes more than the suffix: accusative, plural,
+ * the singular possessives and the "-s" adjective (kertes, cukros). The suffix itself is regular; what varies is
  *  - the linking vowel: o/e/ö by harmony, or a/e for "lowering" stems
  *    (ház → házat, könyv → könyvet) — `forms.low`;
  *  - the stem: shortening (kéz → kezet), fleeting vowel (tükör → tükröt),
@@ -14,7 +14,7 @@ import type { Harmony, ItemForms } from "./types";
  * Nouns without `forms` follow the default rules. content:forms prints
  * every derived form for review.
  */
-export type InflectKind = "acc" | "pl" | "p1" | "p2" | "p3";
+export type InflectKind = "acc" | "pl" | "p1" | "p2" | "p3" | "s";
 
 /** Accusative after these consonants takes no linking vowel (asztalt, embert, buszt). */
 const NO_LINK = new Set(["l", "r", "n", "ny", "s", "sz", "z", "zs", "j", "ly"]);
@@ -26,6 +26,7 @@ export const INFLECT_VARIANTS: Record<InflectKind, string[]> = {
   p1: ["m", "om", "em", "öm", "am"],
   p2: ["d", "od", "ed", "öd", "ad"],
   p3: ["a", "e", "ja", "je"],
+  s: ["s", "os", "es", "ös", "as"],
 };
 
 function commonPrefix(a: string, b: string): string {
@@ -81,6 +82,10 @@ export function inflect(hu: string, h: Harmony, forms: ItemForms | undefined, ki
       break;
     case "p3":
       suffix = vowelFinal || forms?.j ? je : ae;
+      break;
+    case "s":
+      // "having X" adjective: kertes, cukros, szobás — linking vowel as in the plural.
+      suffix = vowelFinal ? "s" : lv + "s";
       break;
   }
   return { base, suffix, result: base + suffix };
