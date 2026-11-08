@@ -41,6 +41,13 @@ export interface Pattern {
   /** Linking vowel rule for stems ending in a consonant (e.g. -on/-en/-ön). */
   linking?: boolean;
   /**
+   * -val/-vel: after a consonant the v assimilates to it (busz+val → busszal,
+   * vonat+val → vonattal; a digraph doubles its first letter: hegy → heggyel).
+   */
+  assimilates?: boolean;
+  /** Final a/e do NOT lengthen before this suffix (óra+kor → órakor). */
+  noLengthen?: boolean;
+  /**
    * Parts of speech this suffix attaches to. Default: ["noun", "adj"].
    * E.g. -szor/-szer/-ször (times) only goes on numerals.
    */

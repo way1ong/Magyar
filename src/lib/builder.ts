@@ -1,5 +1,5 @@
 import { allPatterns, attaches, packs, patternById, stemByHu } from "./content";
-import { apply, lengthenFinal, variantsOf } from "./harmony";
+import { apply, suffixFor, variantsOf } from "./harmony";
 import type { Item, Pattern } from "./types";
 
 /**
@@ -18,11 +18,6 @@ export interface BuilderTask {
   result: string;
   /** The suffix block that is correct for this stem ("ban", or "n" after a vowel). */
   suffix: string;
-}
-
-/** The suffix as it attaches to this stem (after final-vowel lengthening). */
-export function suffixFor(stem: string, p: Pattern, h: NonNullable<Item["harmony"]>): string {
-  return apply(stem, p, h).slice(lengthenFinal(stem).length);
 }
 
 /** Pattern examples plus packs' extra examples for patterns defined anywhere. */

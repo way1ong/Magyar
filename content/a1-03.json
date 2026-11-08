@@ -107,6 +107,7 @@
       "id": "suf-temporal",
       "name": "-kor",
       "meaning": "о котрій? коли? (момент часу) — ötkor, éjfélkor; форма одна, кінцеве a/e не подовжує: órakor",
+      "noLengthen": true,
       "forms": { "back": "kor", "front": "kor", "front_rounded": "kor" },
       "attachesTo": ["num", "noun"],
       "examples": [

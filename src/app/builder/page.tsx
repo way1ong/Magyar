@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib/builder";
-import { endsWithVowel, lengthenFinal } from "@/lib/harmony";
+import { endsWithVowel, finalConsonant, lengthenFinal } from "@/lib/harmony";
 import { answer, dueCards, Rating } from "@/lib/scheduler";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -28,7 +28,14 @@ function makeBlocks(t: BuilderTask): Block[] {
 function note(t: BuilderTask): string | null {
   const stem = t.stem.hu;
   if (t.pattern.linking && endsWithVowel(stem)) return "Після голосної — лише -n.";
-  const base = lengthenFinal(stem);
+  const c = t.pattern.assimilates ? finalConsonant(stem) : null;
+  if (c) {
+    const form = t.pattern.forms[t.stem.harmony];
+    return c.length > 1
+      ? `Після приголосної v → ${c}: ${stem} + ${form} = ${t.result} (${c}${c} пишеться ${c[0]}${c}).`
+      : `Після приголосної v подвоює приголосний: ${stem} + ${form} = ${t.result}.`;
+  }
+  const base = t.pattern.noLengthen ? stem : lengthenFinal(stem);
   if (base !== stem) return `Кінцеве ${stem.at(-1)} → ${base.at(-1)} перед суфіксом.`;
   return null;
 }
