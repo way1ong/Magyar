@@ -17,6 +17,7 @@ const ENDINGS = [
   ["ti", "-tok / -tek / -tök", "-játok / -itek", "-tatok / -tetek", "-tátok / -tétek"],
   ["ők", "-nak / -nek · після двох приголосних та -ít: -anak / -enek", "-ják / -ik", "-tak / -tek", "-ták / -ték"],
 ];
+const FUTURE = "Майбутній: fog + інфінітив — fogok, fogsz, fog, fogunk, fogtok, fognak (означена: fogom, fogod, fogja, fogjuk, fogjátok, fogják) + dolgozni; відокремлюваний префікс іде наперед: el fogok menni, meg fogom nézni. lenni: leszek, leszel, lesz, leszünk, lesztek, lesznek.";
 
 const MODELS: [string, string][] = [
   ["látni", "звичайна основа"],
@@ -40,7 +41,7 @@ function verb(hu: string, ua = ""): Item {
 }
 
 function Paradigm({ item, note }: { item: Item; note?: string }) {
-  const cols: [Tense, boolean, string][] = [["pres", false, "теперішній"], ["pres", true, "теп. означена"], ["past", false, "минулий"], ["past", true, "мин. означена"]];
+  const cols: [Tense, boolean, string][] = [["pres", false, "теперішній"], ["pres", true, "теп. означена"], ["past", false, "минулий"], ["past", true, "мин. означена"], ["fut", false, "майбутній"]];
   const has = cols.filter(([t, d]) => conjugate(item, { tense: t, def: d, person: "1sg" }));
   return (
     <div className="guide-table-wrap">
@@ -67,8 +68,8 @@ function Paradigm({ item, note }: { item: Item; note?: string }) {
 /** Plain text of everything the tables show — for the guide's search box. */
 export function conjGuideText(): string {
   const items = [...MODELS.map(([hu]) => verb(hu)), ...IRREGULAR_HU.map(([hu, ua]) => verb(hu, ua))];
-  const forms = items.flatMap((it) => ["pres", "past"].flatMap((t) => [false, true].flatMap((d) => PERSONS.map((p) => conjugate(it, { tense: t as Tense, def: d, person: p })))));
-  return [...ENDINGS.flat(), ...MODELS.flat(), ...IRREGULAR_HU.flat(), ...forms].join(" ");
+  const forms = items.flatMap((it) => ["pres", "past", "fut"].flatMap((t) => [false, true].flatMap((d) => PERSONS.map((p) => conjugate(it, { tense: t as Tense, def: d, person: p })))));
+  return [...ENDINGS.flat(), FUTURE, ...MODELS.flat(), ...IRREGULAR_HU.flat(), ...forms].join(" ");
 }
 
 export function ConjTables() {
@@ -87,6 +88,7 @@ export function ConjTables() {
           </tbody>
         </table>
       </div>
+      <p style={{ fontSize: 15 }}>{FUTURE}</p>
       <h3 className="guide-h3">Зразки за типом основи</h3>
       {MODELS.map(([hu, note]) => <Paradigm key={hu} item={verb(hu)} note={note} />)}
       <h3 className="guide-h3">Неправильні дієслова</h3>

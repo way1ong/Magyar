@@ -15,14 +15,16 @@ import type { Harmony, Item, VerbConj } from "./types";
  *  - `forms`: full-form overrides by slot key.
  * Nine irregular verbs (menni, jönni, enni, inni, venni, vinni, tenni, hinni,
  * lenni) are spelled out below and apply to their prefixed compounds too
- * (átmenni, bevenni). `npm run content:conj` prints every verb's paradigm.
+ * (átmenni, bevenni). The future is fog + infinitive, with a separable prefix
+ * moved in front (el fogok menni); lenni has its own (leszek).
+ * `npm run content:conj` prints every verb's paradigm.
  */
-export type Tense = "pres" | "past";
+export type Tense = "pres" | "past" | "fut";
 export type Person = "1sg" | "2sg" | "3sg" | "1pl" | "2pl" | "3pl";
 export const PERSONS: Person[] = ["1sg", "2sg", "3sg", "1pl", "2pl", "3pl"];
 export const PRONOUN: Record<Person, string> = { "1sg": "én", "2sg": "te", "3sg": "ő", "1pl": "mi", "2pl": "ti", "3pl": "ők" };
 export const PRONOUN_UA: Record<Person, string> = { "1sg": "я", "2sg": "ти", "3sg": "він / вона", "1pl": "ми", "2pl": "ви", "3pl": "вони" };
-export const TENSE_UA: Record<Tense, string> = { pres: "теперішній", past: "минулий" };
+export const TENSE_UA: Record<Tense, string> = { pres: "теперішній", past: "минулий", fut: "майбутній" };
 
 export interface Slot {
   tense: Tense;
@@ -101,8 +103,18 @@ const IRREGULAR: Record<string, Record<string, string>> = {
   vinni: p("viszek viszel visz viszünk visztek visznek", "viszem viszed viszi visszük viszitek viszik", "vittem vittél vitt vittünk vittetek vittek", "vittem vitted vitte vittük vittétek vitték"),
   tenni: p("teszek teszel tesz teszünk tesztek tesznek", "teszem teszed teszi tesszük teszitek teszik", "tettem tettél tett tettünk tettetek tettek", "tettem tetted tette tettük tettétek tették"),
   hinni: p("hiszek hiszel hisz hiszünk hisztek hisznek", "hiszem hiszed hiszi hisszük hiszitek hiszik", "hittem hittél hitt hittünk hittetek hittek", "hittem hitted hitte hittük hittétek hitték"),
-  lenni: p("vagyok vagy van vagyunk vagytok vannak", null, "voltam voltál volt voltunk voltatok voltak", null),
+  lenni: { ...p("vagyok vagy van vagyunk vagytok vannak", null, "voltam voltál volt voltunk voltatok voltak", null), ...fut("leszek leszel lesz leszünk lesztek lesznek") },
 };
+function fut(s: string): Record<string, string> {
+  const out: Record<string, string> = {};
+  s.split(" ").forEach((f, i) => (out[slotKey({ tense: "fut", def: false, person: PERSONS[i] })] = f));
+  return out;
+}
+/** fog in the present: the auxiliary of the future. */
+const FOG = { indef: "fogok fogsz fog fogunk fogtok fognak".split(" "), def: "fogom fogod fogja fogjuk fogjátok fogják".split(" ") };
+/** Verbs whose first syllables merely look like a prefix (be-szél, fel-el, lé-legez): never split for the future. */
+const NOT_SEPARABLE = new Set(["beszélni", "beszélgetni", "felelni", "lélegezni", "ellenőrizni", "kiabálni", "elemezni", "lelkesedni", "kelni", "menni"]);
+
 function p(pi: string, pd: string | null, qi: string, qd: string | null): Record<string, string> {
   const out: Record<string, string> = {};
   const put = (tense: Tense, def: boolean, s: string | null) => {
@@ -170,6 +182,8 @@ function pastGroup(stem: string, _h: Harmony): PastGroup {
   }
   if (SONORANT.has(c) && !endsInCluster(stem)) return "t";
   if (stem.endsWith("ll")) return LONG.includes(stem.slice(0, -2).at(-1) ?? "") ? "t" : "full";
+  // A cluster ending in a sibilant keeps the vowel everywhere: tetszett, tetszettem; játszottam.
+  if (SIBILANT.has(c) && endsInCluster(stem)) return "full";
   return "ott";
 }
 
@@ -180,11 +194,14 @@ export function conjugate(item: Item, slot: Slot): string {
   if (c.forms?.[key]) return c.forms[key];
   const P = analyse(item);
   const irr = IRREGULAR[P.base];
-  if (irr) {
-    const f = irr[key];
-    if (!f) return "";
-    return P.prefix + f;
+  if (irr?.[key]) return P.prefix + irr[key];
+  if (slot.tense === "fut") {
+    // fog + infinitive; a separable prefix comes first: el fogok menni, meg fogom nézni.
+    const [pre, base] = NOT_SEPARABLE.has(item.hu) ? ["", item.hu] : splitPrefix(item.hu);
+    const aux = FOG[slot.def ? "def" : "indef"][PERSONS.indexOf(slot.person)];
+    return `${pre ? pre + " " : ""}${aux} ${base}`;
   }
+  if (irr) return "";
   const { stem, vstem, harmony: h, group } = P;
   // Endings on the fleeting-vowel stem follow ITS last vowel: ellenőriz-tek but ellenőrz-ök.
   const hv = vstem === stem ? h : harmonyOf(vstem, item.harmony ?? "back");
@@ -208,7 +225,7 @@ export function conjugate(item: Item, slot: Slot): string {
         case "2sg": form = sib ? vstem + ov + "l" : presLink ? stem + a + "sz" : stem + "sz"; break;
         case "3sg": form = ik ? vstem + "ik" : stem; break;
         case "1pl": form = vstem + uv + "nk"; break;
-        case "2pl": form = pl2Link ? stem + o + "t" + o + "k" : stem + "t" + o + "k"; break;
+        case "2pl": form = pl2Link ? stem + o + "t" + o + "k" : stem + (endsWithVowel(stem) ? "tt" : "t") + o + "k"; break;
         case "3pl": form = presLink ? vstem + av + "n" + av + "k" : stem + "n" + a + "k"; break;
       }
     } else {
@@ -246,7 +263,7 @@ export function conjugate(item: Item, slot: Slot): string {
 export function slotsFor(item: Item): Slot[] {
   const tr = isTransitive(item);
   const out: Slot[] = [];
-  for (const tense of ["pres", "past"] as Tense[]) for (const def of tr ? [false, true] : [false]) for (const person of PERSONS) out.push({ tense, def, person });
+  for (const tense of ["pres", "past", "fut"] as Tense[]) for (const def of tr ? [false, true] : [false]) for (const person of PERSONS) out.push({ tense, def, person });
   return out;
 }
 
