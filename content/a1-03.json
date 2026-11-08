@@ -57,7 +57,7 @@
     { "id": "a1-03-perc", "type": "word", "hu": "perc", "ua": "хвилина", "pos": "noun", "harmony": "front", "example": { "hu": "Öt perc múlva jövök.", "ua": "Я прийду за пʼять хвилин." }, "tags": ["clock"] },
     { "id": "a1-03-masodperc", "type": "word", "hu": "másodperc", "ua": "секунда", "pos": "noun", "harmony": "front", "tags": ["clock", "compound"] },
     { "id": "a1-03-negyed", "type": "word", "hu": "negyed", "ua": "чверть", "pos": "noun", "harmony": "front", "tags": ["clock"] },
-    { "id": "a1-03-ido", "type": "word", "hu": "idő", "ua": "час; погода", "pos": "noun", "harmony": "front_rounded", "forms": {"p3": "ideje"}, "example": { "hu": "Szép idő van.", "ua": "Гарна погода." } },
+    {"id": "a1-03-ido", "type": "word", "hu": "idő", "ua": "час; погода", "pos": "noun", "harmony": "front_rounded", "forms": {"p3": "ideje", "u": "idejű"}, "example": {"hu": "Szép idő van.", "ua": "Гарна погода."}},
     { "id": "a1-03-honap", "type": "word", "hu": "hónap", "ua": "місяць (календарний)", "pos": "noun", "harmony": "back", "forms": {"j": true}, "tags": ["calendar"] },
     { "id": "a1-03-ev", "type": "word", "hu": "év", "ua": "рік", "pos": "noun", "harmony": "front", "tags": ["calendar"] },
     { "id": "a1-03-evszak", "type": "word", "hu": "évszak", "ua": "пора року", "pos": "noun", "harmony": "back", "tags": ["calendar", "compound"] },
