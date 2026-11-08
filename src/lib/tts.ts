@@ -1,4 +1,5 @@
 import audio from "@content/audio.json";
+import { AUDIO_ENABLED } from "./config";
 
 /**
  * Pronunciation: a recorded file (Piper, /public/audio/<itemId>.mp3, listed
@@ -6,19 +7,45 @@ import audio from "@content/audio.json";
  * (Web Speech API; on Android the Google engine with a Hungarian voice).
  */
 const recorded = new Set<string>(audio.ids);
-/** Preview build serves audio next to the page; the app serves it from the root. */
-const AUDIO_BASE = process.env.NEXT_PUBLIC_MAGYAR_PREVIEW === "1" ? "audio/" : "/audio/";
+const IS_PREVIEW = process.env.NEXT_PUBLIC_MAGYAR_PREVIEW === "1";
 
-export const hasRecording = (itemId: string) => recorded.has(itemId);
+export const hasRecording = (itemId: string) => AUDIO_ENABLED && recorded.has(itemId);
 
 let current: HTMLAudioElement | null = null;
 
+/**
+ * The preview build (a claude.ai artifact) may publish only a few hundred
+ * files, so there the audio comes as one JSON per pack ({itemId: base64})
+ * next to the page, fetched on first use. The app serves /audio/<id>.mp3.
+ */
+const bundles = new Map<string, Promise<Record<string, string>>>();
+const blobUrls = new Map<string, string>();
+
+async function previewUrl(itemId: string): Promise<string | null> {
+  const cached = blobUrls.get(itemId);
+  if (cached) return cached;
+  const pack = itemId.slice(0, 5);
+  let bundle = bundles.get(pack);
+  if (!bundle) {
+    bundle = fetch(`audio/${pack}.json`).then((r) => (r.ok ? r.json() : {}));
+    bundles.set(pack, bundle);
+  }
+  const b64 = (await bundle)[itemId];
+  if (!b64) return null;
+  const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  const url = URL.createObjectURL(new Blob([bytes], { type: "audio/mpeg" }));
+  blobUrls.set(itemId, url);
+  return url;
+}
+
 /** Play the recording of a content item. Resolves false if there is none or it fails. */
-export function playRecording(itemId: string): Promise<boolean> {
-  if (typeof window === "undefined" || !recorded.has(itemId)) return Promise.resolve(false);
+export async function playRecording(itemId: string): Promise<boolean> {
+  if (typeof window === "undefined" || !recorded.has(itemId)) return false;
+  const src = IS_PREVIEW ? await previewUrl(itemId) : `/audio/${itemId}.mp3`;
+  if (!src) return false;
   return new Promise((resolve) => {
     current?.pause();
-    const a = new Audio(`${AUDIO_BASE}${itemId}.mp3`);
+    const a = new Audio(src);
     current = a;
     a.onerror = () => resolve(false);
     a.play().then(() => resolve(true), () => resolve(false));
@@ -27,6 +54,7 @@ export function playRecording(itemId: string): Promise<boolean> {
 
 /** Say a content item: its recording, else TTS of `text`. */
 export async function speakItem(itemId: string, text: string) {
+  if (!AUDIO_ENABLED) return false;
   if (await playRecording(itemId)) return true;
   return speak(text);
 }
@@ -49,6 +77,7 @@ export function hungarianVoice(): SpeechSynthesisVoice | null | undefined {
  * the wrong thing. With an empty voice list the engine picks by `lang`.
  */
 export function speak(text: string, lang = "hu-HU") {
+  if (!AUDIO_ENABLED) return false;
   const voice = hungarianVoice();
   if (voice === null) return false;
   current?.pause();

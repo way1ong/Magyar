@@ -37,13 +37,13 @@ function pickDistractors(item: Item, pool: Item[], field: "hu" | "ua", n: number
 function formDistractors(t: BuilderTask, n: number): string[] {
   const out = new Set<string>();
   for (const h of shuffle(HARMONIES)) {
-    const w = apply(t.stem.hu, t.pattern, h);
+    const w = apply(t.stem.hu, t.pattern, h, t.stem.forms);
     if (w !== t.result) out.add(w);
   }
   const others = shuffle(allPatterns.filter((p) => p.id !== t.pattern.id && attaches(p, t.stem)));
   for (const p of others) {
     if (out.size >= n) break;
-    const w = apply(t.stem.hu, p, t.stem.harmony);
+    const w = apply(t.stem.hu, p, t.stem.harmony, t.stem.forms);
     if (w !== t.result) out.add(w);
   }
   return [...out].slice(0, n);

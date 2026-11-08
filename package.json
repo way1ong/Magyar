@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "content:check": "node --no-warnings scripts/check-content.mjs",
+    "content:forms": "node --no-warnings scripts/forms-table.mjs",
     "preview:build": "node scripts/build-preview.mjs"
   },
   "dependencies": {

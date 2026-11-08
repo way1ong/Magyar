@@ -1,5 +1,5 @@
 import { allPatterns, attaches, packIndexOf, packs, patternById, stemByHu } from "./content";
-import { apply, suffixFor, variantsOf } from "./harmony";
+import { applyParts, suffixFor, variantsOf } from "./harmony";
 import type { Item, Pattern } from "./types";
 
 /**
@@ -18,6 +18,8 @@ export interface BuilderTask {
   result: string;
   /** The suffix block that is correct for this stem ("ban", or "n" after a vowel). */
   suffix: string;
+  /** The stem as it appears in the result (kez-, tükr-); differs from stem.hu when the stem changes. */
+  base: string;
 }
 
 /** Pattern examples plus packs' extra examples for patterns defined anywhere. */
@@ -36,7 +38,7 @@ for (const { pattern, ex } of examples) {
   const stem = stemByHu(ex.stem);
   if (!stem?.harmony) continue;
   const id = `${stem.id}+${pattern.id}`;
-  const result = apply(stem.hu, pattern, stem.harmony);
+  const { base, suffix, result } = applyParts(stem.hu, pattern, stem.harmony, stem.forms);
   // content:check guarantees these agree; never teach a form we can't model.
   if (tasks.has(id) || result !== ex.result) continue;
   tasks.set(id, {
@@ -45,7 +47,8 @@ for (const { pattern, ex } of examples) {
     pattern,
     ua: ex.ua,
     result,
-    suffix: suffixFor(stem.hu, pattern, stem.harmony),
+    suffix,
+    base,
   });
 }
 
@@ -83,7 +86,7 @@ export function suffixOptions(t: BuilderTask, count = 4): string[] {
   ];
   for (const p of pool) {
     if (opts.size >= count) break;
-    opts.add(suffixFor(stem.hu, p, stem.harmony));
+    opts.add(suffixFor(stem.hu, p, stem.harmony, stem.forms));
   }
   return shuffle([...opts]);
 }

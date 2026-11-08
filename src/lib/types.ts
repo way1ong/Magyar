@@ -23,6 +23,25 @@ export type PartOfSpeech =
  */
 export type Role = "person" | "place" | "thing" | "time" | "food";
 
+/**
+ * Stem behaviour before the accusative, plural and possessive suffixes
+ * (see inflect.ts). Absent = fully regular (asztal → asztalt, asztalok).
+ */
+export interface ItemForms {
+  /** Oblique stem: kéz → "kez", tükör → "tükr", ló → "lov". */
+  stem?: string;
+  /** Lowering stem: linking vowel a/e — házat, házak; also földet, könyvet for ö-words. */
+  low?: boolean;
+  /** 3rd-person possessive -ja/-je after a consonant: boltja, kertje. */
+  j?: boolean;
+  /** Full-form overrides for the irregular few: anya → anyja, szó → szavak. */
+  acc?: string;
+  pl?: string;
+  p1?: string;
+  p2?: string;
+  p3?: string;
+}
+
 export interface Item {
   /** Stable id, e.g. "a1-01-haz". Never reuse an id for another word. */
   id: string;
@@ -32,6 +51,8 @@ export interface Item {
   pos: PartOfSpeech;
   /** Only for nouns/adjectives that take suffixes. */
   harmony?: Harmony;
+  /** Nouns: stem changes before -t, -k, -m/-d/-a (inflect.ts). */
+  forms?: ItemForms;
   /** Example sentence (hu) + translation (ua). */
   example?: { hu: string; ua: string };
   /** Free tags: theme, register, etc. */
@@ -41,8 +62,10 @@ export interface Item {
 /** A suffix with its harmony variants. forms[harmony] is the variant used. */
 export interface Pattern {
   id: string; // e.g. "suf-inessive"
-  name: string; // "-ban/-ben — у чомусь (де?)"
-  meaning: string; // short Ukrainian explanation
+  name: string; // "-ban / -ben"
+  /** Two or three words for the exercises' result line: "у чомусь (де?)". */
+  short?: string;
+  meaning: string; // fuller Ukrainian explanation with examples
   /** Two-form suffixes have identical front and front_rounded. */
   forms: Record<Harmony, string>;
   /** Linking vowel rule for stems ending in a consonant (e.g. -on/-en/-ön). */
@@ -54,6 +77,12 @@ export interface Pattern {
   assimilates?: boolean;
   /** Final a/e do NOT lengthen before this suffix (óra+kor → órakor). */
   noLengthen?: boolean;
+  /**
+   * Accusative / plural / possessive: the ending depends on the stem's
+   * linking vowel and stem changes (inflect.ts); `forms` then only lists
+   * the default o/e/ö endings for display.
+   */
+  inflect?: "acc" | "pl" | "p1" | "p2" | "p3";
   /**
    * Parts of speech this suffix attaches to. Default: ["noun", "adj"].
    * E.g. -szor/-szer/-ször (times) only goes on numerals.

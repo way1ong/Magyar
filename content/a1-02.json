@@ -18,10 +18,10 @@
     { "id": "a1-02-nagyon-finom", "type": "phrase", "hu": "Nagyon finom!", "ua": "Дуже смачно!", "pos": "phrase", "tags": ["restaurant"] },
 
     { "id": "a1-02-hus", "type": "word", "hu": "hús", "ua": "мʼясо", "pos": "noun", "harmony": "back", "example": { "hu": "Nem eszem húst.", "ua": "Я не їм мʼяса." }, "tags": ["food"] },
-    { "id": "a1-02-hal", "type": "word", "hu": "hal", "ua": "риба", "pos": "noun", "harmony": "back", "example": { "hu": "A hal friss?", "ua": "Риба свіжа?" }, "tags": ["food"] },
+    { "id": "a1-02-hal", "type": "word", "hu": "hal", "ua": "риба", "pos": "noun", "harmony": "back", "forms": {"low": true}, "example": { "hu": "A hal friss?", "ua": "Риба свіжа?" }, "tags": ["food"] },
     { "id": "a1-02-csirke", "type": "word", "hu": "csirke", "ua": "курка, курятина", "pos": "noun", "harmony": "front", "example": { "hu": "Ma csirkét főzök.", "ua": "Сьогодні я готую курку." }, "tags": ["food"] },
-    { "id": "a1-02-sajt", "type": "word", "hu": "sajt", "ua": "сир (твердий)", "pos": "noun", "harmony": "back", "example": { "hu": "Fél kiló sajtot kérek.", "ua": "Мені пів кілограма сиру." }, "tags": ["food"] },
-    { "id": "a1-02-vaj", "type": "word", "hu": "vaj", "ua": "вершкове масло", "pos": "noun", "harmony": "back", "example": { "hu": "Vajas kenyeret eszem.", "ua": "Я їм хліб з маслом." }, "tags": ["food"] },
+    { "id": "a1-02-sajt", "type": "word", "hu": "sajt", "ua": "сир (твердий)", "pos": "noun", "harmony": "back", "forms": {"j": true}, "example": { "hu": "Fél kiló sajtot kérek.", "ua": "Мені пів кілограма сиру." }, "tags": ["food"] },
+    { "id": "a1-02-vaj", "type": "word", "hu": "vaj", "ua": "вершкове масло", "pos": "noun", "harmony": "back", "forms": {"low": true}, "example": { "hu": "Vajas kenyeret eszem.", "ua": "Я їм хліб з маслом." }, "tags": ["food"] },
     { "id": "a1-02-tojas", "type": "word", "hu": "tojás", "ua": "яйце", "pos": "noun", "harmony": "back", "example": { "hu": "Tíz tojást kérek.", "ua": "Мені десять яєць." }, "tags": ["food"] },
     { "id": "a1-02-krumpli", "type": "word", "hu": "krumpli", "ua": "картопля", "pos": "noun", "harmony": "back", "example": { "hu": "A krumpli olcsó.", "ua": "Картопля дешева." }, "tags": ["food", "mixed-vowel"] },
     { "id": "a1-02-paradicsom", "type": "word", "hu": "paradicsom", "ua": "помідор", "pos": "noun", "harmony": "back", "tags": ["food", "mixed-vowel"] },
@@ -31,12 +31,12 @@
     { "id": "a1-02-leves", "type": "word", "hu": "leves", "ua": "суп", "pos": "noun", "harmony": "front", "example": { "hu": "Ma levest főzök.", "ua": "Сьогодні я варю суп." }, "tags": ["food"] },
     { "id": "a1-02-rizs", "type": "word", "hu": "rizs", "ua": "рис", "pos": "noun", "harmony": "front", "tags": ["food"] },
     { "id": "a1-02-teszta", "type": "word", "hu": "tészta", "ua": "макарони; тісто", "pos": "noun", "harmony": "back", "tags": ["food", "last-syllable-rule"] },
-    { "id": "a1-02-cukor", "type": "word", "hu": "cukor", "ua": "цукор", "pos": "noun", "harmony": "back", "example": { "hu": "Cukorral kérem.", "ua": "З цукром, будь ласка." }, "tags": ["food"] },
+    { "id": "a1-02-cukor", "type": "word", "hu": "cukor", "ua": "цукор", "pos": "noun", "harmony": "back", "forms": {"stem": "cukr"}, "example": { "hu": "Cukorral kérem.", "ua": "З цукром, будь ласка." }, "tags": ["food"] },
     { "id": "a1-02-so", "type": "word", "hu": "só", "ua": "сіль", "pos": "noun", "harmony": "back", "example": { "hu": "Kérem a sót!", "ua": "Дайте, будь ласка, сіль!" }, "tags": ["food"] },
     { "id": "a1-02-paprika", "type": "word", "hu": "paprika", "ua": "перець (овоч); паприка", "pos": "noun", "harmony": "back", "example": { "hu": "A paprika csípős?", "ua": "Перець гострий?" }, "tags": ["food", "mixed-vowel"] },
     { "id": "a1-02-kolbasz", "type": "word", "hu": "kolbász", "ua": "ковбаса", "pos": "noun", "harmony": "back", "tags": ["food"] },
     { "id": "a1-02-szalami", "type": "word", "hu": "szalámi", "ua": "салямі", "pos": "noun", "harmony": "back", "tags": ["food", "mixed-vowel"] },
-    { "id": "a1-02-banan", "type": "word", "hu": "banán", "ua": "банан", "pos": "noun", "harmony": "back", "tags": ["food"] },
+    { "id": "a1-02-banan", "type": "word", "hu": "banán", "ua": "банан", "pos": "noun", "harmony": "back", "forms": {"j": true}, "tags": ["food"] },
     { "id": "a1-02-narancs", "type": "word", "hu": "narancs", "ua": "апельсин", "pos": "noun", "harmony": "back", "tags": ["food"] },
     { "id": "a1-02-korte", "type": "word", "hu": "körte", "ua": "груша", "pos": "noun", "harmony": "front", "tags": ["food", "last-syllable-rule"] },
     { "id": "a1-02-szolo", "type": "word", "hu": "szőlő", "ua": "виноград", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "A szőlő édes.", "ua": "Виноград солодкий." }, "tags": ["food"] },
@@ -45,30 +45,30 @@
     { "id": "a1-02-csokolade", "type": "word", "hu": "csokoládé", "ua": "шоколад", "pos": "noun", "harmony": "back", "example": { "hu": "Szeretem a csokoládét.", "ua": "Я люблю шоколад." }, "tags": ["food", "mixed-vowel"] },
     { "id": "a1-02-tea", "type": "word", "hu": "tea", "ua": "чай", "pos": "noun", "harmony": "back", "example": { "hu": "Kérek egy teát.", "ua": "Мені чай, будь ласка." }, "tags": ["drink", "last-syllable-rule"] },
     { "id": "a1-02-udito", "type": "word", "hu": "üdítő", "ua": "безалкогольний напій", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "Kérsz egy üdítőt?", "ua": "Будеш щось попити?" }, "tags": ["drink"] },
-    { "id": "a1-02-asvanyviz", "type": "word", "hu": "ásványvíz", "ua": "мінеральна вода", "pos": "noun", "harmony": "front", "example": { "hu": "Egy ásványvizet kérek.", "ua": "Мені мінеральну воду." }, "tags": ["drink", "compound"] },
+    { "id": "a1-02-asvanyviz", "type": "word", "hu": "ásványvíz", "ua": "мінеральна вода", "pos": "noun", "harmony": "front", "forms": {"stem": "ásványviz"}, "example": { "hu": "Egy ásványvizet kérek.", "ua": "Мені мінеральну воду." }, "tags": ["drink", "compound"] },
 
     { "id": "a1-02-reggeli", "type": "word", "hu": "reggeli", "ua": "сніданок", "pos": "noun", "harmony": "front", "example": { "hu": "Kész a reggeli!", "ua": "Сніданок готовий!" }, "tags": ["meal"] },
-    { "id": "a1-02-ebed", "type": "word", "hu": "ebéd", "ua": "обід", "pos": "noun", "harmony": "front", "example": { "hu": "Mi van ebédre?", "ua": "Що на обід?" }, "tags": ["meal"] },
+    { "id": "a1-02-ebed", "type": "word", "hu": "ebéd", "ua": "обід", "pos": "noun", "harmony": "front", "forms": {"j": true}, "example": { "hu": "Mi van ebédre?", "ua": "Що на обід?" }, "tags": ["meal"] },
     { "id": "a1-02-vacsora", "type": "word", "hu": "vacsora", "ua": "вечеря", "pos": "noun", "harmony": "back", "example": { "hu": "Vacsorára halat eszünk.", "ua": "На вечерю ми їмо рибу." }, "tags": ["meal"] },
 
     { "id": "a1-02-piac", "type": "word", "hu": "piac", "ua": "ринок, базар", "pos": "noun", "harmony": "back", "example": { "hu": "Szombaton a piacon vásárolok.", "ua": "У суботу я купую на ринку." }, "tags": ["place", "shop"] },
     { "id": "a1-02-pekseg", "type": "word", "hu": "pékség", "ua": "пекарня", "pos": "noun", "harmony": "front", "example": { "hu": "A pékségben friss a kenyér.", "ua": "У пекарні свіжий хліб." }, "tags": ["place", "shop"] },
     { "id": "a1-02-zacsko", "type": "word", "hu": "zacskó", "ua": "пакет, кульок", "pos": "noun", "harmony": "back", "tags": ["shop"] },
-    { "id": "a1-02-penztar", "type": "word", "hu": "pénztár", "ua": "каса", "pos": "noun", "harmony": "back", "example": { "hu": "A pénztárnál fizetek.", "ua": "Я плачу на касі." }, "tags": ["place", "shop", "last-syllable-rule"] },
-    { "id": "a1-02-ar", "type": "word", "hu": "ár", "ua": "ціна", "pos": "noun", "harmony": "back", "example": { "hu": "Mennyi az ára?", "ua": "Яка в нього ціна?" }, "tags": ["shop"] },
-    { "id": "a1-02-forint", "type": "word", "hu": "forint", "ua": "форинт", "pos": "noun", "harmony": "back", "example": { "hu": "Ez ötszáz forint.", "ua": "Це пʼятсот форинтів." }, "tags": ["shop", "mixed-vowel"] },
+    { "id": "a1-02-penztar", "type": "word", "hu": "pénztár", "ua": "каса", "pos": "noun", "harmony": "back", "forms": {"low": true}, "example": { "hu": "A pénztárnál fizetek.", "ua": "Я плачу на касі." }, "tags": ["place", "shop", "last-syllable-rule"] },
+    { "id": "a1-02-ar", "type": "word", "hu": "ár", "ua": "ціна", "pos": "noun", "harmony": "back", "forms": {"low": true}, "example": { "hu": "Mennyi az ára?", "ua": "Яка в нього ціна?" }, "tags": ["shop"] },
+    { "id": "a1-02-forint", "type": "word", "hu": "forint", "ua": "форинт", "pos": "noun", "harmony": "back", "forms": {"j": true}, "example": { "hu": "Ez ötszáz forint.", "ua": "Це пʼятсот форинтів." }, "tags": ["shop", "mixed-vowel"] },
     { "id": "a1-02-kartya", "type": "word", "hu": "kártya", "ua": "картка (банківська)", "pos": "noun", "harmony": "back", "tags": ["shop"] },
     { "id": "a1-02-keszpenz", "type": "word", "hu": "készpénz", "ua": "готівка", "pos": "noun", "harmony": "front", "tags": ["shop"] },
     { "id": "a1-02-kilo", "type": "word", "hu": "kiló", "ua": "кілограм, кіло", "pos": "noun", "harmony": "back", "example": { "hu": "Egy kiló almát kérek.", "ua": "Мені кілограм яблук." }, "tags": ["shop"] },
-    { "id": "a1-02-darab", "type": "word", "hu": "darab", "ua": "штука", "pos": "noun", "harmony": "back", "example": { "hu": "Öt darab zsemlét kérek.", "ua": "Мені пʼять булочок." }, "tags": ["shop"] },
+    { "id": "a1-02-darab", "type": "word", "hu": "darab", "ua": "штука", "pos": "noun", "harmony": "back", "forms": {"j": true}, "example": { "hu": "Öt darab zsemlét kérek.", "ua": "Мені пʼять булочок." }, "tags": ["shop"] },
 
-    { "id": "a1-02-pohar", "type": "word", "hu": "pohár", "ua": "склянка, келих", "pos": "noun", "harmony": "back", "example": { "hu": "Egy pohár bort kérek.", "ua": "Мені келих вина." }, "tags": ["table"] },
+    { "id": "a1-02-pohar", "type": "word", "hu": "pohár", "ua": "склянка, келих", "pos": "noun", "harmony": "back", "forms": {"stem": "pohar", "low": true}, "example": { "hu": "Egy pohár bort kérek.", "ua": "Мені келих вина." }, "tags": ["table"] },
     { "id": "a1-02-csesze", "type": "word", "hu": "csésze", "ua": "чашка", "pos": "noun", "harmony": "front", "example": { "hu": "Egy csésze teát kérek.", "ua": "Мені чашку чаю." }, "tags": ["table"] },
-    { "id": "a1-02-tanyer", "type": "word", "hu": "tányér", "ua": "тарілка", "pos": "noun", "harmony": "back", "tags": ["table", "mixed-vowel"] },
-    { "id": "a1-02-kanal", "type": "word", "hu": "kanál", "ua": "ложка", "pos": "noun", "harmony": "back", "tags": ["table"] },
+    { "id": "a1-02-tanyer", "type": "word", "hu": "tányér", "ua": "тарілка", "pos": "noun", "harmony": "back", "forms": {"j": true}, "tags": ["table", "mixed-vowel"] },
+    { "id": "a1-02-kanal", "type": "word", "hu": "kanál", "ua": "ложка", "pos": "noun", "harmony": "back", "forms": {"stem": "kanal", "low": true}, "tags": ["table"] },
     { "id": "a1-02-villa", "type": "word", "hu": "villa", "ua": "виделка", "pos": "noun", "harmony": "back", "tags": ["table", "mixed-vowel"] },
     { "id": "a1-02-kes", "type": "word", "hu": "kés", "ua": "ніж", "pos": "noun", "harmony": "front", "tags": ["table"] },
-    { "id": "a1-02-etterem", "type": "word", "hu": "étterem", "ua": "ресторан", "pos": "noun", "harmony": "front", "example": { "hu": "Ma étteremben ebédelünk.", "ua": "Сьогодні ми обідаємо в ресторані." }, "tags": ["place", "restaurant"] },
+    { "id": "a1-02-etterem", "type": "word", "hu": "étterem", "ua": "ресторан", "pos": "noun", "harmony": "front", "forms": {"stem": "étterm"}, "example": { "hu": "Ma étteremben ebédelünk.", "ua": "Сьогодні ми обідаємо в ресторані." }, "tags": ["place", "restaurant"] },
 
     { "id": "a1-02-friss", "type": "word", "hu": "friss", "ua": "свіжий", "pos": "adj", "harmony": "front", "example": { "hu": "Friss a kenyér?", "ua": "Хліб свіжий?" } },
     { "id": "a1-02-finom", "type": "word", "hu": "finom", "ua": "смачний", "pos": "adj", "harmony": "back", "example": { "hu": "A leves finom.", "ua": "Суп смачний." }, "tags": ["mixed-vowel"] },
@@ -114,6 +114,7 @@
   "patterns": [
     {
       "id": "suf-multiplicative",
+      "short": "скільки разів?",
       "name": "-szor / -szer / -ször",
       "meaning": "скільки разів? — háromszor, négyszer, ötször",
       "forms": { "back": "szor", "front": "szer", "front_rounded": "ször" },
@@ -130,6 +131,7 @@
     },
     {
       "id": "suf-causal",
+      "short": "за чимось, заради (мета, причина)",
       "roles": ["thing", "person", "food"],
       "name": "-ért",
       "meaning": "за чимось (мета: піти за хлібом), за щось (ціна, причина) — kenyérért, almáért; форма одна для всіх слів",
@@ -146,6 +148,7 @@
     },
     {
       "id": "suf-terminative",
+      "short": "аж до (межа)",
       "roles": ["place", "time"],
       "name": "-ig",
       "meaning": "аж до (межа в просторі, часі, рахунку) — boltig, tízig; форма одна для всіх слів",
@@ -159,5 +162,19 @@
         { "stem": "húsz", "result": "húszig", "ua": "до двадцяти" }
       ]
     }
+  ],
+  "examples": [
+    { "pattern": "suf-accusative", "stem": "sajt", "result": "sajtot", "ua": "сир (що?)" },
+    { "pattern": "suf-accusative", "stem": "hal", "result": "halat", "ua": "рибу (що?)" },
+    { "pattern": "suf-accusative", "stem": "cukor", "result": "cukrot", "ua": "цукор (що?)" },
+    { "pattern": "suf-accusative", "stem": "pohár", "result": "poharat", "ua": "склянку (що?)" },
+    { "pattern": "suf-accusative", "stem": "leves", "result": "levest", "ua": "суп (що?)" },
+    { "pattern": "suf-accusative", "stem": "tea", "result": "teát", "ua": "чай (що?)" },
+    { "pattern": "suf-plural", "stem": "tojás", "result": "tojások", "ua": "яйця" },
+    { "pattern": "suf-plural", "stem": "pohár", "result": "poharak", "ua": "склянки" },
+    { "pattern": "suf-poss1", "stem": "kártya", "result": "kártyám", "ua": "моя картка" },
+    { "pattern": "suf-poss1", "stem": "ebéd", "result": "ebédem", "ua": "мій обід" },
+    { "pattern": "suf-poss3", "stem": "ár", "result": "ára", "ua": "його / її ціна" },
+    { "pattern": "suf-poss3", "stem": "sajt", "result": "sajtja", "ua": "його / її сир" }
   ]
 }
