@@ -87,6 +87,9 @@ export default function SettingsPage() {
     <>
       <h1 className="title">Ще</h1>
 
+      <Link href="/stats" className="btn" style={{ marginBottom: 10 }}>
+        📊 Статистика: активність, теми, суфікси
+      </Link>
       <Link href="/dictionary" className="btn" style={{ marginBottom: 10 }}>
         📖 Словник: усі слова й форми
       </Link>

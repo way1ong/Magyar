@@ -183,9 +183,14 @@ export default function Home() {
           ⚠️ Помилки за тиждень <span className="badge">{stats.mistakes}</span>
         </Link>
       )}
-      <Link href="/dictionary" className="btn ghost" style={{ marginBottom: 10 }}>
-        📖 Словник
-      </Link>
+      <div className="row" style={{ marginBottom: 10 }}>
+        <Link href="/dictionary" className="btn ghost" style={{ flex: 1 }}>
+          📖 Словник
+        </Link>
+        <Link href="/stats" className="btn ghost" style={{ flex: 1 }}>
+          📊 Статистика
+        </Link>
+      </div>
       {AUDIO_ENABLED && (
         <Link href="/dictation" className="btn" style={{ marginBottom: 10 }}>
           ✍️ Диктант <span className="badge">{stats?.dictation ?? "…"}</span>
