@@ -179,5 +179,10 @@
     { "pattern": "suf-poss1", "stem": "ebéd", "result": "ebédem", "ua": "мій обід" },
     { "pattern": "suf-poss3", "stem": "ár", "result": "ára", "ua": "його / її ціна" },
     { "pattern": "suf-poss3", "stem": "sajt", "result": "sajtja", "ua": "його / її сир" }
+  ],
+  "sentences": [
+    {"id": "a1-02-s01", "hu": "Kérek egy kávét.", "ua": "Прошу каву.", "note": "Нейтральний порядок: дієслово, потім обʼєкт з egy."},
+    {"id": "a1-02-s02", "hu": "A kávét kérem, nem a teát.", "ua": "Я прошу каву, а не чай.", "note": "Обʼєкт перед дієсловом — у фокусі (саме каву); kérem означене, бо a kávét."},
+    {"id": "a1-02-s03", "hu": "Nem kérek cukrot.", "ua": "Я не хочу цукру.", "note": "nem перед дієсловом заперечує все речення."}
   ]
 }

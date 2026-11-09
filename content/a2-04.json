@@ -152,5 +152,10 @@
     { "pattern": "suf-adjectival-s", "stem": "vitamin", "result": "vitaminos", "ua": "з вітамінами" },
     { "pattern": "suf-adjectival-s", "stem": "láz", "result": "lázas", "ua": "з температурою" },
     { "pattern": "suf-distributive", "stem": "tabletta", "result": "tablettánként", "ua": "по таблетці" }
+  ],
+  "sentences": [
+    {"id": "a2-04-s01", "hu": "Fáj a fejem.", "ua": "У мене болить голова.", "note": "Дієслово першим, підмет із присвійним закінченням після: fáj a fejem."},
+    {"id": "a2-04-s02", "hu": "Nem tudok aludni.", "ua": "Я не можу спати.", "note": "nem + tudok + інфінітив у кінці."},
+    {"id": "a2-04-s03", "hu": "Az orvos azt mondta, hogy pihenjek.", "ua": "Лікар сказав, щоб я відпочивав.", "note": "azt mondta, hogy + наказовий спосіб у підрядному (pihenjek)."}
   ]
 }

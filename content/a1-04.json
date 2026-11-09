@@ -177,5 +177,10 @@
     { "pattern": "suf-terminative", "stem": "megálló", "result": "megállóig", "ua": "аж до зупинки" },
     { "pattern": "suf-terminative", "stem": "híd", "result": "hídig", "ua": "аж до мосту" },
     { "pattern": "suf-illative", "stem": "irány", "result": "irányba", "ua": "у напрямку" }
+  ],
+  "sentences": [
+    {"id": "a1-04-s01", "hu": "Busszal megyek a munkába.", "ua": "Я їду на роботу автобусом.", "note": "busszal перед дієсловом — у фокусі (саме автобусом); напрямок після."},
+    {"id": "a1-04-s02", "hu": "A vonat tízkor indul.", "ua": "Потяг вирушає о десятій.", "note": "Підмет як тема на початку, час у фокусі просто перед дієсловом."},
+    {"id": "a1-04-s03", "hu": "Mikor érkezik a busz?", "ua": "Коли прибуває автобус?", "note": "Питальне слово перед дієсловом, підмет після."}
   ]
 }

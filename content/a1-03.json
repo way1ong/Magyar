@@ -155,5 +155,10 @@
     { "pattern": "suf-terminative", "stem": "péntek", "result": "péntekig", "ua": "до пʼятниці" },
     { "pattern": "suf-terminative", "stem": "vasárnap", "result": "vasárnapig", "ua": "до неділі" },
     { "pattern": "suf-terminative", "stem": "reggel", "result": "reggelig", "ua": "до ранку" }
+  ],
+  "sentences": [
+    {"id": "a1-03-s01", "hu": "Hétfőn reggel dolgozom.", "ua": "У понеділок вранці я працюю.", "note": "Час перед дієсловом — у фокусі: саме в понеділок вранці."},
+    {"id": "a1-03-s02", "hu": "Ma nem dolgozom.", "ua": "Сьогодні я не працюю.", "note": "Час на початку як тема, nem просто перед дієсловом."},
+    {"id": "a1-03-s03", "hu": "Hánykor kezdődik a munka?", "ua": "О котрій починається робота?", "note": "Питальне слово перед дієсловом, підмет після дієслова."}
   ]
 }

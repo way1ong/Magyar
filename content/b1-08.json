@@ -259,5 +259,10 @@
     {"pattern": "suf-potential", "stem": "sírni", "result": "sírhat", "ua": "може плакати"},
     {"pattern": "suf-potential", "stem": "örülni", "result": "örülhet", "ua": "може радіти"},
     {"pattern": "suf-potential", "stem": "félni", "result": "félhet", "ua": "може боятися"}
+  ],
+  "sentences": [
+    {"id": "b1-08-s01", "hu": "Örülök, hogy megismertelek.", "ua": "Радий познайомитись із тобою.", "note": "örülök, hogy + минулий час із закінченням -lak/-lek (тебе)."},
+    {"id": "b1-08-s02", "hu": "Nem haragszom rád.", "ua": "Я на тебе не серджуся.", "note": "haragszik + -ra: rád (на тебе); nem просто перед дієсловом."},
+    {"id": "b1-08-s03", "hu": "Félek, hogy elkésünk.", "ua": "Боюся, що ми запізнимось.", "note": "félek, hogy + теперішній час у значенні майбутнього."}
   ]
 }

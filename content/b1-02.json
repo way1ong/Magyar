@@ -262,5 +262,10 @@
     {"pattern": "suf-nominal", "stem": "félreérteni", "result": "félreértés", "ua": "непорозуміння"},
     {"pattern": "suf-nominal", "stem": "meggyőzni", "result": "meggyőzés", "ua": "переконування"},
     {"pattern": "suf-nominal", "stem": "tárgyalni", "result": "tárgyalás", "ua": "переговори"}
+  ],
+  "sentences": [
+    {"id": "b1-02-s01", "hu": "Megkérhetlek, hogy küldd el a jelentést?", "ua": "Можу попросити тебе надіслати звіт?", "note": "hogy + наказовий спосіб у підрядному (küldd el): префікс після дієслова."},
+    {"id": "b1-02-s02", "hu": "Sajnos nem tudok ma jönni.", "ua": "На жаль, я сьогодні не можу прийти.", "note": "sajnos на початку, nem просто перед tudok, інфінітив у кінці."},
+    {"id": "b1-02-s03", "hu": "Ebben nem értek egyet veled.", "ua": "У цьому я з тобою не згоден.", "note": "Заперечення розриває egyetért: nem értek egyet."}
   ]
 }

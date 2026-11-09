@@ -127,6 +127,18 @@ const checkExample = (where, p, ex) => {
 for (const { f, pack } of packs) {
   let tasks = 0;
   for (const p of pack.patterns ?? []) for (const ex of p.examples ?? []) tasks += checkExample(p.id, p, ex);
+  // Sentences for the word-order exercise: id under the pack, 3–12 words, no placeholders.
+  const sentIds = new Set();
+  for (const sn of pack.sentences ?? []) {
+    if (!sn.id?.startsWith(pack.id + "-s")) err(`${f} sentences: bad id ${sn.id}`);
+    if (sentIds.has(sn.id)) err(`${f} sentences: duplicate id ${sn.id}`);
+    sentIds.add(sn.id);
+    if (!sn.hu || !sn.ua) err(`${f} sentences/${sn.id}: hu and ua are required`);
+    const n = (sn.hu ?? "").trim().split(/\s+/).length;
+    if (n < 3 || n > 12) err(`${f} sentences/${sn.id}: ${n} words (need 3–12)`);
+    if (/[…_/]/.test(sn.hu ?? "")) err(`${f} sentences/${sn.id}: placeholder in hu`);
+    if (!/[.!?]$/.test(sn.hu ?? "")) err(`${f} sentences/${sn.id}: hu must end with . ! or ?`);
+  }
   for (const ex of pack.examples ?? []) {
     const p = patterns.get(ex.pattern);
     if (!p) { err(`${f}: example for unknown pattern "${ex.pattern}"`); continue; }

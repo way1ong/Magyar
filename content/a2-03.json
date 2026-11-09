@@ -182,5 +182,10 @@
     { "pattern": "suf-adjectival-i", "stem": "konyha", "result": "konyhai", "ua": "кухонний" },
     { "pattern": "suf-distributive", "stem": "emelet", "result": "emeletenként", "ua": "на кожному поверсі" },
     { "pattern": "suf-distributive", "stem": "szoba", "result": "szobánként", "ua": "на кожну кімнату" }
+  ],
+  "sentences": [
+    {"id": "a2-03-s01", "hu": "Minden este kitakarítom a konyhát.", "ua": "Щовечора я прибираю кухню.", "note": "Нейтрально: час, дієслово з префіксом разом, обʼєкт."},
+    {"id": "a2-03-s02", "hu": "A konyhát takarítom ki, nem a szobát.", "ua": "Я прибираю кухню, а не кімнату.", "note": "Фокус на обʼєкті: a konyhát перед дієсловом, тому префікс ki відривається й іде після."},
+    {"id": "a2-03-s03", "hu": "Nincs meleg víz.", "ua": "Немає гарячої води.", "note": "nincs = «немає» (замість nem van), далі те, чого немає."}
   ]
 }

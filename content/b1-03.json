@@ -243,5 +243,10 @@
     {"pattern": "suf-nominal", "stem": "elintézni", "result": "elintézés", "ua": "залагодження"},
     {"pattern": "suf-nominal", "stem": "beadni", "result": "beadás", "ua": "подання"},
     {"pattern": "suf-nominal", "stem": "pótolni", "result": "pótlás", "ua": "заміна, відновлення"}
+  ],
+  "sentences": [
+    {"id": "b1-03-s01", "hu": "Szeretném meghosszabbítani a tartózkodási engedélyemet.", "ua": "Я хотів би продовжити свою посвідку на проживання.", "note": "szeretném + інфінітив + означений обʼєкт (присвійна форма)."},
+    {"id": "b1-03-s02", "hu": "Milyen papírokat kell beadnom?", "ua": "Які документи мені треба подати?", "note": "kell + інфінітив з особовим закінченням: beadnom = мені подати."},
+    {"id": "b1-03-s03", "hu": "A kérelmet itt lehet leadni.", "ua": "Заяву можна подати тут.", "note": "Тема на початку, itt у фокусі перед lehet, інфінітив у кінці."}
   ]
 }

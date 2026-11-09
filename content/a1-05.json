@@ -210,5 +210,10 @@
     { "pattern": "suf-dative", "stem": "ügyfél", "result": "ügyfélnek", "ua": "клієнтові" },
     { "pattern": "suf-terminative", "stem": "határidő", "result": "határidőig", "ua": "до дедлайну" },
     { "pattern": "suf-causal", "stem": "fizetés", "result": "fizetésért", "ua": "за зарплату" }
+  ],
+  "sentences": [
+    {"id": "a1-05-s01", "hu": "Két éve tanulok magyarul.", "ua": "Я вчу угорську два роки.", "note": "Тривалість (két éve) у фокусі перед дієсловом, magyarul після."},
+    {"id": "a1-05-s02", "hu": "Hogy mondják ezt magyarul?", "ua": "Як це сказати угорською?", "note": "Hogy (як) перед дієсловом; ezt — означений обʼєкт, тому mondják."},
+    {"id": "a1-05-s03", "hu": "Azt hiszem, hogy értem.", "ua": "Здається, я розумію.", "note": "Підрядне з hogy: головне з azt, кома, hogy, далі звичайний порядок."}
   ]
 }

@@ -239,5 +239,10 @@
     {"pattern": "suf-potential", "stem": "nézni", "result": "nézhet", "ua": "може дивитися"},
     {"pattern": "suf-potential", "stem": "törölni", "result": "törölhet", "ua": "може видалити"},
     {"pattern": "suf-potential", "stem": "csatlakozni", "result": "csatlakozhat", "ua": "може підключитися"}
+  ],
+  "sentences": [
+    {"id": "b1-09-s01", "hu": "Nem tudom megnyitni a fájlt.", "ua": "Я не можу відкрити файл.", "note": "nem tudom + інфінітив із префіксом разом (megnyitni); tudom означене через a fájlt."},
+    {"id": "b1-09-s02", "hu": "Indítsd újra a gépet, ha lefagy!", "ua": "Перезавантаж компʼютер, якщо він зависне!", "note": "Наказ із префіксом після дієслова (indítsd újra), умова з ha у кінці."},
+    {"id": "b1-09-s03", "hu": "Töltsd le az alkalmazást, és regisztrálj!", "ua": "Завантаж застосунок і зареєструйся!", "note": "Два накази; перед és, що зʼєднує речення, ставиться кома."}
   ]
 }

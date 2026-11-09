@@ -183,5 +183,10 @@
     { "pattern": "suf-adjectival-i", "stem": "biztonság", "result": "biztonsági", "ua": "безпековий, захисний" },
     { "pattern": "suf-adjectival-i", "stem": "éjszaka", "result": "éjszakai", "ua": "нічний" },
     { "pattern": "suf-adjectival-i", "stem": "vezetőség", "result": "vezetőségi", "ua": "керівний (від керівництва)" }
+  ],
+  "sentences": [
+    {"id": "a2-02-s01", "hu": "A főnök megtiltotta a dohányzást.", "ua": "Начальник заборонив куріння.", "note": "Нейтральний порядок: підмет, дієслово з префіксом разом, обʼєкт."},
+    {"id": "a2-02-s02", "hu": "Ki a felelős ezért?", "ua": "Хто за це відповідальний?", "note": "Питання з ki без van: у 3-й особі теперішнього часу van опускають."},
+    {"id": "a2-02-s03", "hu": "Először kapcsold ki a gépet!", "ua": "Спершу вимкни машину!", "note": "Наказ: префікс іде після дієслова (kapcsold ki)."}
   ]
 }

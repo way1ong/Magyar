@@ -298,5 +298,10 @@
     {"pattern": "suf-nominal", "stem": "értékelni", "result": "értékelés", "ua": "оцінювання"},
     {"pattern": "suf-nominal", "stem": "teljesíteni", "result": "teljesítés", "ua": "виконання"},
     {"pattern": "suf-nominal", "stem": "megoldani", "result": "megoldás", "ua": "розвʼязання, рішення"}
+  ],
+  "sentences": [
+    {"id": "b1-01-s01", "hu": "A hibát azonnal jelenteni kell.", "ua": "Про несправність треба повідомити негайно.", "note": "kell + інфінітив; обʼєкт на початку як тема, azonnal перед інфінітивом."},
+    {"id": "b1-01-s02", "hu": "Azért álltunk le, mert elromlott a gép.", "ua": "Ми зупинились, бо зламалась машина.", "note": "azért …, mert: причина в підрядному з mert; префікс le після дієслова, бо azért у фокусі."},
+    {"id": "b1-01-s03", "hu": "Ellenőrizd, hogy minden rendben van-e!", "ua": "Перевір, чи все гаразд!", "note": "Непряме питання: hogy + …-e на дієслові (van-e)."}
   ]
 }
