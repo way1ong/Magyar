@@ -66,6 +66,34 @@ class MagyarDB extends Dexie {
 
 export const db = new MagyarDB();
 
+/** Errors the browser throws when it tears a transaction down under us (background tab, storage pressure, closed connection). */
+const TRANSIENT = new Set(["AbortError", "InvalidStateError", "UnknownError", "TransactionInactiveError", "DatabaseClosedError"]);
+const isTransient = (e: unknown) => {
+  const err = e as { name?: string; inner?: { name?: string } } | null;
+  return !!err && (TRANSIENT.has(err.name ?? "") || TRANSIENT.has(err.inner?.name ?? ""));
+};
+
+/**
+ * Run an IndexedDB operation again when the browser aborts it on its own
+ * ("The transaction was aborted, so the request cannot be fulfilled" on
+ * Android after the app was in the background). Reads are idempotent and
+ * an aborted write wrote nothing, so a retry is safe. Other errors rethrow.
+ */
+export async function withRetry<T>(fn: () => Promise<T>, tries = 3): Promise<T> {
+  let last: unknown;
+  for (let i = 0; i < tries; i++) {
+    try {
+      if (i > 0 && !db.isOpen()) await db.open();
+      return await fn();
+    } catch (e) {
+      last = e;
+      if (!isTransient(e) || i === tries - 1) throw e;
+      await new Promise((r) => setTimeout(r, 250 * (i + 1)));
+    }
+  }
+  throw last;
+}
+
 export function toRow(key: string, exercise: Exercise, itemId: string, c: Card): CardRow {
   return {
     key,

@@ -1,5 +1,5 @@
 import { createEmptyCard, fsrs, generatorParameters, Rating, type Grade } from "ts-fsrs";
-import { db, fromRow, toRow, type CardRow, type Exercise } from "./db";
+import { db, fromRow, toRow, withRetry, type CardRow, type Exercise } from "./db";
 
 export { Rating };
 export type { Grade };
@@ -30,7 +30,13 @@ export async function ensureCards(exercise: Exercise, itemIds: string[]) {
     const key = keyOf(exercise, id);
     if (!existing.has(key)) rows.push(toRow(key, exercise, id, createEmptyCard(now)));
   }
-  if (rows.length) await db.cards.bulkAdd(rows);
+  if (!rows.length) return;
+  try {
+    await withRetry(() => db.cards.bulkAdd(rows));
+  } catch (e) {
+    // Two windows seeding at once: the keys the other one added first are fine to skip.
+    if ((e as { name?: string }).name !== "BulkError") throw e;
+  }
 }
 
 /** Cards due now for one exercise, oldest first. New cards are due immediately. */
@@ -57,10 +63,12 @@ export async function answer(row: CardRow, rating: Grade, took?: number) {
   const now = new Date();
   const { card } = scheduler.next(fromRow(row), now, rating);
   const updated = toRow(row.key, row.exercise, row.itemId, card);
-  await db.transaction("rw", db.cards, db.reviews, async () => {
-    await db.cards.put(updated);
-    await db.reviews.add({ key: row.key, rating, ts: now.getTime(), took });
-  });
+  await withRetry(() =>
+    db.transaction("rw", db.cards, db.reviews, async () => {
+      await db.cards.put(updated);
+      await db.reviews.add({ key: row.key, rating, ts: now.getTime(), took });
+    }),
+  );
   return updated;
 }
 
@@ -89,7 +97,7 @@ export function previewIntervals(row: CardRow): Record<Grade, string> {
  */
 export async function sessionCards(exercise: Exercise, limit = 20, newLimit = 10, minimum = 8): Promise<CardRow[]> {
   const now = Date.now();
-  const all = await db.cards.where("exercise").equals(exercise).toArray();
+  const all = await withRetry(() => db.cards.where("exercise").equals(exercise).toArray());
   const due = all.filter((c) => c.due <= now);
   const fresh = due.filter((c) => c.state === 0).slice(0, newLimit);
   const review = due

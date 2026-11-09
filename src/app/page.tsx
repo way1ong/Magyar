@@ -10,27 +10,29 @@ import { AUDIO_ENABLED } from "@/lib/config";
 import { streak, todayCount } from "@/lib/stats";
 import { BOSS_PASS, bossResults, packProgress, unlockedCount } from "@/lib/progress";
 import { PackList } from "@/components/PackList";
-import { db } from "@/lib/db";
+import { db, withRetry } from "@/lib/db";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
 
 async function loadStats() {
-  const [rec, rcl, har, bld, dic, cnj, s, t, learned, total, boss, progress] = await Promise.all([
-    dueCount("recognize"),
-    dueCount("recall"),
-    dueCount("harmony"),
-    dueCount("builder"),
-    dueCount("dictation"),
-    dueCount("conj"),
-    streak(),
-    todayCount(),
-    db.cards.where("state").notEqual(0).count(),
-    db.cards.count(),
-    bossResults(),
-    packProgress(),
-  ]);
-  const open = await unlockedCount(boss);
-  return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, streak: s, today: t, learned, total, boss, open, progress };
+  // One query at a time, retried if the browser aborts a transaction: on a
+  // phone a dozen parallel reads right after the app resumed were aborted.
+  return withRetry(async () => {
+    const rec = await dueCount("recognize");
+    const rcl = await dueCount("recall");
+    const har = await dueCount("harmony");
+    const bld = await dueCount("builder");
+    const dic = await dueCount("dictation");
+    const cnj = await dueCount("conj");
+    const s = await streak();
+    const t = await todayCount();
+    const learned = await db.cards.where("state").notEqual(0).count();
+    const total = await db.cards.count();
+    const boss = await bossResults();
+    const progress = await packProgress();
+    const open = await unlockedCount(boss);
+    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, streak: s, today: t, learned, total, boss, open, progress };
+  });
 }
 
 export default function Home() {
@@ -49,7 +51,8 @@ export default function Home() {
     try {
       return await loadStats();
     } catch (e) {
-      setErr(e instanceof Error ? `${e.name}: ${e.message}` : String(e));
+      const inner = (e as { inner?: { name?: string; message?: string } }).inner;
+      setErr(e instanceof Error ? `${e.name}: ${e.message}${inner ? ` ← ${inner.name}: ${inner.message}` : ""}` : String(e));
       return null;
     }
   });
@@ -62,9 +65,11 @@ export default function Home() {
     run();
     const onShow = () => document.visibilityState === "visible" && run();
     document.addEventListener("visibilitychange", onShow);
+    window.addEventListener("pageshow", run);
     return () => {
       alive = false;
       document.removeEventListener("visibilitychange", onShow);
+      window.removeEventListener("pageshow", run);
     };
   }, []);
   const stats = live ?? once;
