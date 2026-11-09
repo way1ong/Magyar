@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SessionDone } from "@/components/SessionDone";
+import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { sameOrder, sentenceTaskById, type SentenceTask } from "@/lib/sentences";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
@@ -32,11 +33,12 @@ export default function SentencesPage() {
   const [outcome, setOutcome] = useState<"right" | "wrong" | "revealed" | null>(null);
   const [mistakes, setMistakes] = useState(0);
   const [score, setScore] = useState({ right: 0, total: 0 });
+  const [mistakeMode, setMistakeMode] = useState(false);
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
     await seedCards();
-    const q = (await sessionCards("sentence", 20, 8)).filter((c) => sentenceTaskById(c.itemId));
+    const q = (await (takeMistakeMode("sentence") ? (setMistakeMode(true), mistakeCards("sentence")) : (setMistakeMode(false), sessionCards("sentence", 20, 8)))).filter((c) => sentenceTaskById(c.itemId));
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -72,7 +74,7 @@ export default function SentencesPage() {
   }, [cardKey]);
 
   if (queue === null) return <p className="muted">Завантажую…</p>;
-  if (!row || !task) return <SessionDone title="Речення" score={score} onAgain={load} />;
+  if (!row || !task) return <SessionDone title="Речення" score={score} onAgain={load} step="sentence" mistakes={mistakeMode} />;
 
   const done = outcome === "right" || outcome === "revealed";
   const answerWords = placed.map((k) => tiles[k].w);

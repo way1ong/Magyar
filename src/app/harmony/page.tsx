@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { harmonyTaskById, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
 import { compare, type Verdict } from "@/lib/dictation";
@@ -43,12 +44,13 @@ export default function HarmonyPage() {
   const [typed, setTyped] = useState("");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   const [score, setScore] = useState({ right: 0, total: 0 });
+  const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await sessionCards("harmony", 20, 8)).filter((c) => harmonyTaskById(c.itemId));
+    const q = (await (takeMistakeMode("harmony") ? (setMistakes(true), mistakeCards("harmony")) : (setMistakes(false), sessionCards("harmony", 20, 8)))).filter((c) => harmonyTaskById(c.itemId));
     setQueue(q.sort(() => Math.random() - 0.5));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -77,7 +79,7 @@ export default function HarmonyPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !choice) {
-    return <SessionDone title="Гармонія голосних" score={score} onAgain={load} />;
+    return <SessionDone title="Гармонія голосних" score={score} onAgain={load} step="harmony" mistakes={mistakes} />;
   }
 
   const typing = shouldType(mode, row);

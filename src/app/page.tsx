@@ -10,6 +10,8 @@ import { AUDIO_ENABLED } from "@/lib/config";
 import { streak, todayCount } from "@/lib/stats";
 import { BOSS_PASS, bossResults, packProgress, unlockedCount } from "@/lib/progress";
 import { PackList } from "@/components/PackList";
+import { DAY_PLAN, dayDone, nextDayStep } from "@/lib/day";
+import { mistakeCounts } from "@/lib/mistakes";
 import { db, withRetry } from "@/lib/db";
 
 type Stats = Awaited<ReturnType<typeof loadStats>>;
@@ -32,7 +34,9 @@ async function loadStats() {
     const boss = await bossResults();
     const progress = await packProgress();
     const open = await unlockedCount(boss);
-    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, sentence: sen, streak: s, today: t, learned, total, boss, open, progress };
+    const day = await dayDone();
+    const mistakes = Object.values(await mistakeCounts()).reduce((a, b) => a + b, 0);
+    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, sentence: sen, streak: s, today: t, learned, total, boss, open, progress, day, mistakes };
   });
 }
 
@@ -136,7 +140,30 @@ export default function Home() {
         </div>
       </div>
 
-      <Link href="/review" className="btn primary" style={{ marginBottom: 10 }}>
+      {stats && (
+        <div className="card" style={{ marginTop: 10 }}>
+          <div className="stat" style={{ padding: "4px 0 0", borderBottom: 0 }}>
+            <span><b>План дня</b></span>
+            <span className="muted">{stats.day.length} / {DAY_PLAN.length}</span>
+          </div>
+          <div className="day-steps">
+            {DAY_PLAN.map((s) => (
+              <span key={s.step} className={stats.day.includes(s.step) ? "done" : "todo"}>
+                {stats.day.includes(s.step) ? "✓" : "○"} {s.label}
+              </span>
+            ))}
+          </div>
+          {nextDayStep(stats.day) ? (
+            <Link href={nextDayStep(stats.day)!.href} className="btn primary">
+              {stats.day.length ? "Продовжити день" : "Почати день"}: {nextDayStep(stats.day)!.icon} {nextDayStep(stats.day)!.label}
+            </Link>
+          ) : (
+            <p className="muted" style={{ margin: 0 }}>План на сьогодні виконано 🎉 Далі — будь-яка вправа нижче.</p>
+          )}
+        </div>
+      )}
+
+      <Link href="/review" className="btn primary" style={{ marginBottom: 10, marginTop: 10 }}>
         🃏 Картки <span className="badge">{stats?.cards ?? "…"}</span>
       </Link>
       <Link href="/harmony" className="btn" style={{ marginBottom: 10 }}>
@@ -151,6 +178,19 @@ export default function Home() {
       <Link href="/sentences" className="btn" style={{ marginBottom: 10 }}>
         📝 Речення <span className="badge">{stats?.sentence ?? "…"}</span>
       </Link>
+      {stats && stats.mistakes > 0 && (
+        <Link href="/mistakes" className="btn" style={{ marginBottom: 10 }}>
+          ⚠️ Помилки за тиждень <span className="badge">{stats.mistakes}</span>
+        </Link>
+      )}
+      <div className="row" style={{ marginBottom: 10 }}>
+        <Link href="/dictionary" className="btn ghost" style={{ flex: 1 }}>
+          📖 Словник
+        </Link>
+        <Link href="/stats" className="btn ghost" style={{ flex: 1 }}>
+          📊 Статистика
+        </Link>
+      </div>
       {AUDIO_ENABLED && (
         <Link href="/dictation" className="btn" style={{ marginBottom: 10 }}>
           ✍️ Диктант <span className="badge">{stats?.dictation ?? "…"}</span>

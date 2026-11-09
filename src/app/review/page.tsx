@@ -5,6 +5,7 @@ import { itemById } from "@/lib/content";
 import { answer, previewIntervals, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
 import { SessionDone } from "@/components/SessionDone";
+import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speakItem } from "@/lib/tts";
@@ -18,11 +19,16 @@ export default function ReviewPage() {
   const [i, setI] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [done, setDone] = useState(0);
+  const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
     await seedCards();
-    const [a, b] = await Promise.all([sessionCards("recognize", 15, 6, 5), sessionCards("recall", 15, 6, 5)]);
+    const mm = takeMistakeMode("review");
+    setMistakes(mm);
+    const [a, b] = mm
+      ? await Promise.all([mistakeCards("recognize"), mistakeCards("recall")])
+      : await Promise.all([sessionCards("recognize", 15, 6, 5), sessionCards("recall", 15, 6, 5)]);
     // Cards whose item left the content (a duplicate removed) are skipped, not shown as "done".
     const all = [...a, ...b].filter((c) => itemById(c.itemId)).sort(() => Math.random() - 0.5);
     setQueue(all);
@@ -58,6 +64,8 @@ export default function ReviewPage() {
         title="Картки"
         score={done}
         onAgain={load}
+        step="review"
+        mistakes={mistakes}
       />
     );
   }
