@@ -75,9 +75,28 @@ export default function Home() {
   }, []);
   const stats = live ?? once;
 
+  // Counters still missing after a while: reload the page once by itself (a
+  // fresh page gets a fresh IndexedDB connection), then show the notice.
   useEffect(() => {
     if (stats) return;
-    const t = setTimeout(() => setSlow(true), 6000);
+    const t = setTimeout(() => {
+      let reloaded = 0;
+      try {
+        reloaded = Number(sessionStorage.getItem("magyar:autoReload") ?? 0);
+      } catch {
+        // No storage: just show the notice.
+      }
+      if (Date.now() - reloaded > 60000) {
+        try {
+          sessionStorage.setItem("magyar:autoReload", String(Date.now()));
+        } catch {
+          // ignore
+        }
+        window.location.reload();
+        return;
+      }
+      setSlow(true);
+    }, 10000);
     return () => clearTimeout(t);
   }, [stats]);
 
