@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { itemById } from "@/lib/content";
 import { answer, previewIntervals, Rating, sessionCards, type Grade } from "@/lib/scheduler";
+import { queueWrite } from "@/lib/writes";
 import { SessionDone } from "@/components/SessionDone";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -38,9 +39,11 @@ export default function ReviewPage() {
   const row = queue?.[i];
   const item = row ? itemById(row.itemId) : undefined;
 
-  const grade = async (g: Grade) => {
+  const grade = (g: Grade) => {
     if (!row) return;
-    await answer(row, g, Date.now() - shownAt.current);
+    // Advance at once; the write runs in the background (a stuck IndexedDB must not freeze the buttons).
+    const took = Date.now() - shownAt.current;
+    queueWrite(() => answer(row, g, took));
     setDone((d) => d + 1);
     setFlipped(false);
     shownAt.current = Date.now();

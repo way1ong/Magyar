@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Tabs } from "@/components/Tabs";
 import { RegisterSW } from "@/components/RegisterSW";
+import { WriteStatus } from "@/components/WriteStatus";
 
 export const metadata: Metadata = {
   title: "Magyar",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="uk">
       <body>
         <main className="wrap">{children}</main>
+        <WriteStatus />
         <Tabs />
         <RegisterSW />
       </body>

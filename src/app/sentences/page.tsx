@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SessionDone } from "@/components/SessionDone";
 import { sameOrder, sentenceTaskById, type SentenceTask } from "@/lib/sentences";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
+import { queueWrite } from "@/lib/writes";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
@@ -78,7 +79,8 @@ export default function SentencesPage() {
 
   const grade = async (rating: Grade, right: boolean) => {
     setScore((s) => ({ right: s.right + (right ? 1 : 0), total: s.total + 1 }));
-    await answer(row, rating, Date.now() - shownAt.current);
+    const took = Date.now() - shownAt.current;
+    queueWrite(() => answer(row, rating, took));
     if (right) speak(task.hu);
   };
 

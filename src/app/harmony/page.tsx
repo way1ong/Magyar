@@ -8,6 +8,7 @@ import { compare, type Verdict } from "@/lib/dictation";
 import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
 import { harmonyChoice } from "@/lib/harmony";
 import { answer, Rating, sessionCards } from "@/lib/scheduler";
+import { queueWrite } from "@/lib/writes";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -105,7 +106,7 @@ export default function HarmonyPage() {
     const took = Date.now() - shownAt.current;
     const right = v === correct;
     setScore((s) => ({ right: s.right + (right ? 1 : 0), total: s.total + 1 }));
-    await answer(row, right ? (took < 2500 ? Rating.Easy : Rating.Good) : Rating.Again, took);
+    queueWrite(() => answer(row, right ? (took < 2500 ? Rating.Easy : Rating.Good) : Rating.Again, took));
     if (right) speak(result);
   };
 
@@ -117,7 +118,7 @@ export default function HarmonyPage() {
     setScore((s) => ({ right: s.right + (right ? 1 : 0), total: s.total + 1 }));
     const rating =
       o === "exact" ? (took < FAST_TYPED_MS ? Rating.Easy : Rating.Good) : o === "accents" ? Rating.Hard : Rating.Again;
-    await answer(row, rating, took);
+    queueWrite(() => answer(row, rating, took));
     if (right) speak(result);
   };
 
