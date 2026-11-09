@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
 import { pickCloze, type Cloze } from "@/lib/conjcloze";
 import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, tenseLabel } from "@/lib/conj";
@@ -48,12 +49,13 @@ export default function ConjPage() {
   const [typed, setTyped] = useState("");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   const [score, setScore] = useState({ right: 0, total: 0 });
+  const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await sessionCards("conj", 20, 8)).filter((c) => conjTaskById(c.itemId));
+    const q = (await (takeMistakeMode("conj") ? (setMistakes(true), mistakeCards("conj")) : (setMistakes(false), sessionCards("conj", 20, 8)))).filter((c) => conjTaskById(c.itemId));
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -96,7 +98,7 @@ export default function ConjPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !deal) {
-    return <SessionDone title="Дієвідміна" score={score} onAgain={load} />;
+    return <SessionDone title="Дієвідміна" score={score} onAgain={load} step="conj" mistakes={mistakes} />;
   }
 
   const { item, tense, def } = task;

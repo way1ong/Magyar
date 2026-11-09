@@ -11,6 +11,7 @@ import BuilderPage from "@/app/builder/page";
 import ConjPage from "@/app/conj/page";
 import SentencesPage from "@/app/sentences/page";
 import DictionaryPage from "@/app/dictionary/page";
+import MistakesPage from "@/app/mistakes/page";
 import DictationPage from "@/app/dictation/page";
 import BossPage from "@/app/boss/page";
 import GuidePage from "@/app/guide/page";
@@ -30,6 +31,7 @@ const PAGES: Record<string, ComponentType> = {
   "/conj": ConjPage,
   "/sentences": SentencesPage,
   "/dictionary": DictionaryPage,
+  "/mistakes": MistakesPage,
   "/dictation": DictationPage,
   "/boss": BossPage,
   "/guide": GuidePage,

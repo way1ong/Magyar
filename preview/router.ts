@@ -13,6 +13,7 @@ const ROUTES: Record<string, string> = {
   "/conj": "conj",
   "/sentences": "sentences",
   "/dictionary": "dictionary",
+  "/mistakes": "mistakes",
   "/dictation": "dictation",
   "/boss": "boss",
   "/guide": "guide",

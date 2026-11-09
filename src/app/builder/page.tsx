@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
 import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
@@ -67,11 +68,12 @@ export default function BuilderPage() {
   const [placed, setPlaced] = useState<string[]>([]);
   const [verdict, setVerdict] = useState<boolean | null>(null);
   const [score, setScore] = useState({ right: 0, total: 0 });
+  const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
     await seedCards();
-    const q = (await sessionCards("builder", 20, 8)).filter((r) => builderTaskById(r.itemId));
+    const q = (await (takeMistakeMode("builder") ? (setMistakes(true), mistakeCards("builder")) : (setMistakes(false), sessionCards("builder", 20, 8)))).filter((r) => builderTaskById(r.itemId));
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -99,7 +101,7 @@ export default function BuilderPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task) {
-    return <SessionDone title="Конструктор" score={score} onAgain={load} />;
+    return <SessionDone title="Конструктор" score={score} onAgain={load} step="builder" mistakes={mistakes} />;
   }
 
   const blocks = deal?.key === dealKey ? deal.blocks : [];
