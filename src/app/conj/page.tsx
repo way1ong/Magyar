@@ -7,6 +7,7 @@ import { pickCloze, type Cloze } from "@/lib/conjcloze";
 import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, tenseLabel } from "@/lib/conj";
 import { compare, type Verdict } from "@/lib/dictation";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
+import { queueWrite } from "@/lib/writes";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
@@ -117,7 +118,7 @@ export default function ConjPage() {
   const grade = async (rating: Grade, right: boolean) => {
     const took = Date.now() - shownAt.current;
     setScore((s) => ({ right: s.right + (right ? 1 : 0), total: s.total + 1 }));
-    await answer(row, rating, took);
+    queueWrite(() => answer(row, rating, took));
     if (right) speak(correct);
   };
 

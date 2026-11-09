@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import "@/app/globals.css";
 import "./preview.css";
 import { Tabs } from "@/components/Tabs";
+import { WriteStatus } from "@/components/WriteStatus";
 import Home from "@/app/page";
 import ReviewPage from "@/app/review/page";
 import HarmonyPage from "@/app/harmony/page";
@@ -46,6 +47,7 @@ function App() {
         )}
         <Page key={path} />
       </main>
+      <WriteStatus />
       <Tabs />
     </>
   );

@@ -185,3 +185,6 @@ nav.tabs span { display: block; font-size: 20px; }
 .tile.used { opacity: 0.25; }
 .tile.placed { padding: 4px 8px; font-size: 20px; border-color: transparent; background: transparent; }
 .sentence-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-height: 52px; margin-top: 14px; padding: 6px 8px; border: 1px dashed var(--line); border-radius: 12px; font-size: 20px; }
+
+/* Failed background write */
+.write-status { position: fixed; left: 12px; right: 12px; bottom: 84px; z-index: 20; background: var(--card); border: 1px solid var(--bad); border-radius: 12px; padding: 12px 14px; font-size: 15px; box-shadow: 0 6px 24px rgba(0,0,0,0.25); }

@@ -7,6 +7,7 @@ import { patternShort } from "@/lib/content";
 import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
 import { endsWithVowel, finalConsonant, lengthenFinal } from "@/lib/harmony";
 import { answer, Rating, sessionCards } from "@/lib/scheduler";
+import { queueWrite } from "@/lib/writes";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
@@ -120,7 +121,7 @@ export default function BuilderPage() {
     setVerdict(ok);
     setScore((s) => ({ right: s.right + (ok ? 1 : 0), total: s.total + 1 }));
     speak(task.result);
-    await answer(row, ok ? (took < FAST_MS ? Rating.Easy : Rating.Good) : Rating.Again, took);
+    queueWrite(() => answer(row, ok ? (took < FAST_MS ? Rating.Easy : Rating.Good) : Rating.Again, took));
   };
 
   const next = () => {
