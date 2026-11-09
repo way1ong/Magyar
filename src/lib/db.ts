@@ -74,21 +74,44 @@ const isTransient = (e: unknown) => {
   return !!err && (TRANSIENT.has(err.name ?? "") || TRANSIENT.has(err.inner?.name ?? ""));
 };
 
+/** How long one IndexedDB operation may take before the connection is considered stuck. */
+const STUCK_MS = 8000;
+
+class TimeoutError extends Error {
+  name = "TimeoutError";
+}
+const withTimeout = <T,>(p: Promise<T>, ms: number) =>
+  new Promise<T>((resolve, reject) => {
+    const t = setTimeout(() => reject(new TimeoutError(`IndexedDB did not answer in ${ms} ms`)), ms);
+    p.then((v) => { clearTimeout(t); resolve(v); }, (e) => { clearTimeout(t); reject(e); });
+  });
+
 /**
  * Run an IndexedDB operation again when the browser aborts it on its own
  * ("The transaction was aborted, so the request cannot be fulfilled" on
- * Android after the app was in the background). Reads are idempotent and
- * an aborted write wrote nothing, so a retry is safe. Other errors rethrow.
+ * Android after the app was in the background) or when it never answers:
+ * after the app resumes, Chrome on Android sometimes leaves the connection
+ * dead and every request hangs. A hung attempt closes the connection so the
+ * next one reopens it. Reads are idempotent and an aborted write wrote
+ * nothing, so a retry is safe. Other errors rethrow.
  */
 export async function withRetry<T>(fn: () => Promise<T>, tries = 3): Promise<T> {
   let last: unknown;
   for (let i = 0; i < tries; i++) {
     try {
-      if (i > 0 && !db.isOpen()) await db.open();
-      return await fn();
+      if (i > 0 && !db.isOpen()) await withTimeout(db.open(), STUCK_MS);
+      return await withTimeout(fn(), STUCK_MS * (i + 1));
     } catch (e) {
       last = e;
-      if (!isTransient(e) || i === tries - 1) throw e;
+      const stuck = (e as { name?: string })?.name === "TimeoutError";
+      if (!(isTransient(e) || stuck) || i === tries - 1) throw e;
+      if (stuck) {
+        try {
+          db.close();
+        } catch {
+          // Already closed — the next attempt reopens it.
+        }
+      }
       await new Promise((r) => setTimeout(r, 250 * (i + 1)));
     }
   }
