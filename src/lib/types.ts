@@ -178,6 +178,15 @@ export interface PackExample {
   frame?: Frame;
 }
 
+/** A curated sentence for the word-order exercise, with the rule it illustrates. */
+export interface Sentence {
+  id: string; // "a1-01-s01"
+  hu: string;
+  ua: string;
+  /** Ukrainian note on the word order shown after the answer. */
+  note?: string;
+}
+
 export interface ContentPack {
   id: string; // "a1-01"
   level: "A0" | "A1" | "A2" | "B1";
@@ -189,4 +198,6 @@ export interface ContentPack {
    * ("hétfőn" — у понеділок). Same rules as Pattern.examples.
    */
   examples?: PackExample[];
+  /** Sentences for the "Речення" exercise (word order), with notes. */
+  sentences?: Sentence[];
 }

@@ -181,5 +181,10 @@
     { "pattern": "suf-terminative", "stem": "vészkijárat", "result": "vészkijáratig", "ua": "аж до аварійного виходу" },
     { "pattern": "suf-causal", "stem": "biztonság", "result": "biztonságért", "ua": "за безпеку" },
     { "pattern": "suf-delative", "stem": "baleset", "result": "balesetről", "ua": "про нещасний випадок", "frame": { "hu": "Beszélünk a ___.", "ua": "Ми говоримо ___." } }
+  ],
+  "sentences": [
+    {"id": "a2-01-s01", "hu": "A gyárban mindig sisakot viselünk.", "ua": "На заводі ми завжди носимо шолом.", "note": "Місце як тема, sisakot у фокусі перед дієсловом (що саме носимо)."},
+    {"id": "a2-01-s02", "hu": "Baleset esetén hívd a mentőket!", "ua": "У разі аварії викликай швидку!", "note": "Наказ: обставина, дієслово, обʼєкт після дієслова."},
+    {"id": "a2-01-s03", "hu": "Nem szabad dohányozni a csarnokban.", "ua": "У цеху не можна курити.", "note": "nem szabad + інфінітив; місце в кінці."}
   ]
 }

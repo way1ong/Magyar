@@ -227,5 +227,10 @@
     {"pattern": "suf-nominal", "stem": "bejelentkezni", "result": "bejelentkezés", "ua": "заселення; реєстрація"},
     {"pattern": "suf-nominal", "stem": "lekésni", "result": "lekésés", "ua": "запізнення (на рейс)"},
     {"pattern": "suf-nominal", "stem": "hajózni", "result": "hajózás", "ua": "судноплавство, плавання кораблем"}
+  ],
+  "sentences": [
+    {"id": "a2-08-s01", "hu": "Két jegyet kérek Budapestre.", "ua": "Два квитки до Будапешта, будь ласка.", "note": "Після числівника однина (két jegyet); обʼєкт у фокусі перед kérek."},
+    {"id": "a2-08-s02", "hu": "Mikor indul a következő vonat?", "ua": "Коли вирушає наступний потяг?", "note": "Питальне слово перед дієсловом, підмет після."},
+    {"id": "a2-08-s03", "hu": "Lekéstük a vonatot, ezért taxival mentünk.", "ua": "Ми спізнились на потяг, тому поїхали на таксі.", "note": "ezért (тому) зʼєднує речення; taxival у фокусі перед mentünk."}
   ]
 }

@@ -217,5 +217,10 @@
     {"pattern": "suf-potential", "stem": "kezelni", "result": "kezelhet", "ua": "може лікувати"},
     {"pattern": "suf-potential", "stem": "szédülni", "result": "szédülhet", "ua": "у нього може паморочитися голова"},
     {"pattern": "suf-potential", "stem": "felépülni", "result": "felépülhet", "ua": "може відновитися"}
+  ],
+  "sentences": [
+    {"id": "b1-07-s01", "hu": "Vegye be a gyógyszert étkezés után!", "ua": "Приймайте ліки після їжі!", "note": "Наказ: vegye be, обʼєкт, час із післяйменником у кінці."},
+    {"id": "b1-07-s02", "hu": "Három napja fáj a torkom.", "ua": "У мене три дні болить горло.", "note": "Тривалість (három napja) на початку, підмет після дієслова."},
+    {"id": "b1-07-s03", "hu": "Az orvos azt javasolta, hogy pihenjek többet.", "ua": "Лікар порадив мені більше відпочивати.", "note": "azt javasolta, hogy + наказовий спосіб у підрядному."}
   ]
 }

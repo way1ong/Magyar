@@ -178,3 +178,10 @@ nav.tabs span { display: block; font-size: 20px; }
 .pbar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); opacity: 0.45; border-radius: 3px; }
 .pbar > i.known { opacity: 1; }
 .pack-note { margin: 6px 0 0; font-size: 13px; }
+
+/* Sentences: word tiles */
+.tiles { display: flex; flex-wrap: wrap; gap: 8px; }
+.tile { font: inherit; font-size: 18px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); cursor: pointer; }
+.tile.used { opacity: 0.25; }
+.tile.placed { padding: 4px 8px; font-size: 20px; border-color: transparent; background: transparent; }
+.sentence-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-height: 52px; margin-top: 14px; padding: 6px 8px; border: 1px dashed var(--line); border-radius: 12px; font-size: 20px; }

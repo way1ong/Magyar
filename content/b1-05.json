@@ -222,5 +222,10 @@
     {"pattern": "suf-nominal", "stem": "vizsgáztatni", "result": "vizsgáztatás", "ua": "техогляд (дія)"},
     {"pattern": "suf-nominal", "stem": "dohányozni", "result": "dohányzás", "ua": "куріння"},
     {"pattern": "suf-nominal", "stem": "feltölteni", "result": "feltöltés", "ua": "зарядження; поповнення"}
+  ],
+  "sentences": [
+    {"id": "b1-05-s01", "hu": "Itt nem szabad parkolni.", "ua": "Тут не можна паркуватись.", "note": "itt як тема, nem szabad + інфінітив."},
+    {"id": "b1-05-s02", "hu": "Lassíts, mert iskola van a közelben!", "ua": "Сповільнись, бо поблизу школа!", "note": "Наказ, кома, mert вводить причину."},
+    {"id": "b1-05-s03", "hu": "Az autót a ház előtt parkoltam le.", "ua": "Я припаркував авто перед будинком.", "note": "Місце у фокусі перед дієсловом, тому префікс le іде після нього."}
   ]
 }

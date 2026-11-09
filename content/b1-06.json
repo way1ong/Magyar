@@ -207,5 +207,10 @@
     {"pattern": "suf-potential", "stem": "csengetni", "result": "csengethet", "ua": "може подзвонити у двері"},
     {"pattern": "suf-potential", "stem": "beengedni", "result": "beengedhet", "ua": "може впустити"},
     {"pattern": "suf-potential", "stem": "felmondani", "result": "felmondhat", "ua": "може розірвати договір"}
+  ],
+  "sentences": [
+    {"id": "b1-06-s01", "hu": "A csap már megint csöpög.", "ua": "Кран знову капає.", "note": "már megint (знову) просто перед дієсловом."},
+    {"id": "b1-06-s02", "hu": "Hívtam a szerelőt, de nem jött.", "ua": "Я викликав майстра, але він не прийшов.", "note": "de зʼєднує два речення; nem перед jött."},
+    {"id": "b1-06-s03", "hu": "Mikor kapom vissza a kauciót?", "ua": "Коли я отримаю заставу назад?", "note": "Питальне слово перед дієсловом, префікс vissza після нього."}
   ]
 }

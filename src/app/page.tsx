@@ -24,6 +24,7 @@ async function loadStats() {
     const bld = await dueCount("builder");
     const dic = await dueCount("dictation");
     const cnj = await dueCount("conj");
+    const sen = await dueCount("sentence");
     const s = await streak();
     const t = await todayCount();
     const learned = await db.cards.where("state").notEqual(0).count();
@@ -31,7 +32,7 @@ async function loadStats() {
     const boss = await bossResults();
     const progress = await packProgress();
     const open = await unlockedCount(boss);
-    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, streak: s, today: t, learned, total, boss, open, progress };
+    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, sentence: sen, streak: s, today: t, learned, total, boss, open, progress };
   });
 }
 
@@ -127,6 +128,9 @@ export default function Home() {
       </Link>
       <Link href="/conj" className="btn" style={{ marginBottom: 10 }}>
         🔤 Дієвідміна <span className="badge">{stats?.conj ?? "…"}</span>
+      </Link>
+      <Link href="/sentences" className="btn" style={{ marginBottom: 10 }}>
+        📝 Речення <span className="badge">{stats?.sentence ?? "…"}</span>
       </Link>
       {AUDIO_ENABLED && (
         <Link href="/dictation" className="btn" style={{ marginBottom: 10 }}>

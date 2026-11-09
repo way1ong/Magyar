@@ -159,5 +159,10 @@
     { "pattern": "suf-adjectival-s", "stem": "cipzár", "result": "cipzáras", "ua": "на блискавці" },
     { "pattern": "suf-adjectival-s", "stem": "gyapjú", "result": "gyapjús", "ua": "вовняний (з вовною)" },
     { "pattern": "suf-adjectival-i", "stem": "üzlet", "result": "üzleti", "ua": "діловий; магазинний" }
+  ],
+  "sentences": [
+    {"id": "a2-05-s01", "hu": "Ez a kabát túl drága.", "ua": "Це пальто надто дороге.", "note": "У 3-й особі теперішнього часу van не потрібне: ez a kabát + прикметник."},
+    {"id": "a2-05-s02", "hu": "Felpróbálhatom ezt a cipőt?", "ua": "Можна приміряти ці туфлі?", "note": "Питання без питального слова: порядок як у твердженні, дієслово першим."},
+    {"id": "a2-05-s03", "hu": "Nem a pirosat kérem, hanem a kéket.", "ua": "Я прошу не червоний, а синій.", "note": "nem … hanem: заперечений фокус перед дієсловом, hanem вводить правильний."}
   ]
 }

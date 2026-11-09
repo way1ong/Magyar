@@ -31,8 +31,9 @@ export interface CardRow {
  * builder: itemId = `${stemItemId}+${patternId}` (see lib/builder.ts).
  * dictation: itemId = content item id (hear it, type it; lib/dictation.ts).
  * conj: itemId = `${verbItemId}+${tense}.${indef|def}` (lib/conjcards.ts; a random person each time).
+ * sentence: itemId = a curated sentence id (`a1-01-s01`) or the item whose example/phrase it is (lib/sentences.ts).
  */
-export type Exercise = "recognize" | "recall" | "harmony" | "builder" | "dictation" | "conj";
+export type Exercise = "recognize" | "recall" | "harmony" | "builder" | "dictation" | "conj" | "sentence";
 
 /** Full review log — keep every event, FSRS can be re-optimised from it. */
 export interface ReviewRow {

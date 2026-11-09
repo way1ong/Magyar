@@ -254,5 +254,10 @@
     {"pattern": "suf-comparative", "stem": "forgalmas", "result": "forgalmasabb", "ua": "жвавіший"},
     {"pattern": "suf-comparative", "stem": "zsúfolt", "result": "zsúfoltabb", "ua": "переповненіший"},
     {"pattern": "suf-comparative", "stem": "kedvező", "result": "kedvezőbb", "ua": "вигідніший"}
+  ],
+  "sentences": [
+    {"id": "a2-07-s01", "hu": "Hol lehet jegyet venni?", "ua": "Де можна купити квиток?", "note": "Hol + lehet, обʼєкт перед інфінітивом: jegyet venni."},
+    {"id": "a2-07-s02", "hu": "A posta a bank mellett van.", "ua": "Пошта біля банку.", "note": "Місце з післяйменником (a bank mellett) перед van."},
+    {"id": "a2-07-s03", "hu": "Szeretnék egy számlát nyitni.", "ua": "Я хотів би відкрити рахунок.", "note": "szeretnék + обʼєкт + інфінітив у кінці."}
   ]
 }

@@ -217,5 +217,10 @@
     {"pattern": "suf-nominal", "stem": "elfelejteni", "result": "elfelejtés", "ua": "забування"},
     {"pattern": "suf-nominal", "stem": "születni", "result": "születés", "ua": "народження"},
     {"pattern": "suf-nominal", "stem": "megházasodni", "result": "megházasodás", "ua": "одруження"}
+  ],
+  "sentences": [
+    {"id": "b1-04-s01", "hu": "Tavaly költöztünk Budapestre.", "ua": "Торік ми переїхали до Будапешта.", "note": "Час у фокусі перед дієсловом, напрямок після."},
+    {"id": "b1-04-s02", "hu": "Amikor megérkeztünk, már este volt.", "ua": "Коли ми прибули, був уже вечір.", "note": "Підрядне з amikor на початку, кома, головне речення."},
+    {"id": "b1-04-s03", "hu": "Nem emlékszem, hogy mikor történt.", "ua": "Я не памʼятаю, коли це сталось.", "note": "Непряме питання: hogy + питальне слово."}
   ]
 }

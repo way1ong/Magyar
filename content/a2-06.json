@@ -277,5 +277,10 @@
     {"pattern": "suf-causal", "stem": "esernyő", "result": "esernyőért", "ua": "за парасолькою"},
     {"pattern": "suf-causal", "stem": "virág", "result": "virágért", "ua": "за квітами"},
     {"pattern": "suf-dative", "stem": "kutya", "result": "kutyának", "ua": "собаці"}
+  ],
+  "sentences": [
+    {"id": "a2-06-s01", "hu": "Holnap esni fog az eső.", "ua": "Завтра піде дощ.", "note": "Майбутнє з fog: інфінітив перед fog, підмет у кінці."},
+    {"id": "a2-06-s02", "hu": "Télen gyakran havazik.", "ua": "Взимку часто сніжить.", "note": "Час на початку, прислівник просто перед дієсловом."},
+    {"id": "a2-06-s03", "hu": "Ha jó idő lesz, kirándulunk.", "ua": "Якщо буде гарна погода, підемо в похід.", "note": "Умова з ha: lesz у кінці підрядного, кома, головне речення."}
   ]
 }
