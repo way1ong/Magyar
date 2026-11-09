@@ -151,6 +151,9 @@ export default function Home() {
       <Link href="/sentences" className="btn" style={{ marginBottom: 10 }}>
         📝 Речення <span className="badge">{stats?.sentence ?? "…"}</span>
       </Link>
+      <Link href="/dictionary" className="btn ghost" style={{ marginBottom: 10 }}>
+        📖 Словник
+      </Link>
       {AUDIO_ENABLED && (
         <Link href="/dictation" className="btn" style={{ marginBottom: 10 }}>
           ✍️ Диктант <span className="badge">{stats?.dictation ?? "…"}</span>
