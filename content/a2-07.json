@@ -9,7 +9,6 @@
     {"id": "a2-07-messze-van-innen", "type": "phrase", "hu": "Messze van innen?", "ua": "Це далеко звідси?", "pos": "phrase", "tags": ["directions"]},
     {"id": "a2-07-gyalog-tiz-perc", "type": "phrase", "hu": "Gyalog tíz perc.", "ua": "Пішки десять хвилин.", "pos": "phrase", "tags": ["directions"]},
     {"id": "a2-07-a-sarkon-van", "type": "phrase", "hu": "A sarkon van.", "ua": "Це на розі.", "pos": "phrase", "tags": ["directions"]},
-    {"id": "a2-07-nyitva-van", "type": "phrase", "hu": "Nyitva van?", "ua": "Відчинено?", "pos": "phrase", "tags": ["service"]},
     {"id": "a2-07-sajnos-zarva", "type": "phrase", "hu": "Sajnos zárva.", "ua": "На жаль, зачинено.", "pos": "phrase", "tags": ["service"]},
     {"id": "a2-07-hany-orakor-nyit", "type": "phrase", "hu": "Hány órakor nyit?", "ua": "О котрій відчиняється?", "pos": "phrase", "tags": ["service"]},
     {"id": "a2-07-szeretnek-idopontot-kerni", "type": "phrase", "hu": "Szeretnék időpontot kérni.", "ua": "Я хотів би записатися на прийом.", "pos": "phrase", "tags": ["service"]},
@@ -18,7 +17,6 @@
     {"id": "a2-07-hol-a-legkozelebbi-bankautomata", "type": "phrase", "hu": "Hol a legközelebbi bankautomata?", "ua": "Де найближчий банкомат?", "pos": "phrase", "tags": ["bank"]},
     {"id": "a2-07-fel-szeretnek-adni-egy-csomagot", "type": "phrase", "hu": "Fel szeretnék adni egy csomagot.", "ua": "Я хочу відправити посилку.", "pos": "phrase", "tags": ["post"]},
     {"id": "a2-07-kerek-egy-belyeget", "type": "phrase", "hu": "Kérek egy bélyeget.", "ua": "Прошу одну марку.", "pos": "phrase", "tags": ["post"]},
-    {"id": "a2-07-eltevedtem", "type": "phrase", "hu": "Eltévedtem.", "ua": "Я заблукав / заблукала.", "pos": "phrase", "tags": ["directions"]},
     {"id": "a2-07-elvesztettem-a-penztarcamat", "type": "phrase", "hu": "Elvesztettem a pénztárcámat.", "ua": "Я загубив / загубила гаманець.", "pos": "phrase", "tags": ["emergency"]},
     {"id": "a2-07-hivja-a-rendorseget", "type": "phrase", "hu": "Hívja a rendőrséget!", "ua": "Викличте поліцію!", "pos": "phrase", "tags": ["emergency"]},
     {"id": "a2-07-hajat-szeretnek-vagatni", "type": "phrase", "hu": "Hajat szeretnék vágatni.", "ua": "Я хочу підстригтися.", "pos": "phrase", "tags": ["service"]},
@@ -130,7 +128,7 @@
     {"id": "a2-07-at", "type": "word", "hu": "át", "ua": "через", "pos": "adv", "example": {"hu": "A hídon át.", "ua": "Через міст."}}
   ],
   "patterns": [
-    {"id": "suf-nominal", "frames": {"verb": { "hu": "A ___ nehéz.", "ua": "___ — це важко." }}, "name": "-ás / -és (дія → іменник)", "short": "дія як іменник (-ання, -ння)", "meaning": "іменник дії від дієслова: parkolni → parkolás (паркування), fizetni → fizetés (оплата), foglalni → foglalás (бронювання); основа — інфінітив без -ni (-ani/-eni): takarítani → takarítás; часто це готове слово: lakás (квартира), állás (робота), utazás (подорож), bejárat ← bejárni; нерегулярні основи: vásárolni → vásárlás, enni → evés, inni → ivás, aludni → alvás", "forms": {"back": "ás", "front": "és", "front_rounded": "és"}, "attachesTo": ["verb"], "attachesTag": "nominal", "fromInfinitive": true, "examples": [
+    {"id": "suf-nominal", "frames": {"verb": { "hu": "A ___ nehéz.", "ua": "___ — це важко." }}, "name": "-ás / -és (дія → іменник)", "short": "дія як іменник (-ання, -ння)", "meaning": "іменник дії від дієслова: parkolni → parkolás (паркування), fizetni → fizetés (оплата), foglalni → foglalás (бронювання); основа — інфінітив без -ni (-ani/-eni): takarítani → takarítás; часто це готове слово: lakás (квартира), állás (робота), utazás (подорож); нерегулярні основи: vásárolni → vásárlás, enni → evés, inni → ivás, aludni → alvás", "forms": {"back": "ás", "front": "és", "front_rounded": "és"}, "attachesTo": ["verb"], "attachesTag": "nominal", "fromInfinitive": true, "examples": [
       {"stem": "parkolni", "result": "parkolás", "ua": "паркування"},
       {"stem": "fizetni", "result": "fizetés", "ua": "оплата; зарплата"},
       {"stem": "foglalni", "result": "foglalás", "ua": "бронювання"},
@@ -182,16 +180,16 @@
     ] }
   ],
   "examples": [
-    {"pattern": "suf-accusative", "stem": "bélyeg", "result": "bélyeget", "ua": "(kérek) марку"},
-    {"pattern": "suf-accusative", "stem": "számla", "result": "számlát", "ua": "(kérem) рахунок"},
-    {"pattern": "suf-accusative", "stem": "igazolvány", "result": "igazolványt", "ua": "(mutatom) посвідчення"},
-    {"pattern": "suf-accusative", "stem": "nyomtatvány", "result": "nyomtatványt", "ua": "(kitöltöm) бланк"},
-    {"pattern": "suf-accusative", "stem": "ügy", "result": "ügyet", "ua": "(intézek) справу"},
-    {"pattern": "suf-accusative", "stem": "kölcsön", "result": "kölcsönt", "ua": "(kérek) позику"},
-    {"pattern": "suf-accusative", "stem": "parkolójegy", "result": "parkolójegyet", "ua": "(veszek) паркувальний квиток"},
-    {"pattern": "suf-accusative", "stem": "boríték", "result": "borítékot", "ua": "(kérek) конверт"},
-    {"pattern": "suf-accusative", "stem": "díj", "result": "díjat", "ua": "(fizetem) плату"},
-    {"pattern": "suf-accusative", "stem": "forgalom", "result": "forgalmat", "ua": "(látom) рух, трафік"},
+    {"pattern": "suf-accusative", "stem": "bélyeg", "result": "bélyeget", "ua": "(прошу) марку"},
+    {"pattern": "suf-accusative", "stem": "számla", "result": "számlát", "ua": "(прошу) рахунок"},
+    {"pattern": "suf-accusative", "stem": "igazolvány", "result": "igazolványt", "ua": "(показую) посвідчення"},
+    {"pattern": "suf-accusative", "stem": "nyomtatvány", "result": "nyomtatványt", "ua": "(заповнюю) бланк"},
+    {"pattern": "suf-accusative", "stem": "ügy", "result": "ügyet", "ua": "(залагоджую) справу"},
+    {"pattern": "suf-accusative", "stem": "kölcsön", "result": "kölcsönt", "ua": "(прошу) позику"},
+    {"pattern": "suf-accusative", "stem": "parkolójegy", "result": "parkolójegyet", "ua": "(купую) паркувальний квиток"},
+    {"pattern": "suf-accusative", "stem": "boríték", "result": "borítékot", "ua": "(прошу) конверт"},
+    {"pattern": "suf-accusative", "stem": "díj", "result": "díjat", "ua": "(плачу) плату"},
+    {"pattern": "suf-accusative", "stem": "forgalom", "result": "forgalmat", "ua": "(бачу) рух, трафік"},
     {"pattern": "suf-plural", "stem": "bank", "result": "bankok", "ua": "банки"},
     {"pattern": "suf-plural", "stem": "hivatal", "result": "hivatalok", "ua": "установи"},
     {"pattern": "suf-plural", "stem": "ügy", "result": "ügyek", "ua": "справи"},

@@ -78,19 +78,25 @@ export function previewIntervals(row: CardRow): Record<Grade, string> {
 }
 
 /**
- * One session's worth of cards. Due cards first (started ones before new,
- * at most `newLimit` new), and when fewer than `minimum` are due, the
- * queue is topped up with the soonest cards ahead of schedule — learning
- * cards due in minutes, then reviews, then more new ones — so "Ще раз"
+ * One session's worth of cards: up to `newLimit` new cards are always
+ * included when there are any, and the rest of the `limit` goes to due
+ * cards, oldest first. (Cards in learning come back after 1–10 minutes, so
+ * without the guaranteed share of new cards a session would be filled by
+ * the same few cards and progress would stall.) When fewer than `minimum`
+ * are due, the queue is topped up with the soonest cards ahead of schedule
+ * — learning cards first, then reviews, then more new ones — so "Ще раз"
  * always has something to practise. Reviewing early is fine for FSRS.
  */
 export async function sessionCards(exercise: Exercise, limit = 20, newLimit = 10, minimum = 8): Promise<CardRow[]> {
   const now = Date.now();
   const all = await db.cards.where("exercise").equals(exercise).toArray();
   const due = all.filter((c) => c.due <= now);
-  const review = due.filter((c) => c.state !== 0).sort((a, b) => a.due - b.due);
   const fresh = due.filter((c) => c.state === 0).slice(0, newLimit);
-  const q = [...review, ...fresh].slice(0, limit);
+  const review = due
+    .filter((c) => c.state !== 0)
+    .sort((a, b) => a.due - b.due)
+    .slice(0, Math.max(0, limit - fresh.length));
+  const q = [...review, ...fresh];
   if (q.length < minimum) {
     const have = new Set(q.map((c) => c.key));
     const ahead = all

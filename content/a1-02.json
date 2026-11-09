@@ -44,7 +44,7 @@
     { "id": "a1-02-sutemeny", "type": "word", "hu": "sütemény", "ua": "тістечко, печиво", "pos": "noun", "harmony": "front", "tags": ["food", "last-syllable-rule"] },
     { "id": "a1-02-csokolade", "type": "word", "hu": "csokoládé", "ua": "шоколад", "pos": "noun", "harmony": "back", "example": { "hu": "Szeretem a csokoládét.", "ua": "Я люблю шоколад." }, "tags": ["food", "mixed-vowel"] },
     { "id": "a1-02-tea", "type": "word", "hu": "tea", "ua": "чай", "pos": "noun", "harmony": "back", "example": { "hu": "Kérek egy teát.", "ua": "Мені чай, будь ласка." }, "tags": ["drink", "last-syllable-rule"] },
-    { "id": "a1-02-udito", "type": "word", "hu": "üdítő", "ua": "безалкогольний напій", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "Kérsz egy üdítőt?", "ua": "Будеш щось попити?" }, "tags": ["drink"] },
+    { "id": "a1-02-udito", "type": "word", "hu": "üdítő", "ua": "безалкогольний напій", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "Kérsz egy üdítőt?", "ua": "Хочеш якийсь безалкогольний напій?" }, "tags": ["drink"] },
     { "id": "a1-02-asvanyviz", "type": "word", "hu": "ásványvíz", "ua": "мінеральна вода", "pos": "noun", "harmony": "front", "forms": {"stem": "ásványviz"}, "example": { "hu": "Egy ásványvizet kérek.", "ua": "Мені мінеральну воду." }, "tags": ["drink", "compound"] },
 
     { "id": "a1-02-reggeli", "type": "word", "hu": "reggeli", "ua": "сніданок", "pos": "noun", "harmony": "front", "example": { "hu": "Kész a reggeli!", "ua": "Сніданок готовий!" }, "tags": ["meal"] },

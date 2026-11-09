@@ -12,7 +12,7 @@
     { "id": "a2-02-azonnal-allitsa-le", "type": "phrase", "hu": "Azonnal állítsa le a munkát!", "ua": "Негайно зупиніть роботу!", "pos": "phrase", "tags": ["orders"] },
     { "id": "a2-02-zarja-el-a-gazt", "type": "phrase", "hu": "Zárja el a gázt!", "ua": "Перекрийте газ!", "pos": "phrase", "tags": ["orders"] },
     { "id": "a2-02-szelloztessen", "type": "phrase", "hu": "Szellőztessen!", "ua": "Провітріть!", "pos": "phrase", "tags": ["orders"] },
-    { "id": "a2-02-tuzriado-gyakorlat", "type": "phrase", "hu": "Tűzriadó gyakorlat lesz.", "ua": "Буде навчальна пожежна тривога.", "pos": "phrase", "tags": ["training"] },
+    { "id": "a2-02-tuzriado-gyakorlat", "type": "phrase", "hu": "Tűzriadó-gyakorlat lesz.", "ua": "Буде навчальна пожежна тривога.", "pos": "phrase", "tags": ["training"] },
     { "id": "a2-02-hanyan-dolgoznak", "type": "phrase", "hu": "Hányan dolgoznak itt?", "ua": "Скільки людей тут працює?", "pos": "phrase", "tags": ["work"] },
     { "id": "a2-02-ki-a-felelos", "type": "phrase", "hu": "Ki a felelős?", "ua": "Хто відповідальний?", "pos": "phrase", "tags": ["work"] },
     { "id": "a2-02-ne-hagyja-nyitva", "type": "phrase", "hu": "Ne hagyja nyitva!", "ua": "Не залишайте відкритим!", "pos": "phrase", "tags": ["orders"] },
@@ -119,7 +119,7 @@
     {"id": "a2-02-merni", "type": "word", "hu": "mérni", "ua": "вимірювати", "pos": "verb", "harmony": "front", "example": {"hu": "Naponta mérjük a hőmérsékletet.", "ua": "Щодня ми вимірюємо температуру."}, "conj": {"tr": true}},
     {"id": "a2-02-beallitani", "type": "word", "hu": "beállítani", "ua": "налаштувати", "pos": "verb", "harmony": "back", "example": {"hu": "Beállítottam a gépet.", "ua": "Я налаштував машину."}, "conj": {"tr": true}},
     {"id": "a2-02-jelezni", "type": "word", "hu": "jelezni", "ua": "сигналізувати, давати знак", "pos": "verb", "harmony": "front", "example": {"hu": "Jelezd a hibát!", "ua": "Повідом про несправність!"}, "conj": {"vstem": "jelz", "tr": true}},
-    {"id": "a2-02-kiuriteni", "type": "word", "hu": "kiüríteni", "ua": "евакуювати (приміщення), спорожнити", "pos": "verb", "harmony": "front", "example": {"hu": "Ürítsék ki a csarnokot!", "ua": "Евакуюйте корпус!"}, "conj": {"tr": true}},
+    {"id": "a2-02-kiuriteni", "type": "word", "hu": "kiüríteni", "ua": "евакуювати (приміщення), спорожнити", "pos": "verb", "harmony": "front", "example": {"hu": "Ürítsék ki a csarnokot!", "ua": "Евакуюйте цех!"}, "conj": {"tr": true}},
     {"id": "a2-02-tulorazni", "type": "word", "hu": "túlórázni", "ua": "працювати понаднормово", "pos": "verb", "harmony": "back", "example": {"hu": "Ma túlóráztam.", "ua": "Сьогодні я працював понаднормово."}, "conj": {"ik": true}}
   ],
   "patterns": [

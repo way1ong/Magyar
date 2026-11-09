@@ -83,7 +83,7 @@
     { "id": "a1-01-sor", "type": "word", "hu": "sör", "ua": "пиво", "pos": "noun", "harmony": "front_rounded", "example": { "hu": "Kérek egy sört.", "ua": "Прошу одне пиво." }, "tags": ["food"] },
     { "id": "a1-01-gyumolcs", "type": "word", "hu": "gyümölcs", "ua": "фрукт", "pos": "noun", "harmony": "front_rounded", "tags": ["food"] },
     { "id": "a1-01-tukor", "type": "word", "hu": "tükör", "ua": "дзеркало", "pos": "noun", "harmony": "front_rounded", "forms": {"stem": "tükr"} },
-    { "id": "a1-01-furdo", "type": "word", "hu": "fürdő", "ua": "ванна кімната; купальня", "pos": "noun", "harmony": "front_rounded", "tags": ["place"] },
+    { "id": "a1-01-furdo", "type": "word", "hu": "fürdő", "ua": "ванна кімната (розм.); купальня, лазня", "pos": "noun", "harmony": "front_rounded", "tags": ["place"] },
     { "id": "a1-01-tuz", "type": "word", "hu": "tűz", "ua": "вогонь", "pos": "noun", "harmony": "front_rounded", "forms": {"stem": "tüz", "low": true} },
 
     {"id": "a1-01-nagy", "type": "word", "hu": "nagy", "ua": "великий", "pos": "adj", "harmony": "back", "forms": {"comp": "nagyobb", "adv": "nagyon"}, "tags": ["quality", "grad"]},
@@ -98,7 +98,7 @@
     { "id": "a1-01-hideg", "type": "word", "hu": "hideg", "ua": "холодний", "pos": "adj", "harmony": "front", "tags": ["grad"] },
     { "id": "a1-01-zold", "type": "word", "hu": "zöld", "ua": "зелений", "pos": "adj", "harmony": "front_rounded", "tags": ["grad"] },
 
-    {"id": "a1-01-menni", "type": "word", "hu": "menni", "ua": "іти, їхати", "pos": "verb", "harmony": "front", "example": {"hu": "Haza megyek.", "ua": "Я йду додому."}},
+    {"id": "a1-01-menni", "type": "word", "hu": "menni", "ua": "іти, їхати", "pos": "verb", "harmony": "front", "example": {"hu": "Hazamegyek.", "ua": "Я йду додому."}},
     {"id": "a1-01-jonni", "type": "word", "hu": "jönni", "ua": "приходити", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Jövök!", "ua": "Іду! (вже йду до вас)"}},
     {"id": "a1-01-enni", "type": "word", "hu": "enni", "ua": "їсти", "pos": "verb", "harmony": "front", "forms": {"stem": "ev"}, "example": {"hu": "Eszem egy almát.", "ua": "Я їм яблуко."}, "tags": ["nominal"]},
     {"id": "a1-01-inni", "type": "word", "hu": "inni", "ua": "пити", "pos": "verb", "harmony": "back", "forms": {"stem": "iv"}, "example": {"hu": "Iszom egy kávét.", "ua": "Я пʼю каву."}, "tags": ["nominal", "exception"]},
@@ -138,7 +138,7 @@
       "examples": [
         { "stem": "bolt", "result": "boltba", "ua": "у магазин" },
         { "stem": "kert", "result": "kertbe", "ua": "у сад" },
-        { "stem": "fürdő", "result": "fürdőbe", "ua": "у ванну" }
+        { "stem": "fürdő", "result": "fürdőbe", "ua": "у ванну кімнату" }
       ]
     },
     {

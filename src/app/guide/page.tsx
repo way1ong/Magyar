@@ -4,6 +4,7 @@ import Link from "next/link";
 import guide from "@content/guide.json";
 import { allPatterns, patternShort } from "@/lib/content";
 import { ConjTables, conjGuideText } from "@/components/ConjGuide";
+import { grammarSections } from "@/components/GrammarTables";
 
 interface Example {
   hu: string;
@@ -24,7 +25,8 @@ function Examples({ items }: { items: Example[] }) {
 
 /**
  * Reference: how Hungarian differs from Ukrainian, and the grammar terms the
- * exercises use. Content lives in content/guide.json. The three sections are
+ * exercises use, plus the alphabet and grammar tables. Content lives in
+ * content/guide.json and components/GrammarTables.tsx. The sections are
  * collapsible (closed by default, forced open while searching); the browser
  * keeps a <details> toggle, so nothing is stored.
  */
@@ -42,6 +44,7 @@ export default function GuidePage() {
   const suffixes = allPatterns.filter((p) =>
     hit(p.name, patternShort(p), p.meaning, ...p.examples.flatMap((e) => [e.result, e.ua]))
   );
+  const tables = grammarSections().filter((t) => hit(t.title, t.text));
   const conjNotes = guide.conjugation.filter((c) => hit(c.title, c.text));
   const conjTables = hit("дієвідміна дієслово відміна", conjGuideText());
 
@@ -70,6 +73,17 @@ export default function GuidePage() {
         </details>
       ))}
 
+      </details>
+
+      <details className="guide-section" open={!!needle || undefined}>
+      <summary><h2 className="guide-h2">Алфавіт і таблиці <span className="muted">({tables.length})</span></h2></summary>
+      {tables.length === 0 && <p className="muted">Нічого не знайдено.</p>}
+      {tables.map((t) => (
+        <details key={t.key} className="guide-item" open={!!needle}>
+          <summary>{t.title}</summary>
+          {t.body}
+        </details>
+      ))}
       </details>
 
       <details className="guide-section" open={!!needle || undefined}>

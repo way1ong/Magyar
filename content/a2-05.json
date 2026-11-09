@@ -158,7 +158,6 @@
     { "pattern": "suf-adjectival-s", "stem": "zseb", "result": "zsebes", "ua": "з кишенями" },
     { "pattern": "suf-adjectival-s", "stem": "cipzár", "result": "cipzáras", "ua": "на блискавці" },
     { "pattern": "suf-adjectival-s", "stem": "gyapjú", "result": "gyapjús", "ua": "вовняний (з вовною)" },
-    { "pattern": "suf-adjectival-i", "stem": "üzlet", "result": "üzleti", "ua": "діловий; магазинний" },
-    { "pattern": "suf-adjectival-i", "stem": "divat", "result": "divati", "ua": "модний (що стосується моди)" }
+    { "pattern": "suf-adjectival-i", "stem": "üzlet", "result": "üzleti", "ua": "діловий; магазинний" }
   ]
 }
