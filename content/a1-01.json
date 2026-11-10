@@ -106,7 +106,7 @@
     {"id": "a1-01-dolgozni", "type": "word", "hu": "dolgozni", "ua": "працювати", "pos": "verb", "harmony": "back", "example": {"hu": "Gyárban dolgozom.", "ua": "Я працюю на заводі."}, "conj": {"ik": true}},
     {"id": "a1-01-tanulni", "type": "word", "hu": "tanulni", "ua": "вчитися, вчити", "pos": "verb", "harmony": "back", "example": {"hu": "Magyarul tanulok.", "ua": "Я вчу угорську."}, "tags": ["nominal"], "conj": {"tr": true}},
     {"id": "a1-01-beszelni", "type": "word", "hu": "beszélni", "ua": "говорити", "pos": "verb", "harmony": "front", "example": {"hu": "Beszélsz angolul?", "ua": "Ти говориш англійською?"}},
-    {"id": "a1-01-erteni", "type": "word", "hu": "érteni", "ua": "розуміти", "pos": "verb", "tags": ["potadj"], "harmony": "front", "example": {"hu": "Értem.", "ua": "Розумію."}, "conj": {"tr": true}},
+    {"id": "a1-01-erteni", "type": "word", "hu": "érteni", "ua": "розуміти", "pos": "verb", "tags": ["negpot", "potadj"], "harmony": "front", "example": {"hu": "Értem.", "ua": "Розумію."}, "conj": {"tr": true}},
     {"id": "a1-01-tudni", "type": "word", "hu": "tudni", "ua": "знати; вміти, могти", "pos": "verb", "harmony": "back", "example": {"hu": "Nem tudom.", "ua": "Я не знаю."}, "tags": ["nominal"], "conj": {"tr": true}},
     {"id": "a1-01-szeretni", "type": "word", "hu": "szeretni", "ua": "любити", "pos": "verb", "harmony": "front", "example": {"hu": "Szeretem a kávét.", "ua": "Я люблю каву."}, "conj": {"tr": true}},
     {"id": "a1-01-kerni", "type": "word", "hu": "kérni", "ua": "просити", "pos": "verb", "harmony": "front", "example": {"hu": "Kérek egy sört.", "ua": "Прошу одне пиво."}, "tags": ["nominal"], "conj": {"tr": true}},

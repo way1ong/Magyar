@@ -109,7 +109,7 @@
     {"id": "b1-03-visszakapni", "type": "word", "hu": "visszakapni", "ua": "отримати назад", "pos": "verb", "harmony": "back", "example": {"hu": "Visszakaptam az útlevelemet.", "ua": "Я отримав паспорт назад."}, "conj": {"tr": true}},
     {"id": "b1-03-megkapni", "type": "word", "hu": "megkapni", "ua": "отримати", "pos": "verb", "harmony": "back", "example": {"hu": "Megkaptam a levelet.", "ua": "Я отримав листа."}, "conj": {"tr": true}},
     {"id": "b1-03-elvesziteni", "type": "word", "hu": "elveszíteni", "ua": "загубити", "pos": "verb", "harmony": "front", "example": {"hu": "Elveszítettem a kártyámat.", "ua": "Я загубив свою картку."}, "conj": {"tr": true}},
-    {"id": "b1-03-potolni", "type": "word", "hu": "pótolni", "ua": "замінити (загублене), відновити", "pos": "verb", "harmony": "back", "example": {"hu": "Pótoltam az elveszett kártyát.", "ua": "Я відновив загублену картку."}, "forms": {"stem": "pótl"}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "b1-03-potolni", "type": "word", "hu": "pótolni", "ua": "замінити (загублене), відновити", "pos": "verb", "harmony": "back", "example": {"hu": "Pótoltam az elveszett kártyát.", "ua": "Я відновив загублену картку."}, "forms": {"stem": "pótl"}, "tags": ["negpot", "nominal"], "conj": {"tr": true}},
     {"id": "b1-03-szemelyesen", "type": "word", "hu": "személyesen", "ua": "особисто", "pos": "adv", "example": {"hu": "Személyesen kell menni.", "ua": "Треба йти особисто."}},
     {"id": "b1-03-online", "type": "word", "hu": "online", "ua": "онлайн", "pos": "adv"},
     {"id": "b1-03-elektronikusan", "type": "word", "hu": "elektronikusan", "ua": "в електронній формі", "pos": "adv"},

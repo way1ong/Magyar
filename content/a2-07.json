@@ -116,7 +116,7 @@
     {"id": "a2-07-ulni", "type": "word", "hu": "ülni", "ua": "сидіти", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "A padon ülök.", "ua": "Я сиджу на лавці."}, "tags": ["nominal"]},
     {"id": "a2-07-allni", "type": "word", "hu": "állni", "ua": "стояти", "pos": "verb", "harmony": "back", "example": {"hu": "A megállóban állunk.", "ua": "Ми стоїмо на зупинці."}, "tags": ["nominal"], "conj": {"link": false, "past": "t"}},
     {"id": "a2-07-mondani", "type": "word", "hu": "mondani", "ua": "казати", "pos": "verb", "harmony": "back", "example": {"hu": "Mit mondott?", "ua": "Що він сказав?"}, "tags": ["nominal"], "conj": {"tr": true}},
-    {"id": "a2-07-latni", "type": "word", "hu": "látni", "ua": "бачити", "pos": "verb", "harmony": "back", "example": {"hu": "Látom a házat.", "ua": "Я бачу будинок."}, "tags": ["potadj", "nominal"], "conj": {"past": "ott", "tr": true, "link": false, "imp": "láss"}},
+    {"id": "a2-07-latni", "type": "word", "hu": "látni", "ua": "бачити", "pos": "verb", "harmony": "back", "example": {"hu": "Látom a házat.", "ua": "Я бачу будинок."}, "tags": ["negpot", "potadj", "nominal"], "conj": {"past": "ott", "tr": true, "link": false, "imp": "láss"}},
     {"id": "a2-07-hallani", "type": "word", "hu": "hallani", "ua": "чути", "pos": "verb", "harmony": "back", "example": {"hu": "Nem hallom jól.", "ua": "Я погано чую."}, "tags": ["nominal"], "conj": {"tr": true}},
     {"id": "a2-07-nyitva", "type": "word", "hu": "nyitva", "ua": "відчинено", "pos": "adv", "tags": ["service"]},
     {"id": "a2-07-zarva", "type": "word", "hu": "zárva", "ua": "зачинено", "pos": "adv", "tags": ["service"]},
