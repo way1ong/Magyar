@@ -186,5 +186,9 @@
     {"id": "a2-01-s01", "hu": "A gyárban mindig sisakot viselünk.", "ua": "На заводі ми завжди носимо шолом.", "note": "Місце як тема, sisakot у фокусі перед дієсловом (що саме носимо)."},
     {"id": "a2-01-s02", "hu": "Baleset esetén hívd a mentőket!", "ua": "У разі аварії викликай швидку!", "note": "Наказ: обставина, дієслово, обʼєкт після дієслова."},
     {"id": "a2-01-s03", "hu": "Nem szabad dohányozni a csarnokban.", "ua": "У цеху не можна курити.", "note": "nem szabad + інфінітив; місце в кінці."}
+  ],
+  "dialogues": [
+    {"id": "a2-01-d01", "title": "Інструктаж", "lines": [{"who": "A", "hu": "A csarnokban sisak kötelező.", "ua": "У цеху шолом обовʼязковий."}, {"who": "B", "hu": "Értem. És a kesztyű?", "ua": "Зрозуміло. А рукавиці?"}, {"who": "A", "hu": "A kesztyű is. Baleset esetén hívja a mentőket.", "ua": "Рукавиці теж. У разі аварії викликайте швидку."}, {"who": "B", "hu": "Hol van az elsősegélydoboz?", "ua": "Де аптечка?"}, {"who": "A", "hu": "A kijárat mellett, a falon.", "ua": "Біля виходу, на стіні."}], "question": {"q": "Що обовʼязково в цеху?", "options": ["Лише шолом", "Шолом і рукавиці", "Лише рукавиці"], "answer": 1}},
+    {"id": "a2-01-d02", "title": "Пожежна тривога", "lines": [{"who": "A", "hu": "Mi ez a hang?", "ua": "Що це за звук?"}, {"who": "B", "hu": "Tűzriadó. Mindenki menjen a kijárathoz!", "ua": "Пожежна тривога. Усі до виходу!"}, {"who": "A", "hu": "És a gépek?", "ua": "А машини?"}, {"who": "B", "hu": "Kapcsold ki őket, és gyere!", "ua": "Вимкни їх і йди!"}], "question": {"q": "Що треба зробити з машинами?", "options": ["Залишити увімкненими", "Вимкнути", "Винести надвір"], "answer": 1}}
   ]
 }

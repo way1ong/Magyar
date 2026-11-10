@@ -44,6 +44,7 @@ packs.forEach((p, n) => {
   for (const i of p.items) packIndexById.set(i.id, n);
   for (const pt of p.patterns) packIndexById.set(pt.id, n);
   for (const sn of p.sentences ?? []) packIndexById.set(sn.id, n);
+  for (const d of p.dialogues ?? []) packIndexById.set(d.id, n);
 });
 export const packIndexOf = (id: string) => packIndexById.get(id) ?? 0;
 

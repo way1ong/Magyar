@@ -248,5 +248,9 @@
     {"id": "b1-03-s01", "hu": "Szeretném meghosszabbítani a tartózkodási engedélyemet.", "ua": "Я хотів би продовжити свою посвідку на проживання.", "note": "szeretném + інфінітив + означений обʼєкт (присвійна форма)."},
     {"id": "b1-03-s02", "hu": "Milyen papírokat kell beadnom?", "ua": "Які документи мені треба подати?", "note": "kell + інфінітив з особовим закінченням: beadnom = мені подати."},
     {"id": "b1-03-s03", "hu": "A kérelmet itt lehet leadni.", "ua": "Заяву можна подати тут.", "note": "Тема на початку, itt у фокусі перед lehet, інфінітив у кінці."}
+  ],
+  "dialogues": [
+    {"id": "b1-03-d01", "title": "В імміграційній службі", "lines": [{"who": "A", "hu": "Szeretném meghosszabbítani a tartózkodási engedélyemet.", "ua": "Я хотів би продовжити посвідку на проживання."}, {"who": "B", "hu": "Milyen papírokat hozott?", "ua": "Які документи ви принесли?"}, {"who": "A", "hu": "Útlevelet, munkaszerződést és lakcímkártyát.", "ua": "Паспорт, трудовий договір і картку адреси."}, {"who": "B", "hu": "Jó. Töltse ki a kérelmet, és húzzon sorszámot!", "ua": "Добре. Заповніть заяву й візьміть номерок!"}], "question": {"q": "Чого бракує в переліку документів?", "options": ["Паспорта", "Трудового договору", "Усе є"], "answer": 2}},
+    {"id": "b1-03-d02", "title": "Переклад документа", "lines": [{"who": "A", "hu": "Le kell fordíttatnom a diplomámat.", "ua": "Мені треба перекласти диплом."}, {"who": "B", "hu": "Hiteles fordítás kell?", "ua": "Потрібен засвідчений переклад?"}, {"who": "A", "hu": "Igen, a hivatal kéri.", "ua": "Так, відомство вимагає."}, {"who": "B", "hu": "Akkor a fordítóirodához menjen, nem hozzám.", "ua": "Тоді йдіть у бюро перекладів, не до мене."}], "question": {"q": "Куди треба йти?", "options": ["До нотаріуса", "У бюро перекладів", "У банк"], "answer": 1}}
   ]
 }

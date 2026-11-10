@@ -27,6 +27,7 @@ async function loadStats() {
     const dic = await dueCount("dictation");
     const cnj = await dueCount("conj");
     const sen = await dueCount("sentence");
+    const dia = await dueCount("dialogue");
     const s = await streak();
     const t = await todayCount();
     const learned = await db.cards.where("state").notEqual(0).count();
@@ -36,7 +37,7 @@ async function loadStats() {
     const open = await unlockedCount(boss);
     const day = await dayDone();
     const mistakes = Object.values(await mistakeCounts()).reduce((a, b) => a + b, 0);
-    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, sentence: sen, streak: s, today: t, learned, total, boss, open, progress, day, mistakes };
+    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, sentence: sen, dialogue: dia, streak: s, today: t, learned, total, boss, open, progress, day, mistakes };
   });
 }
 
@@ -177,6 +178,9 @@ export default function Home() {
       </Link>
       <Link href="/sentences" className="btn" style={{ marginBottom: 10 }}>
         📝 Речення <span className="badge">{stats?.sentence ?? "…"}</span>
+      </Link>
+      <Link href="/dialogues" className="btn" style={{ marginBottom: 10 }}>
+        💬 Діалоги <span className="badge">{stats?.dialogue ?? "…"}</span>
       </Link>
       {stats && stats.mistakes > 0 && (
         <Link href="/mistakes" className="btn" style={{ marginBottom: 10 }}>

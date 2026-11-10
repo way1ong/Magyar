@@ -164,5 +164,9 @@
     {"id": "a2-05-s01", "hu": "Ez a kabát túl drága.", "ua": "Це пальто надто дороге.", "note": "У 3-й особі теперішнього часу van не потрібне: ez a kabát + прикметник."},
     {"id": "a2-05-s02", "hu": "Felpróbálhatom ezt a cipőt?", "ua": "Можна приміряти ці туфлі?", "note": "Питання без питального слова: порядок як у твердженні, дієслово першим."},
     {"id": "a2-05-s03", "hu": "Nem a pirosat kérem, hanem a kéket.", "ua": "Я прошу не червоний, а синій.", "note": "nem … hanem: заперечений фокус перед дієсловом, hanem вводить правильний."}
+  ],
+  "dialogues": [
+    {"id": "a2-05-d01", "title": "У магазині одягу", "lines": [{"who": "A", "hu": "Felpróbálhatom ezt a kabátot?", "ua": "Можна приміряти це пальто?"}, {"who": "B", "hu": "Persze. Milyen méret?", "ua": "Звісно. Який розмір?"}, {"who": "A", "hu": "M. Van kékben is?", "ua": "M. Є і в синьому?"}, {"who": "B", "hu": "Igen, tessék. A próbafülke ott van.", "ua": "Так, прошу. Примірочна там."}], "question": {"q": "Який колір хоче покупець?", "options": ["Червоний", "Синій", "Чорний"], "answer": 1}},
+    {"id": "a2-05-d02", "title": "Повернення", "lines": [{"who": "A", "hu": "Szeretném visszavinni ezt a cipőt.", "ua": "Я хотів би повернути ці туфлі."}, {"who": "B", "hu": "Mi a probléma?", "ua": "У чому проблема?"}, {"who": "A", "hu": "Kicsi. Van nagyobb?", "ua": "Малі. Є більші?"}, {"who": "B", "hu": "Sajnos nincs. Visszaadjuk a pénzt.", "ua": "На жаль, немає. Повернемо гроші."}], "question": {"q": "Чим закінчилась розмова?", "options": ["Обміняли на більший розмір", "Повернули гроші", "Покупець залишив туфлі"], "answer": 1}}
   ]
 }

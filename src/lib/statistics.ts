@@ -50,6 +50,7 @@ const EXERCISE_LABEL: Record<Exercise, string> = {
   builder: "Конструктор",
   conj: "Дієвідміна",
   sentence: "Речення",
+  dialogue: "Діалоги",
   dictation: "Диктант",
 };
 

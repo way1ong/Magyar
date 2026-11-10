@@ -267,5 +267,9 @@
     {"id": "b1-02-s01", "hu": "Megkérhetlek, hogy küldd el a jelentést?", "ua": "Можу попросити тебе надіслати звіт?", "note": "hogy + наказовий спосіб у підрядному (küldd el): префікс після дієслова."},
     {"id": "b1-02-s02", "hu": "Sajnos nem tudok ma jönni.", "ua": "На жаль, я сьогодні не можу прийти.", "note": "sajnos на початку, nem просто перед tudok, інфінітив у кінці."},
     {"id": "b1-02-s03", "hu": "Ebben nem értek egyet veled.", "ua": "У цьому я з тобою не згоден.", "note": "Заперечення розриває egyetért: nem értek egyet."}
+  ],
+  "dialogues": [
+    {"id": "b1-02-d01", "title": "Нарада", "lines": [{"who": "A", "hu": "Egyeztessünk egy időpontot a megbeszélésre!", "ua": "Узгодьмо час наради!"}, {"who": "B", "hu": "Kedden tízkor jó?", "ua": "У вівторок о десятій підходить?"}, {"who": "A", "hu": "Sajnos akkor nem tudok. Szerdán?", "ua": "На жаль, тоді не можу. У середу?"}, {"who": "B", "hu": "Szerdán tízkor rendben. Küldök meghívót.", "ua": "У середу о десятій гаразд. Надішлю запрошення."}], "question": {"q": "Коли буде нарада?", "options": ["У вівторок о десятій", "У середу о десятій", "У четвер"], "answer": 1}},
+    {"id": "b1-02-d02", "title": "Вибачення", "lines": [{"who": "A", "hu": "Sajnálom, hibáztam a jelentésben.", "ua": "Вибачте, я помилився у звіті."}, {"who": "B", "hu": "Semmi baj. Kijavítottad?", "ua": "Нічого страшного. Виправив?"}, {"who": "A", "hu": "Igen, és elküldtem az új verziót.", "ua": "Так, і надіслав нову версію."}, {"who": "B", "hu": "Köszönöm, megnézem.", "ua": "Дякую, подивлюсь."}], "question": {"q": "Що зробив працівник після помилки?", "options": ["Нічого", "Виправив і надіслав нову версію", "Пішов додому"], "answer": 1}}
   ]
 }

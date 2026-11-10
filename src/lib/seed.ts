@@ -2,6 +2,7 @@ import { allItems, packIndexOf } from "./content";
 import { builderTasks, harmonyTasks, taskPackIndex } from "./builder";
 import { conjTasks, conjTaskPackIndex } from "./conjcards";
 import { sentenceTasks } from "./sentences";
+import { dialogueTasks } from "./dialogues";
 import { db } from "./db";
 import { dictationItems } from "./dictation";
 import { unlockedCount } from "./progress";
@@ -30,6 +31,7 @@ export function seedCards(force = false): Promise<void> {
     await ensureCards("builder", builderTasks.filter((t) => taskPackIndex(t) < open).map((t) => t.id));
     await ensureCards("conj", conjTasks.filter((t) => conjTaskPackIndex(t) < open).map((t) => t.id));
     await ensureCards("sentence", sentenceTasks.filter((t) => t.packIndex < open).map((t) => t.id));
+    await ensureCards("dialogue", dialogueTasks.filter((t) => t.packIndex < open).map((t) => t.id));
     if (AUDIO_ENABLED) await ensureCards("dictation", dictationItems.filter((i) => inOpen(i.id)).map((i) => i.id));
   })().catch((e) => {
     seeding = null;

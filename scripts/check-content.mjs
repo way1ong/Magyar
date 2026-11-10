@@ -139,6 +139,19 @@ for (const { f, pack } of packs) {
     if (/[…_/]/.test(sn.hu ?? "")) err(`${f} sentences/${sn.id}: placeholder in hu`);
     if (!/[.!?]$/.test(sn.hu ?? "")) err(`${f} sentences/${sn.id}: hu must end with . ! or ?`);
   }
+  // Dialogues: id under the pack, 3–6 lines with hu/ua, a question whose answer index is valid.
+  const diaIds = new Set();
+  for (const d of pack.dialogues ?? []) {
+    if (!d.id?.startsWith(pack.id + "-d")) err(`${f} dialogues: bad id ${d.id}`);
+    if (diaIds.has(d.id)) err(`${f} dialogues: duplicate id ${d.id}`);
+    diaIds.add(d.id);
+    if (!d.title) err(`${f} dialogues/${d.id}: title required`);
+    if (!Array.isArray(d.lines) || d.lines.length < 3 || d.lines.length > 6) err(`${f} dialogues/${d.id}: 3–6 lines`);
+    for (const l of d.lines ?? []) if (!l.who || !l.hu || !l.ua) err(`${f} dialogues/${d.id}: line needs who, hu, ua`);
+    const q = d.question;
+    if (!q?.q || !Array.isArray(q.options) || q.options.length < 2 || !(q.answer >= 0 && q.answer < q.options.length)) err(`${f} dialogues/${d.id}: bad question`);
+    if (q && new Set(q.options).size !== q.options.length) err(`${f} dialogues/${d.id}: duplicate options`);
+  }
   for (const ex of pack.examples ?? []) {
     const p = patterns.get(ex.pattern);
     if (!p) { err(`${f}: example for unknown pattern "${ex.pattern}"`); continue; }

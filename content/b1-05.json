@@ -227,5 +227,9 @@
     {"id": "b1-05-s01", "hu": "Itt nem szabad parkolni.", "ua": "Тут не можна паркуватись.", "note": "itt як тема, nem szabad + інфінітив."},
     {"id": "b1-05-s02", "hu": "Lassíts, mert iskola van a közelben!", "ua": "Сповільнись, бо поблизу школа!", "note": "Наказ, кома, mert вводить причину."},
     {"id": "b1-05-s03", "hu": "Az autót a ház előtt parkoltam le.", "ua": "Я припаркував авто перед будинком.", "note": "Місце у фокусі перед дієсловом, тому префікс le іде після нього."}
+  ],
+  "dialogues": [
+    {"id": "b1-05-d01", "title": "Поліція зупинила", "lines": [{"who": "A", "hu": "Jó napot! Kérem a jogosítványát.", "ua": "Добрий день! Ваші права, будь ласка."}, {"who": "B", "hu": "Tessék. Mi a probléma?", "ua": "Прошу. У чому проблема?"}, {"who": "A", "hu": "Túl gyorsan hajtott. Hetvennel ment ötvenes helyett.", "ua": "Ви їхали надто швидко. Сімдесят замість пʼятдесяти."}, {"who": "B", "hu": "Sajnálom. Mennyi a bírság?", "ua": "Вибачте. Який штраф?"}], "question": {"q": "Чому зупинили водія?", "options": ["Не пристебнув пасок", "Перевищив швидкість", "Проїхав на червоне"], "answer": 1}},
+    {"id": "b1-05-d02", "title": "Авто зламалось", "lines": [{"who": "A", "hu": "Lerobbant az autóm az autópályán.", "ua": "Моє авто зламалось на автостраді."}, {"who": "B", "hu": "Hívtad a vontatót?", "ua": "Викликав евакуатор?"}, {"who": "A", "hu": "Igen, húsz perc múlva itt lesz.", "ua": "Так, буде тут через двадцять хвилин."}, {"who": "B", "hu": "Addig állj be a leállósávba, és tedd ki a háromszöget!", "ua": "Поки що стань на узбіччя й постав знак!"}], "question": {"q": "Коли приїде евакуатор?", "options": ["Через десять хвилин", "Через двадцять хвилин", "Завтра"], "answer": 1}}
   ]
 }

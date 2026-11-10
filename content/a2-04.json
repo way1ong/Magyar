@@ -157,5 +157,9 @@
     {"id": "a2-04-s01", "hu": "Fáj a fejem.", "ua": "У мене болить голова.", "note": "Дієслово першим, підмет із присвійним закінченням після: fáj a fejem."},
     {"id": "a2-04-s02", "hu": "Nem tudok aludni.", "ua": "Я не можу спати.", "note": "nem + tudok + інфінітив у кінці."},
     {"id": "a2-04-s03", "hu": "Az orvos azt mondta, hogy pihenjek.", "ua": "Лікар сказав, щоб я відпочивав.", "note": "azt mondta, hogy + наказовий спосіб у підрядному (pihenjek)."}
+  ],
+  "dialogues": [
+    {"id": "a2-04-d01", "title": "У лікаря", "lines": [{"who": "A", "hu": "Mi a panasza?", "ua": "На що скаржитесь?"}, {"who": "B", "hu": "Fáj a torkom, és köhögök.", "ua": "Болить горло і кашляю."}, {"who": "A", "hu": "Van láza?", "ua": "Температура є?"}, {"who": "B", "hu": "Igen, harmincnyolc fok.", "ua": "Так, тридцять вісім."}, {"who": "A", "hu": "Pihenjen, és igyon sok teát.", "ua": "Відпочивайте й пийте багато чаю."}], "question": {"q": "Що радить лікар?", "options": ["Іти на роботу", "Відпочивати й пити чай", "Робити операцію"], "answer": 1}},
+    {"id": "a2-04-d02", "title": "Спорт", "lines": [{"who": "A", "hu": "Sportolsz?", "ua": "Ти займаєшся спортом?"}, {"who": "B", "hu": "Igen, hetente háromszor futok.", "ua": "Так, бігаю тричі на тиждень."}, {"who": "A", "hu": "Én csak sétálok. Fáj a térdem.", "ua": "Я лише гуляю пішки. Болить коліно."}, {"who": "B", "hu": "Akkor ússz! Az jó a térdnek.", "ua": "Тоді плавай! Це корисно для коліна."}], "question": {"q": "Що радить другий співрозмовник?", "options": ["Бігати", "Плавати", "Не рухатись"], "answer": 1}}
   ]
 }

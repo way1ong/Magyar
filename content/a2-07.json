@@ -259,5 +259,9 @@
     {"id": "a2-07-s01", "hu": "Hol lehet jegyet venni?", "ua": "Де можна купити квиток?", "note": "Hol + lehet, обʼєкт перед інфінітивом: jegyet venni."},
     {"id": "a2-07-s02", "hu": "A posta a bank mellett van.", "ua": "Пошта біля банку.", "note": "Місце з післяйменником (a bank mellett) перед van."},
     {"id": "a2-07-s03", "hu": "Szeretnék egy számlát nyitni.", "ua": "Я хотів би відкрити рахунок.", "note": "szeretnék + обʼєкт + інфінітив у кінці."}
+  ],
+  "dialogues": [
+    {"id": "a2-07-d01", "title": "На пошті", "lines": [{"who": "A", "hu": "Ezt a csomagot szeretném feladni Kijevbe.", "ua": "Я хотів би відправити цю посилку до Києва."}, {"who": "B", "hu": "Sima vagy elsőbbségi?", "ua": "Звичайну чи пріоритетну?"}, {"who": "A", "hu": "Sima. Mennyi idő alatt ér oda?", "ua": "Звичайну. За скільки дійде?"}, {"who": "B", "hu": "Körülbelül egy hét.", "ua": "Приблизно тиждень."}], "question": {"q": "За скільки дійде посилка?", "options": ["За два дні", "Приблизно за тиждень", "За місяць"], "answer": 1}},
+    {"id": "a2-07-d02", "title": "У банку", "lines": [{"who": "A", "hu": "Szeretnék számlát nyitni.", "ua": "Я хотів би відкрити рахунок."}, {"who": "B", "hu": "Van lakcímkártyája és útlevele?", "ua": "У вас є картка адреси й паспорт?"}, {"who": "A", "hu": "Igen, itt vannak.", "ua": "Так, ось."}, {"who": "B", "hu": "Köszönöm. Töltse ki ezt az űrlapot!", "ua": "Дякую. Заповніть цей бланк!"}], "question": {"q": "Що треба заповнити?", "options": ["Бланк", "Чек", "Конверт"], "answer": 0}}
   ]
 }

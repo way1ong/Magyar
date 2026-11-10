@@ -232,5 +232,9 @@
     {"id": "a2-08-s01", "hu": "Két jegyet kérek Budapestre.", "ua": "Два квитки до Будапешта, будь ласка.", "note": "Після числівника однина (két jegyet); обʼєкт у фокусі перед kérek."},
     {"id": "a2-08-s02", "hu": "Mikor indul a következő vonat?", "ua": "Коли вирушає наступний потяг?", "note": "Питальне слово перед дієсловом, підмет після."},
     {"id": "a2-08-s03", "hu": "Lekéstük a vonatot, ezért taxival mentünk.", "ua": "Ми спізнились на потяг, тому поїхали на таксі.", "note": "ezért (тому) зʼєднує речення; taxival у фокусі перед mentünk."}
+  ],
+  "dialogues": [
+    {"id": "a2-08-d01", "title": "У готелі", "lines": [{"who": "A", "hu": "Jó napot! Foglaltam egy szobát Kovács névre.", "ua": "Добрий день! Я бронював номер на прізвище Ковач."}, {"who": "B", "hu": "Igen, két éjszakára. A reggeli hétkor kezdődik.", "ua": "Так, на дві ночі. Сніданок починається о сьомій."}, {"who": "A", "hu": "Van wifi?", "ua": "Є вайфай?"}, {"who": "B", "hu": "Igen, a jelszó a kulcson van.", "ua": "Так, пароль на ключі."}], "question": {"q": "На скільки ночей бронь?", "options": ["На одну", "На дві", "На три"], "answer": 1}},
+    {"id": "a2-08-d02", "title": "Спізнились на потяг", "lines": [{"who": "A", "hu": "Lekéstük a vonatot!", "ua": "Ми спізнились на потяг!"}, {"who": "B", "hu": "Mikor megy a következő?", "ua": "Коли наступний?"}, {"who": "A", "hu": "Egy óra múlva, a második vágányról.", "ua": "Через годину, з другої колії."}, {"who": "B", "hu": "Akkor addig iszunk egy kávét.", "ua": "Тоді поки що випʼємо кави."}], "question": {"q": "Коли наступний потяг?", "options": ["Через пів години", "Через годину", "Завтра"], "answer": 1}}
   ]
 }

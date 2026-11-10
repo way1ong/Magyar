@@ -212,5 +212,9 @@
     {"id": "b1-06-s01", "hu": "A csap már megint csöpög.", "ua": "Кран знову капає.", "note": "már megint (знову) просто перед дієсловом."},
     {"id": "b1-06-s02", "hu": "Hívtam a szerelőt, de nem jött.", "ua": "Я викликав майстра, але він не прийшов.", "note": "de зʼєднує два речення; nem перед jött."},
     {"id": "b1-06-s03", "hu": "Mikor kapom vissza a kauciót?", "ua": "Коли я отримаю заставу назад?", "note": "Питальне слово перед дієсловом, префікс vissza після нього."}
+  ],
+  "dialogues": [
+    {"id": "b1-06-d01", "title": "Оренда квартири", "lines": [{"who": "A", "hu": "Mennyi a bérleti díj?", "ua": "Яка орендна плата?"}, {"who": "B", "hu": "Havi százötvenezer forint, plusz rezsi.", "ua": "Сто пʼятдесят тисяч на місяць плюс комунальні."}, {"who": "A", "hu": "És a kaució?", "ua": "А застава?"}, {"who": "B", "hu": "Két havi díj. Mikor költözne be?", "ua": "Дві місячні плати. Коли б ви заселились?"}], "question": {"q": "Яка застава?", "options": ["Одна місячна плата", "Дві місячні плати", "Застави немає"], "answer": 1}},
+    {"id": "b1-06-d02", "title": "Протікає стеля", "lines": [{"who": "A", "hu": "Beázott a plafon a fürdőszobában.", "ua": "У ванній протекла стеля."}, {"who": "B", "hu": "Szóltál a szomszédnak?", "ua": "Ти сказав сусідові?"}, {"who": "A", "hu": "Igen, nála eldugult a lefolyó.", "ua": "Так, у нього забився злив."}, {"who": "B", "hu": "Akkor hívjunk szerelőt, és fényképezd le a kárt!", "ua": "Тоді викличмо майстра, а ти сфотографуй пошкодження!"}], "question": {"q": "Що сталось у сусіда?", "options": ["Забився злив", "Зламався кран", "Вимкнули воду"], "answer": 0}}
   ]
 }
