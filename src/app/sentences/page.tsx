@@ -141,12 +141,18 @@ export default function SentencesPage() {
   const reveal = async () => {
     if (done) return;
     setOutcome("revealed");
-    setPlaced(task.words.map((_, n) => tiles.findIndex((t) => t.n === n)));
+    // Keep the learner's own attempt on the line so it can be compared with
+    // the answer below; only an empty line gets filled with the right order.
+    if (placed.length === 0) setPlaced(task.words.map((_, n) => tiles.findIndex((t) => t.n === n)));
     await grade(Rating.Again, false);
   };
   const nextCard = () => setI((n) => n + 1);
 
   const color = outcome === "right" ? "var(--ok)" : outcome === "wrong" ? "var(--bad)" : outcome === "revealed" ? "var(--warn)" : undefined;
+  // After a wrong try or a reveal, words that sit in the wrong slot are red,
+  // the ones already in place keep the line colour.
+  const misplaced = (pos: number) => (outcome === "wrong" || outcome === "revealed") && answerWords[pos]?.toLowerCase() !== task.words[pos]?.toLowerCase();
+  const complete = answerWords.length === tiles.length;
 
   return (
     <>
@@ -169,14 +175,17 @@ export default function SentencesPage() {
         <div className="sentence-line" style={{ borderColor: color }} lang="hu">
           {answerWords.length === 0 && <span className="muted">торкайся слів у потрібному порядку</span>}
           {answerWords.map((w, pos) => (
-            <button key={pos} className="tile placed" onClick={() => unplace(pos)} disabled={done} style={{ color }}>
-              {pos === 0 ? w[0].toUpperCase() + w.slice(1) : w}
-            </button>
+            <span key={pos} style={{ whiteSpace: "nowrap" }}>
+              <button className="tile placed" onClick={() => unplace(pos)} disabled={done} style={{ color: misplaced(pos) ? "var(--bad)" : color }}>
+                {pos === 0 ? w[0].toUpperCase() + w.slice(1) : w}
+              </button>
+              {complete && pos === answerWords.length - 1 && <span style={{ color }}>{task.end}</span>}
+            </span>
           ))}
-          {answerWords.length === tiles.length && <span style={{ color }}>{task.end}</span>}
         </div>
         )}
-        {outcome === "wrong" && <p className="muted" style={{ margin: "6px 0 0", color: "var(--bad)" }}>{typing ? "Не так — спробуй ще або натисни «Показати»." : "Не той порядок — торкнись слова, щоб прибрати його."}</p>}
+        {outcome === "wrong" && <p className="muted" style={{ margin: "6px 0 0", color: "var(--bad)" }}>{typing ? "Не так — спробуй ще або натисни «Показати»." : "Не той порядок — червоні слова не на своєму місці; торкнись слова, щоб прибрати його."}</p>}
+        {outcome === "revealed" && !typing && answerWords.some((_, pos) => misplaced(pos)) && <p className="muted" style={{ margin: "6px 0 0" }}>Твій варіант угорі (червоні слова не на своєму місці), правильний — нижче.</p>}
         {done && (
           <>
             <p className="example" lang="hu" style={{ color, fontSize: 22, margin: "10px 0 4px" }}>{task.hu}</p>
