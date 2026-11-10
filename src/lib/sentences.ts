@@ -20,7 +20,7 @@ export interface SentenceTask {
   packIndex: number;
 }
 
-const QUESTION_WORDS = new Set(["ki", "kik", "kit", "kinek", "kivel", "kié", "mi", "mik", "mit", "mire", "miről", "hol", "hova", "hová", "honnan", "mikor", "mióta", "meddig", "hogy", "hogyan", "miért", "mennyi", "mennyibe", "hány", "hányadik", "hánykor", "melyik", "milyen", "merre"]);
+export const QUESTION_WORDS = new Set(["ki", "kik", "kit", "kinek", "kivel", "kié", "mi", "mik", "mit", "mire", "miről", "hol", "hova", "hová", "honnan", "mikor", "mióta", "meddig", "hogy", "hogyan", "miért", "mennyi", "mennyibe", "hány", "hányadik", "hánykor", "melyik", "milyen", "merre"]);
 const PREFIXES = new Set(["el", "meg", "ki", "be", "fel", "föl", "le", "át", "haza", "vissza", "össze", "oda", "ide", "rá", "szét", "tovább", "végig", "körül", "előre", "hátra", "alá", "elő", "túl"]);
 const FOG = /\b(fogok|fogsz|fog|fogunk|fogtok|fognak|fogom|fogod|fogja|fogjuk|fogjátok|fogják)\b/;
 

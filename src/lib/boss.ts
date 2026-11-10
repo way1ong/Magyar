@@ -1,6 +1,8 @@
 import { builderTasks, shuffle, taskPackIndex, type BuilderTask } from "./builder";
 import { conjugate, isConjugable, PERSONS, PRONOUN, PRONOUN_UA, slotsFor, tenseLabel, type Tense } from "./conj";
 import { conjTaskById } from "./conjcards";
+import { QUESTION_WORDS, sentenceTasks } from "./sentences";
+import { dialogueTasks } from "./dialogues";
 import { pickCloze } from "./conjcloze";
 import { allPatterns, attaches, packIndexOf, packs } from "./content";
 import { apply } from "./harmony";
@@ -15,10 +17,12 @@ import type { ContentPack, Harmony, Item } from "./types";
  *  - conj:      a sentence with a gap (or "(ő) ___ azt.") → pick the verb form
  */
 export interface BossQuestion {
-  kind: "recognize" | "recall" | "form" | "conj";
+  kind: "recognize" | "recall" | "form" | "conj" | "sentence" | "dialogue";
   prompt: string;
   /** Second line under the prompt: the sentence's translation, the verb and the person/tense asked. */
   hint?: string;
+  /** Dialogue lines shown above the question. */
+  lines?: { who: string; hu: string }[];
   options: string[];
   answer: string;
 }
@@ -93,15 +97,73 @@ export function conjQuestion(verb: Item): BossQuestion | null {
   }
   return null;
 }
+const ARTICLES = new Set(["a", "az", "egy"]);
+/**
+ * Hungarian word order is flexible, so a random permutation may still be
+ * grammatical. A distractor is used only when it is clearly broken: an
+ * article not followed by its word, nem / ne at the very end, or a question
+ * word away from the front.
+ */
+function clearlyWrong(ws: string[]): boolean {
+  const low = ws.map((w) => w.toLowerCase());
+  for (let i = 0; i < low.length; i++) if (ARTICLES.has(low[i]) && (i === low.length - 1 || ARTICLES.has(low[i + 1]))) return true;
+  const last = low[low.length - 1];
+  if (last === "nem" || last === "ne") return true;
+  if (low.some((w, i) => i > 0 && QUESTION_WORDS.has(w)) && !QUESTION_WORDS.has(low[0])) return true;
+  return false;
+}
+
+/** Word order: the translation, options are the right order and clearly broken orders of the same words. */
+export function sentenceQuestion(packIndex: number): BossQuestion | null {
+  const pool = shuffle(sentenceTasks.filter((t) => t.packIndex === packIndex && t.words.length >= 4 && t.words.length <= 8 && !t.hu.includes(",")));
+  for (const t of pool) {
+    const correct = t.hu;
+    const join = (ws: string[]) => ws.map((w, i) => (i === 0 ? w[0].toUpperCase() + w.slice(1) : w)).join(" ") + t.end;
+    const others = new Set<string>();
+    for (let k = 0; k < 60 && others.size < 3; k++) {
+      const ws = shuffle(t.words);
+      const s = join(ws);
+      if (s.toLowerCase() !== correct.toLowerCase() && clearlyWrong(ws)) others.add(s);
+    }
+    if (others.size < 2) continue;
+    return { kind: "sentence", prompt: t.ua, hint: "Який порядок слів правильний?", options: shuffle([correct, ...others]), answer: correct };
+  }
+  return null;
+}
+
+/** The comprehension question of one of the pack's dialogues. */
+export function dialogueQuestion(packIndex: number, skip: Set<string>): BossQuestion | null {
+  const pool = shuffle(dialogueTasks.filter((t) => t.packIndex === packIndex && !skip.has(t.id)));
+  const t = pool[0];
+  if (!t) return null;
+  skip.add(t.id);
+  const q = t.dialogue.question;
+  return { kind: "dialogue", prompt: q.q, lines: t.dialogue.lines.map((l) => ({ who: l.who, hu: l.hu })), options: shuffle(q.options), answer: q.options[q.answer] };
+}
+
 export function bossQuestions(pack: ContentPack, size = BOSS_SIZE): BossQuestion[] {
-  const items = pack.items.filter((i) => packIndexOf(i.id) === packs.indexOf(pack));
+  const n = packs.indexOf(pack);
+  const items = pack.items.filter((i) => packIndexOf(i.id) === n);
   const forms = shuffle(bossFormTasks(pack));
   const verbs = shuffle(items.filter(isConjugable));
-  const nConj = Math.min(Math.round(size * 0.2), verbs.length);
-  const nForm = Math.min(Math.round(size * 0.3), forms.length);
-  const nWords = Math.min(size - nForm - nConj, items.length);
-
   const qs: BossQuestion[] = [];
+  // 2 word-order + 2 dialogue questions when the pack has them, 3 conjugation, 5 suffix forms, the rest words.
+  const used = new Set<string>();
+  for (let k = 0; k < 2; k++) {
+    const q = dialogueQuestion(n, used);
+    if (q) qs.push(q);
+  }
+  const seenS = new Set<string>();
+  for (let k = 0; k < 2; k++) {
+    const q = sentenceQuestion(n);
+    if (q && !seenS.has(q.answer)) {
+      seenS.add(q.answer);
+      qs.push(q);
+    }
+  }
+  const nConj = Math.min(3, verbs.length);
+  const nForm = Math.min(5, forms.length);
+  const nWords = Math.min(size - qs.length - nForm - nConj, items.length);
   for (const v of verbs.slice(0, nConj)) {
     const q = conjQuestion(v);
     if (q) qs.push(q);

@@ -8,6 +8,9 @@ import { queueWrite } from "@/lib/writes";
 import type { CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
+import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
+import { HuInput } from "@/components/HuInput";
+import { normalize, stripAccents } from "@/lib/dictation";
 
 const FAST_MS = 15000;
 
@@ -36,10 +39,13 @@ export default function SentencesPage() {
   const [mistakes, setMistakes] = useState(0);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const [mistakeMode, setMistakeMode] = useState(false);
+  const [mode, setMode] = useState<TypingMode>("auto");
+  const [typed, setTyped] = useState("");
   const shownAt = useRef(Date.now());
 
   const load = useCallback(async () => {
     await seedCards();
+    setMode(await getTypingMode());
     const q = (await (takeMistakeMode("sentence") ? (setMistakeMode(true), mistakeCards("sentence")) : (setMistakeMode(false), sessionCards("sentence", 20, 8)))).filter((c) => sentenceTaskById(c.itemId));
     setQueue(shuffle(q));
     setI(0);
@@ -71,6 +77,7 @@ export default function SentencesPage() {
   useEffect(() => {
     setOutcome(null);
     setMistakes(0);
+    setTyped("");
     shownAt.current = Date.now();
   }, [cardKey]);
   const placed = placedFor.key === cardKey ? placedFor.idx : [];
@@ -81,6 +88,7 @@ export default function SentencesPage() {
 
   const done = outcome === "right" || outcome === "revealed";
   const answerWords = placed.map((k) => tiles[k]?.w ?? "");
+  const typing = shouldType(mode, row);
 
   const grade = async (rating: Grade, right: boolean) => {
     setScore((s) => ({ right: s.right + (right ? 1 : 0), total: s.total + 1 }));
@@ -113,6 +121,23 @@ export default function SentencesPage() {
     setPlaced(placed.filter((_, p) => p !== pos));
     setOutcome(null);
   };
+  // Typing: the whole sentence; punctuation and case are ignored, long vowels only → Hard.
+  const checkTyped = () => {
+    if (done || !typed.trim()) return;
+    const a = normalize(typed);
+    const b = normalize(task.hu);
+    if (a === b) {
+      setOutcome("right");
+      const took = Date.now() - shownAt.current;
+      grade(mistakes ? Rating.Hard : took < FAST_MS * 2 ? Rating.Easy : Rating.Good, true);
+    } else if (stripAccents(a) === stripAccents(b)) {
+      setOutcome("right");
+      grade(Rating.Hard, true);
+    } else {
+      setOutcome("wrong");
+      setMistakes((m) => m + 1);
+    }
+  };
   const reveal = async () => {
     if (done) return;
     setOutcome("revealed");
@@ -138,6 +163,9 @@ export default function SentencesPage() {
 
       <div className="card big" style={{ paddingTop: 18, paddingBottom: 18 }}>
         <p className="ua" style={{ fontSize: 22, margin: 0 }}>{task.ua}</p>
+        {typing ? (
+          <HuInput id="sentence-input" value={typed} onChange={setTyped} onEnter={() => (done ? nextCard() : checkTyped())} disabled={done} done={done} focusKey={cardKey} placeholder="напиши речення угорською…" />
+        ) : (
         <div className="sentence-line" style={{ borderColor: color }} lang="hu">
           {answerWords.length === 0 && <span className="muted">торкайся слів у потрібному порядку</span>}
           {answerWords.map((w, pos) => (
@@ -147,7 +175,8 @@ export default function SentencesPage() {
           ))}
           {answerWords.length === tiles.length && <span style={{ color }}>{task.end}</span>}
         </div>
-        {outcome === "wrong" && <p className="muted" style={{ margin: "6px 0 0", color: "var(--bad)" }}>Не той порядок — торкнись слова, щоб прибрати його.</p>}
+        )}
+        {outcome === "wrong" && <p className="muted" style={{ margin: "6px 0 0", color: "var(--bad)" }}>{typing ? "Не так — спробуй ще або натисни «Показати»." : "Не той порядок — торкнись слова, щоб прибрати його."}</p>}
         {done && (
           <>
             <p className="example" lang="hu" style={{ color, fontSize: 22, margin: "10px 0 4px" }}>{task.hu}</p>
@@ -160,6 +189,15 @@ export default function SentencesPage() {
         <button className="btn primary" onClick={nextCard} style={{ marginBottom: 12 }} ref={(el) => el?.scrollIntoView({ block: "nearest" })}>
           Далі
         </button>
+      ) : typing ? (
+        <div className="row" style={{ marginBottom: 12 }}>
+          <button className="btn ghost" onClick={reveal}>
+            Показати
+          </button>
+          <button className="btn primary" onClick={checkTyped} disabled={!typed.trim()}>
+            Перевірити
+          </button>
+        </div>
       ) : (
         <div className="row" style={{ marginBottom: 12 }}>
           <button className="btn ghost" onClick={() => { setPlaced([]); setOutcome(null); }} disabled={!placed.length}>
@@ -171,6 +209,7 @@ export default function SentencesPage() {
         </div>
       )}
 
+      {!typing && (
       <div className="tiles" lang="hu">
         {tiles.map((t, k) => (
           <button key={k} className={`tile${placed.includes(k) ? " used" : ""}`} onClick={() => place(k)} disabled={done || placed.includes(k)}>
@@ -178,6 +217,7 @@ export default function SentencesPage() {
           </button>
         ))}
       </div>
+      )}
     </>
   );
 }

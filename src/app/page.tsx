@@ -5,7 +5,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { packs } from "@/lib/content";
 import { dueCount } from "@/lib/scheduler";
 import { seedCards } from "@/lib/seed";
-import { maybeAutoBackup } from "@/lib/backup";
+import { lastBackup, lastExport, maybeAutoBackup, NO_LAPTOP } from "@/lib/backup";
 import { AUDIO_ENABLED } from "@/lib/config";
 import { streak, todayCount } from "@/lib/stats";
 import { BOSS_PASS, bossResults, packProgress, unlockedCount } from "@/lib/progress";
@@ -37,7 +37,10 @@ async function loadStats() {
     const open = await unlockedCount(boss);
     const day = await dayDone();
     const mistakes = Object.values(await mistakeCounts()).reduce((a, b) => a + b, 0);
-    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, sentence: sen, dialogue: dia, streak: s, today: t, learned, total, boss, open, progress, day, mistakes };
+    // Weekly reminder to keep a copy: the progress lives only in this browser.
+    const lastSaved = Math.max(await lastExport(), NO_LAPTOP ? 0 : (await lastBackup())?.ts ?? 0);
+    const needBackup = (await db.reviews.count()) >= 20 && Date.now() - lastSaved > 7 * 86400000;
+    return { cards: rec + rcl, harmony: har, builder: bld, dictation: dic, conj: cnj, sentence: sen, dialogue: dia, streak: s, today: t, learned, total, boss, open, progress, day, mistakes, needBackup };
   });
 }
 
@@ -140,6 +143,13 @@ export default function Home() {
           </b>
         </div>
       </div>
+
+      {stats?.needBackup && (
+        <Link href="/settings" className="card" style={{ display: "block", marginTop: 10, borderColor: "var(--warn)" }}>
+          <b>💾 Збережи копію прогресу.</b>{" "}
+          <span className="muted">Прогрес живе лише в цьому браузері. Раз на тиждень: «Ще» → «Поділитися» або «Експорт». Торкнись, щоб перейти.</span>
+        </Link>
+      )}
 
       {stats && (
         <div className="card" style={{ marginTop: 10 }}>

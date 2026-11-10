@@ -15,7 +15,7 @@ import type { Harmony, ItemForms } from "./types";
  * Nouns without `forms` follow the default rules. content:forms prints
  * every derived form for review.
  */
-export type InflectKind = "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp" | "ord" | "adv" | "u";
+export type InflectKind = "acc" | "pl" | "p1" | "p2" | "p3" | "s" | "comp" | "ord" | "adv" | "u" | "stul";
 
 /** Accusative after these consonants takes no linking vowel (asztalt, embert, buszt). */
 const NO_LINK = new Set(["l", "r", "n", "ny", "s", "sz", "z", "zs", "j", "ly"]);
@@ -32,6 +32,7 @@ export const INFLECT_VARIANTS: Record<InflectKind, string[]> = {
   ord: ["odik", "edik", "ödik", "adik"],
   adv: ["an", "en", "on", "n", "ul"],
   u: ["ú", "ű", "jú", "jű"],
+  stul: ["stul", "stül", "ostul", "estül", "östül", "astul"],
 };
 
 function commonPrefix(a: string, b: string): string {
@@ -91,6 +92,10 @@ export function inflect(hu: string, h: Harmony, forms: ItemForms | undefined, ki
     case "s":
       // "having X" adjective: kertes, cukros, szobás — linking vowel as in the plural.
       suffix = vowelFinal ? "s" : lv + "s";
+      break;
+    case "stul":
+      // "together with": családostul, gyerekestül, kutyástul — the -s adjective plus -tul/-tül.
+      suffix = (vowelFinal ? "s" : lv + "s") + (h === "back" ? "tul" : "tül");
       break;
     case "comp":
       // Comparative of adjectives: olcsóbb, drágább; after a consonant -abb/-ebb

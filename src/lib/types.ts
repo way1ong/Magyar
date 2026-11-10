@@ -52,6 +52,8 @@ export interface ItemForms {
   adv?: string;
   /** -ú/-ű attribute adjective when irregular: erő → "erejű", idő → "idejű". */
   u?: string;
+  /** -stul/-stül override. */
+  stul?: string;
 }
 
 export interface Item {
