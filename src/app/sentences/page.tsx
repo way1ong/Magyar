@@ -29,7 +29,9 @@ function shuffle<T>(xs: T[]): T[] {
 export default function SentencesPage() {
   const [queue, setQueue] = useState<CardRow[] | null>(null);
   const [i, setI] = useState(0);
-  const [placed, setPlaced] = useState<number[]>([]);
+  // Placed tile indices are kept together with the card they belong to, so a
+  // new card never reads them against its own (shorter) tile set.
+  const [placedFor, setPlacedFor] = useState<{ key: string; idx: number[] }>({ key: "", idx: [] });
   const [outcome, setOutcome] = useState<"right" | "wrong" | "revealed" | null>(null);
   const [mistakes, setMistakes] = useState(0);
   const [score, setScore] = useState({ right: 0, total: 0 });
@@ -42,7 +44,7 @@ export default function SentencesPage() {
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
-    setPlaced([]);
+    setPlacedFor({ key: "", idx: [] });
     setOutcome(null);
     setMistakes(0);
     shownAt.current = Date.now();
@@ -67,17 +69,18 @@ export default function SentencesPage() {
   }, [cardKey]);
 
   useEffect(() => {
-    setPlaced([]);
     setOutcome(null);
     setMistakes(0);
     shownAt.current = Date.now();
   }, [cardKey]);
+  const placed = placedFor.key === cardKey ? placedFor.idx : [];
+  const setPlaced = (idx: number[]) => setPlacedFor({ key: cardKey, idx });
 
   if (queue === null) return <p className="muted">Завантажую…</p>;
   if (!row || !task) return <SessionDone title="Речення" score={score} onAgain={load} step="sentence" mistakes={mistakeMode} />;
 
   const done = outcome === "right" || outcome === "revealed";
-  const answerWords = placed.map((k) => tiles[k].w);
+  const answerWords = placed.map((k) => tiles[k]?.w ?? "");
 
   const grade = async (rating: Grade, right: boolean) => {
     setScore((s) => ({ right: s.right + (right ? 1 : 0), total: s.total + 1 }));
@@ -87,7 +90,7 @@ export default function SentencesPage() {
   };
 
   const check = async (next: number[]) => {
-    const words = next.map((k) => tiles[k].w);
+    const words = next.map((k) => tiles[k]?.w ?? "");
     if (sameOrder(words, task.words)) {
       setOutcome("right");
       const took = Date.now() - shownAt.current;
