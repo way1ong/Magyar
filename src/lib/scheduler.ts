@@ -80,7 +80,7 @@ export function previewIntervals(row: CardRow): Record<Grade, string> {
     const { card } = scheduler.next(fromRow(row), now, g);
     const mins = Math.round((card.due.getTime() - now.getTime()) / 60000);
     out[g] =
-      mins < 60 ? `${Math.max(1, mins)}хв` : mins < 1440 ? `${Math.round(mins / 60)}г` : `${Math.round(mins / 1440)}д`;
+      mins < 60 ? `${Math.max(1, mins)} хв` : mins < 1440 ? `${Math.round(mins / 60)} год` : `${Math.round(mins / 1440)} дн`;
   }
   return out;
 }
