@@ -244,5 +244,9 @@
     {"id": "b1-09-s01", "hu": "Nem tudom megnyitni a fájlt.", "ua": "Я не можу відкрити файл.", "note": "nem tudom + інфінітив із префіксом разом (megnyitni); tudom означене через a fájlt."},
     {"id": "b1-09-s02", "hu": "Indítsd újra a gépet, ha lefagy!", "ua": "Перезавантаж компʼютер, якщо він зависне!", "note": "Наказ із префіксом після дієслова (indítsd újra), умова з ha у кінці."},
     {"id": "b1-09-s03", "hu": "Töltsd le az alkalmazást, és regisztrálj!", "ua": "Завантаж застосунок і зареєструйся!", "note": "Два накази; перед és, що зʼєднує речення, ставиться кома."}
+  ],
+  "dialogues": [
+    {"id": "b1-09-d01", "title": "Компʼютер завис", "lines": [{"who": "A", "hu": "Lefagyott a gépem, nem reagál.", "ua": "Мій компʼютер завис, не реагує."}, {"who": "B", "hu": "Indítsd újra!", "ua": "Перезавантаж!"}, {"who": "A", "hu": "Elmentettem a fájlt? Nem emlékszem.", "ua": "Я зберіг файл? Не памʼятаю."}, {"who": "B", "hu": "Nézd meg a mappában, miután újraindult.", "ua": "Подивись у папці після перезавантаження."}], "question": {"q": "Що радить другий співрозмовник?", "options": ["Купити новий компʼютер", "Перезавантажити", "Викликати майстра"], "answer": 1}},
+    {"id": "b1-09-d02", "title": "Новини", "lines": [{"who": "A", "hu": "Olvastad a híreket? Holnap sztrájk lesz.", "ua": "Читав новини? Завтра страйк."}, {"who": "B", "hu": "Hol olvastad? Biztos, hogy nem álhír?", "ua": "Де ти це читав? Точно не фейк?"}, {"who": "A", "hu": "A hivatalos oldalon. A buszok nem járnak.", "ua": "На офіційному сайті. Автобуси не ходитимуть."}, {"who": "B", "hu": "Akkor holnap biciklivel megyek dolgozni.", "ua": "Тоді завтра поїду на роботу велосипедом."}], "question": {"q": "Чим він поїде на роботу завтра?", "options": ["Автобусом", "Велосипедом", "Автомобілем"], "answer": 1}}
   ]
 }

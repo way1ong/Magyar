@@ -222,5 +222,9 @@
     {"id": "b1-07-s01", "hu": "Vegye be a gyógyszert étkezés után!", "ua": "Приймайте ліки після їжі!", "note": "Наказ: vegye be, обʼєкт, час із післяйменником у кінці."},
     {"id": "b1-07-s02", "hu": "Három napja fáj a torkom.", "ua": "У мене три дні болить горло.", "note": "Тривалість (három napja) на початку, підмет після дієслова."},
     {"id": "b1-07-s03", "hu": "Az orvos azt javasolta, hogy pihenjek többet.", "ua": "Лікар порадив мені більше відпочивати.", "note": "azt javasolta, hogy + наказовий спосіб у підрядному."}
+  ],
+  "dialogues": [
+    {"id": "b1-07-d01", "title": "В аптеці", "lines": [{"who": "A", "hu": "Ezt a receptet szeretném kiváltani.", "ua": "Я хотів би отримати ліки за цим рецептом."}, {"who": "B", "hu": "Tessék. Naponta kétszer szedje, étkezés után.", "ua": "Прошу. Приймайте двічі на день після їжі."}, {"who": "A", "hu": "Meddig?", "ua": "Як довго?"}, {"who": "B", "hu": "Egy hétig. Ha nem javul, menjen vissza az orvoshoz.", "ua": "Тиждень. Якщо не покращає, повертайтесь до лікаря."}], "question": {"q": "Як приймати ліки?", "options": ["Раз на день до їжі", "Двічі на день після їжі", "Тричі на день"], "answer": 1}},
+    {"id": "b1-07-d02", "title": "Лікарняний", "lines": [{"who": "A", "hu": "Kiírt az orvos egy hétre.", "ua": "Лікар виписав мені лікарняний на тиждень."}, {"who": "B", "hu": "Mi bajod?", "ua": "Що з тобою?"}, {"who": "A", "hu": "Megfáztam, és lázas vagyok.", "ua": "Застудився, і в мене температура."}, {"who": "B", "hu": "Pihenj, és küldd el az igazolást a főnöknek!", "ua": "Відпочивай і надішли довідку начальникові!"}], "question": {"q": "На скільки виписали лікарняний?", "options": ["На три дні", "На тиждень", "На два тижні"], "answer": 1}}
   ]
 }

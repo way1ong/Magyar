@@ -264,5 +264,9 @@
     {"id": "b1-08-s01", "hu": "Örülök, hogy megismertelek.", "ua": "Радий познайомитись із тобою.", "note": "örülök, hogy + минулий час із закінченням -lak/-lek (тебе)."},
     {"id": "b1-08-s02", "hu": "Nem haragszom rád.", "ua": "Я на тебе не серджуся.", "note": "haragszik + -ra: rád (на тебе); nem просто перед дієсловом."},
     {"id": "b1-08-s03", "hu": "Félek, hogy elkésünk.", "ua": "Боюся, що ми запізнимось.", "note": "félek, hogy + теперішній час у значенні майбутнього."}
+  ],
+  "dialogues": [
+    {"id": "b1-08-d01", "title": "Сварка", "lines": [{"who": "A", "hu": "Miért vagy mérges?", "ua": "Чому ти сердишся?"}, {"who": "B", "hu": "Mert megint elfelejtetted a születésnapomat.", "ua": "Бо ти знову забув мій день народження."}, {"who": "A", "hu": "Ne haragudj! Jóváteszem.", "ua": "Не сердься! Я виправлю."}, {"who": "B", "hu": "Jól van, megbocsátok. De utoljára!", "ua": "Гаразд, пробачаю. Але востаннє!"}], "question": {"q": "Чому вона сердиться?", "options": ["Він запізнився", "Він забув її день народження", "Він не подзвонив"], "answer": 1}},
+    {"id": "b1-08-d02", "title": "Про колегу", "lines": [{"who": "A", "hu": "Milyen az új kolléga?", "ua": "Який новий колега?"}, {"who": "B", "hu": "Kedves és segítőkész, de néha türelmetlen.", "ua": "Добрий і готовий допомогти, але іноді нетерплячий."}, {"who": "A", "hu": "Bízol benne?", "ua": "Ти йому довіряєш?"}, {"who": "B", "hu": "Igen, eddig mindent időben megcsinált.", "ua": "Так, досі все робив вчасно."}], "question": {"q": "Яка риса колеги названа як недолік?", "options": ["Лінь", "Нетерплячість", "Неуважність"], "answer": 1}}
   ]
 }

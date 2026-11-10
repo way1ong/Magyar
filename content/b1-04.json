@@ -222,5 +222,9 @@
     {"id": "b1-04-s01", "hu": "Tavaly költöztünk Budapestre.", "ua": "Торік ми переїхали до Будапешта.", "note": "Час у фокусі перед дієсловом, напрямок після."},
     {"id": "b1-04-s02", "hu": "Amikor megérkeztünk, már este volt.", "ua": "Коли ми прибули, був уже вечір.", "note": "Підрядне з amikor на початку, кома, головне речення."},
     {"id": "b1-04-s03", "hu": "Nem emlékszem, hogy mikor történt.", "ua": "Я не памʼятаю, коли це сталось.", "note": "Непряме питання: hogy + питальне слово."}
+  ],
+  "dialogues": [
+    {"id": "b1-04-d01", "title": "Як познайомились", "lines": [{"who": "A", "hu": "Hol ismerkedtetek meg?", "ua": "Де ви познайомились?"}, {"who": "B", "hu": "Egy tanfolyamon, Budapesten.", "ua": "На курсах, у Будапешті."}, {"who": "A", "hu": "És mikor házasodtatok össze?", "ua": "А коли ви одружились?"}, {"who": "B", "hu": "Tavaly nyáron.", "ua": "Минулого літа."}], "question": {"q": "Коли вони одружились?", "options": ["Минулого літа", "Цієї зими", "Два роки тому"], "answer": 0}},
+    {"id": "b1-04-d02", "title": "Переїзд", "lines": [{"who": "A", "hu": "Mikor költöztél Magyarországra?", "ua": "Коли ти переїхав до Угорщини?"}, {"who": "B", "hu": "Három éve. Először Szegeden laktam.", "ua": "Три роки тому. Спершу жив у Сегеді."}, {"who": "A", "hu": "És most?", "ua": "А тепер?"}, {"who": "B", "hu": "Most Győrben dolgozom, egy gyárban.", "ua": "Тепер працюю в Дьйорі, на заводі."}], "question": {"q": "Де він жив спочатку?", "options": ["У Сегеді", "У Дьйорі", "У Будапешті"], "answer": 0}}
   ]
 }

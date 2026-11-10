@@ -303,5 +303,9 @@
     {"id": "b1-01-s01", "hu": "A hibát azonnal jelenteni kell.", "ua": "Про несправність треба повідомити негайно.", "note": "kell + інфінітив; обʼєкт на початку як тема, azonnal перед інфінітивом."},
     {"id": "b1-01-s02", "hu": "Azért álltunk le, mert elromlott a gép.", "ua": "Ми зупинились, бо зламалась машина.", "note": "azért …, mert: причина в підрядному з mert; префікс le після дієслова, бо azért у фокусі."},
     {"id": "b1-01-s03", "hu": "Ellenőrizd, hogy minden rendben van-e!", "ua": "Перевір, чи все гаразд!", "note": "Непряме питання: hogy + …-e на дієслові (van-e)."}
+  ],
+  "dialogues": [
+    {"id": "b1-01-d01", "title": "Звіт про несправність", "lines": [{"who": "A", "hu": "Jelentem, hogy a második gép elromlott.", "ua": "Доповідаю, що друга машина зламалась."}, {"who": "B", "hu": "Mikor történt?", "ua": "Коли це сталось?"}, {"who": "A", "hu": "Reggel hétkor. Azonnal leállítottuk.", "ua": "О сьомій ранку. Ми одразу зупинили."}, {"who": "B", "hu": "Jó. Írd meg a jegyzőkönyvet, és küldd el nekem!", "ua": "Добре. Напиши протокол і надішли мені!"}], "question": {"q": "Що має зробити працівник?", "options": ["Полагодити машину", "Написати протокол і надіслати", "Викликати поліцію"], "answer": 1}},
+    {"id": "b1-01-d02", "title": "Перевірка", "lines": [{"who": "A", "hu": "Holnap ellenőrzés lesz.", "ua": "Завтра буде перевірка."}, {"who": "B", "hu": "Mit kell előkészíteni?", "ua": "Що треба підготувати?"}, {"who": "A", "hu": "A dokumentumokat és a védőfelszerelést.", "ua": "Документи й захисне спорядження."}, {"who": "B", "hu": "Rendben, ma délután mindent átnézünk.", "ua": "Гаразд, сьогодні по обіді все переглянемо."}], "question": {"q": "Коли буде перевірка?", "options": ["Сьогодні", "Завтра", "Наступного тижня"], "answer": 1}}
   ]
 }

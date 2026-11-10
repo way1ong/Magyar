@@ -10,6 +10,7 @@ import HarmonyPage from "@/app/harmony/page";
 import BuilderPage from "@/app/builder/page";
 import ConjPage from "@/app/conj/page";
 import SentencesPage from "@/app/sentences/page";
+import DialoguesPage from "@/app/dialogues/page";
 import DictionaryPage from "@/app/dictionary/page";
 import MistakesPage from "@/app/mistakes/page";
 import StatsPage from "@/app/stats/page";
@@ -31,6 +32,7 @@ const PAGES: Record<string, ComponentType> = {
   "/builder": BuilderPage,
   "/conj": ConjPage,
   "/sentences": SentencesPage,
+  "/dialogues": DialoguesPage,
   "/dictionary": DictionaryPage,
   "/mistakes": MistakesPage,
   "/stats": StatsPage,

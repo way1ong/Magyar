@@ -361,5 +361,9 @@
     {"id": "a1-01-s01", "hu": "Péter a konyhában van.", "ua": "Петер на кухні.", "note": "Де хтось є: хто — де — van. Дієслово van у кінці."},
     {"id": "a1-01-s02", "hu": "Nem vagyok otthon.", "ua": "Мене немає вдома.", "note": "nem стоїть просто перед дієсловом: nem vagyok."},
     {"id": "a1-01-s03", "hu": "Hol van a fürdőszoba?", "ua": "Де ванна кімната?", "note": "Питальне слово стоїть просто перед дієсловом: Hol van…?"}
+  ],
+  "dialogues": [
+    {"id": "a1-01-d01", "title": "Знайомство", "lines": [{"who": "A", "hu": "Szia! Péter vagyok.", "ua": "Привіт! Я Петер."}, {"who": "B", "hu": "Szia, Péter! Anna vagyok. Hol laksz?", "ua": "Привіт, Петере! Я Анна. Де ти живеш?"}, {"who": "A", "hu": "Budapesten lakom. És te?", "ua": "Я живу в Будапешті. А ти?"}, {"who": "B", "hu": "Én Kijevben lakom, de most itt dolgozom.", "ua": "Я живу в Києві, але зараз працюю тут."}, {"who": "A", "hu": "Örülök, hogy megismertelek!", "ua": "Радий познайомитись!"}], "question": {"q": "Де живе Анна?", "options": ["У Будапешті", "У Києві", "У Відні"], "answer": 1}},
+    {"id": "a1-01-d02", "title": "Вдома", "lines": [{"who": "A", "hu": "Hol van a kulcs?", "ua": "Де ключ?"}, {"who": "B", "hu": "A konyhában van, az asztalon.", "ua": "На кухні, на столі."}, {"who": "A", "hu": "Köszönöm. És a telefonom?", "ua": "Дякую. А мій телефон?"}, {"who": "B", "hu": "A szobában, az ágy mellett.", "ua": "У кімнаті, біля ліжка."}], "question": {"q": "Де лежить ключ?", "options": ["На столі в кухні", "Біля ліжка", "У ванній"], "answer": 0}}
   ]
 }

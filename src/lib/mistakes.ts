@@ -16,6 +16,7 @@ export const PAGE_EXERCISES: Record<string, Exercise[]> = {
   builder: ["builder"],
   conj: ["conj"],
   sentence: ["sentence"],
+  dialogue: ["dialogue"],
 };
 
 /** Keys of cards failed recently (latest rating per key within the window must be Again). */

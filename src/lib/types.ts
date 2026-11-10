@@ -187,6 +187,15 @@ export interface Sentence {
   note?: string;
 }
 
+/** A short dialogue for the comprehension exercise. */
+export interface Dialogue {
+  id: string; // "a1-01-d01"
+  title: string;
+  lines: { who: string; hu: string; ua: string }[];
+  /** Comprehension question in Ukrainian with options and the index of the right one. */
+  question: { q: string; options: string[]; answer: number };
+}
+
 export interface ContentPack {
   id: string; // "a1-01"
   level: "A0" | "A1" | "A2" | "B1";
@@ -200,4 +209,6 @@ export interface ContentPack {
   examples?: PackExample[];
   /** Sentences for the "Речення" exercise (word order), with notes. */
   sentences?: Sentence[];
+  /** Dialogues for the "Діалоги" exercise. */
+  dialogues?: Dialogue[];
 }

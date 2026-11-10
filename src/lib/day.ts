@@ -5,7 +5,7 @@ import { db, withRetry } from "./db";
  * kept in meta under `day:<YYYY-MM-DD>` as the list of finished steps, so
  * the home screen can tick them off and SessionDone can point to the next.
  */
-export type DayStep = "review" | "harmony" | "builder" | "conj" | "sentence";
+export type DayStep = "review" | "harmony" | "builder" | "conj" | "sentence" | "dialogue";
 
 export const DAY_PLAN: { step: DayStep; href: string; label: string; icon: string }[] = [
   { step: "review", href: "/review", label: "Картки", icon: "🃏" },
@@ -13,6 +13,7 @@ export const DAY_PLAN: { step: DayStep; href: string; label: string; icon: strin
   { step: "builder", href: "/builder", label: "Конструктор", icon: "🧩" },
   { step: "conj", href: "/conj", label: "Дієвідміна", icon: "🔤" },
   { step: "sentence", href: "/sentences", label: "Речення", icon: "📝" },
+  { step: "dialogue", href: "/dialogues", label: "Діалоги", icon: "💬" },
 ];
 
 const dayKey = () => {
