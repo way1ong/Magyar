@@ -26,12 +26,13 @@ import b2_01 from "@content/b2-01.json";
 import b2_02 from "@content/b2-02.json";
 import b2_03 from "@content/b2-03.json";
 import b2_04 from "@content/b2-04.json";
+import b2_05 from "@content/b2-05.json";
 
 /**
  * Content registry. Add a pack: drop the JSON in /content and import it here.
  * Packs are bundled into the app, so they work offline with no fetch.
  */
-export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack, a1_04 as ContentPack, a1_05 as ContentPack, a2_01 as ContentPack, a2_02 as ContentPack, a2_03 as ContentPack, a2_04 as ContentPack, a2_05 as ContentPack, a2_06 as ContentPack, a2_07 as ContentPack, a2_08 as ContentPack, b1_01 as ContentPack, b1_02 as ContentPack, b1_03 as ContentPack, b1_04 as ContentPack, b1_05 as ContentPack, b1_06 as ContentPack, b1_07 as ContentPack, b1_08 as ContentPack, b1_09 as ContentPack, b2_01 as ContentPack, b2_02 as ContentPack, b2_03 as ContentPack, b2_04 as ContentPack];
+export const packs: ContentPack[] = [a1_01 as ContentPack, a1_02 as ContentPack, a1_03 as ContentPack, a1_04 as ContentPack, a1_05 as ContentPack, a2_01 as ContentPack, a2_02 as ContentPack, a2_03 as ContentPack, a2_04 as ContentPack, a2_05 as ContentPack, a2_06 as ContentPack, a2_07 as ContentPack, a2_08 as ContentPack, b1_01 as ContentPack, b1_02 as ContentPack, b1_03 as ContentPack, b1_04 as ContentPack, b1_05 as ContentPack, b1_06 as ContentPack, b1_07 as ContentPack, b1_08 as ContentPack, b1_09 as ContentPack, b2_01 as ContentPack, b2_02 as ContentPack, b2_03 as ContentPack, b2_04 as ContentPack, b2_05 as ContentPack];
 
 export const allItems: Item[] = packs.flatMap((p) => p.items);
 export const allPatterns: Pattern[] = packs.flatMap((p) => p.patterns);
