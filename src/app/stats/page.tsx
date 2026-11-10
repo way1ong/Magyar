@@ -78,14 +78,14 @@ export default function StatsPage() {
         </div>
       </div>
 
-      <h2 style={{ fontSize: 18, marginTop: 20 }}>Активність, 12 тижнів</h2>
+      <h2 style={{ fontSize: 18, marginTop: 20 }}>Активність по днях</h2>
       <div className="card">
         <div className="heatmap">
           {stats.calendar.map((d) => (
             <span key={d.date} title={`${d.date}: ${d.count}`} className="cell" style={{ opacity: d.count ? 0.3 + 0.7 * (d.count / max) : 1, background: d.count ? "var(--ok)" : "var(--line)" }} />
           ))}
         </div>
-        <p className="muted" style={{ margin: "8px 0 0", fontSize: 14 }}>Усього повторень: {stats.totalReviews}. Колонка — тиждень, рядок — день (пн … нд).</p>
+        <p className="muted" style={{ margin: "8px 0 0", fontSize: 14 }}>Усього повторень: {stats.totalReviews}. Колонка — тиждень, рядок — день тижня (пн … нд), до 12 останніх тижнів; що зеленіша клітинка, то більше повторень того дня.</p>
       </div>
 
       {weak.length > 0 && (
