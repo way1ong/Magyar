@@ -94,10 +94,18 @@ export async function computeStats(): Promise<Stats> {
   const totalReviews = await withRetry(() => db.reviews.count());
   const weeklyGoal = await getWeeklyGoal();
 
-  // Calendar: 12 weeks ending today, starting on a Monday.
+  // Calendar: up to 12 weeks ending today, but not before the week of the
+  // first review (at least 4 weeks), starting on a Monday.
+  const first = await withRetry(() => db.reviews.orderBy("ts").first());
   const start = new Date();
   start.setHours(0, 0, 0, 0);
   start.setDate(start.getDate() - 83);
+  if (first) {
+    const earliest = new Date(first.ts);
+    earliest.setHours(0, 0, 0, 0);
+    earliest.setDate(earliest.getDate() - 21);
+    if (earliest.getTime() > start.getTime()) start.setTime(earliest.getTime());
+  }
   while (start.getDay() !== 1) start.setDate(start.getDate() - 1);
   const calSince = start.getTime();
   const calRows = await withRetry(() => db.reviews.where("ts").aboveOrEqual(calSince).toArray());

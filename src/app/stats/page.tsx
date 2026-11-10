@@ -21,7 +21,7 @@ function Bars({ rows, showKnown }: { rows: Bucket[]; showKnown?: boolean }) {
             <span lang="hu">{b.label}</span>
             {showKnown && (
               <span className="muted" style={{ fontSize: 13 }}>
-                {" "}· знаю {b.known} з {b.started} вивчених
+                {" "}· {b.started} у роботі · {b.known} міцно
               </span>
             )}
           </span>
@@ -78,14 +78,14 @@ export default function StatsPage() {
         </div>
       </div>
 
-      <h2 style={{ fontSize: 18, marginTop: 20 }}>Активність, 12 тижнів</h2>
+      <h2 style={{ fontSize: 18, marginTop: 20 }}>Активність по днях</h2>
       <div className="card">
         <div className="heatmap">
           {stats.calendar.map((d) => (
             <span key={d.date} title={`${d.date}: ${d.count}`} className="cell" style={{ opacity: d.count ? 0.3 + 0.7 * (d.count / max) : 1, background: d.count ? "var(--ok)" : "var(--line)" }} />
           ))}
         </div>
-        <p className="muted" style={{ margin: "8px 0 0", fontSize: 14 }}>Усього повторень: {stats.totalReviews}. Колонка — тиждень, рядок — день (пн … нд).</p>
+        <p className="muted" style={{ margin: "8px 0 0", fontSize: 14 }}>Усього повторень: {stats.totalReviews}. Колонка — тиждень, рядок — день тижня (пн … нд), до 12 останніх тижнів; що зеленіша клітинка, то більше повторень того дня.</p>
       </div>
 
       {weak.length > 0 && (
@@ -99,7 +99,7 @@ export default function StatsPage() {
       <Bars rows={stats.byExercise} showKnown />
 
       <h2 style={{ fontSize: 18, marginTop: 20 }}>За темами</h2>
-      <p className="muted" style={{ fontSize: 14, marginTop: 0 }}>Точність за 30 днів і кількість повторень; «знаю» — картки з інтервалом від трьох тижнів.</p>
+      <p className="muted" style={{ fontSize: 14, marginTop: 0 }}>Точність за 30 днів і кількість повторень. «У роботі» — картки, які ти вже бачив; «міцно» — ті, що повернуться не раніше ніж за три тижні (так FSRS позначає вивчене; на перших тижнях тут буде 0).</p>
       <Bars rows={stats.byPack} showKnown />
 
       <h2 style={{ fontSize: 18, marginTop: 20 }}>За суфіксами</h2>
