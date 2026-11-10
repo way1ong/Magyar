@@ -176,7 +176,7 @@ const POT_STEM: Record<string, string> = { enni: "ehet", inni: "ihat", venni: "v
 /** fog in the present: the auxiliary of the future. */
 const FOG = { indef: "fogok fogsz fog fogunk fogtok fognak".split(" "), def: "fogom fogod fogja fogjuk fogjátok fogják".split(" ") };
 /** Verbs whose first syllables merely look like a prefix (be-szél, fel-el, lé-legez): never split for the future. */
-const NOT_SEPARABLE = new Set(["beszélni", "beszélgetni", "felelni", "lélegezni", "ellenőrizni", "kiabálni", "elemezni", "lelkesedni", "kelni", "menni", "túlórázni", "előzni", "betegeskedni"]);
+const NOT_SEPARABLE = new Set(["beszélni", "beszélgetni", "felelni", "lélegezni", "ellenőrizni", "kiabálni", "elemezni", "lelkesedni", "kelni", "menni", "túlórázni", "előzni", "betegeskedni", "becsülni"]);
 
 function p(pi: string, pd: string | null, qi: string, qd: string | null): Record<string, string> {
   const out: Record<string, string> = {};
