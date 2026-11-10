@@ -118,18 +118,23 @@ export default function ReviewPage() {
       {flipped ? (
         <div className="grade">
           <button className="btn again" onClick={() => grade(Rating.Again)}>
-            Ні <small>{intervals[Rating.Again]}</small>
+            Не знаю <small>{intervals[Rating.Again]}</small>
           </button>
           <button className="btn hard" onClick={() => grade(Rating.Hard)}>
             Важко <small>{intervals[Rating.Hard]}</small>
           </button>
           <button className="btn good" onClick={() => grade(Rating.Good)}>
-            Так <small>{intervals[Rating.Good]}</small>
+            Знаю <small>{intervals[Rating.Good]}</small>
           </button>
           <button className="btn" onClick={() => grade(Rating.Easy)}>
             Легко <small>{intervals[Rating.Easy]}</small>
           </button>
         </div>
+      ) : null}
+      {flipped ? (
+        <p className="muted" style={{ fontSize: 13, textAlign: "center", margin: "8px 0 0" }}>
+          Під кнопкою — через скільки картка повернеться: що краще знаєш, то рідше вона зʼявляється.
+        </p>
       ) : (
         <button className="btn primary" onClick={() => setFlipped(true)}>
           Показати відповідь
