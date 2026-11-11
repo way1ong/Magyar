@@ -84,7 +84,9 @@ export function applyParts(stem: string, p: Pattern, h: Harmony, forms?: ItemFor
     const v = h === "back" ? "a" : "e";
     // The syllable count is of the verb without its prefix: aláír → aláírat, megír → megírat.
     const syllables = (infinitiveStem(splitPrefix(stem)[1]).match(/[aáeéiíoóöőuúüű]/g) ?? []).length;
-    const suffix = base.endsWith("t") ? `t${v}t` : syllables <= 1 ? `${v}t` : `t${v}t`;
+    // A stem in vowel + t doubles the t (fizet → fizettet, javít → javíttat); after a
+    // consonant cluster ending in t only -at/-et is added (fest → festet, ereszt → eresztet).
+    const suffix = /[aáeéiíoóöőuúüű]t$/.test(base) ? `t${v}t` : base.endsWith("t") ? `${v}t` : syllables <= 1 ? `${v}t` : `t${v}t`;
     return { base, suffix, result: base + suffix };
   }
   if (p.fromInfinitive) {
