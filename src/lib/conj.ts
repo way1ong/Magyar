@@ -36,6 +36,17 @@ export const PRONOUN: Record<Person, string> = { "1sg": "én", "2sg": "te", "3sg
 export const PRONOUN_UA: Record<Person, string> = { "1sg": "я", "2sg": "ти", "3sg": "він / вона", "1pl": "ми", "2pl": "ви", "3pl": "вони" };
 export const TENSE_UA: Record<Tense, string> = { pres: "теперішній", past: "минулий", fut: "майбутній", pot: "можливість -hat/-het", imp: "наказовий", cond: "умовний" };
 /** Label with the right noun: "теперішній час", but "наказовий спосіб". */
+/**
+ * Ukrainian reading of "person + tense" for the task line: the potential
+ * becomes "я можу (мені можна)", the imperative "хай він …", the conditional
+ * "я б …" — the learner sees what the form means, not a grammar label.
+ */
+const POT_UA: Record<Person, string> = { "1sg": "я можу (мені можна)", "2sg": "ти можеш (тобі можна)", "3sg": "він / вона може (можна)", "1pl": "ми можемо (нам можна)", "2pl": "ви можете (вам можна)", "3pl": "вони можуть (їм можна)" };
+const IMP_UA: Record<Person, string> = { "1sg": "хай я … (наказ собі)", "2sg": "ти — наказ", "3sg": "хай він / вона …", "1pl": "ми — давайте …", "2pl": "ви — наказ", "3pl": "хай вони …" };
+const COND_UA: Record<Person, string> = { "1sg": "я б …", "2sg": "ти б …", "3sg": "він / вона б …", "1pl": "ми б …", "2pl": "ви б …", "3pl": "вони б …" };
+export const personTenseUa = (person: Person, t: Tense) =>
+  t === "pot" ? POT_UA[person] : t === "imp" ? IMP_UA[person] : t === "cond" ? COND_UA[person] : `${PRONOUN_UA[person]}, ${tenseLabel(t)}`;
+
 export const tenseLabel = (t: Tense) => (t === "pot" ? TENSE_UA[t] : t === "imp" || t === "cond" ? `${TENSE_UA[t]} спосіб` : `${TENSE_UA[t]} час`);
 
 export interface Slot {
@@ -54,7 +65,7 @@ type PastGroup = NonNullable<VerbConj["past"]>;
 /** Verbal prefixes, longest first — stripped to find the base verb. */
 const PREFIXES = [
   "keresztül", "vissza", "össze", "előre", "hátra", "végig", "körül", "tovább", "hozzá", "ellen", "félre", "haza", "neki", "bele", "után",
-  "tönkre", "létre", "helyre", "közbe", "újra", "abba", "felül", "karban", "egyet", "kölcsön", "jóvá",
+  "tönkre", "létre", "helyre", "közbe", "újra", "abba", "felül", "karban", "egyet", "kölcsön", "jóvá", "körbe",
   "meg", "el", "ki", "be", "fel", "föl", "le", "át", "oda", "ide", "szét", "rá", "alá", "elő", "túl", "fenn", "benn", "lenn", "kinn",
 ].sort((a, b) => b.length - a.length);
 
@@ -176,7 +187,7 @@ const POT_STEM: Record<string, string> = { enni: "ehet", inni: "ihat", venni: "v
 /** fog in the present: the auxiliary of the future. */
 const FOG = { indef: "fogok fogsz fog fogunk fogtok fognak".split(" "), def: "fogom fogod fogja fogjuk fogjátok fogják".split(" ") };
 /** Verbs whose first syllables merely look like a prefix (be-szél, fel-el, lé-legez): never split for the future. */
-const NOT_SEPARABLE = new Set(["beszélni", "beszélgetni", "felelni", "lélegezni", "ellenőrizni", "kiabálni", "elemezni", "lelkesedni", "kelni", "menni", "túlórázni", "előzni", "betegeskedni", "becsülni", "fellebbezni"]);
+const NOT_SEPARABLE = new Set(["beszélni", "beszélgetni", "felelni", "lélegezni", "ellenőrizni", "kiabálni", "elemezni", "lelkesedni", "kelni", "menni", "túlórázni", "előzni", "betegeskedni", "becsülni", "fellebbezni", "kölcsönözni", "ellenezni", "kicsinyíteni", "befolyásolni"]);
 
 function p(pi: string, pd: string | null, qi: string, qd: string | null): Record<string, string> {
   const out: Record<string, string> = {};

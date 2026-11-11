@@ -93,7 +93,7 @@
     {"id": "a2-04-tusszenteni", "type": "word", "hu": "tüsszenteni", "ua": "чхати", "pos": "verb", "harmony": "front", "example": {"hu": "Sokat tüsszentek.", "ua": "Я багато чхаю."}},
     {"id": "a2-04-megfazni", "type": "word", "hu": "megfázni", "ua": "застудитися", "pos": "verb", "harmony": "back", "example": {"hu": "Megfáztam.", "ua": "Я застудився."}, "conj": {"ik": true}},
     {"id": "a2-04-gyogyulni", "type": "word", "hu": "gyógyulni", "ua": "одужувати", "pos": "verb", "harmony": "back", "example": {"hu": "Lassan gyógyulok.", "ua": "Я повільно одужую."}, "tags": ["nominal"]},
-    {"id": "a2-04-gyogyitani", "type": "word", "hu": "gyógyítani", "ua": "лікувати", "pos": "verb", "harmony": "back", "example": {"hu": "Az orvos gyógyítja a betegeket.", "ua": "Лікар лікує хворих."}, "conj": {"tr": true}},
+    {"id": "a2-04-gyogyitani", "type": "word", "hu": "gyógyítani", "ua": "лікувати", "pos": "verb", "tags": ["negpot"], "harmony": "back", "example": {"hu": "Az orvos gyógyítja a betegeket.", "ua": "Лікар лікує хворих."}, "conj": {"tr": true}},
     {"id": "a2-04-vizsgalni", "type": "word", "hu": "vizsgálni", "ua": "оглядати, обстежувати", "pos": "verb", "harmony": "back", "example": {"hu": "Az orvos vizsgálja a beteget.", "ua": "Лікар оглядає хворого."}, "conj": {"tr": true}},
     {"id": "a2-04-bevenni", "type": "word", "hu": "bevenni", "ua": "приймати (ліки)", "pos": "verb", "harmony": "front", "example": {"hu": "Vedd be a tablettát!", "ua": "Прийми таблетку!"}},
     {"id": "a2-04-sportolni", "type": "word", "hu": "sportolni", "ua": "займатися спортом", "pos": "verb", "harmony": "back", "example": {"hu": "Hetente háromszor sportolok.", "ua": "Я займаюсь спортом тричі на тиждень."}},

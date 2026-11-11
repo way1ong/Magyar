@@ -1,5 +1,5 @@
 import { builderTasks, shuffle, taskPackIndex, type BuilderTask } from "./builder";
-import { conjugate, isConjugable, PERSONS, PRONOUN, PRONOUN_UA, slotsFor, tenseLabel, type Tense } from "./conj";
+import { conjugate, isConjugable, PERSONS, personTenseUa, PRONOUN, slotsFor, type Tense } from "./conj";
 import { conjTaskById } from "./conjcards";
 import { QUESTION_WORDS, sentenceTasks } from "./sentences";
 import { dialogueTasks } from "./dialogues";
@@ -89,7 +89,7 @@ export function conjQuestion(verb: Item): BossQuestion | null {
       return {
         kind: "conj",
         prompt: cloze ? cloze.hu : `(${PRONOUN[person]}) ___${object}${mark}`,
-        hint: `${cloze ? cloze.ua + " · " : ""}${verb.hu} — ${verb.ua} · ${PRONOUN_UA[person]}, ${tenseLabel(tense)}`,
+        hint: `${cloze ? cloze.ua + " · " : ""}${verb.hu} — ${verb.ua} · ${personTenseUa(person, tense)}`,
         options: shuffle([answer, ...others]),
         answer,
       };
