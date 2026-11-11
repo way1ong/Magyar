@@ -104,7 +104,7 @@ export interface Pattern {
    * (vásárolni → vásárl+ás). "plain" ignores `forms.stem` (the -hat/-het
    * potential goes on the full stem: dohányozhat, but dohányzás). Pair with attachesTo: ["verb"].
    */
-  fromInfinitive?: boolean | "plain";
+  fromInfinitive?: boolean | "plain" | "past" | "caus";
   /**
    * Accusative / plural / possessive: the ending depends on the stem's
    * linking vowel and stem changes (inflect.ts); `forms` then only lists
@@ -200,7 +200,7 @@ export interface Dialogue {
 
 export interface ContentPack {
   id: string; // "a1-01"
-  level: "A0" | "A1" | "A2" | "B1" | "B2";
+  level: "A0" | "A1" | "A2" | "B1" | "B2" | "C1";
   title: string;
   items: Item[];
   patterns: Pattern[];

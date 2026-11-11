@@ -70,9 +70,9 @@
     { "id": "a1-02-kes", "type": "word", "hu": "kés", "ua": "ніж", "pos": "noun", "harmony": "front", "tags": ["table"] },
     { "id": "a1-02-etterem", "type": "word", "hu": "étterem", "ua": "ресторан", "pos": "noun", "harmony": "front", "forms": {"stem": "étterm"}, "example": { "hu": "Ma étteremben ebédelünk.", "ua": "Сьогодні ми обідаємо в ресторані." }, "tags": ["place", "restaurant"] },
 
-    { "id": "a1-02-friss", "type": "word", "hu": "friss", "ua": "свіжий", "pos": "adj", "harmony": "front", "example": { "hu": "Friss a kenyér?", "ua": "Хліб свіжий?" }, "tags": ["grad"] },
+    { "id": "a1-02-friss", "type": "word", "hu": "friss", "ua": "свіжий", "pos": "adj", "harmony": "front", "example": { "hu": "Friss a kenyér?", "ua": "Хліб свіжий?" }, "tags": ["fact", "grad"] },
     { "id": "a1-02-finom", "type": "word", "hu": "finom", "ua": "смачний", "pos": "adj", "harmony": "back", "example": { "hu": "A leves finom.", "ua": "Суп смачний." }, "tags": ["grad", "mixed-vowel"] },
-    { "id": "a1-02-edes", "type": "word", "hu": "édes", "ua": "солодкий", "pos": "adj", "harmony": "front", "tags": ["quality", "grad"] },
+    { "id": "a1-02-edes", "type": "word", "hu": "édes", "ua": "солодкий", "pos": "adj", "harmony": "front", "tags": ["fact", "quality", "grad"] },
     { "id": "a1-02-sos", "type": "word", "hu": "sós", "ua": "солоний", "pos": "adj", "harmony": "back", "example": { "hu": "A leves túl sós.", "ua": "Суп занадто солоний." }, "tags": ["grad"] },
     { "id": "a1-02-savanyu", "type": "word", "hu": "savanyú", "ua": "кислий", "pos": "adj", "harmony": "back", "example": { "hu": "A citrom savanyú.", "ua": "Лимон кислий." }, "tags": ["quality", "grad"] },
     { "id": "a1-02-csipos", "type": "word", "hu": "csípős", "ua": "гострий (на смак)", "pos": "adj", "harmony": "front_rounded", "tags": ["grad"] },
@@ -104,10 +104,10 @@
     { "id": "a1-02-keves", "type": "word", "hu": "kevés", "ua": "мало", "pos": "num", "harmony": "front", "example": { "hu": "Kevés a pénzem.", "ua": "У мене мало грошей." } },
 
     {"id": "a1-02-venni", "type": "word", "hu": "venni", "ua": "купувати; брати", "pos": "verb", "harmony": "front", "example": {"hu": "Kenyeret veszek.", "ua": "Я купую хліб."}},
-    {"id": "a1-02-fizetni", "type": "word", "hu": "fizetni", "ua": "платити", "pos": "verb", "harmony": "front", "example": {"hu": "Hol lehet fizetni?", "ua": "Де можна заплатити?"}, "tags": ["gerundive", "potadj", "nominal"], "conj": {"tr": true}},
-    {"id": "a1-02-fozni", "type": "word", "hu": "főzni", "ua": "готувати (їжу), варити", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Anya levest főz.", "ua": "Мама варить суп."}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "a1-02-fizetni", "type": "word", "hu": "fizetni", "ua": "платити", "pos": "verb", "harmony": "front", "example": {"hu": "Hol lehet fizetni?", "ua": "Де можна заплатити?"}, "tags": ["caus", "partpres", "gerundive", "potadj", "nominal"], "conj": {"tr": true}},
+    {"id": "a1-02-fozni", "type": "word", "hu": "főzni", "ua": "готувати (їжу), варити", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Anya levest főz.", "ua": "Мама варить суп."}, "tags": ["caus", "partpast", "nominal"], "conj": {"tr": true}},
     {"id": "a1-02-kostolni", "type": "word", "hu": "kóstolni", "ua": "куштувати", "pos": "verb", "harmony": "back", "example": {"hu": "Megkóstolhatom?", "ua": "Можна скуштувати?"}, "conj": {"tr": true}},
-    {"id": "a1-02-vasarolni", "type": "word", "hu": "vásárolni", "ua": "робити покупки, купувати", "pos": "verb", "harmony": "back", "forms": {"stem": "vásárl"}, "example": {"hu": "A boltban vásárolok.", "ua": "Я купую в магазині."}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "a1-02-vasarolni", "type": "word", "hu": "vásárolni", "ua": "робити покупки, купувати", "pos": "verb", "harmony": "back", "forms": {"stem": "vásárl"}, "example": {"hu": "A boltban vásárolok.", "ua": "Я купую в магазині."}, "tags": ["partpres", "nominal"], "conj": {"tr": true}},
     {"id": "a1-02-szamolni", "type": "word", "hu": "számolni", "ua": "рахувати", "pos": "verb", "harmony": "back", "example": {"hu": "Tízig számolok.", "ua": "Я рахую до десяти."}, "conj": {"tr": true}},
     {"id": "a1-02-adni", "type": "word", "hu": "adni", "ua": "давати", "pos": "verb", "harmony": "back", "example": {"hu": "Adjon egy kiló almát!", "ua": "Дайте кілограм яблук!"}, "conj": {"tr": true}}
   ],

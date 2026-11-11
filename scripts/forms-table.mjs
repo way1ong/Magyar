@@ -5,7 +5,7 @@ import { loadLib } from "./load-lib.mjs";
 const { inflect } = await loadLib("src/lib/inflect.ts");
 const dir = new URL("../content/", import.meta.url);
 console.log("| пакет | слово | знахідний | множина | мій | твій | його/її | -s | forms |\n|---|---|---|---|---|---|---|---|---|");
-for (const f of readdirSync(dir).filter((f) => /^[ab]\d-\d\d\.json$/.test(f)).sort()) {
+for (const f of readdirSync(dir).filter((f) => /^[abc]\d-\d\d\.json$/.test(f)).sort()) {
   const pack = JSON.parse(readFileSync(new URL(f, dir), "utf8"));
   for (const it of pack.items) {
     if (it.pos !== "noun" || !it.harmony) continue;

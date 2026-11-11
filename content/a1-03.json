@@ -68,7 +68,7 @@
     { "id": "a1-03-unnep", "type": "word", "hu": "ünnep", "ua": "свято", "pos": "noun", "harmony": "front", "tags": ["time", "calendar", "last-syllable-rule"] },
     { "id": "a1-03-datum", "type": "word", "hu": "dátum", "ua": "дата", "pos": "noun", "harmony": "back", "tags": ["calendar"] },
 
-    { "id": "a1-03-gyors", "type": "word", "hu": "gyors", "ua": "швидкий", "pos": "adj", "harmony": "back", "tags": ["grad"] },
+    { "id": "a1-03-gyors", "type": "word", "hu": "gyors", "ua": "швидкий", "pos": "adj", "harmony": "back", "tags": ["fact", "grad"] },
     {"id": "a1-03-lassu", "type": "word", "hu": "lassú", "ua": "повільний", "pos": "adj", "harmony": "back", "forms": {"comp": "lassabb", "adv": "lassan"}, "tags": ["quality", "grad"]},
     { "id": "a1-03-pontos", "type": "word", "hu": "pontos", "ua": "точний; пунктуальний", "pos": "adj", "harmony": "back", "example": { "hu": "A vonat pontos.", "ua": "Потяг прибуває вчасно." }, "tags": ["quality", "grad"] },
     {"id": "a1-03-szabad", "type": "word", "hu": "szabad", "ua": "вільний", "pos": "adj", "harmony": "back", "forms": {"adv": "szabadon"}, "example": {"hu": "Holnap szabad vagyok.", "ua": "Завтра я вільний."}, "tags": ["quality", "grad"]},
@@ -95,9 +95,9 @@
 
     {"id": "a1-03-kelni", "type": "word", "hu": "kelni", "ua": "вставати", "pos": "verb", "harmony": "front", "example": {"hu": "Hatkor kelek.", "ua": "Я встаю о шостій."}},
     {"id": "a1-03-fekudni", "type": "word", "hu": "feküdni", "ua": "лежати; лягати", "pos": "verb", "harmony": "front", "example": {"hu": "Tizenegykor fekszem le.", "ua": "Я лягаю об одинадцятій."}, "conj": {"stem": "feksz", "pastStem": "feküd", "past": "t", "ik": true}},
-    {"id": "a1-03-kezdeni", "type": "word", "hu": "kezdeni", "ua": "починати", "pos": "verb", "harmony": "front", "example": {"hu": "Holnap kezdem a munkát.", "ua": "Завтра я починаю роботу."}, "conj": {"tr": true}},
-    {"id": "a1-03-befejezni", "type": "word", "hu": "befejezni", "ua": "закінчувати", "pos": "verb", "harmony": "front", "example": {"hu": "Befejeztem a munkát.", "ua": "Я закінчив роботу."}, "conj": {"tr": true}},
-    {"id": "a1-03-varni", "type": "word", "hu": "várni", "ua": "чекати", "pos": "verb", "harmony": "back", "example": {"hu": "Várok rád.", "ua": "Я чекаю на тебе."}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "a1-03-kezdeni", "type": "word", "hu": "kezdeni", "ua": "починати", "pos": "verb", "tags": ["advpart", "partpres"], "harmony": "front", "example": {"hu": "Holnap kezdem a munkát.", "ua": "Завтра я починаю роботу."}, "conj": {"tr": true}},
+    {"id": "a1-03-befejezni", "type": "word", "hu": "befejezni", "ua": "закінчувати", "pos": "verb", "tags": ["advpart"], "harmony": "front", "example": {"hu": "Befejeztem a munkát.", "ua": "Я закінчив роботу."}, "conj": {"tr": true}},
+    {"id": "a1-03-varni", "type": "word", "hu": "várni", "ua": "чекати", "pos": "verb", "harmony": "back", "example": {"hu": "Várok rád.", "ua": "Я чекаю на тебе."}, "tags": ["partpast", "partpres", "nominal"], "conj": {"tr": true}},
     {"id": "a1-03-kesni", "type": "word", "hu": "késni", "ua": "запізнюватися", "pos": "verb", "harmony": "front", "example": {"hu": "Ne késs!", "ua": "Не запізнюйся!"}, "conj": {"ik": true}},
     {"id": "a1-03-tartani", "type": "word", "hu": "tartani", "ua": "тривати; тримати", "pos": "verb", "harmony": "back", "example": {"hu": "A film két óráig tart.", "ua": "Фільм триває дві години."}, "conj": {"tr": true}},
     {"id": "a1-03-sietni", "type": "word", "hu": "sietni", "ua": "поспішати", "pos": "verb", "harmony": "front", "example": {"hu": "Sietek!", "ua": "Я поспішаю!"}}

@@ -68,7 +68,7 @@
     { "id": "a1-04-falu", "type": "word", "hu": "falu", "ua": "село", "pos": "noun", "harmony": "back", "forms": {"pl": "falvak"}, "example": { "hu": "Faluban lakom.", "ua": "Я живу в селі." }, "tags": ["place"] },
     { "id": "a1-04-orszag", "type": "word", "hu": "ország", "ua": "країна", "pos": "noun", "harmony": "back", "tags": ["place"] },
 
-    { "id": "a1-04-egyenes", "type": "word", "hu": "egyenes", "ua": "прямий", "pos": "adj", "harmony": "front", "tags": ["grad"] },
+    { "id": "a1-04-egyenes", "type": "word", "hu": "egyenes", "ua": "прямий", "pos": "adj", "harmony": "front", "tags": ["fact", "grad"] },
     { "id": "a1-04-kozeli", "type": "word", "hu": "közeli", "ua": "близький, найближчий", "pos": "adj", "harmony": "front", "forms": {"comp": "közelebbi"}, "example": { "hu": "Hol a legközelebbi megálló?", "ua": "Де найближча зупинка?" }, "tags": ["grad"] },
     { "id": "a1-04-tavoli", "type": "word", "hu": "távoli", "ua": "далекий", "pos": "adj", "harmony": "back", "forms": {"comp": "távolabbi"}, "tags": ["grad"] },
     { "id": "a1-04-jobb", "type": "word", "hu": "jobb", "ua": "правий; кращий", "pos": "adj", "harmony": "back" },
@@ -95,16 +95,16 @@
 
     {"id": "a1-04-utazni", "type": "word", "hu": "utazni", "ua": "подорожувати, їхати", "pos": "verb", "harmony": "back", "example": {"hu": "Vonattal utazom.", "ua": "Я їду потягом."}, "tags": ["nominal"], "conj": {"ik": true}},
     {"id": "a1-04-indulni", "type": "word", "hu": "indulni", "ua": "відправлятися, вирушати", "pos": "verb", "harmony": "back", "example": {"hu": "Most indulunk.", "ua": "Ми зараз вирушаємо."}, "tags": ["nominal"]},
-    {"id": "a1-04-erkezni", "type": "word", "hu": "érkezni", "ua": "прибувати", "pos": "verb", "harmony": "front", "example": {"hu": "Mikor érkezünk?", "ua": "Коли ми прибудемо?"}, "tags": ["nominal"], "conj": {"ik": true}},
+    {"id": "a1-04-erkezni", "type": "word", "hu": "érkezni", "ua": "прибувати", "pos": "verb", "harmony": "front", "example": {"hu": "Mikor érkezünk?", "ua": "Коли ми прибудемо?"}, "tags": ["partpres", "nominal"], "conj": {"ik": true}},
     {"id": "a1-04-felszallni", "type": "word", "hu": "felszállni", "ua": "сідати (у транспорт)", "pos": "verb", "harmony": "back", "example": {"hu": "Felszállok a villamosra.", "ua": "Я сідаю в трамвай."}, "tags": ["nominal"], "conj": {"link": false, "past": "t"}},
     {"id": "a1-04-leszallni", "type": "word", "hu": "leszállni", "ua": "виходити (з транспорту)", "pos": "verb", "harmony": "back", "example": {"hu": "A következő megállónál leszállok.", "ua": "Я виходжу на наступній зупинці."}, "tags": ["nominal"], "conj": {"link": false, "past": "t"}},
     {"id": "a1-04-atszallni", "type": "word", "hu": "átszállni", "ua": "пересідати", "pos": "verb", "harmony": "back", "example": {"hu": "Itt átszállok a metróra.", "ua": "Тут я пересідаю на метро."}, "tags": ["nominal"], "conj": {"link": false, "past": "t"}},
-    {"id": "a1-04-vezetni", "type": "word", "hu": "vezetni", "ua": "керувати (авто); вести", "pos": "verb", "harmony": "front", "example": {"hu": "Én vezetek.", "ua": "Я за кермом."}, "conj": {"tr": true}},
+    {"id": "a1-04-vezetni", "type": "word", "hu": "vezetni", "ua": "керувати (авто); вести", "pos": "verb", "tags": ["partpres"], "harmony": "front", "example": {"hu": "Én vezetek.", "ua": "Я за кермом."}, "conj": {"tr": true}},
     {"id": "a1-04-parkolni", "type": "word", "hu": "parkolni", "ua": "паркуватися", "pos": "verb", "harmony": "back", "example": {"hu": "Hol lehet parkolni?", "ua": "Де можна припаркуватися?"}, "tags": ["nominal"]},
     {"id": "a1-04-megallni", "type": "word", "hu": "megállni", "ua": "зупинятися", "pos": "verb", "harmony": "back", "example": {"hu": "A busz itt megáll.", "ua": "Автобус тут зупиняється."}, "tags": ["nominal"], "conj": {"link": false, "past": "t"}},
     {"id": "a1-04-fordulni", "type": "word", "hu": "fordulni", "ua": "повертати", "pos": "verb", "harmony": "back", "example": {"hu": "Jobbra fordulok.", "ua": "Я повертаю праворуч."}, "tags": ["nominal"]},
     {"id": "a1-04-setalni", "type": "word", "hu": "sétálni", "ua": "гуляти", "pos": "verb", "harmony": "back", "example": {"hu": "A parkban sétálunk.", "ua": "Ми гуляємо в парку."}, "tags": ["nominal"]},
-    {"id": "a1-04-keresni", "type": "word", "hu": "keresni", "ua": "шукати", "pos": "verb", "harmony": "front", "example": {"hu": "A megállót keresem.", "ua": "Я шукаю зупинку."}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "a1-04-keresni", "type": "word", "hu": "keresni", "ua": "шукати", "pos": "verb", "harmony": "front", "example": {"hu": "A megállót keresem.", "ua": "Я шукаю зупинку."}, "tags": ["partpast", "nominal"], "conj": {"tr": true}},
     {"id": "a1-04-talalni", "type": "word", "hu": "találni", "ua": "знаходити", "pos": "verb", "tags": ["prone"], "harmony": "back", "example": {"hu": "Nem találom a jegyemet.", "ua": "Я не можу знайти свій квиток."}, "conj": {"tr": true}},
     {"id": "a1-04-kerdezni", "type": "word", "hu": "kérdezni", "ua": "питати", "pos": "verb", "harmony": "front", "example": {"hu": "Kérdezhetek valamit?", "ua": "Можна щось спитати?"}, "conj": {"tr": true}},
     {"id": "a1-04-mutatni", "type": "word", "hu": "mutatni", "ua": "показувати", "pos": "verb", "harmony": "back", "example": {"hu": "Megmutatom az utat.", "ua": "Я покажу дорогу."}, "conj": {"tr": true}}

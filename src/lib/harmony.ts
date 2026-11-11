@@ -1,4 +1,5 @@
-import type { Harmony, ItemForms, Pattern } from "./types";
+import type { Harmony, Item, ItemForms, Pattern } from "./types";
+import { conjugate, splitPrefix } from "./conj";
 import { INFLECT_VARIANTS, inflect } from "./inflect";
 
 const BACK = new Set(["a", "á", "o", "ó", "u", "ú"]);
@@ -67,7 +68,27 @@ export const infinitiveStem = (inf: string) => inf.replace(/ni$/, "").replace(/[
  * Stem + suffix + whole word for a pattern on a stem. `forms` carries the
  * noun's stem behaviour for inflecting patterns (kéz → kez+et).
  */
-export function applyParts(stem: string, p: Pattern, h: Harmony, forms?: ItemForms): { base: string; suffix: string; result: string } {
+export function applyParts(stem: string, p: Pattern, h: Harmony, forms?: ItemForms, item?: Item): { base: string; suffix: string; result: string } {
+  if (p.fromInfinitive === "past") {
+    // Past participle = past tense 3sg indefinite (olvasott, írt, főtt, evett): the
+    // conjugation model already knows the linking vowel and the irregular stems.
+    const result = item ? conjugate(item, { tense: "past", def: false, person: "3sg" }) : infinitiveStem(stem) + p.forms[h];
+    const m = result.match(/^(.*?)([aeoö]?t{1,2})$/);
+    return m ? { base: m[1], suffix: m[2], result } : { base: result, suffix: "", result };
+  }
+  if (p.fromInfinitive === "caus") {
+    // Causative -tat/-tet: after a stem in -t the t doubles (fizet → fizettet,
+    // javít → javíttat); a one-syllable stem takes -at/-et (ír → írat, mos →
+    // mosat); longer stems take -tat/-tet (olvas → olvastat, csinál → csináltat).
+    const base = infinitiveStem(stem);
+    const v = h === "back" ? "a" : "e";
+    // The syllable count is of the verb without its prefix: aláír → aláírat, megír → megírat.
+    const syllables = (infinitiveStem(splitPrefix(stem)[1]).match(/[aáeéiíoóöőuúüű]/g) ?? []).length;
+    // A stem in vowel + t doubles the t (fizet → fizettet, javít → javíttat); after a
+    // consonant cluster ending in t only -at/-et is added (fest → festet, ereszt → eresztet).
+    const suffix = /[aáeéiíoóöőuúüű]t$/.test(base) ? `t${v}t` : base.endsWith("t") ? `${v}t` : syllables <= 1 ? `${v}t` : `t${v}t`;
+    return { base, suffix, result: base + suffix };
+  }
   if (p.fromInfinitive) {
     const base = (p.fromInfinitive === "plain" ? undefined : forms?.stem) ?? infinitiveStem(stem);
     return { base, suffix: p.forms[h], result: base + p.forms[h] };
@@ -93,7 +114,7 @@ export function applyParts(stem: string, p: Pattern, h: Harmony, forms?: ItemFor
  * linking suffix after a vowel, the assimilated form of -val/-vel after a
  * consonant (busz → "szal"), or the inflectional ending (ház → "at").
  */
-export const suffixFor = (stem: string, p: Pattern, h: Harmony, forms?: ItemForms) => applyParts(stem, p, h, forms).suffix;
+export const suffixFor = (stem: string, p: Pattern, h: Harmony, forms?: ItemForms, item?: Item) => applyParts(stem, p, h, forms, item).suffix;
 
 /**
  * Apply a pattern to a stem. Handles final-vowel lengthening, the
@@ -101,17 +122,20 @@ export const suffixFor = (stem: string, p: Pattern, h: Harmony, forms?: ItemForm
  * -val/-vel assimilation (busz+val → busszal) and, for inflecting patterns,
  * stem changes and linking vowels (kéz → kezet, ház → házat).
  */
-export const apply = (stem: string, p: Pattern, h: Harmony, forms?: ItemForms) => applyParts(stem, p, h, forms).result;
+export const apply = (stem: string, p: Pattern, h: Harmony, forms?: ItemForms, item?: Item) => applyParts(stem, p, h, forms, item).result;
 
 /**
  * Multiple-choice for the Harmony game: the right ending and the candidates.
  * Case suffixes: the harmony variants (-ban/-ben). Inflecting suffixes: the
  * actual ending among its linking-vowel variants (-at vs -ot/-et/-öt/-t).
  */
-export function harmonyChoice(stem: string, p: Pattern, h: Harmony, forms?: ItemForms): { correct: string; options: string[] } {
-  if (!p.inflect) return { correct: p.forms[h], options: variantsOf(p) };
-  const correct = inflect(stem, h, forms, p.inflect).suffix;
-  const others = INFLECT_VARIANTS[p.inflect].filter((v) => v !== correct);
+const VERB_VARIANTS: Record<string, string[]> = { past: ["t", "tt", "ott", "ett", "ött"], caus: ["at", "et", "tat", "tet"] };
+
+export function harmonyChoice(stem: string, p: Pattern, h: Harmony, forms?: ItemForms, item?: Item): { correct: string; options: string[] } {
+  const verbVariants = typeof p.fromInfinitive === "string" ? VERB_VARIANTS[p.fromInfinitive] : undefined;
+  if (!p.inflect && !verbVariants) return { correct: p.forms[h], options: variantsOf(p) };
+  const correct = verbVariants ? applyParts(stem, p, h, forms, item).suffix : inflect(stem, h, forms, p.inflect!).suffix;
+  const others = (verbVariants ?? INFLECT_VARIANTS[p.inflect!]).filter((v) => v !== correct);
   for (let i = others.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [others[i], others[j]] = [others[j], others[i]];
