@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SessionDone } from "@/components/SessionDone";
+import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
 import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { sameOrder, sentenceTaskById, type SentenceTask } from "@/lib/sentences";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
@@ -31,6 +32,7 @@ function shuffle<T>(xs: T[]): T[] {
  */
 export default function SentencesPage() {
   const [queue, setQueue] = useState<CardRow[] | null>(null);
+  const [held, setHeld] = useState(false);
   const [i, setI] = useState(0);
   // Placed tile indices are kept together with the card they belong to, so a
   // new card never reads them against its own (shorter) tile set.
@@ -46,7 +48,10 @@ export default function SentencesPage() {
   const load = useCallback(async () => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await (takeMistakeMode("sentence") ? (setMistakeMode(true), mistakeCards("sentence")) : (setMistakeMode(false), sessionCards("sentence", 20, 8)))).filter((c) => sentenceTaskById(c.itemId));
+    const mm = takeMistakeMode("sentence");
+    setMistakeMode(mm);
+    const q = (await (mm ? mistakeCards("sentence") : sessionCards("sentence", 20, 8))).filter((c) => sentenceTaskById(c.itemId));
+    setHeld(!q.length && !mm ? await heldBack("sentence") : false);
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -84,7 +89,7 @@ export default function SentencesPage() {
   const setPlaced = (idx: number[]) => setPlacedFor({ key: cardKey, idx });
 
   if (queue === null) return <p className="muted">Завантажую…</p>;
-  if (!row || !task) return <SessionDone title="Речення" score={score} onAgain={load} step="sentence" mistakes={mistakeMode} />;
+  if (!row || !task) return <SessionDone title="Речення" score={score} onAgain={load} step="sentence" mistakes={mistakeMode} heldBack={held ? HELD_BACK_TEXT.sentence : undefined} />;
 
   const done = outcome === "right" || outcome === "revealed";
   const answerWords = placed.map((k) => tiles[k]?.w ?? "");
@@ -157,7 +162,7 @@ export default function SentencesPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">Речення · порядок слів</span>
+        <span className="muted">Речення · склади речення зі слів</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}

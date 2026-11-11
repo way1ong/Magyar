@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
 import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { harmonyTaskById, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
@@ -37,6 +38,7 @@ const VERDICT_TEXT: Record<Outcome, string> = {
  */
 export default function HarmonyPage() {
   const [queue, setQueue] = useState<CardRow[] | null>(null);
+  const [held, setHeld] = useState(false);
   const [mode, setMode] = useState<TypingMode>("auto");
   const [i, setI] = useState(0);
   const [choice, setChoice] = useState<{ correct: string; options: string[] } | null>(null);
@@ -50,7 +52,10 @@ export default function HarmonyPage() {
   const load = useCallback(async () => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await (takeMistakeMode("harmony") ? (setMistakes(true), mistakeCards("harmony")) : (setMistakes(false), sessionCards("harmony", 20, 8)))).filter((c) => harmonyTaskById(c.itemId));
+    const mm = takeMistakeMode("harmony");
+    setMistakes(mm);
+    const q = (await (mm ? mistakeCards("harmony") : sessionCards("harmony", 20, 8))).filter((c) => harmonyTaskById(c.itemId));
+    setHeld(!q.length && !mm ? await heldBack("harmony") : false);
     setQueue(q.sort(() => Math.random() - 0.5));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -79,7 +84,7 @@ export default function HarmonyPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !choice) {
-    return <SessionDone title="Гармонія голосних" score={score} onAgain={load} step="harmony" mistakes={mistakes} />;
+    return <SessionDone title="Гармонія голосних" score={score} onAgain={load} step="harmony" mistakes={mistakes} heldBack={held ? HELD_BACK_TEXT.harmony : undefined} />;
   }
 
   const typing = shouldType(mode, row);
@@ -138,7 +143,7 @@ export default function HarmonyPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">{pattern.name}</span>
+        <span className="muted">Гармонія · {pattern.name}</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}
@@ -149,7 +154,7 @@ export default function HarmonyPage() {
       </div>
 
       <div className="card big">
-        <p className="muted" style={{ margin: 0 }}>{patternShort(pattern, stem)}</p>
+        <p className="muted" style={{ margin: 0 }}>Вибери суфікс: {patternShort(pattern, stem)}</p>
         {gap ? (
           <p className="hu" lang="hu" style={{ fontSize: 26 }}>
             {gap[0]}

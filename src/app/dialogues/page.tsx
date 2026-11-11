@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SessionDone } from "@/components/SessionDone";
+import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
 import { dealFor, dialogueTaskById, type DialogueTask } from "@/lib/dialogues";
 import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
@@ -26,6 +27,7 @@ function shuffle<T>(xs: T[]): T[] {
  */
 export default function DialoguesPage() {
   const [queue, setQueue] = useState<CardRow[] | null>(null);
+  const [held, setHeld] = useState(false);
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
   const [showUa, setShowUa] = useState(false);
@@ -35,7 +37,10 @@ export default function DialoguesPage() {
 
   const load = useCallback(async () => {
     await seedCards();
-    const q = (await (takeMistakeMode("dialogue") ? (setMistakeMode(true), mistakeCards("dialogue")) : (setMistakeMode(false), sessionCards("dialogue", 10, 4, 4)))).filter((c) => dialogueTaskById(c.itemId));
+    const mm = takeMistakeMode("dialogue");
+    setMistakeMode(mm);
+    const q = (await (mm ? mistakeCards("dialogue") : sessionCards("dialogue", 10, 4, 4))).filter((c) => dialogueTaskById(c.itemId));
+    setHeld(!q.length && !mm ? await heldBack("dialogue") : false);
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -51,7 +56,8 @@ export default function DialoguesPage() {
   const row = queue?.[i];
   const task: DialogueTask | undefined = row ? dialogueTaskById(row.itemId) : undefined;
   const cardKey = row ? `${i}:${row.key}` : "";
-  const deal = useMemo(() => (task ? dealFor(task) : null), [task]);
+  const first = row?.reps === 0;
+  const deal = useMemo(() => (task ? dealFor(task, first) : null), [task, first]);
 
   useEffect(() => {
     setPicked(null);
@@ -60,7 +66,7 @@ export default function DialoguesPage() {
   }, [cardKey]);
 
   if (queue === null) return <p className="muted">Завантажую…</p>;
-  if (!row || !task || !deal) return <SessionDone title="Діалоги" score={score} onAgain={load} step="dialogue" mistakes={mistakeMode} />;
+  if (!row || !task || !deal) return <SessionDone title="Діалоги" score={score} onAgain={load} step="dialogue" mistakes={mistakeMode} heldBack={held ? HELD_BACK_TEXT.dialogue : undefined} />;
 
   const d = task.dialogue;
   const done = picked !== null;
@@ -80,7 +86,7 @@ export default function DialoguesPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">Діалоги · {deal.kind === "question" ? "розуміння" : "пропущена репліка"}</span>
+        <span className="muted">Діалоги · {deal.kind === "question" ? "прочитай і дай відповідь" : "яка репліка пропущена?"}</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}

@@ -1,5 +1,6 @@
 import { createEmptyCard, fsrs, generatorParameters, Rating, type Grade } from "ts-fsrs";
 import { db, fromRow, toRow, withRetry, type CardRow, type Exercise } from "./db";
+import { readiness } from "./readiness";
 
 export { Rating };
 export type { Grade };
@@ -97,9 +98,12 @@ export function previewIntervals(row: CardRow): Record<Grade, string> {
  */
 export async function sessionCards(exercise: Exercise, limit = 20, newLimit = 10, minimum = 8): Promise<CardRow[]> {
   const now = Date.now();
-  const all = await withRetry(() => db.cards.where("exercise").equals(exercise).toArray());
+  const gate = await readiness(exercise);
+  // New cards enter only when ready (readiness.ts); started cards are never held back.
+  const all = (await withRetry(() => db.cards.where("exercise").equals(exercise).toArray())).filter((c) => c.state !== 0 || !gate || gate.ready(c.itemId));
+  const byNew = (a: CardRow, b: CardRow) => (gate?.rank ? gate.rank(a.itemId) - gate.rank(b.itemId) : 0) || a.due - b.due;
   const due = all.filter((c) => c.due <= now);
-  const fresh = due.filter((c) => c.state === 0).slice(0, newLimit);
+  const fresh = due.filter((c) => c.state === 0).sort(byNew).slice(0, newLimit);
   const review = due
     .filter((c) => c.state !== 0)
     .sort((a, b) => a.due - b.due)
@@ -109,7 +113,7 @@ export async function sessionCards(exercise: Exercise, limit = 20, newLimit = 10
     const have = new Set(q.map((c) => c.key));
     const ahead = all
       .filter((c) => !have.has(c.key))
-      .sort((a, b) => Number(a.state === 0) - Number(b.state === 0) || a.due - b.due);
+      .sort((a, b) => Number(a.state === 0) - Number(b.state === 0) || (a.state === 0 ? byNew(a, b) : a.due - b.due));
     q.push(...ahead.slice(0, minimum - q.length));
   }
   return q;
