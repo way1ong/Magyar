@@ -18,27 +18,34 @@ interface Props {
   step?: DayStep;
   /** The session was a rerun of recent mistakes. */
   mistakes?: boolean;
+  /** Nothing to do yet because readiness holds the new cards back (readiness.ts): shown instead of the score; the step still counts as done. */
+  heldBack?: string;
 }
 
-export function SessionDone({ title, score, onAgain, step, mistakes }: Props) {
+export function SessionDone({ title, score, onAgain, step, mistakes, heldBack }: Props) {
   const total = typeof score === "number" ? score : score.total;
   const [next, setNext] = useState<(typeof DAY_PLAN)[number] | null | undefined>(undefined);
   useEffect(() => {
-    if (!step || !total) return;
+    if (!step || (!total && !heldBack)) return;
     let alive = true;
     (mistakes ? dayDone() : markDayStep(step)).then((done) => alive && setNext(nextDayStep(done)));
     return () => {
       alive = false;
     };
-  }, [step, total, mistakes]);
+  }, [step, total, mistakes, heldBack]);
   return (
     <>
       <h1 className="title">{title}</h1>
       <div className="card big">
-        <p className="hu">{typeof score === "object" && score.total ? `${score.right} / ${score.total}` : "✓"}</p>
+        <p className="hu">{typeof score === "object" && score.total ? `${score.right} / ${score.total}` : !total && heldBack ? "⏳" : "✓"}</p>
         <p className="muted">
-          {total ? (typeof score === "number" ? `Зроблено ${score}.` : "Сесію завершено.") : mistakes ? "Помилок у цій вправі за тиждень нема." : "У цій вправі поки нема карток."}
+          {total ? (typeof score === "number" ? `Зроблено ${score}.` : "Сесію завершено.") : mistakes ? "Помилок у цій вправі за тиждень нема." : heldBack ?? "У цій вправі поки нема карток."}
         </p>
+        {!total && heldBack && (
+          <Link href="/review" className="btn primary" style={{ marginTop: 10 }}>
+            🃏 До «Карток»
+          </Link>
+        )}
         {next === null && total > 0 && !mistakes && <p className="example">План дня виконано 🎉</p>}
       </div>
       {next && (

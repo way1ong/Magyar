@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
 import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
@@ -62,6 +63,7 @@ function note(t: BuilderTask): string | null {
  */
 export default function BuilderPage() {
   const [queue, setQueue] = useState<CardRow[] | null>(null);
+  const [held, setHeld] = useState(false);
   const [i, setI] = useState(0);
   // Blocks are dealt per card position; `key` guards against a stale deal.
   const [deal, setDeal] = useState<{ key: string; blocks: Block[] } | null>(null);
@@ -73,7 +75,10 @@ export default function BuilderPage() {
 
   const load = useCallback(async () => {
     await seedCards();
-    const q = (await (takeMistakeMode("builder") ? (setMistakes(true), mistakeCards("builder")) : (setMistakes(false), sessionCards("builder", 20, 8)))).filter((r) => builderTaskById(r.itemId));
+    const mm = takeMistakeMode("builder");
+    setMistakes(mm);
+    const q = (await (mm ? mistakeCards("builder") : sessionCards("builder", 20, 8))).filter((r) => builderTaskById(r.itemId));
+    setHeld(!q.length && !mm ? await heldBack("builder") : false);
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -101,7 +106,7 @@ export default function BuilderPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task) {
-    return <SessionDone title="Конструктор" score={score} onAgain={load} step="builder" mistakes={mistakes} />;
+    return <SessionDone title="Конструктор" score={score} onAgain={load} step="builder" mistakes={mistakes} heldBack={held ? HELD_BACK_TEXT.builder : undefined} />;
   }
 
   const blocks = deal?.key === dealKey ? deal.blocks : [];
@@ -136,7 +141,7 @@ export default function BuilderPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">Збери слово</span>
+        <span className="muted">Конструктор · збери слово з блоків</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}

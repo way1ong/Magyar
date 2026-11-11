@@ -33,11 +33,15 @@ export type Deal =
   | { kind: "question"; prompt: string; options: string[]; answer: string }
   | { kind: "gap"; line: number; prompt: string; options: string[]; answer: string };
 
-/** A random showing of the dialogue: its question, or a gap with distractors from nearby dialogues. */
-export function dealFor(task: DialogueTask): Deal {
+/**
+ * A showing of the dialogue: its question, or a gap with distractors from
+ * nearby dialogues. The first time a card is shown it is always the question
+ * — reading first, reproducing lines later.
+ */
+export function dealFor(task: DialogueTask, first = false): Deal {
   const d = task.dialogue;
   const q = d.question;
-  const useGap = Math.random() < 0.5;
+  const useGap = !first && Math.random() < 0.5;
   if (!useGap) return { kind: "question", prompt: q.q, options: shuffle(q.options), answer: q.options[q.answer] };
   // Gap: hide a line after the first; distractors are lines by the same speaker position from other dialogues, nearest packs first.
   const line = 1 + Math.floor(Math.random() * (d.lines.length - 1));

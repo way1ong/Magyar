@@ -5,7 +5,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db, exportProgress, importProgress } from "@/lib/db";
 import { backupToLaptop, IS_STATIC, NO_LAPTOP, lastBackup, markExported, shareProgress } from "@/lib/backup";
 import { allItems, allPatterns } from "@/lib/content";
-import { getTypingMode, setTypingMode, TYPING_LABELS, type TypingMode } from "@/lib/settings";
+import { getGating, getTypingMode, GATING_LABELS, setGating, setTypingMode, TYPING_LABELS, type Gating, type TypingMode } from "@/lib/settings";
 
 export default function SettingsPage() {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -19,6 +19,7 @@ export default function SettingsPage() {
     backup: await lastBackup(),
   }));
   const typing = useLiveQuery(getTypingMode);
+  const gating = useLiveQuery(getGating);
   const [busy, setBusy] = useState(false);
   // The last crash caught by app/error.tsx, so it can be reported after the fact.
   const [lastError, setLastError] = useState("");
@@ -120,6 +121,18 @@ export default function SettingsPage() {
             onClick={() => setTypingMode(m)}
           >
             {TYPING_LABELS[m]}
+          </button>
+        ))}
+      </div>
+
+      <h2 style={{ fontSize: 18, marginTop: 28 }}>Порядок відкриття завдань</h2>
+      <p className="muted">
+        Суфікси, дієвідміна, речення й діалоги зʼявляються, коли їхні слова вже були в «Картках» (речення й діалоги пакета — коли половина його слів). Нові речення йдуть від коротших до довших, діалог уперше показується із запитанням, а не з пропуском.
+      </p>
+      <div className="seg" role="radiogroup" aria-label="Порядок відкриття завдань">
+        {(["on", "off"] as Gating[]).map((g) => (
+          <button key={g} type="button" role="radio" aria-checked={gating === g} className={`btn${gating === g ? " on" : ""}`} onClick={() => setGating(g)}>
+            {GATING_LABELS[g]}
           </button>
         ))}
       </div>

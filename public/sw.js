@@ -5,7 +5,7 @@
  * Pages): every path is built from the worker's own scope.
  * Bump CACHE when you change caching logic; Next asset hashes handle the rest.
  */
-const CACHE = "magyar-v15";
+const CACHE = "magyar-v16";
 const SCOPE = new URL(self.registration.scope).pathname; // "/" or "/Magyar/"
 const STATIC = SCOPE !== "/"; // the static export uses trailing slashes
 const page = (p) => (p === "" ? SCOPE : SCOPE + p + (STATIC ? "/" : ""));

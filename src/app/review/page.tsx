@@ -77,7 +77,7 @@ export default function ReviewPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">{row.exercise === "recognize" ? "HU → UA" : "UA → HU"}</span>
+        <span className="muted">{row.exercise === "recognize" ? "Що це означає?" : "Як це угорською?"}</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}

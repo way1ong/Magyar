@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
 import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
 import { pickCloze, type Cloze } from "@/lib/conjcloze";
@@ -43,6 +44,7 @@ function shuffle<T>(xs: T[]): T[] {
  */
 export default function ConjPage() {
   const [queue, setQueue] = useState<CardRow[] | null>(null);
+  const [held, setHeld] = useState(false);
   const [mode, setMode] = useState<TypingMode>("auto");
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
@@ -55,7 +57,10 @@ export default function ConjPage() {
   const load = useCallback(async () => {
     await seedCards();
     setMode(await getTypingMode());
-    const q = (await (takeMistakeMode("conj") ? (setMistakes(true), mistakeCards("conj")) : (setMistakes(false), sessionCards("conj", 20, 8)))).filter((c) => conjTaskById(c.itemId));
+    const mm = takeMistakeMode("conj");
+    setMistakes(mm);
+    const q = (await (mm ? mistakeCards("conj") : sessionCards("conj", 20, 8))).filter((c) => conjTaskById(c.itemId));
+    setHeld(!q.length && !mm ? await heldBack("conj") : false);
     setQueue(shuffle(q));
     setI(0);
     setScore({ right: 0, total: 0 });
@@ -98,7 +103,7 @@ export default function ConjPage() {
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !deal) {
-    return <SessionDone title="Дієвідміна" score={score} onAgain={load} step="conj" mistakes={mistakes} />;
+    return <SessionDone title="Дієвідміна" score={score} onAgain={load} step="conj" mistakes={mistakes} heldBack={held ? HELD_BACK_TEXT.conj : undefined} />;
   }
 
   const { item, tense, def } = task;
@@ -155,7 +160,7 @@ export default function ConjPage() {
   return (
     <>
       <div className="row">
-        <span className="muted">Дієвідміна · {tenseLabel(tense)}</span>
+        <span className="muted">Дієвідміна · яка форма дієслова?</span>
         <span className="grow" />
         <span className="muted">
           {i + 1} / {queue.length}
@@ -166,7 +171,7 @@ export default function ConjPage() {
       </div>
 
       <div className="card big">
-        <p className="muted" style={{ margin: 0 }}>{defLabel}</p>
+        <p className="muted" style={{ margin: 0 }}>{tenseLabel(tense)} · {defLabel}</p>
         {cloze ? (
           <>
             <p className="hu" lang="hu" style={{ fontSize: 24 }}>
