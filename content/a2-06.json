@@ -108,7 +108,7 @@
     {"id": "a2-06-fulledt", "type": "word", "hu": "fülledt", "ua": "задушливий", "pos": "adj", "harmony": "front", "tags": ["grad"]},
     {"id": "a2-06-viharos", "type": "word", "hu": "viharos", "ua": "буремний, штормовий", "pos": "adj", "harmony": "back", "tags": ["grad"]},
     {"id": "a2-06-huvos", "type": "word", "hu": "hűvös", "ua": "прохолодний", "pos": "adj", "harmony": "front_rounded", "example": {"hu": "Este hűvös van.", "ua": "Увечері прохолодно."}, "tags": ["grad", "quality"]},
-    {"id": "a2-06-mely", "type": "word", "hu": "mély", "ua": "глибокий", "pos": "adj", "harmony": "front", "example": {"hu": "Mély a tó.", "ua": "Озеро глибоке."}, "tags": ["grad", "quality"]},
+    {"id": "a2-06-mely", "type": "word", "hu": "mély", "ua": "глибокий", "pos": "adj", "harmony": "front", "example": {"hu": "Mély a tó.", "ua": "Озеро глибоке."}, "tags": ["fact", "grad", "quality"]},
     {"id": "a2-06-sekely", "type": "word", "hu": "sekély", "ua": "мілкий", "pos": "adj", "harmony": "front", "tags": ["grad"]},
     {"id": "a2-06-szeles-wide", "type": "word", "hu": "széles", "ua": "широкий", "pos": "adj", "harmony": "front", "tags": ["grad", "quality"]},
     {"id": "a2-06-meredek", "type": "word", "hu": "meredek", "ua": "крутий (схил)", "pos": "adj", "harmony": "front", "tags": ["grad"]},
