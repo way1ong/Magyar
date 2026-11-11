@@ -54,7 +54,7 @@ type PastGroup = NonNullable<VerbConj["past"]>;
 /** Verbal prefixes, longest first — stripped to find the base verb. */
 const PREFIXES = [
   "keresztül", "vissza", "össze", "előre", "hátra", "végig", "körül", "tovább", "hozzá", "ellen", "félre", "haza", "neki", "bele", "után",
-  "tönkre", "létre", "helyre", "közbe", "újra", "abba", "felül", "karban", "egyet",
+  "tönkre", "létre", "helyre", "közbe", "újra", "abba", "felül", "karban", "egyet", "kölcsön", "jóvá",
   "meg", "el", "ki", "be", "fel", "föl", "le", "át", "oda", "ide", "szét", "rá", "alá", "elő", "túl", "fenn", "benn", "lenn", "kinn",
 ].sort((a, b) => b.length - a.length);
 
@@ -176,7 +176,7 @@ const POT_STEM: Record<string, string> = { enni: "ehet", inni: "ihat", venni: "v
 /** fog in the present: the auxiliary of the future. */
 const FOG = { indef: "fogok fogsz fog fogunk fogtok fognak".split(" "), def: "fogom fogod fogja fogjuk fogjátok fogják".split(" ") };
 /** Verbs whose first syllables merely look like a prefix (be-szél, fel-el, lé-legez): never split for the future. */
-const NOT_SEPARABLE = new Set(["beszélni", "beszélgetni", "felelni", "lélegezni", "ellenőrizni", "kiabálni", "elemezni", "lelkesedni", "kelni", "menni", "túlórázni", "előzni", "betegeskedni"]);
+const NOT_SEPARABLE = new Set(["beszélni", "beszélgetni", "felelni", "lélegezni", "ellenőrizni", "kiabálni", "elemezni", "lelkesedni", "kelni", "menni", "túlórázni", "előzni", "betegeskedni", "becsülni", "fellebbezni"]);
 
 function p(pi: string, pd: string | null, qi: string, qd: string | null): Record<string, string> {
   const out: Record<string, string> = {};

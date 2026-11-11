@@ -21,6 +21,10 @@ export interface BackupState {
 }
 
 const META_KEY = "lastBackup";
+/** When the person last exported or shared the progress file (any build). */
+export const EXPORT_KEY = "lastExport";
+export const markExported = () => db.meta.put({ k: EXPORT_KEY, v: Date.now() });
+export const lastExport = async () => ((await db.meta.get(EXPORT_KEY))?.v as number | undefined) ?? 0;
 const AUTO_EVERY_MS = 6 * 60 * 60 * 1000;
 
 export const lastBackup = async () => (await db.meta.get(META_KEY))?.v as BackupState | undefined;
@@ -75,6 +79,7 @@ export async function shareProgress(): Promise<boolean> {
   if (!navigator.share || !navigator.canShare?.({ files: [file] })) return false;
   try {
     await navigator.share({ files: [file], title: "Magyar — прогрес" });
+    await markExported();
   } catch {
     // The person closed the sheet.
   }

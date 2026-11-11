@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, exportProgress, importProgress } from "@/lib/db";
-import { backupToLaptop, IS_STATIC, NO_LAPTOP, lastBackup, shareProgress } from "@/lib/backup";
+import { backupToLaptop, IS_STATIC, NO_LAPTOP, lastBackup, markExported, shareProgress } from "@/lib/backup";
 import { allItems, allPatterns } from "@/lib/content";
 import { getTypingMode, setTypingMode, TYPING_LABELS, type TypingMode } from "@/lib/settings";
 
@@ -58,6 +58,7 @@ export default function SettingsPage() {
 
   const doExport = async () => {
     const data = await exportProgress();
+    await markExported();
     const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);

@@ -52,6 +52,8 @@ export interface ItemForms {
   adv?: string;
   /** -ú/-ű attribute adjective when irregular: erő → "erejű", idő → "idejű". */
   u?: string;
+  /** -stul/-stül override. */
+  stul?: string;
 }
 
 export interface Item {
@@ -198,7 +200,7 @@ export interface Dialogue {
 
 export interface ContentPack {
   id: string; // "a1-01"
-  level: "A0" | "A1" | "A2" | "B1";
+  level: "A0" | "A1" | "A2" | "B1" | "B2";
   title: string;
   items: Item[];
   patterns: Pattern[];

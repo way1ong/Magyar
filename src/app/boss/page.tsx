@@ -13,6 +13,8 @@ const KIND_LABEL: Record<BossQuestion["kind"], string> = {
   recall: "Як це угорською?",
   form: "Яка форма правильна?",
   conj: "Яка форма дієслова?",
+  sentence: "Який порядок слів?",
+  dialogue: "Про що діалог?",
 };
 
 /**
@@ -74,7 +76,7 @@ export default function BossPage() {
     setPicked(v);
     const ok = v === q.answer;
     if (ok) setRight((r) => r + 1);
-    if (q.kind !== "recognize") speak(q.answer);
+    if (q.kind !== "recognize" && q.kind !== "dialogue") speak(q.answer);
     answered.current += 1;
   };
 
@@ -154,8 +156,18 @@ export default function BossPage() {
         <div style={{ width: `${(i / qs.length) * 100}%` }} />
       </div>
 
-      <div className="card big">
-        <p className="hu" lang={q.kind === "recall" ? undefined : "hu"} style={{ fontSize: q.kind === "recognize" ? 34 : q.kind === "conj" ? 24 : 28 }}>{q.prompt}</p>
+      <div className="card big" style={q.lines ? { textAlign: "left", padding: "14px 14px 10px" } : undefined}>
+        {q.lines && (
+          <div className="chat" lang="hu" style={{ marginBottom: 12 }}>
+            {q.lines.map((l, k) => (
+              <div key={k} className={`bubble ${l.who === q.lines![0].who ? "a" : "b"}`}>
+                <span className="who">{l.who}</span>
+                <span>{l.hu}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        <p className="hu" lang={q.kind === "recall" || q.kind === "sentence" || q.kind === "dialogue" ? undefined : "hu"} style={{ fontSize: q.kind === "recognize" ? 34 : q.kind === "conj" ? 24 : q.kind === "dialogue" || q.kind === "sentence" ? 22 : 28 }}>{q.prompt}</p>
         {q.hint && <p className="ua" style={{ marginTop: 0, fontSize: 16 }}>{q.hint}</p>}
       </div>
 
@@ -167,7 +179,7 @@ export default function BossPage() {
             else if (v === picked) cls += " wrong";
           }
           return (
-            <button key={v} className={cls} onClick={() => pick(v)} disabled={!!picked} style={{ fontSize: 20, minHeight: 56 }}>
+            <button key={v} className={cls} lang={q.kind === "sentence" ? "hu" : undefined} onClick={() => pick(v)} disabled={!!picked} style={{ fontSize: q.kind === "sentence" || q.kind === "dialogue" ? 17 : 20, minHeight: 56, textAlign: q.kind === "sentence" || q.kind === "dialogue" ? "left" : undefined }}>
               {v}
             </button>
           );
