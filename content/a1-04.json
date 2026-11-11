@@ -105,7 +105,7 @@
     {"id": "a1-04-fordulni", "type": "word", "hu": "fordulni", "ua": "повертати", "pos": "verb", "harmony": "back", "example": {"hu": "Jobbra fordulok.", "ua": "Я повертаю праворуч."}, "tags": ["nominal"]},
     {"id": "a1-04-setalni", "type": "word", "hu": "sétálni", "ua": "гуляти", "pos": "verb", "harmony": "back", "example": {"hu": "A parkban sétálunk.", "ua": "Ми гуляємо в парку."}, "tags": ["nominal"]},
     {"id": "a1-04-keresni", "type": "word", "hu": "keresni", "ua": "шукати", "pos": "verb", "harmony": "front", "example": {"hu": "A megállót keresem.", "ua": "Я шукаю зупинку."}, "tags": ["nominal"], "conj": {"tr": true}},
-    {"id": "a1-04-talalni", "type": "word", "hu": "találni", "ua": "знаходити", "pos": "verb", "harmony": "back", "example": {"hu": "Nem találom a jegyemet.", "ua": "Я не можу знайти свій квиток."}, "conj": {"tr": true}},
+    {"id": "a1-04-talalni", "type": "word", "hu": "találni", "ua": "знаходити", "pos": "verb", "tags": ["prone"], "harmony": "back", "example": {"hu": "Nem találom a jegyemet.", "ua": "Я не можу знайти свій квиток."}, "conj": {"tr": true}},
     {"id": "a1-04-kerdezni", "type": "word", "hu": "kérdezni", "ua": "питати", "pos": "verb", "harmony": "front", "example": {"hu": "Kérdezhetek valamit?", "ua": "Можна щось спитати?"}, "conj": {"tr": true}},
     {"id": "a1-04-mutatni", "type": "word", "hu": "mutatni", "ua": "показувати", "pos": "verb", "harmony": "back", "example": {"hu": "Megmutatom az utat.", "ua": "Я покажу дорогу."}, "conj": {"tr": true}}
   ],
