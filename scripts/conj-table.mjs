@@ -6,7 +6,7 @@ const { paradigmOf, isConjugable, isTransitive, hasImperative } = await loadLib(
 const dir = new URL("../content/", import.meta.url);
 const row = (it, tense, def) => paradigmOf(it, tense, def).map((x) => x.form).join(" ");
 console.log("| пакет | дієслово | теперішній (неозн.) | теперішній (озн.) | минулий (неозн.) | минулий (озн.) | наказовий (неозн.) | наказовий (озн.) | умовний (неозн.) | умовний (озн.) | conj |\n|---|---|---|---|---|---|---|---|---|---|---|");
-for (const f of readdirSync(dir).filter((f) => /^[ab]\d-\d\d\.json$/.test(f)).sort()) {
+for (const f of readdirSync(dir).filter((f) => /^[abc]\d-\d\d\.json$/.test(f)).sort()) {
   const pack = JSON.parse(readFileSync(new URL(f, dir), "utf8"));
   for (const it of pack.items) {
     if (!isConjugable(it)) continue;

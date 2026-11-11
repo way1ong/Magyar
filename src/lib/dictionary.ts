@@ -54,12 +54,12 @@ export function formsFor(item: Item): FormRow[] {
   if (item.type !== "word" || !item.harmony) return [];
   const ok = (p: Pattern) =>
     attaches(p, item) &&
-    p.fromInfinitive !== "plain" &&
+    p.fromInfinitive !== "plain" && p.fromInfinitive !== "caus" &&
     !(p.fromInfinitive && !isConjugable(item)) &&
     (CORE.has(p.id) || !!builderTaskById(`${item.id}+${p.id}`));
   const order = new Map(NOUN_ORDER.map((id, i) => [id, i]));
   const ps = allPatterns.filter(ok).sort((a, b) => (order.get(a.id) ?? 99) - (order.get(b.id) ?? 99));
-  return ps.map((p) => ({ pattern: p, label: `${p.name.split(" (")[0]} — ${patternShort(p, item)}`, form: apply(item.hu, p, item.harmony!, item.forms) }));
+  return ps.map((p) => ({ pattern: p, label: `${p.name.split(" (")[0]} — ${patternShort(p, item)}`, form: apply(item.hu, p, item.harmony!, item.forms, item) }));
 }
 
 export const packOf = (item: Item) => packs[packIndexOf(item.id)];

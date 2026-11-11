@@ -74,7 +74,7 @@ export default function HarmonyPage() {
 
   useEffect(() => {
     if (!task) return;
-    setChoice(harmonyChoice(task.stem.hu, task.pattern, task.stem.harmony, task.stem.forms));
+    setChoice(harmonyChoice(task.stem.hu, task.pattern, task.stem.harmony, task.stem.forms, task.stem));
     setPicked(null);
     setTyped("");
     setOutcome(null);

@@ -41,7 +41,7 @@ for (const { pattern, ex } of examples) {
   const stem = stemByHu(ex.stem);
   if (!stem?.harmony) continue;
   const id = `${stem.id}+${pattern.id}`;
-  const { base, suffix, result } = applyParts(stem.hu, pattern, stem.harmony, stem.forms);
+  const { base, suffix, result } = applyParts(stem.hu, pattern, stem.harmony, stem.forms, stem);
   // content:check guarantees these agree; never teach a form we can't model.
   if (tasks.has(id) || result !== ex.result) continue;
   tasks.set(id, {
@@ -100,7 +100,7 @@ export function suffixOptions(t: BuilderTask, count = 4): string[] {
   ];
   for (const p of pool) {
     if (opts.size >= count) break;
-    opts.add(suffixFor(stem.hu, p, stem.harmony, stem.forms));
+    opts.add(suffixFor(stem.hu, p, stem.harmony, stem.forms, stem));
   }
   return shuffle([...opts]);
 }
