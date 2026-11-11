@@ -1,6 +1,9 @@
 import { db, withRetry, type CardRow, type Exercise } from "./db";
 import { allPatterns, itemById, packs, patternById } from "./content";
 import { cardPackIndex } from "./progress";
+import { TENSE_UA, type Tense } from "./conj";
+import { dialogueTaskById } from "./dialogues";
+import { sentenceTaskById } from "./sentences";
 import { Rating } from "./scheduler";
 
 /**
@@ -70,14 +73,19 @@ const patternOf = (c: CardRow) => {
 
 /** Human label of a card for the hardest list. */
 export function cardLabel(c: CardRow): string {
-  const [stemId] = c.itemId.split("+");
+  if (c.exercise === "sentence") return sentenceTaskById(c.itemId)?.hu ?? c.itemId;
+  if (c.exercise === "dialogue") return `діалог «${dialogueTaskById(c.itemId)?.dialogue.title ?? c.itemId}»`;
+  const [stemId, rest] = c.itemId.split("+");
   const item = itemById(stemId);
   if (!item) return c.itemId;
   if (c.exercise === "harmony" || c.exercise === "builder") {
-    const p = patternById(c.itemId.split("+")[1]);
+    const p = patternById(rest);
     return `${item.hu} + ${p?.name.split(" (")[0] ?? ""}`;
   }
-  if (c.exercise === "conj") return `${item.hu} (${c.itemId.split("+")[1]})`;
+  if (c.exercise === "conj") {
+    const [tense, def] = (rest ?? "").split(".");
+    return `${item.hu} — ${TENSE_UA[tense as Tense] ?? tense}, ${def === "def" ? "означена" : "неозначена"}`;
+  }
   return `${item.hu} — ${item.ua}`;
 }
 
