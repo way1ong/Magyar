@@ -71,6 +71,9 @@ const PREFIXES = [
 
 const VOWEL = /[aáeéiíoóöőuúüű]/;
 
+/** True for a separable verb prefix standing on its own (meg, el, egyet…). */
+export const isPrefixWord = (w: string) => PREFIXES.includes(w.toLowerCase());
+
 /** Split "bevenni" into ["be", "venni"]; the base must keep a vowel and end in -ni. */
 export function splitPrefix(inf: string): [string, string] {
   for (const p of PREFIXES) {

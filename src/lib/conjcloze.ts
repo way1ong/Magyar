@@ -1,5 +1,5 @@
 import { allItems } from "./content";
-import { conjugate, PERSONS, type Person } from "./conj";
+import { conjugate, isPrefixWord, PERSONS, type Person } from "./conj";
 import type { ConjTask } from "./conjcards";
 
 /**
@@ -46,6 +46,15 @@ function corpus(): Sentence[] {
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const formRe = (form: string) => new RegExp(`(^|[^\\p{L}])(${escapeRe(form).replace(/ /g, "\\s+")})(?=[^\\p{L}]|$)`, "iu");
 
+/**
+ * Verb forms that are also another word: érted/értem/érte… are "for you/me/
+ * him" (postposition ért + person), not érteni; the present of fogni looks
+ * like the future auxiliary (fogok dolgozni). Such a form is skipped, for
+ * fogni only in sentences that also hold an infinitive.
+ */
+const HOMONYMS = new Set(["értem", "érted", "érte", "értünk", "értetek", "értük"]);
+const looksLikeFuture = (verb: string, s: string) => verb === "fogni" && /\p{L}+ni\b/u.test(s);
+
 const cache = new Map<string, Cloze[]>();
 
 /** Every sentence/person pair that fits the task; the verb's own example first. */
@@ -57,7 +66,7 @@ export function clozesFor(task: ConjTask): Cloze[] {
   const { item, tense, def } = task;
   for (const person of PERSONS) {
     const form = conjugate(item, { tense, def, person });
-    if (!form || form.length < 3 || nonVerbs.has(form.toLowerCase())) continue;
+    if (!form || form.length < 3 || nonVerbs.has(form.toLowerCase()) || HOMONYMS.has(form.toLowerCase())) continue;
     const twin = tense === "pres" ? "imp" : tense === "imp" ? "pres" : null;
     const ambiguous = twin ? conjugate(item, { tense: twin, def, person }) === form : false;
     const low = form.toLowerCase().split(" ")[0];
@@ -68,9 +77,13 @@ export function clozesFor(task: ConjTask): Cloze[] {
     for (const s of [...own, ...rest]) {
       if (!s.low.includes(low)) continue;
       if (ambiguous && (tense === "imp") !== s.hu.trim().endsWith("!")) continue;
+      if (looksLikeFuture(item.hu, s.hu)) continue;
       const m = re.exec(s.hu);
       if (!m) continue;
       const start = m.index + m[1].length;
+      // "értek egyet", "nézd meg": the form belongs to a prefixed verb (egyetérteni, megnézni), not to this one.
+      const next = s.hu.slice(start + m[2].length).match(/^\s+(\p{L}+)/u)?.[1];
+      if (next && isPrefixWord(next)) continue;
       out.push({ hu: s.hu.slice(0, start) + "___" + s.hu.slice(start + m[2].length), ua: s.ua, full: s.hu, person, form });
       if (out.length >= 6) break;
     }
