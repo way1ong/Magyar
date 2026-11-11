@@ -36,6 +36,17 @@ export const PRONOUN: Record<Person, string> = { "1sg": "én", "2sg": "te", "3sg
 export const PRONOUN_UA: Record<Person, string> = { "1sg": "я", "2sg": "ти", "3sg": "він / вона", "1pl": "ми", "2pl": "ви", "3pl": "вони" };
 export const TENSE_UA: Record<Tense, string> = { pres: "теперішній", past: "минулий", fut: "майбутній", pot: "можливість -hat/-het", imp: "наказовий", cond: "умовний" };
 /** Label with the right noun: "теперішній час", but "наказовий спосіб". */
+/**
+ * Ukrainian reading of "person + tense" for the task line: the potential
+ * becomes "я можу (мені можна)", the imperative "хай він …", the conditional
+ * "я б …" — the learner sees what the form means, not a grammar label.
+ */
+const POT_UA: Record<Person, string> = { "1sg": "я можу (мені можна)", "2sg": "ти можеш (тобі можна)", "3sg": "він / вона може (можна)", "1pl": "ми можемо (нам можна)", "2pl": "ви можете (вам можна)", "3pl": "вони можуть (їм можна)" };
+const IMP_UA: Record<Person, string> = { "1sg": "хай я … (наказ собі)", "2sg": "ти — наказ", "3sg": "хай він / вона …", "1pl": "ми — давайте …", "2pl": "ви — наказ", "3pl": "хай вони …" };
+const COND_UA: Record<Person, string> = { "1sg": "я б …", "2sg": "ти б …", "3sg": "він / вона б …", "1pl": "ми б …", "2pl": "ви б …", "3pl": "вони б …" };
+export const personTenseUa = (person: Person, t: Tense) =>
+  t === "pot" ? POT_UA[person] : t === "imp" ? IMP_UA[person] : t === "cond" ? COND_UA[person] : `${PRONOUN_UA[person]}, ${tenseLabel(t)}`;
+
 export const tenseLabel = (t: Tense) => (t === "pot" ? TENSE_UA[t] : t === "imp" || t === "cond" ? `${TENSE_UA[t]} спосіб` : `${TENSE_UA[t]} час`);
 
 export interface Slot {

@@ -6,7 +6,7 @@ import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
 import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
 import { pickCloze, type Cloze } from "@/lib/conjcloze";
-import { conjugate, isTransitive, paradigmOf, PRONOUN, PRONOUN_UA, slotsFor, tenseLabel } from "@/lib/conj";
+import { conjugate, isTransitive, paradigmOf, personTenseUa, PRONOUN, slotsFor, tenseLabel } from "@/lib/conj";
 import { compare, type Verdict } from "@/lib/dictation";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
@@ -186,7 +186,7 @@ export default function ConjPage() {
           </p>
         )}
         <p className="ua" style={{ fontSize: 16 }}>
-          <b lang="hu">{item.hu}</b> — {item.ua} · {PRONOUN_UA[person]}, {tense === "pot" ? "може / можна" : imp ? "наказ / хай" : tense === "cond" ? "умовний (би)" : tenseLabel(tense)}
+          <b lang="hu">{item.hu}</b> — {item.ua} · {personTenseUa(person, tense)}
         </p>
         {done && (
           <>
