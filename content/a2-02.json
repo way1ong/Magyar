@@ -102,10 +102,10 @@
     { "id": "a2-02-surgosen", "type": "word", "hu": "sürgősen", "ua": "терміново", "pos": "adv" },
     { "id": "a2-02-kulon", "type": "word", "hu": "külön", "ua": "окремо", "pos": "adv" },
 
-    {"id": "a2-02-alairni", "type": "word", "hu": "aláírni", "ua": "підписати", "pos": "verb", "tags": ["gerundive"], "harmony": "back", "example": {"hu": "Alá kell írni.", "ua": "Треба підписати."}, "conj": {"tr": true}},
+    {"id": "a2-02-alairni", "type": "word", "hu": "aláírni", "ua": "підписати", "pos": "verb", "tags": ["advpart", "gerundive"], "harmony": "back", "example": {"hu": "Alá kell írni.", "ua": "Треба підписати."}, "conj": {"tr": true}},
     {"id": "a2-02-engedelyezni", "type": "word", "hu": "engedélyezni", "ua": "дозволити", "pos": "verb", "harmony": "front", "example": {"hu": "A főnök engedélyezte.", "ua": "Начальник дозволив."}, "conj": {"tr": true}},
     {"id": "a2-02-megtiltani", "type": "word", "hu": "megtiltani", "ua": "заборонити", "pos": "verb", "harmony": "back", "example": {"hu": "Megtiltották a dohányzást.", "ua": "Куріння заборонили."}, "conj": {"tr": true}, "tags": ["exception"]},
-    {"id": "a2-02-javitani", "type": "word", "hu": "javítani", "ua": "ремонтувати, виправляти", "pos": "verb", "harmony": "back", "example": {"hu": "Meg kell javítani.", "ua": "Треба відремонтувати."}, "tags": ["negpot", "potadj", "nominal"], "conj": {"tr": true}},
+    {"id": "a2-02-javitani", "type": "word", "hu": "javítani", "ua": "ремонтувати, виправляти", "pos": "verb", "harmony": "back", "example": {"hu": "Meg kell javítani.", "ua": "Треба відремонтувати."}, "tags": ["partpast", "negpot", "potadj", "nominal"], "conj": {"tr": true}},
     {"id": "a2-02-cserelni", "type": "word", "hu": "cserélni", "ua": "замінити", "pos": "verb", "tags": ["potadj"], "harmony": "front", "example": {"hu": "Cseréld ki a szelepet!", "ua": "Заміни клапан!"}, "conj": {"tr": true}},
     {"id": "a2-02-tisztitani", "type": "word", "hu": "tisztítani", "ua": "чистити", "pos": "verb", "harmony": "back", "example": {"hu": "Tisztítsd meg a szűrőt!", "ua": "Почисть фільтр!"}, "conj": {"tr": true}, "tags": ["exception"]},
     {"id": "a2-02-takaritani", "type": "word", "hu": "takarítani", "ua": "прибирати", "pos": "verb", "harmony": "back", "example": {"hu": "Minden este takarítunk.", "ua": "Щовечора ми прибираємо."}, "tags": ["nominal"], "conj": {"tr": true}},

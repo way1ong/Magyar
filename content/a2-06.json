@@ -134,7 +134,7 @@
     {"id": "a2-06-olvadni", "type": "word", "hu": "olvadni", "ua": "танути", "pos": "verb", "harmony": "back", "example": {"hu": "Olvad a hó.", "ua": "Сніг тане."}, "conj": {"past": "t"}},
     {"id": "a2-06-fagyni", "type": "word", "hu": "fagyni", "ua": "замерзати, морозити", "pos": "verb", "harmony": "back", "example": {"hu": "Éjjel fagyott.", "ua": "Вночі був мороз."}},
     {"id": "a2-06-kirandulni", "type": "word", "hu": "kirándulni", "ua": "ходити в похід", "pos": "verb", "harmony": "back", "example": {"hu": "Vasárnap kirándulunk.", "ua": "У неділю ми йдемо в похід."}},
-    {"id": "a2-06-uszni", "type": "word", "hu": "úszni", "ua": "плавати", "pos": "verb", "harmony": "back", "example": {"hu": "A tóban úszunk.", "ua": "Ми плаваємо в озері."}, "conj": {"ik": true}},
+    {"id": "a2-06-uszni", "type": "word", "hu": "úszni", "ua": "плавати", "pos": "verb", "tags": ["partpres"], "harmony": "back", "example": {"hu": "A tóban úszunk.", "ua": "Ми плаваємо в озері."}, "conj": {"ik": true}},
     {"id": "a2-06-horgaszni", "type": "word", "hu": "horgászni", "ua": "рибалити", "pos": "verb", "harmony": "back", "example": {"hu": "Apám horgászik.", "ua": "Мій тато рибалить."}, "conj": {"ik": true}},
     {"id": "a2-06-viragozni", "type": "word", "hu": "virágozni", "ua": "цвісти", "pos": "verb", "harmony": "back", "example": {"hu": "Virágzik a fa.", "ua": "Дерево цвіте."}, "conj": {"vstem": "virágz", "ik": true}},
     {"id": "a2-06-repulni", "type": "word", "hu": "repülni", "ua": "літати", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "A madarak délre repülnek.", "ua": "Птахи летять на південь."}},

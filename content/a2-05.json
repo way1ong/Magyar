@@ -90,7 +90,7 @@
     {"id": "a2-05-levenni", "type": "word", "hu": "levenni", "ua": "зняти (одяг)", "pos": "verb", "harmony": "front", "example": {"hu": "Vedd le a kabátot!", "ua": "Зніми пальто!"}},
     {"id": "a2-05-hordani", "type": "word", "hu": "hordani", "ua": "носити (одяг, регулярно)", "pos": "verb", "harmony": "back", "example": {"hu": "Szemüveget hordok.", "ua": "Я ношу окуляри."}, "conj": {"tr": true}},
     {"id": "a2-05-visszavinni", "type": "word", "hu": "visszavinni", "ua": "повернути (товар)", "pos": "verb", "harmony": "front", "example": {"hu": "Visszavittem a cipőt.", "ua": "Я повернув взуття."}, "tags": ["exception"]},
-    {"id": "a2-05-valasztani", "type": "word", "hu": "választani", "ua": "вибирати", "pos": "verb", "harmony": "back", "example": {"hu": "Nem tudok választani.", "ua": "Не можу вибрати."}, "conj": {"tr": true}},
+    {"id": "a2-05-valasztani", "type": "word", "hu": "választani", "ua": "вибирати", "pos": "verb", "tags": ["partpast"], "harmony": "back", "example": {"hu": "Nem tudok választani.", "ua": "Не можу вибрати."}, "conj": {"tr": true}},
     {"id": "a2-05-nezelodni", "type": "word", "hu": "nézelődni", "ua": "роздивлятися", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Csak nézelődöm.", "ua": "Я лише роздивляюсь."}, "conj": {"ik": true}},
     {"id": "a2-05-kolteni", "type": "word", "hu": "költeni", "ua": "витрачати (гроші)", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Sokat költöttem.", "ua": "Я багато витратив."}, "conj": {"tr": true}},
     {"id": "a2-05-sporolni", "type": "word", "hu": "spórolni", "ua": "економити", "pos": "verb", "harmony": "back", "example": {"hu": "Spórolunk a nyaralásra.", "ua": "Ми збираємо на відпустку."}},

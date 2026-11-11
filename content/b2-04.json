@@ -114,7 +114,7 @@
     {"id": "b2-04-leirni", "type": "word", "hu": "leírni", "ua": "описати; записати", "pos": "verb", "harmony": "back", "example": {"hu": "Leírtam az élményt.", "ua": "Я описав враження."}, "tags": ["nominal", "negpot", "potadj", "exception"], "conj": {"tr": true}},
     {"id": "b2-04-megismetelni", "type": "word", "hu": "megismételni", "ua": "повторити", "pos": "verb", "harmony": "front", "forms": {"stem": "megismétl"}, "example": {"hu": "Megismételték az előadást.", "ua": "Виставу повторили."}, "tags": ["nominal", "negpot", "potadj"], "conj": {"tr": true, "vstem": "megismétl"}},
     {"id": "b2-04-kihagyni", "type": "word", "hu": "kihagyni", "ua": "пропустити (нагоду)", "pos": "verb", "harmony": "back", "example": {"hu": "Kihagytam a koncertet.", "ua": "Я пропустив концерт."}, "tags": ["nominal", "negpot"], "conj": {"tr": true}},
-    {"id": "b2-04-alkotni", "type": "word", "hu": "alkotni", "ua": "творити", "pos": "verb", "harmony": "back", "example": {"hu": "Új művet alkotott.", "ua": "Він створив новий твір."}, "tags": ["nominal"], "conj": {"tr": true}},
+    {"id": "b2-04-alkotni", "type": "word", "hu": "alkotni", "ua": "творити", "pos": "verb", "harmony": "back", "example": {"hu": "Új művet alkotott.", "ua": "Він створив новий твір."}, "tags": ["partpres", "nominal"], "conj": {"tr": true}},
     {"id": "b2-04-foleg", "type": "word", "hu": "főleg", "ua": "здебільшого", "pos": "adv", "example": {"hu": "Főleg krimiket olvasok.", "ua": "Я читаю здебільшого детективи."}},
     {"id": "b2-04-komolyan", "type": "word", "hu": "komolyan", "ua": "серйозно", "pos": "adv", "example": {"hu": "Komolyan mondod?", "ua": "Ти серйозно?"}}
   ],
