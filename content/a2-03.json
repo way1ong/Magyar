@@ -97,7 +97,7 @@
     { "id": "a2-03-kint", "type": "word", "hu": "kint", "ua": "надворі, зовні", "pos": "adv" },
 
     {"id": "a2-03-berelni", "type": "word", "hu": "bérelni", "ua": "орендувати", "pos": "verb", "harmony": "front", "example": {"hu": "Lakást bérlek.", "ua": "Я орендую квартиру."}, "conj": {"vstem": "bérl", "tr": true}},
-    {"id": "a2-03-kiadni", "type": "word", "hu": "kiadni", "ua": "здавати в оренду", "pos": "verb", "harmony": "back", "example": {"hu": "Kiadom a lakást.", "ua": "Я здаю квартиру."}, "conj": {"tr": true}},
+    {"id": "a2-03-kiadni", "type": "word", "hu": "kiadni", "ua": "здавати в оренду", "pos": "verb", "tags": ["potadj"], "harmony": "back", "example": {"hu": "Kiadom a lakást.", "ua": "Я здаю квартиру."}, "conj": {"tr": true}},
     {"id": "a2-03-koltozni", "type": "word", "hu": "költözni", "ua": "переїжджати", "pos": "verb", "harmony": "front_rounded", "example": {"hu": "Jövő héten költözünk.", "ua": "Наступного тижня ми переїжджаємо."}, "conj": {"ik": true}},
     {"id": "a2-03-mosni", "type": "word", "hu": "mosni", "ua": "прати; мити", "pos": "verb", "harmony": "back", "example": {"hu": "Hétvégén mosok.", "ua": "На вихідних я перу."}, "tags": ["nominal"], "conj": {"tr": true}},
     {"id": "a2-03-mosogatni", "type": "word", "hu": "mosogatni", "ua": "мити посуд", "pos": "verb", "harmony": "back", "example": {"hu": "Én mosogatok.", "ua": "Посуд мию я."}},
