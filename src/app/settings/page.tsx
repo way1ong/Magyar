@@ -73,7 +73,7 @@ export default function SettingsPage() {
       const data = JSON.parse(await f.text());
       if (data?.version !== 1) throw new Error("Невідомий формат");
       await importProgress(data);
-      setMsg(`Імпортовано: ${data.cards.length} карток, ${data.reviews.length} повторень.`);
+      setMsg(`Імпортовано: ${data.cards.length} карток, ${data.reviews.length} повторень${data.pcards?.length ? `, ${data.pcards.length} карток персональних тем` : ""}.`);
     } catch (e) {
       setMsg(`Помилка: ${(e as Error).message}`);
     }
@@ -95,8 +95,11 @@ export default function SettingsPage() {
       <Link href="/dictionary" className="btn" style={{ marginBottom: 10 }}>
         📖 Словник: усі слова й форми
       </Link>
-      <Link href="/guide" className="btn" style={{ marginBottom: 14 }}>
+      <Link href="/guide" className="btn" style={{ marginBottom: 10 }}>
         📖 Довідка: терміни й особливості угорської
+      </Link>
+      <Link href="/personal" className="btn" style={{ marginBottom: 14 }}>
+        🗂️ Персональні теми: металошукач, пожежна безпека
       </Link>
 
       <div className="card">

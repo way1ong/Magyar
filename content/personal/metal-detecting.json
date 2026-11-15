@@ -1,0 +1,3395 @@
+{
+ "id": "metal",
+ "icon": "🔎",
+ "title": "Металошукач і археологія",
+ "titleHu": "Fémkeresés és régészet",
+ "intro": "Лексика для громадської археології: обладнання, місцевість, знахідки й епохи, документування, закон, безпека. Діалоги ввічливою формою — з музеєм, археологом, землевласником, при знахідці боєприпасів.",
+ "themes": [
+  {
+   "id": "eq",
+   "title": "Обладнання"
+  },
+  {
+   "id": "land",
+   "title": "Місцевість"
+  },
+  {
+   "id": "finds",
+   "title": "Знахідки й метали"
+  },
+  {
+   "id": "eras",
+   "title": "Епохи"
+  },
+  {
+   "id": "doc",
+   "title": "Документування"
+  },
+  {
+   "id": "law",
+   "title": "Закон і установи"
+  },
+  {
+   "id": "safety",
+   "title": "Безпека"
+  }
+ ],
+ "items": [
+  {
+   "id": "metal-eq-femkereso",
+   "hu": "fémkereső",
+   "ua": "металошукач",
+   "example": {
+    "hu": "A fémkereső jelez, ha fém van a földben.",
+    "ua": "Металошукач подає сигнал, якщо в землі є метал."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-keresotekercs",
+   "hu": "keresőtekercs",
+   "ua": "пошукова котушка",
+   "example": {
+    "hu": "A keresőtekercset lassan mozgatom a talaj felett.",
+    "ua": "Пошукову котушку я повільно веду над землею."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-talajkiegyenlites",
+   "hu": "talajkiegyenlítés",
+   "ua": "балансування ґрунту",
+   "example": {
+    "hu": "Minden új helyen elvégzem a talajkiegyenlítést.",
+    "ua": "На кожному новому місці я виконую балансування ґрунту."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-erzekenyseg",
+   "hu": "érzékenység",
+   "ua": "чутливість",
+   "example": {
+    "hu": "Túl nagy érzékenységnél zajos lesz a készülék.",
+    "ua": "За надто високої чутливості прилад шумить."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-diszkriminacio",
+   "hu": "diszkrimináció",
+   "ua": "дискримінація (відсіювання металів)",
+   "example": {
+    "hu": "A diszkrimináció kiszűri a vasat.",
+    "ua": "Дискримінація відсіює залізо."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-pinpointer",
+   "hu": "pinpointer",
+   "ua": "пінпоінтер",
+   "example": {
+    "hu": "A pinpointerrel pontosan megtalálom a leletet a gödörben.",
+    "ua": "Пінпоінтером я точно знаходжу знахідку в ямці."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-aso",
+   "hu": "ásó",
+   "ua": "лопата (штикова)",
+   "example": {
+    "hu": "Az ásóval óvatosan ások.",
+    "ua": "Штиковою лопатою я копаю обережно."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-lapat",
+   "hu": "lapát",
+   "ua": "лопата (совкова)",
+   "example": {
+    "hu": "A lapáttal visszatöltöm a földet.",
+    "ua": "Совковою лопатою я засипаю землю назад."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-keziaso",
+   "hu": "kéziásó",
+   "ua": "ручна лопатка",
+   "example": {
+    "hu": "A kéziásóval kiemelem a földet a gödörből.",
+    "ua": "Ручною лопаткою я вибираю землю з ямки."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-fejhallgato",
+   "hu": "fejhallgató",
+   "ua": "навушники",
+   "example": {
+    "hu": "Fejhallgatóval jobban hallom a halk jeleket.",
+    "ua": "У навушниках я краще чую тихі сигнали."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-elem",
+   "hu": "elem",
+   "ua": "батарейка",
+   "example": {
+    "hu": "Elhoztam tartalék elemet.",
+    "ua": "Я взяв запасну батарейку."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-akkumulator",
+   "hu": "akkumulátor",
+   "ua": "акумулятор",
+   "example": {
+    "hu": "Az akkumulátor egy napra elég.",
+    "ua": "Акумулятора вистачає на день."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-tolto",
+   "hu": "töltő",
+   "ua": "зарядний пристрій",
+   "example": {
+    "hu": "A töltőt otthon hagytam.",
+    "ua": "Зарядний пристрій я залишив удома."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-kijelzo",
+   "hu": "kijelző",
+   "ua": "дисплей",
+   "example": {
+    "hu": "A kijelzőn látom a jel erősségét.",
+    "ua": "На дисплеї я бачу силу сигналу."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-vezerloegyseg",
+   "hu": "vezérlőegység",
+   "ua": "блок керування",
+   "example": {
+    "hu": "A vezérlőegységen állítom az érzékenységet.",
+    "ua": "На блоці керування я налаштовую чутливість."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-szar",
+   "hu": "szár",
+   "ua": "штанга",
+   "example": {
+    "hu": "A szár hossza állítható.",
+    "ua": "Довжина штанги регулюється."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-kartamasz",
+   "hu": "kartámasz",
+   "ua": "упор для руки (підлокітник)",
+   "example": {
+    "hu": "A kartámasz a könyök alatt tartja a készüléket.",
+    "ua": "Упор для руки тримає прилад під ліктем."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "metal-eq-hangjelzes",
+   "hu": "hangjelzés",
+   "ua": "звуковий сигнал",
+   "example": {
+    "hu": "A magas hangjelzés általában színesfémet jelent.",
+    "ua": "Високий звуковий сигнал зазвичай означає кольоровий метал."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-melysegjelzo",
+   "hu": "mélységjelző",
+   "ua": "індикатор глибини",
+   "example": {
+    "hu": "A mélységjelző szerint a tárgy húsz centire van.",
+    "ua": "За індикатором глибини предмет на двадцяти сантиметрах."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-beallitas",
+   "hu": "beállítás",
+   "ua": "налаштування",
+   "example": {
+    "hu": "A beállításokat a talajhoz igazítom.",
+    "ua": "Налаштування я підлаштовую під ґрунт."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-uzemmod",
+   "hu": "üzemmód",
+   "ua": "режим роботи",
+   "example": {
+    "hu": "Ez az üzemmód a szántóföldre való.",
+    "ua": "Цей режим для орного поля."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-frekvencia",
+   "hu": "frekvencia",
+   "ua": "частота",
+   "example": {
+    "hu": "A magas frekvencia a kis tárgyakra érzékeny.",
+    "ua": "Висока частота чутлива до малих предметів."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-zaj",
+   "hu": "zaj",
+   "ua": "шум, завади",
+   "example": {
+    "hu": "A villanyvezeték alatt sok a zaj.",
+    "ua": "Під лінією електропередачі багато завад."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-zajszures",
+   "hu": "zajszűrés",
+   "ua": "фільтрування шуму",
+   "example": {
+    "hu": "Bekapcsolom a zajszűrést.",
+    "ua": "Я вмикаю фільтр шуму."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun",
+   "check": true,
+   "note": "У меню приладів трапляється й zajcsökkentés."
+  },
+  {
+   "id": "metal-eq-vizallo",
+   "hu": "vízálló",
+   "ua": "водонепроникний",
+   "example": {
+    "hu": "A tekercs vízálló, a vezérlőegység nem.",
+    "ua": "Котушка водонепроникна, блок керування ні."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "metal-eq-kesztyu",
+   "hu": "kesztyű",
+   "ua": "рукавиці",
+   "example": {
+    "hu": "Kesztyű nélkül ne nyúlj a rozsdás vashoz!",
+    "ua": "Без рукавиць не торкайся іржавого заліза!"
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-terdvedo",
+   "hu": "térdvédő",
+   "ua": "наколінники",
+   "example": {
+    "hu": "A térdvédő sokat segít egész napos keresésnél.",
+    "ua": "Наколінники дуже допомагають при пошуку цілий день."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-rosta",
+   "hu": "rosta",
+   "ua": "сито",
+   "example": {
+    "hu": "Rostával átszitálom a kiásott földet.",
+    "ua": "Ситом я просіюю викопану землю."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-magnes",
+   "hu": "mágnes",
+   "ua": "магніт",
+   "example": {
+    "hu": "A mágnes elválasztja a vasat a többi fémtől.",
+    "ua": "Магніт відділяє залізо від інших металів."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-gps-keszulek",
+   "hu": "GPS-készülék",
+   "ua": "GPS-пристрій",
+   "example": {
+    "hu": "A GPS-készülék rögzíti a lelet helyét.",
+    "ua": "GPS-пристрій записує місце знахідки."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-hordtaska",
+   "hu": "hordtáska",
+   "ua": "сумка для перенесення",
+   "example": {
+    "hu": "A fémkeresőt hordtáskában szállítom.",
+    "ua": "Металошукач я перевожу в сумці."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-tartalek",
+   "hu": "tartalék",
+   "ua": "запас; запасний",
+   "example": {
+    "hu": "Mindig van nálam tartalék elem.",
+    "ua": "У мене завжди є запасна батарейка."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eq-lemerult-az-elem",
+   "hu": "Lemerült az elem.",
+   "ua": "Батарейка розрядилася.",
+   "theme": "eq",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-eq-hogyan-allitsam-be-a-talajkiegyenlitest",
+   "hu": "Hogyan állítsam be a talajkiegyenlítést?",
+   "ua": "Як мені налаштувати балансування ґрунту?",
+   "theme": "eq",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-eq-a-keszulek-folyamatosan-jelez",
+   "hu": "A készülék folyamatosan jelez.",
+   "ua": "Прилад постійно сигналізує.",
+   "theme": "eq",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-eq-csokkentsd-az-erzekenyseget",
+   "hu": "Csökkentsd az érzékenységet!",
+   "ua": "Зменш чутливість!",
+   "theme": "eq",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-eq-kolcsonkerhetem-a-pinpointert",
+   "hu": "Kölcsönkérhetem a pinpointert?",
+   "ua": "Можу позичити пінпоінтер?",
+   "theme": "eq",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-land-szantofold",
+   "hu": "szántóföld",
+   "ua": "орне поле",
+   "example": {
+    "hu": "A szántóföldön csak betakarítás után kereshetünk.",
+    "ua": "На орному полі можна шукати лише після збору врожаю."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-dulo",
+   "hu": "dűlő",
+   "ua": "урочище, ділянка поля з назвою",
+   "example": {
+    "hu": "Minden dűlőnek saját neve van a térképen.",
+    "ua": "Кожне урочище має свою назву на карті."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-puszta",
+   "hu": "puszta",
+   "ua": "пуста, степ",
+   "example": {
+    "hu": "A puszta sík és fátlan.",
+    "ua": "Пуста рівна й без дерев."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-tanya",
+   "hu": "tanya",
+   "ua": "хутір",
+   "example": {
+    "hu": "A tanya a falutól távol áll.",
+    "ua": "Хутір стоїть далеко від села."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-major",
+   "hu": "major",
+   "ua": "фільварок, господарський двір",
+   "example": {
+    "hu": "A régi major épületei még állnak.",
+    "ua": "Будівлі старого фільварку ще стоять."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-foldtulajdonos",
+   "hu": "földtulajdonos",
+   "ua": "землевласник",
+   "example": {
+    "hu": "A földtulajdonostól engedélyt kell kérni.",
+    "ua": "У землевласника треба просити дозвіл."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-terepbejaras",
+   "hu": "terepbejárás",
+   "ua": "польова розвідка, обхід місцевості",
+   "example": {
+    "hu": "A terepbejárás során felszíni leleteket gyűjtünk.",
+    "ua": "Під час польової розвідки ми збираємо знахідки з поверхні."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-ret",
+   "hu": "rét",
+   "ua": "луг",
+   "example": {
+    "hu": "A réten nehéz ásni a sűrű fű miatt.",
+    "ua": "На лузі важко копати через густу траву."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-legelo",
+   "hu": "legelő",
+   "ua": "пасовище",
+   "example": {
+    "hu": "A legelőn tehenek vannak, vigyázz!",
+    "ua": "На пасовищі корови, обережно!"
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-erdo",
+   "hu": "erdő",
+   "ua": "ліс",
+   "example": {
+    "hu": "Az erdőben sok a gyökér.",
+    "ua": "У лісі багато коренів."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-erdoszel",
+   "hu": "erdőszél",
+   "ua": "узлісся",
+   "example": {
+    "hu": "Az erdőszélen régi tanya állt.",
+    "ua": "На узліссі стояв старий хутір."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-patak",
+   "hu": "patak",
+   "ua": "струмок",
+   "example": {
+    "hu": "A patak partján gyakran vannak leletek.",
+    "ua": "На березі струмка часто є знахідки."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-folyopart",
+   "hu": "folyópart",
+   "ua": "берег ріки",
+   "example": {
+    "hu": "A folyópart tavasszal víz alatt áll.",
+    "ua": "Берег ріки навесні під водою."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-arok",
+   "hu": "árok",
+   "ua": "рів, канава",
+   "example": {
+    "hu": "Az árok mentén haladok.",
+    "ua": "Я йду вздовж канави."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-domb",
+   "hu": "domb",
+   "ua": "пагорб",
+   "example": {
+    "hu": "A dombon állt a középkori templom.",
+    "ua": "На пагорбі стояла середньовічна церква."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-volgy",
+   "hu": "völgy",
+   "ua": "долина",
+   "example": {
+    "hu": "A völgyben folyik a patak.",
+    "ua": "У долині тече струмок."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-hatar",
+   "hu": "határ",
+   "ua": "околиця села (його землі); межа",
+   "example": {
+    "hu": "A falu határában keresünk.",
+    "ua": "Ми шукаємо на землях села."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-mezsgye",
+   "hu": "mezsgye",
+   "ua": "межа між полями",
+   "example": {
+    "hu": "A mezsgyén nem szántanak.",
+    "ua": "На межі між полями не орють."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-foldut",
+   "hu": "földút",
+   "ua": "ґрунтова дорога",
+   "example": {
+    "hu": "A földút sáros eső után.",
+    "ua": "Ґрунтова дорога після дощу розмокла."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-szantas",
+   "hu": "szántás",
+   "ua": "оранка; рілля",
+   "example": {
+    "hu": "A szántás után kerülnek elő a leletek.",
+    "ua": "Після оранки з'являються знахідки."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-tarlo",
+   "hu": "tarló",
+   "ua": "стерня",
+   "example": {
+    "hu": "A tarlón könnyű járni és keresni.",
+    "ua": "По стерні легко ходити й шукати."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-vetes",
+   "hu": "vetés",
+   "ua": "посів",
+   "example": {
+    "hu": "A vetésre nem léphetünk rá.",
+    "ua": "На посіви не можна ступати."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-aratas",
+   "hu": "aratás",
+   "ua": "жнива",
+   "example": {
+    "hu": "Aratás előtt nem keresünk a gabonában.",
+    "ua": "Перед жнивами ми не шукаємо в хлібах."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-gazda",
+   "hu": "gazda",
+   "ua": "господар, фермер",
+   "example": {
+    "hu": "A gazda megmutatta, melyik föld az övé.",
+    "ua": "Господар показав, яке поле його."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-berlo",
+   "hu": "bérlő",
+   "ua": "орендар",
+   "example": {
+    "hu": "A földet bérlő műveli, nem a tulajdonos.",
+    "ua": "Землю обробляє орендар, а не власник."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-helyrajzi-szam",
+   "hu": "helyrajzi szám",
+   "ua": "кадастровий номер ділянки",
+   "example": {
+    "hu": "A helyrajzi szám alapján megtaláljuk a tulajdonost.",
+    "ua": "За кадастровим номером ми знаходимо власника."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-terkep",
+   "hu": "térkép",
+   "ua": "карта",
+   "example": {
+    "hu": "A régi térképen még látszik a major.",
+    "ua": "На старій карті ще видно фільварок."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-legifelvetel",
+   "hu": "légifelvétel",
+   "ua": "аерофотознімок",
+   "example": {
+    "hu": "A légifelvételen kirajzolódik egy régi árok.",
+    "ua": "На аерофотознімку проступає старий рів."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-katonai-felmeres",
+   "hu": "katonai felmérés",
+   "ua": "військова топографічна зйомка (історичні карти)",
+   "example": {
+    "hu": "A második katonai felmérés térképei nagyon hasznosak.",
+    "ua": "Карти другої військової зйомки дуже корисні."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-muholdkep",
+   "hu": "műholdkép",
+   "ua": "супутниковий знімок",
+   "example": {
+    "hu": "A műholdképen látni a kiszáradt patakmedret.",
+    "ua": "На супутниковому знімку видно висохле русло струмка."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-homokbanya",
+   "hu": "homokbánya",
+   "ua": "піщаний кар'єр",
+   "example": {
+    "hu": "A homokbányában tilos keresni.",
+    "ua": "У піщаному кар'єрі шукати заборонено."
+   },
+   "theme": "land",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-land-kinek-a-foldje-ez",
+   "hu": "Kinek a földje ez?",
+   "ua": "Чия це земля?",
+   "theme": "land",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-land-szabad-itt-keresni",
+   "hu": "Szabad itt keresni?",
+   "ua": "Тут можна шукати?",
+   "theme": "land",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-land-a-gazda-megengedte-a-keresest",
+   "hu": "A gazda megengedte a keresést.",
+   "ua": "Господар дозволив пошук.",
+   "theme": "land",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-land-a-fold-mar-le-van-aratva",
+   "hu": "A föld már le van aratva.",
+   "ua": "Поле вже зібране.",
+   "theme": "land",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-land-hol-kezdjuk-a-terepbejarast",
+   "hu": "Hol kezdjük a terepbejárást?",
+   "ua": "Звідки починаємо обхід місцевості?",
+   "theme": "land",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-finds-lelet",
+   "hu": "lelet",
+   "ua": "знахідка (археологічна)",
+   "example": {
+    "hu": "Minden leletet bejelentünk a múzeumnak.",
+    "ua": "Про кожну знахідку ми повідомляємо музей."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-erme",
+   "hu": "érme",
+   "ua": "монета",
+   "example": {
+    "hu": "Az érme nagyon kopott.",
+    "ua": "Монета дуже стерта."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-penzerme",
+   "hu": "pénzérme",
+   "ua": "монета (грошова)",
+   "example": {
+    "hu": "A pénzérme évszáma 1868.",
+    "ua": "Рік на монеті — 1868."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-ezust",
+   "hu": "ezüst",
+   "ua": "срібло",
+   "example": {
+    "hu": "Az ezüst a földben sötét lesz.",
+    "ua": "Срібло в землі темніє."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-arany",
+   "hu": "arany",
+   "ua": "золото",
+   "example": {
+    "hu": "Az arany nem rozsdásodik.",
+    "ua": "Золото не іржавіє."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-bronz",
+   "hu": "bronz",
+   "ua": "бронза",
+   "example": {
+    "hu": "A bronz tárgyat zöld patina fedi.",
+    "ua": "Бронзовий предмет покриває зелена патина."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-rez",
+   "hu": "réz",
+   "ua": "мідь",
+   "example": {
+    "hu": "A réz vörösesbarna színű.",
+    "ua": "Мідь червонувато-бурого кольору."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-olom",
+   "hu": "ólom",
+   "ua": "свинець",
+   "example": {
+    "hu": "Az ólom puha és nehéz.",
+    "ua": "Свинець м'який і важкий."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-vas",
+   "hu": "vas",
+   "ua": "залізо",
+   "example": {
+    "hu": "A vas erősen rozsdásodik.",
+    "ua": "Залізо сильно іржавіє."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-gomb",
+   "hu": "gomb",
+   "ua": "ґудзик",
+   "example": {
+    "hu": "Ez egy katonai gomb a 19. századból.",
+    "ua": "Це військовий ґудзик із 19 століття."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-csat",
+   "hu": "csat",
+   "ua": "пряжка",
+   "example": {
+    "hu": "A csat egy övről származik.",
+    "ua": "Пряжка з пояса."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-fibula",
+   "hu": "fibula",
+   "ua": "фібула (застібка)",
+   "example": {
+    "hu": "A fibula római kori ruhakapcsoló tű.",
+    "ua": "Фібула — застібка для одягу римської доби."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-patina",
+   "hu": "patina",
+   "ua": "патина",
+   "example": {
+    "hu": "A patinát nem szabad ledörzsölni.",
+    "ua": "Патину не можна стирати."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-gyuru",
+   "hu": "gyűrű",
+   "ua": "перстень",
+   "example": {
+    "hu": "Egy ezüst gyűrűt találtam a tarlón.",
+    "ua": "Я знайшов срібний перстень на стерні."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-pecsetgyuru",
+   "hu": "pecsétgyűrű",
+   "ua": "перстень-печатка",
+   "example": {
+    "hu": "A pecsétgyűrűn egy címer látható.",
+    "ua": "На персні-печатці видно герб."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-karperec",
+   "hu": "karperec",
+   "ua": "браслет",
+   "example": {
+    "hu": "A bronz karperec a bronzkorból való.",
+    "ua": "Бронзовий браслет із бронзової доби."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-veret",
+   "hu": "veret",
+   "ua": "накладка (металева оздоба)",
+   "example": {
+    "hu": "Az övveret aranyozott ezüstből készült.",
+    "ua": "Поясна накладка зроблена з позолоченого срібла."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun",
+   "note": "övveret — поясна накладка, lószerszámveret — накладка упряжі"
+  },
+  {
+   "id": "metal-finds-denar",
+   "hu": "dénár",
+   "ua": "денар (дрібна срібна монета)",
+   "example": {
+    "hu": "Az Árpád-kori dénár apró ezüstpénz.",
+    "ua": "Денар доби Арпадів — дрібна срібна монета."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-krajcar",
+   "hu": "krajcár",
+   "ua": "крейцер",
+   "example": {
+    "hu": "A krajcár réz váltópénz volt.",
+    "ua": "Крейцер був мідною розмінною монетою."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-sarkantyu",
+   "hu": "sarkantyú",
+   "ua": "шпора",
+   "example": {
+    "hu": "A sarkantyú lovas felszerelés része.",
+    "ua": "Шпора — частина спорядження вершника."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-patko",
+   "hu": "patkó",
+   "ua": "підкова",
+   "example": {
+    "hu": "A patkó a leggyakoribb vaslelet.",
+    "ua": "Підкова — найчастіша залізна знахідка."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-nyilhegy",
+   "hu": "nyílhegy",
+   "ua": "наконечник стріли",
+   "example": {
+    "hu": "A nyílhegy vasból készült.",
+    "ua": "Наконечник стріли зроблено із заліза."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-loszerszam",
+   "hu": "lószerszám",
+   "ua": "кінська упряж",
+   "example": {
+    "hu": "A lószerszám veretei bronzból vannak.",
+    "ua": "Накладки кінської упряжі з бронзи."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-gyuszu",
+   "hu": "gyűszű",
+   "ua": "наперсток",
+   "example": {
+    "hu": "A gyűszű a varrás eszköze.",
+    "ua": "Наперсток — інструмент для шиття."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-merlegsuly",
+   "hu": "mérlegsúly",
+   "ua": "гирка для ваг",
+   "example": {
+    "hu": "A mérlegsúly bronzból készült.",
+    "ua": "Гирка зроблена з бронзи."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-olomplomba",
+   "hu": "ólomplomba",
+   "ua": "свинцева пломба",
+   "example": {
+    "hu": "Az ólomplomba az áru származását jelölte.",
+    "ua": "Свинцева пломба позначала походження товару."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-puskagolyo",
+   "hu": "puskagolyó",
+   "ua": "мушкетна куля",
+   "example": {
+    "hu": "A puskagolyó a török kori csatából maradt.",
+    "ua": "Мушкетна куля лишилася з битви турецької доби."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-toltenyhuvely",
+   "hu": "töltényhüvely",
+   "ua": "гільза",
+   "example": {
+    "hu": "A töltényhüvely a második világháborúból való.",
+    "ua": "Гільза з Другої світової війни."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-kereszt",
+   "hu": "kereszt",
+   "ua": "хрест, хрестик",
+   "example": {
+    "hu": "A bronz kereszt egy középkori sírból származhat.",
+    "ua": "Бронзовий хрестик може бути з середньовічного поховання."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-jelveny",
+   "hu": "jelvény",
+   "ua": "значок",
+   "example": {
+    "hu": "A jelvényen évszám és felirat van.",
+    "ua": "На значку є рік і напис."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-gyongy",
+   "hu": "gyöngy",
+   "ua": "бусина",
+   "example": {
+    "hu": "Az avar sírokban sok a gyöngy.",
+    "ua": "В аварських похованнях багато бусин."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-cserep",
+   "hu": "cserép",
+   "ua": "черепок, кераміка",
+   "example": {
+    "hu": "A cserép nem fém, de fontos lelet.",
+    "ua": "Черепок не метал, але важлива знахідка."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-femhulladek",
+   "hu": "fémhulladék",
+   "ua": "металобрухт",
+   "example": {
+    "hu": "A fémhulladékot is összeszedjük.",
+    "ua": "Металевий брухт ми також збираємо."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-kupak",
+   "hu": "kupak",
+   "ua": "кришечка (від пляшки)",
+   "example": {
+    "hu": "A kupak a leggyakoribb hamis jel.",
+    "ua": "Кришечка від пляшки — найчастіший хибний сигнал."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-szog",
+   "hu": "szög",
+   "ua": "гвіздок",
+   "example": {
+    "hu": "A rozsdás szög zavarja a keresést.",
+    "ua": "Іржавий гвіздок заважає пошуку."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-toredek",
+   "hu": "töredék",
+   "ua": "фрагмент, уламок",
+   "example": {
+    "hu": "Csak egy bronz töredéket találtunk.",
+    "ua": "Ми знайшли лише фрагмент бронзи."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-ep",
+   "hu": "ép",
+   "ua": "цілий, неушкоджений",
+   "example": {
+    "hu": "Az érme ép, jól olvasható.",
+    "ua": "Монета ціла, добре читається."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "metal-finds-rozsda",
+   "hu": "rozsda",
+   "ua": "іржа",
+   "example": {
+    "hu": "A rozsda teljesen elfedi a feliratot.",
+    "ua": "Іржа повністю закриває напис."
+   },
+   "theme": "finds",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-finds-talaltam-valamit",
+   "hu": "Találtam valamit!",
+   "ua": "Я щось знайшов!",
+   "theme": "finds",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-finds-ez-csak-egy-kupak",
+   "hu": "Ez csak egy kupak.",
+   "ua": "Це лише кришечка.",
+   "theme": "finds",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-finds-milyen-fembol-van",
+   "hu": "Milyen fémből van?",
+   "ua": "З якого металу це?",
+   "theme": "finds",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-finds-nagyon-kopott-nem-olvashato",
+   "hu": "Nagyon kopott, nem olvasható.",
+   "ua": "Дуже стерта, не читається.",
+   "theme": "finds",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-finds-ez-lehet-romai-kori",
+   "hu": "Ez lehet római kori.",
+   "ua": "Це може бути римської доби.",
+   "theme": "finds",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-finds-ne-tisztitsd-meg-hagyd-ugy",
+   "hu": "Ne tisztítsd meg, hagyd úgy!",
+   "ua": "Не чисти, залиш так!",
+   "theme": "finds",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-eras-oskor",
+   "hu": "őskor",
+   "ua": "доісторична доба",
+   "example": {
+    "hu": "Az őskor a legrégebbi időszak.",
+    "ua": "Доісторична доба — найдавніший період."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-kokor",
+   "hu": "kőkor",
+   "ua": "кам'яна доба",
+   "example": {
+    "hu": "A kőkorban még nem ismerték a fémet.",
+    "ua": "У кам'яну добу метал ще не знали."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-bronzkor",
+   "hu": "bronzkor",
+   "ua": "бронзова доба",
+   "example": {
+    "hu": "A bronzkorból sok ékszer és fegyver maradt.",
+    "ua": "Від бронзової доби лишилося багато прикрас і зброї."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-vaskor",
+   "hu": "vaskor",
+   "ua": "залізна доба",
+   "example": {
+    "hu": "A vaskor második felében kelták éltek itt.",
+    "ua": "У другій половині залізної доби тут жили кельти."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-kelta",
+   "hu": "kelta",
+   "ua": "кельт; кельтський",
+   "example": {
+    "hu": "A kelta érmék ezüstből készültek.",
+    "ua": "Кельтські монети робили зі срібла."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-romai-kor",
+   "hu": "római kor",
+   "ua": "римська доба",
+   "example": {
+    "hu": "A római kor emlékei a Dunántúlon gyakoriak.",
+    "ua": "Пам'ятки римської доби часті в Задунав'ї."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-romai",
+   "hu": "római",
+   "ua": "римський",
+   "example": {
+    "hu": "Ez római érme, egy császár képével.",
+    "ua": "Це римська монета із зображенням імператора."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "metal-eras-csaszar",
+   "hu": "császár",
+   "ua": "імператор",
+   "example": {
+    "hu": "A császár arcképe az érme előlapján van.",
+    "ua": "Портрет імператора на аверсі монети."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-szarmata",
+   "hu": "szarmata",
+   "ua": "сармат; сарматський",
+   "example": {
+    "hu": "Az Alföldön sok szarmata település volt.",
+    "ua": "На Великій рівнині було багато сарматських поселень."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-nepvandorlas-kora",
+   "hu": "népvándorlás kora",
+   "ua": "доба переселення народів",
+   "example": {
+    "hu": "A népvándorlás kora a római kor után kezdődött.",
+    "ua": "Доба переселення народів почалася після римської."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-hun-kor",
+   "hu": "hun kor",
+   "ua": "гунська доба",
+   "example": {
+    "hu": "A hun kor leletei ritkák.",
+    "ua": "Знахідки гунської доби рідкі."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-avar-kor",
+   "hu": "avar kor",
+   "ua": "аварська доба",
+   "example": {
+    "hu": "Az avar kor a 6–9. századot öleli fel.",
+    "ua": "Аварська доба охоплює 6–9 століття."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-honfoglalas-kora",
+   "hu": "honfoglalás kora",
+   "ua": "доба здобуття батьківщини (прихід мадярів, 9–10 ст.)",
+   "example": {
+    "hu": "A honfoglalás kora a 10. század.",
+    "ua": "Доба здобуття батьківщини — це 10 століття."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-arpad-kor",
+   "hu": "Árpád-kor",
+   "ua": "доба Арпадів (1000–1301)",
+   "example": {
+    "hu": "Az Árpád-kor a királyság első három évszázada.",
+    "ua": "Доба Арпадів — перші три століття королівства."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-kozepkor",
+   "hu": "középkor",
+   "ua": "середньовіччя",
+   "example": {
+    "hu": "A középkor végét 1526-ra teszik Magyarországon.",
+    "ua": "Кінець середньовіччя в Угорщині відносять до 1526 року."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-torok-kor",
+   "hu": "török kor",
+   "ua": "турецька доба",
+   "example": {
+    "hu": "A török kor a 16–17. század.",
+    "ua": "Турецька доба — 16–17 століття."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-kora-ujkor",
+   "hu": "kora újkor",
+   "ua": "ранній новий час",
+   "example": {
+    "hu": "A kora újkor a mohácsi csatával kezdődik.",
+    "ua": "Ранній новий час починається з битви при Могачі."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-ujkor",
+   "hu": "újkor",
+   "ua": "новий час",
+   "example": {
+    "hu": "Az újkor leletei gyakran nem számítanak régészeti leletnek.",
+    "ua": "Знахідки нового часу часто не вважаються археологічними."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-elso-vilaghaboru",
+   "hu": "első világháború",
+   "ua": "Перша світова війна",
+   "example": {
+    "hu": "Az első világháború emlékei a hadtörténeti örökség részei.",
+    "ua": "Пам'ятки Першої світової — частина військово-історичної спадщини."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-masodik-vilaghaboru",
+   "hu": "második világháború",
+   "ua": "Друга світова війна",
+   "example": {
+    "hu": "A második világháború lőszerei még veszélyesek.",
+    "ua": "Боєприпаси Другої світової ще небезпечні."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-evszazad",
+   "hu": "évszázad",
+   "ua": "століття",
+   "example": {
+    "hu": "Melyik évszázadból való az érme?",
+    "ua": "З якого століття монета?"
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-evezred",
+   "hu": "évezred",
+   "ua": "тисячоліття",
+   "example": {
+    "hu": "Ez a bronz tárgy három évezredes.",
+    "ua": "Цьому бронзовому предмету три тисячоліття."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-idoszamitasunk-elott",
+   "hu": "időszámításunk előtt",
+   "ua": "до нашої ери (i. e.)",
+   "example": {
+    "hu": "A lelet időszámításunk előtt készült.",
+    "ua": "Знахідку зроблено до нашої ери."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-idoszamitasunk-szerint",
+   "hu": "időszámításunk szerint",
+   "ua": "нашої ери (i. sz.)",
+   "example": {
+    "hu": "Az érme időszámításunk szerint 150 körül készült.",
+    "ua": "Монету відкарбовано близько 150 року нашої ери."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-keltezes",
+   "hu": "keltezés",
+   "ua": "датування",
+   "example": {
+    "hu": "A keltezés a régész feladata.",
+    "ua": "Датування — справа археолога."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-uralkodo",
+   "hu": "uralkodó",
+   "ua": "правитель",
+   "example": {
+    "hu": "Az érmén az uralkodó neve olvasható.",
+    "ua": "На монеті читається ім'я правителя."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-kiraly",
+   "hu": "király",
+   "ua": "король",
+   "example": {
+    "hu": "Szent István volt az első magyar király.",
+    "ua": "Святий Іштван був першим угорським королем."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-verde",
+   "hu": "verde",
+   "ua": "монетний двір",
+   "example": {
+    "hu": "A budai verde a középkorban működött.",
+    "ua": "Будайський монетний двір працював у середньовіччі."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-verdejegy",
+   "hu": "verdejegy",
+   "ua": "знак монетного двору",
+   "example": {
+    "hu": "A verdejegy mutatja, hol verték az érmét.",
+    "ua": "Знак монетного двору показує, де відкарбовано монету."
+   },
+   "theme": "eras",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-eras-melyik-korbol-szarmazik",
+   "hu": "Melyik korból származik?",
+   "ua": "З якої доби це походить?",
+   "theme": "eras",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-eras-hany-eves-lehet-ez-a-targy",
+   "hu": "Hány éves lehet ez a tárgy?",
+   "ua": "Скільки років може бути цьому предмету?",
+   "theme": "eras",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-eras-ez-arpad-kori-denar",
+   "hu": "Ez Árpád-kori dénár.",
+   "ua": "Це денар доби Арпадів.",
+   "theme": "eras",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-doc-lelohely",
+   "hu": "lelőhely",
+   "ua": "місце знахідок, археологічна пам'ятка (місцезнаходження)",
+   "example": {
+    "hu": "A lelőhelyet pontosan fel kell jegyezni.",
+    "ua": "Місце знахідки треба точно записати."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-koordinata",
+   "hu": "koordináta",
+   "ua": "координата",
+   "example": {
+    "hu": "A koordinátákat a GPS adja.",
+    "ua": "Координати дає GPS."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-melyseg",
+   "hu": "mélység",
+   "ua": "глибина",
+   "example": {
+    "hu": "A mélység is fontos adat.",
+    "ua": "Глибина — також важливі дані."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-leletzacsko",
+   "hu": "leletzacskó",
+   "ua": "пакетик для знахідок",
+   "example": {
+    "hu": "Minden lelet külön leletzacskóba kerül.",
+    "ua": "Кожна знахідка йде в окремий пакетик."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-cimke",
+   "hu": "címke",
+   "ua": "етикетка",
+   "example": {
+    "hu": "A címkén a dátum és a hely szerepel.",
+    "ua": "На етикетці вказано дату й місце."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-fenykep",
+   "hu": "fénykép",
+   "ua": "фотографія",
+   "example": {
+    "hu": "Fényképet készítek a leletről a helyszínen.",
+    "ua": "Я фотографую знахідку на місці."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-feljegyzes",
+   "hu": "feljegyzés",
+   "ua": "запис, нотатка",
+   "example": {
+    "hu": "A feljegyzés tartalmazza a mélységet is.",
+    "ua": "Запис містить і глибину."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-jegyzokonyv",
+   "hu": "jegyzőkönyv",
+   "ua": "протокол",
+   "example": {
+    "hu": "A régész jegyzőkönyvet vesz fel a leletekről.",
+    "ua": "Археолог складає протокол про знахідки."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-adatlap",
+   "hu": "adatlap",
+   "ua": "облікова картка, анкета",
+   "example": {
+    "hu": "Kitöltöm a lelet adatlapját.",
+    "ua": "Я заповнюю облікову картку знахідки."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-bejelentolap",
+   "hu": "bejelentőlap",
+   "ua": "бланк повідомлення про знахідку",
+   "example": {
+    "hu": "A bejelentőlapot a múzeum honlapjáról tölthetjük le.",
+    "ua": "Бланк повідомлення можна завантажити з сайту музею."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "metal-doc-sorszam",
+   "hu": "sorszám",
+   "ua": "порядковий номер",
+   "example": {
+    "hu": "A lelet sorszáma a zacskón van.",
+    "ua": "Порядковий номер знахідки на пакетику."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-datum",
+   "hu": "dátum",
+   "ua": "дата",
+   "example": {
+    "hu": "A dátumot ne felejtsd el felírni!",
+    "ua": "Не забудь записати дату!"
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-megtalalo",
+   "hu": "megtaláló",
+   "ua": "знахідник (той, хто знайшов)",
+   "example": {
+    "hu": "A megtaláló nevét is rögzítjük.",
+    "ua": "Ім'я знахідника ми також записуємо."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-meret",
+   "hu": "méret",
+   "ua": "розмір",
+   "example": {
+    "hu": "A méretet milliméterben adjuk meg.",
+    "ua": "Розмір подаємо в міліметрах."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-suly",
+   "hu": "súly",
+   "ua": "вага",
+   "example": {
+    "hu": "A súly grammban szerepel az adatlapon.",
+    "ua": "Вага на картці вказана в грамах."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-anyag",
+   "hu": "anyag",
+   "ua": "матеріал",
+   "example": {
+    "hu": "Az anyag: bronz, ezüst vagy vas.",
+    "ua": "Матеріал: бронза, срібло або залізо."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-allapot",
+   "hu": "állapot",
+   "ua": "стан",
+   "example": {
+    "hu": "Az állapot: ép, töredékes vagy sérült.",
+    "ua": "Стан: цілий, фрагментарний або пошкоджений."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-leiras",
+   "hu": "leírás",
+   "ua": "опис",
+   "example": {
+    "hu": "A leírás röviden bemutatja a tárgyat.",
+    "ua": "Опис коротко характеризує предмет."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-rajz",
+   "hu": "rajz",
+   "ua": "рисунок",
+   "example": {
+    "hu": "A régész rajzot készít a leletről.",
+    "ua": "Археолог робить рисунок знахідки."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-leptek",
+   "hu": "lépték",
+   "ua": "масштаб (масштабна лінійка)",
+   "example": {
+    "hu": "A fényképre léptéket teszünk.",
+    "ua": "На фото ми кладемо масштабну лінійку."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-leltari-szam",
+   "hu": "leltári szám",
+   "ua": "інвентарний номер",
+   "example": {
+    "hu": "A múzeumban leltári számot kap a lelet.",
+    "ua": "У музеї знахідка отримує інвентарний номер."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-nyilvantartas",
+   "hu": "nyilvántartás",
+   "ua": "реєстр, облік",
+   "example": {
+    "hu": "A lelőhelyek nyilvántartását a hatóság vezeti.",
+    "ua": "Реєстр пам'яток веде орган влади."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-leadas",
+   "hu": "leadás",
+   "ua": "здача (знахідок)",
+   "example": {
+    "hu": "A leletek leadása a múzeumban történik.",
+    "ua": "Здача знахідок відбувається в музеї."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-atadas-atveteli-jegyzokonyv",
+   "hu": "átadás-átvételi jegyzőkönyv",
+   "ua": "акт приймання-передачі",
+   "example": {
+    "hu": "Aláírjuk az átadás-átvételi jegyzőkönyvet.",
+    "ua": "Ми підписуємо акт приймання-передачі."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-restauralas",
+   "hu": "restaurálás",
+   "ua": "реставрація",
+   "example": {
+    "hu": "A restaurálás után az érme olvasható lesz.",
+    "ua": "Після реставрації монета стане читабельною."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-tisztitas",
+   "hu": "tisztítás",
+   "ua": "очищення",
+   "example": {
+    "hu": "A tisztítást a restaurátor végzi, nem a megtaláló.",
+    "ua": "Очищення виконує реставратор, а не знахідник."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-raktar",
+   "hu": "raktár",
+   "ua": "фондосховище, склад",
+   "example": {
+    "hu": "A leletek a múzeum raktárába kerülnek.",
+    "ua": "Знахідки потрапляють до фондосховища музею."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-alkalmazas",
+   "hu": "alkalmazás",
+   "ua": "застосунок",
+   "example": {
+    "hu": "A leleteket egy telefonos alkalmazásban rögzítjük.",
+    "ua": "Знахідки ми фіксуємо в застосунку на телефоні."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-doc-rogziteni",
+   "hu": "rögzíteni",
+   "ua": "фіксувати, записувати",
+   "example": {
+    "hu": "Rögzítem a koordinátákat.",
+    "ua": "Я фіксую координати."
+   },
+   "theme": "doc",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "metal-doc-felirtam-a-koordinatakat",
+   "hu": "Felírtam a koordinátákat.",
+   "ua": "Я записав координати.",
+   "theme": "doc",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-doc-milyen-melyen-volt-a-lelet",
+   "hu": "Milyen mélyen volt a lelet?",
+   "ua": "На якій глибині була знахідка?",
+   "theme": "doc",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-doc-tegyuk-kulon-zacskoba",
+   "hu": "Tegyük külön zacskóba!",
+   "ua": "Покладімо в окремий пакетик!",
+   "theme": "doc",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-doc-keszitettem-fenykepet-a-helyszinen",
+   "hu": "Készítettem fényképet a helyszínen.",
+   "ua": "Я зробив фото на місці.",
+   "theme": "doc",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-doc-mikor-adjuk-le-a-leleteket-a-muzeumban",
+   "hu": "Mikor adjuk le a leleteket a múzeumban?",
+   "ua": "Коли здаємо знахідки в музей?",
+   "theme": "doc",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-law-engedely",
+   "hu": "engedély",
+   "ua": "дозвіл",
+   "example": {
+    "hu": "Régészeti céllal fémkeresőzni csak engedéllyel szabad.",
+    "ua": "Шукати металошукачем з археологічною метою можна лише з дозволом."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-oroksegvedelmi-hatosag",
+   "hu": "örökségvédelmi hatóság",
+   "ua": "орган охорони культурної спадщини",
+   "example": {
+    "hu": "Az örökségvédelmi hatóság adja ki az engedélyt.",
+    "ua": "Орган охорони спадщини видає дозвіл."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-bejelentes",
+   "hu": "bejelentés",
+   "ua": "повідомлення, заява",
+   "example": {
+    "hu": "A bejelentés a megtaláló kötelessége.",
+    "ua": "Повідомлення — обов'язок знахідника."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-jegyzo",
+   "hu": "jegyző",
+   "ua": "нотар (керівник апарату місцевої ради)",
+   "example": {
+    "hu": "A leletet a jegyzőnek is be lehet jelenteni.",
+    "ua": "Про знахідку можна повідомити й нотаря (jegyző)."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-kormanyhivatal",
+   "hu": "kormányhivatal",
+   "ua": "урядове управління (області)",
+   "example": {
+    "hu": "A kormányhivatal örökségvédelmi osztálya intézi az ügyet.",
+    "ua": "Справу веде відділ охорони спадщини урядового управління."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-egyuttmukodesi-megallapodas",
+   "hu": "együttműködési megállapodás",
+   "ua": "угода про співпрацю",
+   "example": {
+    "hu": "A múzeummal együttműködési megállapodást kötöttem.",
+    "ua": "З музеєм я уклав угоду про співпрацю."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-nyilvantartott-regeszeti-lelohely",
+   "hu": "nyilvántartott régészeti lelőhely",
+   "ua": "зареєстрована археологічна пам'ятка",
+   "example": {
+    "hu": "Nyilvántartott régészeti lelőhelyen tilos engedély nélkül keresni.",
+    "ua": "На зареєстрованій археологічній пам'ятці заборонено шукати без дозволу."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-hadtorteneti-orokseg",
+   "hu": "hadtörténeti örökség",
+   "ua": "військово-історична спадщина",
+   "example": {
+    "hu": "A hadtörténeti örökség is védelem alatt áll.",
+    "ua": "Військово-історична спадщина також під охороною."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-regeszeti-lelet",
+   "hu": "régészeti lelet",
+   "ua": "археологічна знахідка (за законом — предмет до 1711 року)",
+   "example": {
+    "hu": "Régészeti lelet az 1711 előtt készült tárgy.",
+    "ua": "Археологічна знахідка — предмет, виготовлений до 1711 року."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "metal-law-muszeres-leletfelderites",
+   "hu": "műszeres leletfelderítés",
+   "ua": "інструментальний пошук знахідок (офіційний термін)",
+   "example": {
+    "hu": "A műszeres leletfelderítéshez engedély kell.",
+    "ua": "Для інструментального пошуку знахідок потрібен дозвіл."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-muzeum",
+   "hu": "múzeum",
+   "ua": "музей",
+   "example": {
+    "hu": "A múzeum fogadja a leleteket.",
+    "ua": "Музей приймає знахідки."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-regesz",
+   "hu": "régész",
+   "ua": "археолог",
+   "example": {
+    "hu": "A régész meghatározza a lelet korát.",
+    "ua": "Археолог визначає вік знахідки."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-onkentes",
+   "hu": "önkéntes",
+   "ua": "волонтер",
+   "example": {
+    "hu": "Önkéntesként veszek részt a programban.",
+    "ua": "Я беру участь у програмі як волонтер."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-kozossegi-regeszet",
+   "hu": "közösségi régészet",
+   "ua": "громадська археологія",
+   "example": {
+    "hu": "A közösségi régészet összeköti a múzeumot és a lakosságot.",
+    "ua": "Громадська археологія поєднує музей і громаду."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-egyesulet",
+   "hu": "egyesület",
+   "ua": "товариство, об'єднання",
+   "example": {
+    "hu": "Az egyesület tagjai együtt kutatnak a múzeummal.",
+    "ua": "Члени товариства досліджують разом з музеєм."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-tag",
+   "hu": "tag",
+   "ua": "член (товариства)",
+   "example": {
+    "hu": "Tag lettem az egyesületben.",
+    "ua": "Я став членом товариства."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-igazolvany",
+   "hu": "igazolvány",
+   "ua": "посвідчення",
+   "example": {
+    "hu": "Az egyesületi igazolványt magammal hordom.",
+    "ua": "Посвідчення товариства я ношу з собою."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-torveny",
+   "hu": "törvény",
+   "ua": "закон",
+   "example": {
+    "hu": "A törvény szerint a régészeti lelet állami tulajdon.",
+    "ua": "За законом археологічна знахідка — державна власність."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-kulturalis-orokseg",
+   "hu": "kulturális örökség",
+   "ua": "культурна спадщина",
+   "example": {
+    "hu": "A kulturális örökség védelméről törvény rendelkezik.",
+    "ua": "Охорону культурної спадщини регулює закон."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-allami-tulajdon",
+   "hu": "állami tulajdon",
+   "ua": "державна власність",
+   "example": {
+    "hu": "A földből előkerült régészeti lelet állami tulajdon.",
+    "ua": "Археологічна знахідка з землі — державна власність."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-tilos",
+   "hu": "tilos",
+   "ua": "заборонено",
+   "example": {
+    "hu": "Tilos a leletet eladni.",
+    "ua": "Знахідку заборонено продавати."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "metal-law-birsag",
+   "hu": "bírság",
+   "ua": "штраф",
+   "example": {
+    "hu": "Engedély nélküli kutatásért bírság jár.",
+    "ua": "За пошук без дозволу належить штраф."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-szabalysertes",
+   "hu": "szabálysértés",
+   "ua": "адміністративне правопорушення",
+   "example": {
+    "hu": "Az engedély nélküli keresés szabálysértés lehet.",
+    "ua": "Пошук без дозволу може бути адмінпорушенням."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "metal-law-buncselekmeny",
+   "hu": "bűncselekmény",
+   "ua": "злочин",
+   "example": {
+    "hu": "A lelet eltitkolása bűncselekmény lehet.",
+    "ua": "Приховування знахідки може бути злочином."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "metal-law-kotelesseg",
+   "hu": "kötelesség",
+   "ua": "обов'язок",
+   "example": {
+    "hu": "A bejelentés nem választás, hanem kötelesség.",
+    "ua": "Повідомлення — не вибір, а обов'язок."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-haladektalanul",
+   "hu": "haladéktalanul",
+   "ua": "негайно, без зволікання",
+   "example": {
+    "hu": "A leletet haladéktalanul be kell jelenteni.",
+    "ua": "Про знахідку треба повідомити негайно."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "adv"
+  },
+  {
+   "id": "metal-law-hatarido",
+   "hu": "határidő",
+   "ua": "термін (кінцевий)",
+   "example": {
+    "hu": "A bejelentésnek határideje van.",
+    "ua": "Повідомлення має кінцевий термін."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-feltaras",
+   "hu": "feltárás",
+   "ua": "розкопки (археологічне дослідження)",
+   "example": {
+    "hu": "A feltárást a múzeum vezeti.",
+    "ua": "Розкопки веде музей."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-asatas",
+   "hu": "ásatás",
+   "ua": "розкопки",
+   "example": {
+    "hu": "Az ásatáson önkéntesek is dolgoznak.",
+    "ua": "На розкопках працюють і волонтери."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-vedett",
+   "hu": "védett",
+   "ua": "захищений, під охороною",
+   "example": {
+    "hu": "Ez a terület védett, itt nem kereshetünk.",
+    "ua": "Ця територія під охороною, тут шукати не можна."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "metal-law-muemlek",
+   "hu": "műemlék",
+   "ua": "пам'ятка архітектури",
+   "example": {
+    "hu": "A műemlék templom körül tilos ásni.",
+    "ua": "Навколо церкви-пам'ятки копати заборонено."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-regeszeti-erdeku-terulet",
+   "hu": "régészeti érdekű terület",
+   "ua": "територія археологічного інтересу",
+   "example": {
+    "hu": "A régészeti érdekű területen is óvatosnak kell lenni.",
+    "ua": "На території археологічного інтересу також треба бути обережним."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-hatosag",
+   "hu": "hatóság",
+   "ua": "орган влади",
+   "example": {
+    "hu": "A hatóság ellenőrzi az engedélyeket.",
+    "ua": "Орган влади перевіряє дозволи."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-rendorseg",
+   "hu": "rendőrség",
+   "ua": "поліція",
+   "example": {
+    "hu": "Lőszer esetén a rendőrséget kell hívni.",
+    "ua": "У разі боєприпасів треба викликати поліцію."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-onkormanyzat",
+   "hu": "önkormányzat",
+   "ua": "місцеве самоврядування",
+   "example": {
+    "hu": "Az önkormányzat tudja, kié a föld.",
+    "ua": "Місцеве самоврядування знає, чия земля."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-szerzodes",
+   "hu": "szerződés",
+   "ua": "договір",
+   "example": {
+    "hu": "A szerződés rögzíti a jogokat és kötelességeket.",
+    "ua": "Договір фіксує права й обов'язки."
+   },
+   "theme": "law",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-law-szeretnek-csatlakozni-a-kozossegi-regesz",
+   "hu": "Szeretnék csatlakozni a közösségi régészeti programhoz.",
+   "ua": "Я хотів би приєднатися до програми громадської археології.",
+   "theme": "law",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-law-van-engedelyem-a-kutatasra",
+   "hu": "Van engedélyem a kutatásra.",
+   "ua": "У мене є дозвіл на дослідження.",
+   "theme": "law",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-law-bejelentem-a-leletet-a-muzeumnak",
+   "hu": "Bejelentem a leletet a múzeumnak.",
+   "ua": "Я повідомляю музей про знахідку.",
+   "theme": "law",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-law-a-lelet-az-allam-tulajdona",
+   "hu": "A lelet az állam tulajdona.",
+   "ua": "Знахідка — власність держави.",
+   "theme": "law",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-law-ez-nyilvantartott-lelohely-itt-nem-keres",
+   "hu": "Ez nyilvántartott lelőhely, itt nem kereshetünk.",
+   "ua": "Це зареєстрована пам'ятка, тут шукати не можна.",
+   "theme": "law",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-law-kivel-kell-egyeztetni-a-kutatast",
+   "hu": "Kivel kell egyeztetni a kutatást?",
+   "ua": "З ким треба узгодити дослідження?",
+   "theme": "law",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-safety-loszer",
+   "hu": "lőszer",
+   "ua": "боєприпаси",
+   "example": {
+    "hu": "A lőszer évtizedek után is robbanhat.",
+    "ua": "Боєприпаси можуть вибухнути й через десятиліття."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-robbanoanyag",
+   "hu": "robbanóanyag",
+   "ua": "вибухівка",
+   "example": {
+    "hu": "A robbanóanyag életveszélyes.",
+    "ua": "Вибухівка смертельно небезпечна."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-tuzszeresz",
+   "hu": "tűzszerész",
+   "ua": "сапер (піротехнік)",
+   "example": {
+    "hu": "A tűzszerészek elszállítják a gránátot.",
+    "ua": "Сапери вивозять гранату."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-granat",
+   "hu": "gránát",
+   "ua": "граната; снаряд",
+   "example": {
+    "hu": "A gránátot ne mozdítsa el!",
+    "ua": "Гранату не рухайте!"
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-akna",
+   "hu": "akna",
+   "ua": "міна",
+   "example": {
+    "hu": "Az akna a földben rejtve maradhat.",
+    "ua": "Міна може лишатися прихованою в землі."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-bomba",
+   "hu": "bomba",
+   "ua": "бомба",
+   "example": {
+    "hu": "A bombát a második világháborúban dobták le.",
+    "ua": "Бомбу скинули в Другу світову."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-lovedek",
+   "hu": "lövedék",
+   "ua": "снаряд, куля",
+   "example": {
+    "hu": "A lövedék rozsdás, de még veszélyes.",
+    "ua": "Снаряд іржавий, але ще небезпечний."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-tolteny",
+   "hu": "töltény",
+   "ua": "патрон",
+   "example": {
+    "hu": "Egy éles töltényt találtam.",
+    "ua": "Я знайшов бойовий патрон."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-robbanotest",
+   "hu": "robbanótest",
+   "ua": "вибуховий предмет",
+   "example": {
+    "hu": "Robbanótest gyanúja esetén hívja a 112-et!",
+    "ua": "За підозри на вибуховий предмет дзвоніть 112!"
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-veszely",
+   "hu": "veszély",
+   "ua": "небезпека",
+   "example": {
+    "hu": "A veszély nem látszik a földön.",
+    "ua": "Небезпеки на землі не видно."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-veszelyes",
+   "hu": "veszélyes",
+   "ua": "небезпечний",
+   "example": {
+    "hu": "Ez a tárgy veszélyes lehet.",
+    "ua": "Цей предмет може бути небезпечним."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "metal-safety-eletveszelyes",
+   "hu": "életveszélyes",
+   "ua": "смертельно небезпечний",
+   "example": {
+    "hu": "A lőszer kiásása életveszélyes.",
+    "ua": "Викопувати боєприпаси смертельно небезпечно."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "metal-safety-megjelolni",
+   "hu": "megjelölni",
+   "ua": "позначити",
+   "example": {
+    "hu": "Megjelölöm a helyet egy bottal.",
+    "ua": "Я позначаю місце палицею."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "metal-safety-tavolsag",
+   "hu": "távolság",
+   "ua": "відстань",
+   "example": {
+    "hu": "Tartson biztonságos távolságot!",
+    "ua": "Тримайте безпечну відстань!"
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-segelyhivo",
+   "hu": "segélyhívó",
+   "ua": "номер екстреної допомоги",
+   "example": {
+    "hu": "A segélyhívó száma 112.",
+    "ua": "Номер екстреної служби — 112."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-elsosegely",
+   "hu": "elsősegély",
+   "ua": "перша допомога",
+   "example": {
+    "hu": "Az elsősegélydoboz a kocsiban van.",
+    "ua": "Аптечка першої допомоги в машині."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-baleset",
+   "hu": "baleset",
+   "ua": "нещасний випадок",
+   "example": {
+    "hu": "A balesetet azonnal jelentsük!",
+    "ua": "Про нещасний випадок повідомляймо негайно!"
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-kullancs",
+   "hu": "kullancs",
+   "ua": "кліщ",
+   "example": {
+    "hu": "Fűben sok a kullancs, nézd át magad!",
+    "ua": "У траві багато кліщів, перевір себе!"
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-kigyo",
+   "hu": "kígyó",
+   "ua": "змія",
+   "example": {
+    "hu": "A kígyó a kövek között napozik.",
+    "ua": "Змія гріється між камінням."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-napszuras",
+   "hu": "napszúrás",
+   "ua": "сонячний удар",
+   "example": {
+    "hu": "Kalap nélkül napszúrást kaphatsz.",
+    "ua": "Без капелюха можна отримати сонячний удар."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-ivoviz",
+   "hu": "ivóvíz",
+   "ua": "питна вода",
+   "example": {
+    "hu": "Vigyél elég ivóvizet a terepre!",
+    "ua": "Візьми в поле достатньо питної води!"
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-vihar",
+   "hu": "vihar",
+   "ua": "буря",
+   "example": {
+    "hu": "Vihar előtt hagyjuk el a mezőt.",
+    "ua": "Перед бурею ми покидаємо поле."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-villam",
+   "hu": "villám",
+   "ua": "блискавка",
+   "example": {
+    "hu": "A villám a fémkeresőt is eltalálhatja.",
+    "ua": "Блискавка може вдарити й у металошукач."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-magasfeszultseg",
+   "hu": "magasfeszültség",
+   "ua": "висока напруга",
+   "example": {
+    "hu": "A magasfeszültségű vezeték alatt zavar a jel.",
+    "ua": "Під лінією високої напруги сигнал із завадами."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-gazvezetek",
+   "hu": "gázvezeték",
+   "ua": "газопровід",
+   "example": {
+    "hu": "A gázvezeték nyomvonalán tilos ásni.",
+    "ua": "На трасі газопроводу копати заборонено."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-maganterulet",
+   "hu": "magánterület",
+   "ua": "приватна територія",
+   "example": {
+    "hu": "A magánterületre csak engedéllyel léphetünk.",
+    "ua": "На приватну територію можна лише з дозволом."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-kerites",
+   "hu": "kerítés",
+   "ua": "огорожа",
+   "example": {
+    "hu": "A kerítés mögött már más a tulajdonos.",
+    "ua": "За огорожею вже інший власник."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-vadasz",
+   "hu": "vadász",
+   "ua": "мисливець",
+   "example": {
+    "hu": "Vadászidényben egyeztessünk a vadászokkal.",
+    "ua": "У сезон полювання домовляймося з мисливцями."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "metal-safety-visszatemetni",
+   "hu": "visszatemetni",
+   "ua": "засипати назад (ямку)",
+   "example": {
+    "hu": "A gödröt mindig visszatemetem.",
+    "ua": "Ямку я завжди засипаю назад."
+   },
+   "theme": "safety",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "metal-safety-ne-nyuljon-hozza",
+   "hu": "Ne nyúljon hozzá!",
+   "ua": "Не торкайтеся!",
+   "theme": "safety",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-safety-ez-loszernek-latszik",
+   "hu": "Ez lőszernek látszik.",
+   "ua": "Це схоже на боєприпас.",
+   "theme": "safety",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-safety-hivjuk-a-rendorseget",
+   "hu": "Hívjuk a rendőrséget!",
+   "ua": "Викликаймо поліцію!",
+   "theme": "safety",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-safety-jeloljuk-meg-a-helyet-es-menjunk-tavolab",
+   "hu": "Jelöljük meg a helyet, és menjünk távolabb!",
+   "ua": "Позначмо місце й відійдімо далі!",
+   "theme": "safety",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-safety-senki-ne-menjen-kozelebb",
+   "hu": "Senki ne menjen közelebb!",
+   "ua": "Хай ніхто не підходить ближче!",
+   "theme": "safety",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-safety-mindenki-jol-van",
+   "hu": "Mindenki jól van?",
+   "ua": "Усі в порядку?",
+   "theme": "safety",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-safety-temessuk-vissza-a-godrot",
+   "hu": "Temessük vissza a gödröt!",
+   "ua": "Засипмо ямку назад!",
+   "theme": "safety",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "metal-safety-kesztyut-vegyel-fel",
+   "hu": "Kesztyűt vegyél fel!",
+   "ua": "Одягни рукавиці!",
+   "theme": "safety",
+   "level": 2,
+   "pos": "phrase"
+  }
+ ],
+ "dialogues": [
+  {
+   "id": "metal-d01",
+   "title": "A múzeumban: jelentkezés a programba",
+   "level": 3,
+   "lines": [
+    {
+     "who": "Önkéntes",
+     "hu": "Jó napot kívánok! Érdeklődnék a közösségi régészeti program iránt.",
+     "ua": "Добрий день! Я хотів би дізнатися про програму громадської археології."
+    },
+    {
+     "who": "Régész",
+     "hu": "Jó napot! Örülünk az érdeklődésének. Van már fémkeresője?",
+     "ua": "Добрий день! Раді вашому інтересу. У вас уже є металошукач?"
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "Igen, van, de eddig csak a saját kertemben próbáltam.",
+     "ua": "Так, є, але досі я пробував лише у власному саду."
+    },
+    {
+     "who": "Régész",
+     "hu": "Rendben. A programban együttműködési megállapodást kötünk, és a kutatás csak a múzeum irányításával történik.",
+     "ua": "Гаразд. У програмі ми укладаємо угоду про співпрацю, а дослідження відбувається лише під керівництвом музею."
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "Milyen papírokat kell kitöltenem?",
+     "ua": "Які документи мені треба заповнити?"
+    },
+    {
+     "who": "Régész",
+     "hu": "Egy jelentkezési lapot, és részt kell vennie egy felkészítő előadáson.",
+     "ua": "Заяву про участь, і ще треба відвідати підготовчу лекцію."
+    }
+   ],
+   "question": {
+    "q": "Що потрібно зробити волонтеру, щоб долучитися до програми?",
+    "options": [
+     "Заповнити заяву й пройти підготовчу лекцію",
+     "Купити новий металошукач",
+     "Здати екзамен з історії",
+     "Заплатити за дозвіл"
+    ],
+    "answer": 0
+   }
+  },
+  {
+   "id": "metal-d02",
+   "title": "Telefon: leletbejelentés",
+   "level": 3,
+   "lines": [
+    {
+     "who": "Megtaláló",
+     "hu": "Jó napot kívánok! A múzeumot hívom, mert leletet találtam.",
+     "ua": "Добрий день! Я дзвоню в музей, бо знайшов знахідку."
+    },
+    {
+     "who": "Múzeum",
+     "hu": "Jó napot! Köszönjük a bejelentést. Mit talált, és hol?",
+     "ua": "Добрий день! Дякуємо за повідомлення. Що й де ви знайшли?"
+    },
+    {
+     "who": "Megtaláló",
+     "hu": "Egy bronz csatot a falu határában, a szántóföldön. Felírtam a koordinátákat.",
+     "ua": "Бронзову пряжку на землях села, на орному полі. Я записав координати."
+    },
+    {
+     "who": "Múzeum",
+     "hu": "Nagyszerű. Kérem, ne tisztítsa meg, és tegye külön zacskóba.",
+     "ua": "Чудово. Прошу не чистити її й покласти в окремий пакетик."
+    },
+    {
+     "who": "Megtaláló",
+     "hu": "Rendben. Mikor hozhatom be?",
+     "ua": "Гаразд. Коли я можу її принести?"
+    },
+    {
+     "who": "Múzeum",
+     "hu": "Holnap délelőtt várjuk a múzeumban, hozza a feljegyzéseket is.",
+     "ua": "Чекаємо завтра до обіду в музеї, візьміть і свої записи."
+    }
+   ],
+   "question": {
+    "q": "Що просять зробити знахідника зі знахідкою?",
+    "options": [
+     "Не чистити й покласти в окремий пакетик",
+     "Негайно відправити поштою",
+     "Очистити й сфотографувати",
+     "Продати музею"
+    ],
+    "answer": 0
+   }
+  },
+  {
+   "id": "metal-d03",
+   "title": "A terepen: a régész utasításai",
+   "level": 3,
+   "lines": [
+    {
+     "who": "Régész",
+     "hu": "Ma ezen a tarlón keresünk, a dűlőút és az árok között.",
+     "ua": "Сьогодні шукаємо на цій стерні, між польовою дорогою й канавою."
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "Milyen mélyre áshatunk?",
+     "ua": "Як глибоко можна копати?"
+    },
+    {
+     "who": "Régész",
+     "hu": "Legfeljebb a szántás mélységéig. Ami mélyebben van, azt jelezzék nekem.",
+     "ua": "Щонайбільше до глибини оранки. Про те, що глибше, повідомляйте мені."
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "Találtam egy érmét! Mit csináljak vele?",
+     "ua": "Я знайшов монету! Що з нею робити?"
+    },
+    {
+     "who": "Régész",
+     "hu": "Ne tisztítsa meg. Rögzítse a koordinátákat, tegye zacskóba, és írja fel a sorszámot.",
+     "ua": "Не чистьте. Зафіксуйте координати, покладіть у пакетик і запишіть порядковий номер."
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "Rendben, és a gödröt visszatemetem.",
+     "ua": "Гаразд, а ямку я засиплю назад."
+    }
+   ],
+   "question": {
+    "q": "До якої глибини можна копати?",
+    "options": [
+     "До глибини оранки",
+     "До одного метра",
+     "Скільки завгодно",
+     "Не копати зовсім"
+    ],
+    "answer": 0
+   }
+  },
+  {
+   "id": "metal-d04",
+   "title": "Beszélgetés a földtulajdonossal",
+   "level": 3,
+   "lines": [
+    {
+     "who": "Önkéntes",
+     "hu": "Jó napot kívánok! Ön a tulajdonosa ennek a földnek?",
+     "ua": "Добрий день! Ви власник цієї землі?"
+    },
+    {
+     "who": "Gazda",
+     "hu": "Igen, az enyém. Miben segíthetek?",
+     "ua": "Так, моя. Чим можу допомогти?"
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "A múzeum közösségi régészeti programjában veszek részt. Szeretnék engedélyt kérni, hogy fémkeresővel kutassunk a tarlón.",
+     "ua": "Я беру участь у програмі громадської археології музею. Хотів би попросити дозволу пошукати металошукачем на стерні."
+    },
+    {
+     "who": "Gazda",
+     "hu": "A vetést nem tapossák le?",
+     "ua": "Посіви не потоптаєте?"
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "Nem, csak betakarítás után jövünk, és minden gödröt visszatemetünk.",
+     "ua": "Ні, ми приходимо лише після збору врожаю і засипаємо кожну ямку."
+    },
+    {
+     "who": "Gazda",
+     "hu": "Rendben, akkor megengedem. Szóljanak, ha találnak valamit!",
+     "ua": "Гаразд, тоді дозволяю. Скажіть, якщо щось знайдете!"
+    }
+   ],
+   "question": {
+    "q": "Що обіцяє волонтер господареві?",
+    "options": [
+     "Приходити лише після збору врожаю й засипати ямки",
+     "Поділитися знахідками",
+     "Заплатити за дозвіл",
+     "Шукати лише вночі"
+    ],
+    "answer": 0
+   }
+  },
+  {
+   "id": "metal-d05",
+   "title": "Gyanús lőszer a földben",
+   "level": 3,
+   "lines": [
+    {
+     "who": "Önkéntes",
+     "hu": "Állj! Itt valami lőszernek látszik.",
+     "ua": "Стій! Тут щось схоже на боєприпас."
+    },
+    {
+     "who": "Vezető",
+     "hu": "Ne nyúljon hozzá, és ne mozdítsa el! Mindenki menjen távolabb!",
+     "ua": "Не торкайтеся й не рухайте! Усі відійдіть далі!"
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "Megjelölöm a helyet egy bottal.",
+     "ua": "Я позначу місце палицею."
+    },
+    {
+     "who": "Vezető",
+     "hu": "Jó. Hívom a 112-et, a tűzszerészek jönnek ki érte.",
+     "ua": "Добре. Я дзвоню 112, по нього приїдуть сапери."
+    },
+    {
+     "who": "Önkéntes",
+     "hu": "Mit mondjak, ha a rendőrség kérdez?",
+     "ua": "Що мені казати, якщо поліція запитає?"
+    },
+    {
+     "who": "Vezető",
+     "hu": "Hol találták, mekkora, és hogy nem nyúltak hozzá.",
+     "ua": "Де знайшли, якого розміру, і що ви його не торкалися."
+    }
+   ],
+   "question": {
+    "q": "Що треба зробити, знайшовши підозрілий боєприпас?",
+    "options": [
+     "Не торкатися, позначити місце й подзвонити 112",
+     "Викопати й віднести в музей",
+     "Закопати назад",
+     "Сфотографувати зблизька"
+    ],
+    "answer": 0
+   }
+  }
+ ],
+ "texts": [
+  {
+   "id": "metal-t01",
+   "title": "Mi a közösségi régészet?",
+   "level": 3,
+   "hu": "A közösségi régészet olyan program, amelyben a múzeum régészei és önkéntesek együtt kutatnak. Az önkéntesek fémkeresővel és terepbejárással segítenek, a régészek pedig irányítják a munkát, és feldolgozzák a leleteket.\nA részvétel feltétele egy együttműködési megállapodás a múzeummal. A kutatás helyét és idejét a régész határozza meg, és minden lelet a múzeumba kerül, mert a régészeti lelet állami tulajdon.\nA program célja nem a kincskeresés, hanem az, hogy a leletek ne vesszenek el, és a lelőhelyekről pontos adatok legyenek.",
+   "ua": "Громадська археологія — це програма, в якій археологи музею й волонтери досліджують разом. Волонтери допомагають металошукачем і польовою розвідкою, а археологи керують роботою й опрацьовують знахідки.\nУмова участі — угода про співпрацю з музеєм. Місце й час дослідження визначає археолог, і кожна знахідка потрапляє в музей, бо археологічна знахідка — державна власність.\nМета програми — не пошук скарбів, а щоб знахідки не губилися і про пам'ятки були точні дані.",
+   "questions": [
+    {
+     "q": "Хто керує роботою в програмі?",
+     "options": [
+      "Археологи музею",
+      "Волонтери",
+      "Землевласники",
+      "Поліція"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Куди потрапляють знахідки?",
+     "options": [
+      "До музею",
+      "До знахідника",
+      "До землевласника",
+      "На продаж"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Що є метою програми?",
+     "options": [
+      "Щоб знахідки не губилися і про пам'ятки були точні дані",
+      "Знайти скарб",
+      "Продати монети",
+      "Побудувати новий музей"
+     ],
+     "answer": 0
+    }
+   ]
+  },
+  {
+   "id": "metal-t02",
+   "title": "Mit tegyünk, ha leletet találunk?",
+   "level": 3,
+   "hu": "Ha fémkeresővel vagy véletlenül leletet találunk, először rögzítsük a helyet: koordináta, mélység, dátum. Készítsünk fényképet a helyszínen, lehetőleg léptékkel.\nA leletet ne tisztítsuk meg, mert a patina és a föld is információt hordoz. Tegyük külön zacskóba, és írjuk rá a sorszámot.\nEzután jelentsük be a múzeumnak vagy a jegyzőnek. A bejelentés kötelesség, és a múzeum munkatársai megmondják, hogyan adjuk le a leletet.",
+   "ua": "Якщо ми знайшли знахідку металошукачем або випадково, спершу зафіксуймо місце: координати, глибину, дату. Зробімо фото на місці, бажано з масштабною лінійкою.\nЗнахідку не чистимо, бо патина й земля також несуть інформацію. Покладімо в окремий пакетик і напишімо на ньому порядковий номер.\nПотім повідомимо музей або нотаря (jegyző). Повідомлення — обов'язок, а працівники музею скажуть, як здати знахідку.",
+   "questions": [
+    {
+     "q": "Що фіксуємо спочатку?",
+     "options": [
+      "Місце: координати, глибину, дату",
+      "Ціну знахідки",
+      "Вагу знахідки",
+      "Ім'я власника поля"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Чому не чистимо знахідку?",
+     "options": [
+      "Бо патина й земля несуть інформацію",
+      "Бо це довго",
+      "Бо так красивіше",
+      "Бо торкатися заборонено"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Кому повідомляємо про знахідку?",
+     "options": [
+      "Музею або нотарю (jegyző)",
+      "Сусідам",
+      "Газеті",
+      "Нікому"
+     ],
+     "answer": 0
+    }
+   ]
+  },
+  {
+   "id": "metal-t03",
+   "title": "Egy nap a terepen",
+   "level": 3,
+   "hu": "Reggel hétkor találkozunk a falu szélén. A régész kiosztja a térképeket, és megmutatja, melyik dűlőben dolgozunk. A gazda már megengedte a keresést, mert a tarló üres.\nSorokban haladunk, a keresőtekercset lassan mozgatjuk a talaj felett. Ha jelez a készülék, kis gödröt ásunk, és a pinpointerrel megkeressük a tárgyat. A legtöbb jel kupak vagy szög, de délelőtt előkerül egy Árpád-kori dénár is.\nMinden leletet zacskóba teszünk, felírjuk a sorszámot, és rögzítjük a koordinátákat. A gödröket visszatemetjük. Délután a leleteket átadjuk a régésznek, aki jegyzőkönyvet vesz fel.",
+   "ua": "О сьомій ранку зустрічаємося на краю села. Археолог роздає карти й показує, в якому урочищі працюємо. Господар уже дозволив пошук, бо стерня порожня.\nІдемо рядами, котушку повільно ведемо над землею. Якщо прилад сигналізує, копаємо маленьку ямку й пінпоінтером знаходимо предмет. Більшість сигналів — кришечки чи гвіздки, але до обіду з'являється й денар доби Арпадів.\nКожну знахідку кладемо в пакетик, записуємо порядковий номер і фіксуємо координати. Ямки засипаємо. Після обіду передаємо знахідки археологу, який складає протокол.",
+   "questions": [
+    {
+     "q": "Чому господар дозволив пошук?",
+     "options": [
+      "Бо стерня порожня, урожай зібрано",
+      "Бо йому заплатили",
+      "Бо він сам археолог",
+      "Бо поле нічиє"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Що знайшли до обіду, крім сміття?",
+     "options": [
+      "Денар доби Арпадів",
+      "Римську фібулу",
+      "Золотий перстень",
+      "Гранату"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Що робить археолог наприкінці дня?",
+     "options": [
+      "Складає протокол про знахідки",
+      "Продає знахідки",
+      "Чистить монети",
+      "Копає далі"
+     ],
+     "answer": 0
+    }
+   ]
+  }
+ ]
+}

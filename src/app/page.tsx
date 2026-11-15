@@ -197,6 +197,9 @@ export default function Home() {
           ⚠️ Помилки за тиждень <span className="badge">{stats.mistakes}</span>
         </Link>
       )}
+      <Link href="/personal" className="btn" style={{ marginBottom: 10 }}>
+        🗂️ Персональні теми <span className="muted" style={{ fontSize: 14 }}>металошукач · пожежна безпека</span>
+      </Link>
       <div className="row" style={{ marginBottom: 10 }}>
         <Link href="/dictionary" className="btn ghost" style={{ flex: 1 }}>
           📖 Словник

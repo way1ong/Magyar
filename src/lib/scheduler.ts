@@ -1,5 +1,5 @@
 import { createEmptyCard, fsrs, generatorParameters, Rating, type Grade } from "ts-fsrs";
-import { db, fromRow, toRow, withRetry, type CardRow, type Exercise } from "./db";
+import { db, fromRow, toRow, withRetry, type CardRow, type Exercise, type FsrsFields } from "./db";
 import { readiness } from "./readiness";
 
 export { Rating };
@@ -10,7 +10,7 @@ export type { Grade };
  * When the review log has a few hundred entries, parameters (w) can be optimised
  * offline from db.reviews and dropped in here.
  */
-const scheduler = fsrs(
+export const scheduler = fsrs(
   generatorParameters({
     request_retention: 0.9,
     maximum_interval: 180, // days; keep it tight for the first months
@@ -74,7 +74,7 @@ export async function answer(row: CardRow, rating: Grade, took?: number) {
 }
 
 /** Preview intervals for the four buttons (shown as "1д", "4д" …). */
-export function previewIntervals(row: CardRow): Record<Grade, string> {
+export function previewIntervals(row: FsrsFields): Record<Grade, string> {
   const now = new Date();
   const out = {} as Record<Grade, string>;
   for (const g of [Rating.Again, Rating.Hard, Rating.Good, Rating.Easy] as Grade[]) {

@@ -32,7 +32,8 @@ const js = result.outputFiles.find((f) => f.path.endsWith(".js")).text.replaceAl
 const css = result.outputFiles.find((f) => f.path.endsWith(".css")).text.replaceAll("</style", "<\\/style");
 const built = new Date().toISOString().slice(0, 16).replace("T", " ");
 
-const html = `<title>Превʼю Magyar</title>
+const html = `<meta charset="utf-8">
+<title>Превʼю Magyar</title>
 <meta name="magyar-build" content="${built} UTC">
 <style>${css}</style>
 <div id="root"></div>
