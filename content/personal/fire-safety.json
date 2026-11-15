@@ -1,0 +1,2408 @@
+{
+ "id": "fire",
+ "icon": "🧯",
+ "title": "Пожежна безпека",
+ "titleHu": "Tűzvédelem",
+ "intro": "Робоча лексика: протипожежне обладнання, періодичні перевірки й документи за OTSZ, несправності й ремонт, евакуація, розмова з інспектором і замовником.",
+ "themes": [
+  {
+   "id": "eq",
+   "title": "Обладнання"
+  },
+  {
+   "id": "insp",
+   "title": "Перевірки й документи"
+  },
+  {
+   "id": "fault",
+   "title": "Несправності й ремонт"
+  },
+  {
+   "id": "evac",
+   "title": "Евакуація й дії при пожежі"
+  },
+  {
+   "id": "talk",
+   "title": "Розмова з інспектором і замовником"
+  }
+ ],
+ "items": [
+  {
+   "id": "fire-eq-tuzolto-keszulek",
+   "hu": "tűzoltó készülék",
+   "ua": "вогнегасник",
+   "example": {
+    "hu": "A tűzoltó készülék a folyosón van.",
+    "ua": "Вогнегасник у коридорі."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-porral-olto",
+   "hu": "porral oltó",
+   "ua": "порошковий вогнегасник",
+   "example": {
+    "hu": "A porral oltó A, B és C tűzosztályra alkalmas.",
+    "ua": "Порошковий вогнегасник підходить для класів пожежі A, B і C."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-habbal-olto",
+   "hu": "habbal oltó",
+   "ua": "пінний вогнегасник",
+   "example": {
+    "hu": "A habbal oltót folyadéktűzre használjuk.",
+    "ua": "Пінний вогнегасник використовуємо для горіння рідин."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-szen-dioxiddal-olto",
+   "hu": "szén-dioxiddal oltó",
+   "ua": "вуглекислотний вогнегасник",
+   "example": {
+    "hu": "A szén-dioxiddal oltó elektromos berendezésekhez jó.",
+    "ua": "Вуглекислотний вогнегасник підходить для електрообладнання."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-vizzel-olto",
+   "hu": "vízzel oltó",
+   "ua": "водяний вогнегасник",
+   "example": {
+    "hu": "A vízzel oltót nem használjuk elektromos tűznél.",
+    "ua": "Водяний вогнегасник не використовуємо при електричній пожежі."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-fali-tuzcsap",
+   "hu": "fali tűzcsap",
+   "ua": "настінний пожежний кран",
+   "example": {
+    "hu": "A fali tűzcsap szekrényét szabadon kell hagyni.",
+    "ua": "Шафу настінного пожежного крана треба лишати вільною."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-tuzcsapszekreny",
+   "hu": "tűzcsapszekrény",
+   "ua": "шафа пожежного крана",
+   "example": {
+    "hu": "A tűzcsapszekrény ajtaja nem záródik.",
+    "ua": "Дверцята шафи пожежного крана не зачиняються."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-tomlo",
+   "hu": "tömlő",
+   "ua": "пожежний рукав",
+   "example": {
+    "hu": "A tömlő húsz méter hosszú.",
+    "ua": "Рукав двадцять метрів завдовжки."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-sugarcso",
+   "hu": "sugárcső",
+   "ua": "пожежний ствол",
+   "example": {
+    "hu": "A sugárcső hiányzik a szekrényből.",
+    "ua": "У шафі немає ствола."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-foldfeletti-tuzcsap",
+   "hu": "földfeletti tűzcsap",
+   "ua": "надземний гідрант",
+   "example": {
+    "hu": "A földfeletti tűzcsap az udvaron piros.",
+    "ua": "Надземний гідрант у дворі червоний."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-tuzolto-vizforras",
+   "hu": "tűzoltó vízforrás",
+   "ua": "джерело води для пожежогасіння",
+   "example": {
+    "hu": "A tűzoltó vízforrást félévente ellenőrizzük.",
+    "ua": "Джерело води для пожежогасіння перевіряємо кожні півроку."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "fire-eq-tuzjelzo",
+   "hu": "tűzjelző",
+   "ua": "пожежна сигналізація",
+   "example": {
+    "hu": "A tűzjelző hibát jelez.",
+    "ua": "Пожежна сигналізація показує несправність."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-tuzjelzo-kozpont",
+   "hu": "tűzjelző központ",
+   "ua": "приймально-контрольний прилад (центральна панель)",
+   "example": {
+    "hu": "A tűzjelző központ a portán van.",
+    "ua": "Центральна панель сигналізації на прохідній."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-fusterzekelo",
+   "hu": "füstérzékelő",
+   "ua": "димовий сповіщувач",
+   "example": {
+    "hu": "A füstérzékelőt évente tisztítani kell.",
+    "ua": "Димовий сповіщувач треба щороку чистити."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-hoerzekelo",
+   "hu": "hőérzékelő",
+   "ua": "тепловий сповіщувач",
+   "example": {
+    "hu": "A konyhában hőérzékelő van, nem füstérzékelő.",
+    "ua": "На кухні тепловий сповіщувач, а не димовий."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-kezi-jelzesado",
+   "hu": "kézi jelzésadó",
+   "ua": "ручний сповіщувач",
+   "example": {
+    "hu": "A kézi jelzésadót üveg védi.",
+    "ua": "Ручний сповіщувач захищений склом."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-hangjelzo",
+   "hu": "hangjelző",
+   "ua": "звуковий оповіщувач, сирена",
+   "example": {
+    "hu": "A hangjelző az egész épületben hallható.",
+    "ua": "Сирену чути в усій будівлі."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-hurok",
+   "hu": "hurok",
+   "ua": "шлейф (сигналізації)",
+   "example": {
+    "hu": "A második hurokban van a hiba.",
+    "ua": "Несправність у другому шлейфі."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-veszvilagitas",
+   "hu": "vészvilágítás",
+   "ua": "аварійне освітлення",
+   "example": {
+    "hu": "A vészvilágítás áramszünetnél bekapcsol.",
+    "ua": "Аварійне освітлення вмикається при відключенні електрики."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-biztonsagi-vilagitas",
+   "hu": "biztonsági világítás",
+   "ua": "безпекове (аварійне) освітлення — термін OTSZ",
+   "example": {
+    "hu": "A biztonsági világítás lámpáit havonta próbáljuk.",
+    "ua": "Світильники безпекового освітлення перевіряємо щомісяця."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "fire-eq-menekulesi-utiranyjelzo",
+   "hu": "menekülési útirányjelző",
+   "ua": "знак напрямку евакуації (світловий)",
+   "example": {
+    "hu": "A menekülési útirányjelző zöld és világít.",
+    "ua": "Знак напрямку евакуації зелений і світиться."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-tuzgatlo-ajto",
+   "hu": "tűzgátló ajtó",
+   "ua": "протипожежні двері",
+   "example": {
+    "hu": "A tűzgátló ajtót nem szabad kitámasztani.",
+    "ua": "Протипожежні двері не можна підпирати."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-tuzgatlo-csappantyu",
+   "hu": "tűzgátló csappantyú",
+   "ua": "протипожежний клапан (у вентиляції)",
+   "example": {
+    "hu": "A tűzgátló csappantyú lezárja a légcsatornát.",
+    "ua": "Протипожежний клапан перекриває повітропровід."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-sprinkler",
+   "hu": "sprinkler",
+   "ua": "спринклер",
+   "example": {
+    "hu": "A sprinklerfejek a mennyezeten vannak.",
+    "ua": "Спринклерні головки на стелі."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-oltoberendezes",
+   "hu": "oltóberendezés",
+   "ua": "установка пожежогасіння",
+   "example": {
+    "hu": "Az oltóberendezés automatikusan indul.",
+    "ua": "Установка пожежогасіння запускається автоматично."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-ho-es-fustelvezeto",
+   "hu": "hő- és füstelvezető",
+   "ua": "система димо- й тепловидалення",
+   "example": {
+    "hu": "A hő- és füstelvezető ablak riasztásnál felnyílik.",
+    "ua": "Вікно димовидалення відкривається при тривозі."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-tuzolto-takaro",
+   "hu": "tűzoltó takaró",
+   "ua": "протипожежне покривало",
+   "example": {
+    "hu": "A konyhában tűzoltó takaró is van.",
+    "ua": "На кухні є й протипожежне покривало."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-nyomasmero",
+   "hu": "nyomásmérő",
+   "ua": "манометр",
+   "example": {
+    "hu": "A nyomásmérő mutatója a zöld mezőben áll.",
+    "ua": "Стрілка манометра в зеленій зоні."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-biztositoszeg",
+   "hu": "biztosítószeg",
+   "ua": "запобіжна чека",
+   "example": {
+    "hu": "A biztosítószeg a helyén van.",
+    "ua": "Запобіжна чека на місці."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-plomba",
+   "hu": "plomba",
+   "ua": "пломба",
+   "example": {
+    "hu": "A plomba sértetlen.",
+    "ua": "Пломба неушкоджена."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-oltoanyag",
+   "hu": "oltóanyag",
+   "ua": "вогнегасна речовина",
+   "example": {
+    "hu": "Az oltóanyag por, hab vagy gáz lehet.",
+    "ua": "Вогнегасна речовина може бути порошком, піною або газом."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-palack",
+   "hu": "palack",
+   "ua": "балон, корпус",
+   "example": {
+    "hu": "A palack horpadt, cserélni kell.",
+    "ua": "Балон має вм'ятину, треба замінити."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-szelep",
+   "hu": "szelep",
+   "ua": "клапан",
+   "example": {
+    "hu": "A szelep szivárog.",
+    "ua": "Клапан підтікає."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-fali-tarto",
+   "hu": "fali tartó",
+   "ua": "настінний кронштейн",
+   "example": {
+    "hu": "A készülék fali tartón függ.",
+    "ua": "Вогнегасник висить на настінному кронштейні."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-tuzosztaly",
+   "hu": "tűzosztály",
+   "ua": "клас пожежі",
+   "example": {
+    "hu": "Az A tűzosztály a szilárd anyagok tüze.",
+    "ua": "Клас пожежі A — горіння твердих речовин."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-oltasi-teljesitmeny",
+   "hu": "oltási teljesítmény",
+   "ua": "вогнегасна здатність (рейтинг)",
+   "example": {
+    "hu": "Az oltási teljesítmény a címkén olvasható, például 21A 113B.",
+    "ua": "Вогнегасну здатність вказано на етикетці, наприклад 21A 113B."
+   },
+   "theme": "eq",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-eq-hol-van-a-legkozelebbi-tuzolto-keszulek",
+   "hu": "Hol van a legközelebbi tűzoltó készülék?",
+   "ua": "Де найближчий вогнегасник?",
+   "theme": "eq",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-eq-a-nyomasmero-a-zold-tartomanyban-van",
+   "hu": "A nyomásmérő a zöld tartományban van.",
+   "ua": "Манометр у зеленій зоні.",
+   "theme": "eq",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-eq-a-tuzcsapszekreny-ures",
+   "hu": "A tűzcsapszekrény üres.",
+   "ua": "Шафа пожежного крана порожня.",
+   "theme": "eq",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-insp-felulvizsgalat",
+   "hu": "felülvizsgálat",
+   "ua": "технічний огляд, періодична перевірка",
+   "example": {
+    "hu": "A felülvizsgálat évente kötelező.",
+    "ua": "Техогляд обов'язковий щороку."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-karbantartas",
+   "hu": "karbantartás",
+   "ua": "технічне обслуговування",
+   "example": {
+    "hu": "A karbantartást csak szakember végezheti.",
+    "ua": "Техобслуговування може виконувати лише фахівець."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-alapkarbantartas",
+   "hu": "alapkarbantartás",
+   "ua": "базове обслуговування (щорічне)",
+   "example": {
+    "hu": "Az alapkarbantartás évente esedékes.",
+    "ua": "Базове обслуговування належить щороку."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-kozepkarbantartas",
+   "hu": "középkarbantartás",
+   "ua": "середнє обслуговування",
+   "example": {
+    "hu": "A középkarbantartás a legtöbb készüléknél ötévente esedékes.",
+    "ua": "Середнє обслуговування для більшості вогнегасників належить раз на п'ять років."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "fire-insp-teljes-koru-karbantartas",
+   "hu": "teljes körű karbantartás",
+   "ua": "повне обслуговування",
+   "example": {
+    "hu": "A teljes körű karbantartás tízévente esedékes.",
+    "ua": "Повне обслуговування належить раз на десять років."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "fire-insp-nyomasproba",
+   "hu": "nyomáspróba",
+   "ua": "випробування тиском",
+   "example": {
+    "hu": "A palack nyomáspróbája a teljes körű karbantartás része.",
+    "ua": "Випробування балона тиском — частина повного обслуговування."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-uzemeltetoi-ellenorzes",
+   "hu": "üzemeltetői ellenőrzés",
+   "ua": "перевірка експлуатантом (власником об'єкта)",
+   "example": {
+    "hu": "Az üzemeltetői ellenőrzést negyedévente végezzük.",
+    "ua": "Перевірку експлуатанта проводимо щокварталу."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-tuzvedelmi-uzemeltetesi-naplo",
+   "hu": "tűzvédelmi üzemeltetési napló",
+   "ua": "журнал протипожежної експлуатації",
+   "example": {
+    "hu": "Az ellenőrzést a tűzvédelmi üzemeltetési naplóba írjuk.",
+    "ua": "Перевірку записуємо в журнал протипожежної експлуатації."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-otsz",
+   "hu": "OTSZ",
+   "ua": "Національні правила пожежної безпеки (Országos Tűzvédelmi Szabályzat)",
+   "example": {
+    "hu": "Az OTSZ írja elő a határidőket.",
+    "ua": "OTSZ визначає терміни."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-jegyzokonyv",
+   "hu": "jegyzőkönyv",
+   "ua": "протокол",
+   "example": {
+    "hu": "A karbantartó jegyzőkönyvet ad a munkáról.",
+    "ua": "Технік видає протокол про роботу."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-karbantartasi-cimke",
+   "hu": "karbantartási címke",
+   "ua": "етикетка про обслуговування",
+   "example": {
+    "hu": "A karbantartási címkén a következő esedékesség szerepel.",
+    "ua": "На етикетці обслуговування вказано наступний термін."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-esedekes",
+   "hu": "esedékes",
+   "ua": "належний до виконання; настав термін",
+   "example": {
+    "hu": "A felülvizsgálat esedékes.",
+    "ua": "Настав термін техогляду."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-insp-ervenyesseg",
+   "hu": "érvényesség",
+   "ua": "чинність",
+   "example": {
+    "hu": "Az érvényesség lejárt.",
+    "ua": "Чинність закінчилася."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-lejart",
+   "hu": "lejárt",
+   "ua": "прострочений",
+   "example": {
+    "hu": "Lejárt a készülék karbantartása.",
+    "ua": "Обслуговування вогнегасника прострочене."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-insp-hatarido",
+   "hu": "határidő",
+   "ua": "термін",
+   "example": {
+    "hu": "A határidőt nem léphetjük túl.",
+    "ua": "Термін не можна перевищувати."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-negyedeves",
+   "hu": "negyedéves",
+   "ua": "квартальний",
+   "example": {
+    "hu": "A negyedéves ellenőrzés az üzemeltető feladata.",
+    "ua": "Квартальна перевірка — обов'язок експлуатанта."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-insp-feleves",
+   "hu": "féléves",
+   "ua": "піврічний",
+   "example": {
+    "hu": "A féléves ellenőrzést is a naplóba írjuk.",
+    "ua": "Піврічну перевірку також записуємо в журнал."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-insp-eves",
+   "hu": "éves",
+   "ua": "річний",
+   "example": {
+    "hu": "Az éves felülvizsgálatot külső cég végzi.",
+    "ua": "Річний техогляд виконує зовнішня фірма."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-insp-gyartasi-ev",
+   "hu": "gyártási év",
+   "ua": "рік виготовлення",
+   "example": {
+    "hu": "A gyártási év a palackon olvasható.",
+    "ua": "Рік виготовлення вказано на балоні."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-gyarto",
+   "hu": "gyártó",
+   "ua": "виробник",
+   "example": {
+    "hu": "A gyártó előírásait be kell tartani.",
+    "ua": "Вимог виробника треба дотримуватися."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-tipus",
+   "hu": "típus",
+   "ua": "тип",
+   "example": {
+    "hu": "Milyen típusú a készülék?",
+    "ua": "Якого типу вогнегасник?"
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-azonosito-szam",
+   "hu": "azonosító szám",
+   "ua": "ідентифікаційний номер",
+   "example": {
+    "hu": "Minden készüléknek azonosító száma van.",
+    "ua": "Кожен вогнегасник має ідентифікаційний номер."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-tanusitvany",
+   "hu": "tanúsítvány",
+   "ua": "сертифікат",
+   "example": {
+    "hu": "A tanúsítvány igazolja a megfelelőséget.",
+    "ua": "Сертифікат підтверджує відповідність."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-kiselejtezes",
+   "hu": "kiselejtezés",
+   "ua": "списання",
+   "example": {
+    "hu": "Húsz év után kiselejtezés következik.",
+    "ua": "Через двадцять років — списання."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "fire-insp-csere",
+   "hu": "csere",
+   "ua": "заміна",
+   "example": {
+    "hu": "A csere olcsóbb, mint a javítás.",
+    "ua": "Заміна дешевша за ремонт."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-karbantarto",
+   "hu": "karbantartó",
+   "ua": "технік з обслуговування; обслуговуюча організація",
+   "example": {
+    "hu": "A karbantartó aláírja a naplót.",
+    "ua": "Технік підписує журнал."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-tuzvedelmi-szakvizsga",
+   "hu": "tűzvédelmi szakvizsga",
+   "ua": "кваліфікаційний екзамен з пожежної безпеки",
+   "example": {
+    "hu": "A karbantartáshoz tűzvédelmi szakvizsga kell.",
+    "ua": "Для обслуговування потрібен кваліфікаційний екзамен з пожежної безпеки."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-tuzvedelmi-szabalyzat",
+   "hu": "tűzvédelmi szabályzat",
+   "ua": "правила пожежної безпеки (внутрішні, підприємства)",
+   "example": {
+    "hu": "A cég tűzvédelmi szabályzata a falon függ.",
+    "ua": "Правила пожежної безпеки фірми висять на стіні."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-tuzriado-terv",
+   "hu": "tűzriadó terv",
+   "ua": "план дій при пожежній тривозі",
+   "example": {
+    "hu": "A tűzriadó tervet évente gyakoroljuk.",
+    "ua": "План дій при тривозі відпрацьовуємо щороку."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-tuzvedelmi-oktatas",
+   "hu": "tűzvédelmi oktatás",
+   "ua": "навчання з пожежної безпеки",
+   "example": {
+    "hu": "Az új dolgozó tűzvédelmi oktatást kap.",
+    "ua": "Новий працівник проходить навчання з пожежної безпеки."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-nyilvantartas",
+   "hu": "nyilvántartás",
+   "ua": "облік, реєстр",
+   "example": {
+    "hu": "A készülékekről nyilvántartást vezetünk.",
+    "ua": "Ми ведемо облік вогнегасників."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-utemterv",
+   "hu": "ütemterv",
+   "ua": "графік, план-графік",
+   "example": {
+    "hu": "Az ütemterv szerint márciusban van a felülvizsgálat.",
+    "ua": "За графіком техогляд у березні."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-alairas",
+   "hu": "aláírás",
+   "ua": "підпис",
+   "example": {
+    "hu": "Aláírás nélkül a napló nem érvényes.",
+    "ua": "Без підпису журнал недійсний."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-insp-megfelelni",
+   "hu": "megfelelni",
+   "ua": "відповідати (вимогам)",
+   "example": {
+    "hu": "A készülék megfelel az előírásoknak.",
+    "ua": "Вогнегасник відповідає вимогам."
+   },
+   "theme": "insp",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-insp-a-felulvizsgalat-esedekes",
+   "hu": "A felülvizsgálat esedékes.",
+   "ua": "Настав термін техогляду.",
+   "theme": "insp",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-insp-mikor-volt-az-utolso-karbantartas",
+   "hu": "Mikor volt az utolsó karbantartás?",
+   "ua": "Коли було останнє обслуговування?",
+   "theme": "insp",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-insp-kerem-mutassa-be-a-tuzvedelmi-uzemeltete",
+   "hu": "Kérem, mutassa be a tűzvédelmi üzemeltetési naplót!",
+   "ua": "Прошу показати журнал протипожежної експлуатації!",
+   "theme": "insp",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-insp-minden-keszulek-megfelel-az-eloirasoknak",
+   "hu": "Minden készülék megfelel az előírásoknak.",
+   "ua": "Усі вогнегасники відповідають вимогам.",
+   "theme": "insp",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-insp-a-cimken-lejart-datum-szerepel",
+   "hu": "A címkén lejárt dátum szerepel.",
+   "ua": "На етикетці прострочена дата.",
+   "theme": "insp",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-insp-negyedevente-ellenorizzuk-a-keszulekeket",
+   "hu": "Negyedévente ellenőrizzük a készülékeket.",
+   "ua": "Ми перевіряємо вогнегасники щокварталу.",
+   "theme": "insp",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-fault-hiba",
+   "hu": "hiba",
+   "ua": "несправність, дефект",
+   "example": {
+    "hu": "A hibát azonnal jelentem.",
+    "ua": "Про несправність я повідомляю негайно."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-meghibasodas",
+   "hu": "meghibásodás",
+   "ua": "вихід з ладу, поломка",
+   "example": {
+    "hu": "A meghibásodás oka a régi akkumulátor.",
+    "ua": "Причина поломки — старий акумулятор."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-serult",
+   "hu": "sérült",
+   "ua": "пошкоджений",
+   "example": {
+    "hu": "A tömlő sérült, ki kell cserélni.",
+    "ua": "Рукав пошкоджений, треба замінити."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-repedt",
+   "hu": "repedt",
+   "ua": "тріснутий",
+   "example": {
+    "hu": "A nyomásmérő üvege repedt.",
+    "ua": "Скло манометра тріснуте."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-horpadt",
+   "hu": "horpadt",
+   "ua": "з вм'ятиною",
+   "example": {
+    "hu": "A horpadt palack nem használható.",
+    "ua": "Балон із вм'ятиною використовувати не можна."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-korrodalt",
+   "hu": "korrodált",
+   "ua": "кородований",
+   "example": {
+    "hu": "A szelep korrodált.",
+    "ua": "Клапан кородований."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-rozsdas",
+   "hu": "rozsdás",
+   "ua": "іржавий",
+   "example": {
+    "hu": "A fali tartó rozsdás.",
+    "ua": "Настінний кронштейн іржавий."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-hianyzik",
+   "hu": "hiányzik",
+   "ua": "відсутній, бракує",
+   "example": {
+    "hu": "Hiányzik a plomba.",
+    "ua": "Немає пломби."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-fault-nyomashiany",
+   "hu": "nyomáshiány",
+   "ua": "втрата тиску",
+   "example": {
+    "hu": "Nyomáshiány miatt a készülék nem működik.",
+    "ua": "Через втрату тиску вогнегасник не працює."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-szivargas",
+   "hu": "szivárgás",
+   "ua": "витік",
+   "example": {
+    "hu": "Szivárgást észleltem a szelepnél.",
+    "ua": "Я помітив витік біля клапана."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-eldugult",
+   "hu": "eldugult",
+   "ua": "забитий, засмічений",
+   "example": {
+    "hu": "A sugárcső eldugult.",
+    "ua": "Ствол забитий."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-elhasznalodott",
+   "hu": "elhasználódott",
+   "ua": "зношений",
+   "example": {
+    "hu": "A tömítés elhasználódott.",
+    "ua": "Ущільнення зношене."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-javitas",
+   "hu": "javítás",
+   "ua": "ремонт",
+   "example": {
+    "hu": "A javítás egy hétig tart.",
+    "ua": "Ремонт триває тиждень."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-ujratoltes",
+   "hu": "újratöltés",
+   "ua": "перезарядка, заправка",
+   "example": {
+    "hu": "Használat után újratöltés szükséges.",
+    "ua": "Після використання потрібна перезарядка."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-alkatresz",
+   "hu": "alkatrész",
+   "ua": "запчастина",
+   "example": {
+    "hu": "Az alkatrész meg van rendelve.",
+    "ua": "Запчастину замовлено."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-tomites",
+   "hu": "tömítés",
+   "ua": "ущільнення, прокладка",
+   "example": {
+    "hu": "A tömítést kicseréltem.",
+    "ua": "Ущільнення я замінив."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-akkumulatorcsere",
+   "hu": "akkumulátorcsere",
+   "ua": "заміна акумулятора",
+   "example": {
+    "hu": "Az érzékelőben akkumulátorcsere szükséges.",
+    "ua": "У сповіщувачі потрібна заміна акумулятора."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-teves-riasztas",
+   "hu": "téves riasztás",
+   "ua": "хибна тривога",
+   "example": {
+    "hu": "A téves riasztást por okozta.",
+    "ua": "Хибну тривогу спричинив пил."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-hibajelzes",
+   "hu": "hibajelzés",
+   "ua": "сигнал несправності",
+   "example": {
+    "hu": "A központ hibajelzést ad a második hurokra.",
+    "ua": "Панель видає сигнал несправності по другому шлейфу."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-vezetekszakadas",
+   "hu": "vezetékszakadás",
+   "ua": "обрив проводу",
+   "example": {
+    "hu": "A hibajelzés oka vezetékszakadás.",
+    "ua": "Причина сигналу несправності — обрив проводу."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-tapellatas",
+   "hu": "tápellátás",
+   "ua": "електроживлення",
+   "example": {
+    "hu": "A tápellátás megszűnt, az akkumulátor működik.",
+    "ua": "Живлення зникло, працює акумулятор."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-zarlat",
+   "hu": "zárlat",
+   "ua": "коротке замикання",
+   "example": {
+    "hu": "Zárlat van a hurokban.",
+    "ua": "У шлейфі коротке замикання."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-probariasztas",
+   "hu": "próbariasztás",
+   "ua": "тестова тривога",
+   "example": {
+    "hu": "A próbariasztást előre bejelentjük.",
+    "ua": "Про тестову тривогу повідомляємо заздалегідь."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-probagaz",
+   "hu": "próbagáz",
+   "ua": "тестовий аерозоль для сповіщувачів",
+   "example": {
+    "hu": "Próbagázzal ellenőrizzük a füstérzékelőt.",
+    "ua": "Тестовим аерозолем перевіряємо димовий сповіщувач."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-visszaallitas",
+   "hu": "visszaállítás",
+   "ua": "скидання (reset)",
+   "example": {
+    "hu": "Riasztás után visszaállítás szükséges.",
+    "ua": "Після тривоги потрібне скидання."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-hibanaplo",
+   "hu": "hibanapló",
+   "ua": "журнал несправностей",
+   "example": {
+    "hu": "A hibanaplóban minden hiba szerepel.",
+    "ua": "У журналі несправностей вказано кожну несправність."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-hozzaferheto",
+   "hu": "hozzáférhető",
+   "ua": "доступний",
+   "example": {
+    "hu": "A készülék legyen mindig hozzáférhető.",
+    "ua": "Вогнегасник має бути завжди доступним."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-eltakart",
+   "hu": "eltakart",
+   "ua": "загороджений",
+   "example": {
+    "hu": "A tűzcsap el van takarva dobozokkal.",
+    "ua": "Пожежний кран загороджено коробками."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-jol-lathato",
+   "hu": "jól látható",
+   "ua": "добре помітний",
+   "example": {
+    "hu": "A jelzés jól látható helyen van.",
+    "ua": "Знак на добре помітному місці."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-mukodokepes",
+   "hu": "működőképes",
+   "ua": "працездатний",
+   "example": {
+    "hu": "A készülék működőképes.",
+    "ua": "Вогнегасник працездатний."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "adj"
+  },
+  {
+   "id": "fire-fault-felszereles",
+   "hu": "felszerelés",
+   "ua": "монтаж, встановлення",
+   "example": {
+    "hu": "A felszerelés magassága előírt.",
+    "ua": "Висота монтажу регламентована."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-fault-leszerelni",
+   "hu": "leszerelni",
+   "ua": "демонтувати",
+   "example": {
+    "hu": "A hibás készüléket leszereljük.",
+    "ua": "Несправний вогнегасник демонтуємо."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-fault-elharitani",
+   "hu": "elhárítani",
+   "ua": "усунути (несправність)",
+   "example": {
+    "hu": "A hibát elhárítottuk.",
+    "ua": "Несправність ми усунули."
+   },
+   "theme": "fault",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-fault-hianyzik-a-plomba-a-keszulekrol",
+   "hu": "Hiányzik a plomba a készülékről.",
+   "ua": "На вогнегаснику немає пломби.",
+   "theme": "fault",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-fault-a-tomlo-serult-cserelni-kell",
+   "hu": "A tömlő sérült, cserélni kell.",
+   "ua": "Рукав пошкоджений, треба замінити.",
+   "theme": "fault",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-fault-a-kozpont-hibajelzest-ad",
+   "hu": "A központ hibajelzést ad.",
+   "ua": "Панель видає сигнал несправності.",
+   "theme": "fault",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-fault-nyomashiany-miatt-a-keszulek-nem-hasznal",
+   "hu": "Nyomáshiány miatt a készülék nem használható.",
+   "ua": "Через втрату тиску вогнегасник непридатний.",
+   "theme": "fault",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-fault-az-erzekelo-teves-riasztast-adott",
+   "hu": "Az érzékelő téves riasztást adott.",
+   "ua": "Сповіщувач дав хибну тривогу.",
+   "theme": "fault",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-fault-megrendeltem-az-alkatreszt",
+   "hu": "Megrendeltem az alkatrészt.",
+   "ua": "Я замовив запчастину.",
+   "theme": "fault",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-evac-tuz",
+   "hu": "tűz",
+   "ua": "пожежа; вогонь",
+   "example": {
+    "hu": "Tűz esetén hívja a 112-et!",
+    "ua": "У разі пожежі дзвоніть 112!"
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-tuzeset",
+   "hu": "tűzeset",
+   "ua": "випадок пожежі",
+   "example": {
+    "hu": "A tűzesetet jelenteni kell a hatóságnak.",
+    "ua": "Про пожежу треба повідомити орган влади."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-tuzriado",
+   "hu": "tűzriadó",
+   "ua": "пожежна тривога",
+   "example": {
+    "hu": "Tűzriadó esetén mindenki elhagyja az épületet.",
+    "ua": "При пожежній тривозі всі покидають будівлю."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-menekules",
+   "hu": "menekülés",
+   "ua": "евакуація, порятунок",
+   "example": {
+    "hu": "A menekülés irányát a zöld jelzés mutatja.",
+    "ua": "Напрямок евакуації показує зелений знак."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-menekulesi-utvonal",
+   "hu": "menekülési útvonal",
+   "ua": "шлях евакуації",
+   "example": {
+    "hu": "A menekülési útvonalat szabadon kell tartani.",
+    "ua": "Шлях евакуації треба тримати вільним."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-kijarat",
+   "hu": "kijárat",
+   "ua": "вихід",
+   "example": {
+    "hu": "A kijárat a folyosó végén van.",
+    "ua": "Вихід у кінці коридору."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-veszkijarat",
+   "hu": "vészkijárat",
+   "ua": "аварійний вихід",
+   "example": {
+    "hu": "A vészkijárat ajtaja belülről nyitható.",
+    "ua": "Двері аварійного виходу відкриваються зсередини."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-gyulekezesi-hely",
+   "hu": "gyülekezési hely",
+   "ua": "місце збору",
+   "example": {
+    "hu": "A gyülekezési hely a parkolóban van.",
+    "ua": "Місце збору на парковці."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-riasztas",
+   "hu": "riasztás",
+   "ua": "тривога, сигнал тривоги",
+   "example": {
+    "hu": "A riasztás hangos szirénával jár.",
+    "ua": "Тривога супроводжується гучною сиреною."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-tuzoltosag",
+   "hu": "tűzoltóság",
+   "ua": "пожежна служба",
+   "example": {
+    "hu": "A tűzoltóság tíz perc alatt kiért.",
+    "ua": "Пожежники приїхали за десять хвилин."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-oltas",
+   "hu": "oltás",
+   "ua": "гасіння",
+   "example": {
+    "hu": "Az oltást csak biztonságos távolságból kezdjük.",
+    "ua": "Гасіння починаємо лише з безпечної відстані."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-oltani",
+   "hu": "oltani",
+   "ua": "гасити",
+   "example": {
+    "hu": "Kis tüzet magunk is olthatunk.",
+    "ua": "Невелику пожежу можемо погасити самі."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-evac-fust",
+   "hu": "füst",
+   "ua": "дим",
+   "example": {
+    "hu": "A füst veszélyesebb a lángnál.",
+    "ua": "Дим небезпечніший за полум'я."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-lang",
+   "hu": "láng",
+   "ua": "полум'я",
+   "example": {
+    "hu": "A láng gyorsan terjed.",
+    "ua": "Полум'я швидко поширюється."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-panik",
+   "hu": "pánik",
+   "ua": "паніка",
+   "example": {
+    "hu": "Pánik nélkül, nyugodtan hagyjuk el az épületet.",
+    "ua": "Без паніки спокійно покидаємо будівлю."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-lepcsohaz",
+   "hu": "lépcsőház",
+   "ua": "сходова клітка",
+   "example": {
+    "hu": "A lépcsőházat használjuk, a liftet nem.",
+    "ua": "Користуємося сходами, а не ліфтом."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-lift",
+   "hu": "lift",
+   "ua": "ліфт",
+   "example": {
+    "hu": "Tűz esetén a lift nem használható.",
+    "ua": "Під час пожежі ліфтом користуватися не можна."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-aramtalanitas",
+   "hu": "áramtalanítás",
+   "ua": "знеструмлення",
+   "example": {
+    "hu": "Az áramtalanítás a főkapcsolóval történik.",
+    "ua": "Знеструмлення виконується головним вимикачем."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-gazelzaras",
+   "hu": "gázelzárás",
+   "ua": "перекриття газу",
+   "example": {
+    "hu": "A gázelzárás a bejáratnál levő főcsappal történik.",
+    "ua": "Газ перекривають головним краном біля входу."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-kiurites",
+   "hu": "kiürítés",
+   "ua": "евакуація (будівлі)",
+   "example": {
+    "hu": "A kiürítés három percen belül megtörtént.",
+    "ua": "Евакуацію завершили за три хвилини."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-tuzvedelmi-megbizott",
+   "hu": "tűzvédelmi megbízott",
+   "ua": "відповідальний за пожежну безпеку",
+   "example": {
+    "hu": "A tűzvédelmi megbízott vezeti a kiürítést.",
+    "ua": "Відповідальний за пожежну безпеку керує евакуацією."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-letszamellenorzes",
+   "hu": "létszámellenőrzés",
+   "ua": "перевірка присутніх",
+   "example": {
+    "hu": "A gyülekezési helyen létszámellenőrzés van.",
+    "ua": "На місці збору перевіряють присутніх."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-serult-szemely",
+   "hu": "sérült személy",
+   "ua": "потерпілий",
+   "example": {
+    "hu": "A sérült személyt a mentők viszik el.",
+    "ua": "Потерпілого забирає швидка."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-mentok",
+   "hu": "mentők",
+   "ua": "швидка допомога",
+   "example": {
+    "hu": "A mentők száma is 112.",
+    "ua": "Номер швидкої також 112."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-elsosegely",
+   "hu": "elsősegély",
+   "ua": "перша допомога",
+   "example": {
+    "hu": "Az elsősegélydoboz a falon van.",
+    "ua": "Аптечка на стіні."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-tuzszakasz",
+   "hu": "tűzszakasz",
+   "ua": "пожежний відсік",
+   "example": {
+    "hu": "A tűzgátló ajtó a tűzszakaszokat választja el.",
+    "ua": "Протипожежні двері розділяють пожежні відсіки."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-egheto-anyag",
+   "hu": "éghető anyag",
+   "ua": "горючий матеріал",
+   "example": {
+    "hu": "Éghető anyagot ne tároljunk a folyosón!",
+    "ua": "Не зберігаймо горючі матеріали в коридорі!"
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-gyujtoforras",
+   "hu": "gyújtóforrás",
+   "ua": "джерело запалювання",
+   "example": {
+    "hu": "A gyújtóforrást távol tartjuk az éghető anyagtól.",
+    "ua": "Джерело запалювання тримаємо далеко від горючих матеріалів."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-dohanyzas",
+   "hu": "dohányzás",
+   "ua": "куріння",
+   "example": {
+    "hu": "A dohányzás csak a kijelölt helyen engedélyezett.",
+    "ua": "Куріння дозволено лише у визначеному місці."
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-evac-elhagyni",
+   "hu": "elhagyni",
+   "ua": "покинути (будівлю)",
+   "example": {
+    "hu": "Hagyja el az épületet a legközelebbi kijáraton!",
+    "ua": "Покиньте будівлю через найближчий вихід!"
+   },
+   "theme": "evac",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-evac-tuz-van-mindenki-hagyja-el-az-epuletet",
+   "hu": "Tűz van! Mindenki hagyja el az épületet!",
+   "ua": "Пожежа! Усі покиньте будівлю!",
+   "theme": "evac",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-evac-ne-hasznalja-a-liftet",
+   "hu": "Ne használja a liftet!",
+   "ua": "Не користуйтеся ліфтом!",
+   "theme": "evac",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-evac-a-gyulekezesi-hely-a-parkoloban-van",
+   "hu": "A gyülekezési hely a parkolóban van.",
+   "ua": "Місце збору на парковці.",
+   "theme": "evac",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-evac-hivja-a-112-et",
+   "hu": "Hívja a 112-et!",
+   "ua": "Телефонуйте 112!",
+   "theme": "evac",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-evac-tartsa-szabadon-a-menekulesi-utvonalat",
+   "hu": "Tartsa szabadon a menekülési útvonalat!",
+   "ua": "Тримайте шлях евакуації вільним!",
+   "theme": "evac",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-talk-ellenor",
+   "hu": "ellenőr",
+   "ua": "інспектор",
+   "example": {
+    "hu": "Az ellenőr a katasztrófavédelemtől jött.",
+    "ua": "Інспектор прийшов зі служби з надзвичайних ситуацій."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-katasztrofavedelem",
+   "hu": "katasztrófavédelem",
+   "ua": "служба з надзвичайних ситуацій (пожежний нагляд)",
+   "example": {
+    "hu": "A katasztrófavédelem végzi a tűzvédelmi ellenőrzést.",
+    "ua": "Пожежний нагляд здійснює служба з надзвичайних ситуацій."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-kirendeltseg",
+   "hu": "kirendeltség",
+   "ua": "районний відділ (служби)",
+   "example": {
+    "hu": "A helyi kirendeltség küldte a felszólítást.",
+    "ua": "Місцевий районний відділ надіслав припис."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-tuzvedelmi-ellenorzes",
+   "hu": "tűzvédelmi ellenőrzés",
+   "ua": "перевірка пожежної безпеки",
+   "example": {
+    "hu": "A tűzvédelmi ellenőrzés előre bejelentett.",
+    "ua": "Перевірка пожежної безпеки оголошена заздалегідь."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-hianyossag",
+   "hu": "hiányosság",
+   "ua": "недолік",
+   "example": {
+    "hu": "Az ellenőr két hiányosságot talált.",
+    "ua": "Інспектор знайшов два недоліки."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-felszolitas",
+   "hu": "felszólítás",
+   "ua": "припис, вимога усунути",
+   "example": {
+    "hu": "A felszólítás harminc napos határidőt ad.",
+    "ua": "Припис дає тридцять днів."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-kotelezes",
+   "hu": "kötelezés",
+   "ua": "зобов'язання (постанова органу)",
+   "example": {
+    "hu": "A kötelezést a hatóság határozatban adja ki.",
+    "ua": "Зобов'язання орган видає постановою."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-utoellenorzes",
+   "hu": "utóellenőrzés",
+   "ua": "повторна перевірка",
+   "example": {
+    "hu": "Az utóellenőrzés a határidő után lesz.",
+    "ua": "Повторна перевірка буде після закінчення терміну."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-potolni",
+   "hu": "pótolni",
+   "ua": "усунути недолік, доповнити",
+   "example": {
+    "hu": "A hiányosságot határidőre pótoltuk.",
+    "ua": "Недолік ми усунули в термін."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-talk-eloiras",
+   "hu": "előírás",
+   "ua": "вимога, норматив",
+   "example": {
+    "hu": "Az előírás szerint a készülék fogantyúja legfeljebb 1,35 méter magasan lehet.",
+    "ua": "За нормативом ручка вогнегасника може бути щонайбільше на висоті 1,35 м."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun",
+   "check": true
+  },
+  {
+   "id": "fire-talk-megrendelo",
+   "hu": "megrendelő",
+   "ua": "замовник",
+   "example": {
+    "hu": "A megrendelő kéri az árajánlatot.",
+    "ua": "Замовник просить комерційну пропозицію."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-ugyfel",
+   "hu": "ügyfél",
+   "ua": "клієнт",
+   "example": {
+    "hu": "Az ügyfél elégedett a munkával.",
+    "ua": "Клієнт задоволений роботою."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-arajanlat",
+   "hu": "árajánlat",
+   "ua": "комерційна (цінова) пропозиція",
+   "example": {
+    "hu": "Az árajánlatot holnap elküldöm.",
+    "ua": "Пропозицію я надішлю завтра."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-munkalap",
+   "hu": "munkalap",
+   "ua": "наряд, робочий лист",
+   "example": {
+    "hu": "A munkalapot a megrendelő aláírja.",
+    "ua": "Наряд підписує замовник."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-szamla",
+   "hu": "számla",
+   "ua": "рахунок (інвойс)",
+   "example": {
+    "hu": "A számlát a munka után állítjuk ki.",
+    "ua": "Рахунок виставляємо після роботи."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-idopont",
+   "hu": "időpont",
+   "ua": "час зустрічі, дата",
+   "example": {
+    "hu": "Egyeztessünk időpontot a felülvizsgálatra!",
+    "ua": "Узгодимо час техогляду!"
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-helyszin",
+   "hu": "helyszín",
+   "ua": "місце, об'єкт",
+   "example": {
+    "hu": "A helyszínen tíz készülék van.",
+    "ua": "На об'єкті десять вогнегасників."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-telephely",
+   "hu": "telephely",
+   "ua": "виробничий майданчик, філія",
+   "example": {
+    "hu": "A telephelyen két épület van.",
+    "ua": "На майданчику дві будівлі."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-bejaras",
+   "hu": "bejárás",
+   "ua": "обхід об'єкта",
+   "example": {
+    "hu": "A bejárás során mindent lefényképezünk.",
+    "ua": "Під час обходу все фотографуємо."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-kollega",
+   "hu": "kolléga",
+   "ua": "колега",
+   "example": {
+    "hu": "A kollégám hozza a tartalék készülékeket.",
+    "ua": "Мій колега привезе запасні вогнегасники."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-eszrevetel",
+   "hu": "észrevétel",
+   "ua": "зауваження",
+   "example": {
+    "hu": "Van észrevételem a tűzcsappal kapcsolatban.",
+    "ua": "У мене є зауваження щодо пожежного крана."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-javaslat",
+   "hu": "javaslat",
+   "ua": "пропозиція, рекомендація",
+   "example": {
+    "hu": "Javaslatom: cseréljük le a régi készülékeket.",
+    "ua": "Моя пропозиція: замінити старі вогнегасники."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-igazolas",
+   "hu": "igazolás",
+   "ua": "довідка, підтвердження",
+   "example": {
+    "hu": "Igazolást adunk az elvégzett karbantartásról.",
+    "ua": "Ми видаємо підтвердження про виконане обслуговування."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-bemutatni",
+   "hu": "bemutatni",
+   "ua": "показати, пред'явити",
+   "example": {
+    "hu": "Kérem, mutassa be a naplót!",
+    "ua": "Прошу, покажіть журнал!"
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-talk-megallapitani",
+   "hu": "megállapítani",
+   "ua": "встановити, констатувати",
+   "example": {
+    "hu": "Az ellenőr megállapította, hogy minden rendben van.",
+    "ua": "Інспектор встановив, що все гаразд."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "verb"
+  },
+  {
+   "id": "fire-talk-intezkedes",
+   "hu": "intézkedés",
+   "ua": "захід, дія",
+   "example": {
+    "hu": "Milyen intézkedést tettek a hiba után?",
+    "ua": "Яких заходів вжили після несправності?"
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-felelos",
+   "hu": "felelős",
+   "ua": "відповідальний",
+   "example": {
+    "hu": "Ki a felelős a tűzvédelemért?",
+    "ua": "Хто відповідає за пожежну безпеку?"
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-szerzodes",
+   "hu": "szerződés",
+   "ua": "договір",
+   "example": {
+    "hu": "Karbantartási szerződésünk van a céggel.",
+    "ua": "У нас договір на обслуговування з фірмою."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-garancia",
+   "hu": "garancia",
+   "ua": "гарантія",
+   "example": {
+    "hu": "A javításra egy év garancia van.",
+    "ua": "На ремонт гарантія один рік."
+   },
+   "theme": "talk",
+   "level": 1,
+   "pos": "noun"
+  },
+  {
+   "id": "fire-talk-jo-napot-a-karbantarto-cegtol-jottem",
+   "hu": "Jó napot, a karbantartó cégtől jöttem.",
+   "ua": "Добрий день, я з обслуговуючої фірми.",
+   "theme": "talk",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-talk-egyeztessunk-idopontot-a-felulvizsgalatr",
+   "hu": "Egyeztessünk időpontot a felülvizsgálatra.",
+   "ua": "Узгодимо час техогляду.",
+   "theme": "talk",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-talk-ket-hianyossagot-talaltam",
+   "hu": "Két hiányosságot találtam.",
+   "ua": "Я знайшов два недоліки.",
+   "theme": "talk",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-talk-a-hianyossagot-harminc-napon-belul-potol",
+   "hu": "A hiányosságot harminc napon belül pótolni kell.",
+   "ua": "Недолік треба усунути протягом тридцяти днів.",
+   "theme": "talk",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-talk-kerem-irja-ala-a-munkalapot",
+   "hu": "Kérem, írja alá a munkalapot!",
+   "ua": "Прошу підписати наряд!",
+   "theme": "talk",
+   "level": 2,
+   "pos": "phrase"
+  },
+  {
+   "id": "fire-talk-kuldok-arajanlatot-a-cserere",
+   "hu": "Küldök árajánlatot a cserére.",
+   "ua": "Надішлю пропозицію щодо заміни.",
+   "theme": "talk",
+   "level": 2,
+   "pos": "phrase"
+  }
+ ],
+ "dialogues": [
+  {
+   "id": "fire-d01",
+   "title": "Tűzvédelmi ellenőrzés",
+   "level": 3,
+   "lines": [
+    {
+     "who": "Ellenőr",
+     "hu": "Jó napot kívánok! A katasztrófavédelemtől jöttem, tűzvédelmi ellenőrzést tartunk.",
+     "ua": "Добрий день! Я зі служби з надзвичайних ситуацій, у нас перевірка пожежної безпеки."
+    },
+    {
+     "who": "Megbízott",
+     "hu": "Jó napot! Fáradjon be. Miben segíthetek?",
+     "ua": "Добрий день! Заходьте. Чим можу допомогти?"
+    },
+    {
+     "who": "Ellenőr",
+     "hu": "Kérem, mutassa be a tűzvédelmi üzemeltetési naplót és a készülékek jegyzőkönyveit.",
+     "ua": "Прошу показати журнал протипожежної експлуатації й протоколи вогнегасників."
+    },
+    {
+     "who": "Megbízott",
+     "hu": "Itt vannak. Az utolsó felülvizsgálat márciusban volt.",
+     "ua": "Ось вони. Останній техогляд був у березні."
+    },
+    {
+     "who": "Ellenőr",
+     "hu": "Rendben. A folyosón egy tűzcsapszekrény el van takarva, ezt pótolni kell.",
+     "ua": "Гаразд. У коридорі одна шафа пожежного крана загороджена, це треба усунути."
+    },
+    {
+     "who": "Megbízott",
+     "hu": "Értem, még ma elvisszük a dobozokat.",
+     "ua": "Зрозумів, ще сьогодні приберемо коробки."
+    }
+   ],
+   "question": {
+    "q": "Який недолік знайшов інспектор?",
+    "options": [
+     "Загороджену шафу пожежного крана",
+     "Прострочений вогнегасник",
+     "Відсутній журнал",
+     "Зачинений аварійний вихід"
+    ],
+    "answer": 0
+   }
+  },
+  {
+   "id": "fire-d02",
+   "title": "Hiba bejelentése a kollégának",
+   "level": 3,
+   "lines": [
+    {
+     "who": "Technikus",
+     "hu": "Szia! Az első emeleten a porral oltón hiányzik a plomba, és a nyomásmérő pirosban van.",
+     "ua": "Привіт! На першому поверсі на порошковому вогнегаснику немає пломби, а манометр у червоній зоні."
+    },
+    {
+     "who": "Kolléga",
+     "hu": "Akkor azt a készüléket le kell cserélni. Van tartalék a kocsiban?",
+     "ua": "Тоді той вогнегасник треба замінити. Є запасний у машині?"
+    },
+    {
+     "who": "Technikus",
+     "hu": "Van egy hatkilós. Felírom a hibanaplóba is.",
+     "ua": "Є один шестикілограмовий. Запишу й у журнал несправностей."
+    },
+    {
+     "who": "Kolléga",
+     "hu": "Jó, és a régit hozd vissza a műhelybe újratöltésre.",
+     "ua": "Добре, а старий привези назад у майстерню на перезарядку."
+    },
+    {
+     "who": "Technikus",
+     "hu": "Rendben, a címkét is kitöltöm a cserénél.",
+     "ua": "Гаразд, при заміні заповню й етикетку."
+    }
+   ],
+   "question": {
+    "q": "Що треба зробити зі старим вогнегасником?",
+    "options": [
+     "Повернути до майстерні на перезарядку",
+     "Викинути",
+     "Залишити на місці",
+     "Продати клієнту"
+    ],
+    "answer": 0
+   }
+  },
+  {
+   "id": "fire-d03",
+   "title": "Időpont egyeztetése a megrendelővel",
+   "level": 3,
+   "lines": [
+    {
+     "who": "Technikus",
+     "hu": "Jó napot kívánok! A karbantartó cégtől hívom. Esedékes az éves felülvizsgálat a telephelyükön.",
+     "ua": "Добрий день! Дзвоню з обслуговуючої фірми. На вашому майданчику настав термін річного техогляду."
+    },
+    {
+     "who": "Megrendelő",
+     "hu": "Jó napot! Igen, láttam a címkén. Mikor tudnak jönni?",
+     "ua": "Добрий день! Так, я бачив на етикетці. Коли ви можете приїхати?"
+    },
+    {
+     "who": "Technikus",
+     "hu": "Csütörtökön délelőtt, nyolc órától. Hány készülék van a helyszínen?",
+     "ua": "У четвер до обіду, з восьмої години. Скільки вогнегасників на об'єкті?"
+    },
+    {
+     "who": "Megrendelő",
+     "hu": "Tizenkettő, és négy fali tűzcsap.",
+     "ua": "Дванадцять і чотири настінні пожежні крани."
+    },
+    {
+     "who": "Technikus",
+     "hu": "Köszönöm. A munka után jegyzőkönyvet és számlát küldünk.",
+     "ua": "Дякую. Після роботи надішлемо протокол і рахунок."
+    },
+    {
+     "who": "Megrendelő",
+     "hu": "Rendben, csütörtökön várjuk.",
+     "ua": "Гаразд, чекаємо в четвер."
+    }
+   ],
+   "question": {
+    "q": "Скільки вогнегасників на об'єкті?",
+    "options": [
+     "Дванадцять",
+     "Чотири",
+     "Вісім",
+     "Двадцять"
+    ],
+    "answer": 0
+   }
+  }
+ ],
+ "texts": [
+  {
+   "id": "fire-t01",
+   "title": "Az üzemeltetői ellenőrzés",
+   "level": 3,
+   "hu": "A tűzoltó készülékeket az üzemeltető legalább negyedévente ellenőrzi. Ez nem szakmai karbantartás, hanem szemrevételezés: a készülék a helyén van, hozzáférhető és jól látható, a címke olvasható.\nMeg kell nézni, hogy a plomba és a biztosítószeg sértetlen, a nyomásmérő mutatója a zöld tartományban áll, és a palack nem sérült vagy horpadt.\nAz ellenőrzés eredményét a tűzvédelmi üzemeltetési naplóba kell beírni, dátummal és aláírással. Ha hibát találunk, a készüléket ki kell cserélni, vagy karbantartóhoz kell küldeni.",
+   "ua": "Вогнегасники експлуатант перевіряє щонайменше щокварталу. Це не фахове обслуговування, а візуальний огляд: вогнегасник на місці, доступний і добре помітний, етикетка читається.\nТреба подивитися, що пломба й запобіжна чека неушкоджені, стрілка манометра в зеленій зоні, а балон не пошкоджений і без вм'ятин.\nРезультат перевірки треба записати в журнал протипожежної експлуатації з датою й підписом. Якщо знайдено несправність, вогнегасник треба замінити або відправити технікові.",
+   "questions": [
+    {
+     "q": "Як часто експлуатант перевіряє вогнегасники?",
+     "options": [
+      "Щонайменше щокварталу",
+      "Щодня",
+      "Раз на п'ять років",
+      "Ніколи, це робить фірма"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Що перевіряють на манометрі?",
+     "options": [
+      "Що стрілка в зеленій зоні",
+      "Що він червоний",
+      "Що він знятий",
+      "Рік виготовлення"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Куди записують результат?",
+     "options": [
+      "У журнал протипожежної експлуатації",
+      "На стіну",
+      "У рахунок",
+      "Нікуди"
+     ],
+     "answer": 0
+    }
+   ],
+   "check": true
+  },
+  {
+   "id": "fire-t02",
+   "title": "Mit tegyünk tűz esetén?",
+   "level": 3,
+   "hu": "Ha tüzet észlelünk, először riasztunk: megnyomjuk a kézi jelzésadót, és hívjuk a 112-et. Elmondjuk, hol ég, mi ég, és van-e sérült.\nKis tüzet a legközelebbi tűzoltó készülékkel olthatunk, de csak akkor, ha nem kerülünk veszélybe. A tüzet mindig a menekülési útvonal felől közelítjük meg.\nHa a tűz nagy, vagy sok a füst, azonnal elhagyjuk az épületet a kijelölt menekülési útvonalon. A liftet nem használjuk, az ajtókat becsukjuk magunk mögött, és a gyülekezési helyen várjuk a létszámellenőrzést.",
+   "ua": "Якщо ми помітили пожежу, спершу подаємо тривогу: натискаємо ручний сповіщувач і дзвонимо 112. Кажемо, де горить, що горить і чи є потерпілі.\nНевелику пожежу можна гасити найближчим вогнегасником, але лише якщо ми не наражаємося на небезпеку. До вогню завжди підходимо з боку шляху евакуації.\nЯкщо пожежа велика або багато диму, негайно покидаємо будівлю визначеним шляхом евакуації. Ліфтом не користуємося, двері за собою зачиняємо й на місці збору чекаємо перевірки присутніх.",
+   "questions": [
+    {
+     "q": "Що робимо найперше, помітивши пожежу?",
+     "options": [
+      "Подаємо тривогу й дзвонимо 112",
+      "Відкриваємо вікна",
+      "Їдемо ліфтом",
+      "Шукаємо документи"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Коли можна гасити самому?",
+     "options": [
+      "Якщо пожежа мала і ми не в небезпеці",
+      "Завжди",
+      "Ніколи",
+      "Лише вночі"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Чого не робимо під час евакуації?",
+     "options": [
+      "Не користуємося ліфтом",
+      "Не зачиняємо двері",
+      "Не йдемо до місця збору",
+      "Не дзвонимо 112"
+     ],
+     "answer": 0
+    }
+   ]
+  }
+ ]
+}

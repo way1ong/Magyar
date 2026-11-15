@@ -160,5 +160,57 @@ for (const { f, pack } of packs) {
   console.log(`✓ ${f}: ${pack.items.length} items, ${(pack.patterns ?? []).length} patterns, ${tasks} builder tasks`);
 }
 
+// Personal topics (/content/personal/*.json, lib/personal.ts): own schema, no suffix patterns.
+const pdir = new URL("../content/personal/", import.meta.url);
+const pids = new Set();
+for (const f of readdirSync(pdir).filter((x) => x.endsWith(".json")).sort()) {
+  const t = JSON.parse(readFileSync(join(pdir.pathname, f), "utf8"));
+  const tag = `personal/${f}`;
+  if (!t.id || !t.title || !t.titleHu || !t.icon || !Array.isArray(t.themes) || !Array.isArray(t.items) || !Array.isArray(t.dialogues) || !Array.isArray(t.texts)) err(`${tag}: bad topic shape`);
+  const themes = new Set((t.themes ?? []).map((th) => th.id));
+  const hus = new Map();
+  let checks = 0;
+  for (const it of t.items ?? []) {
+    if (!it.id || !it.hu || !it.ua || !it.theme) err(`${tag}: item missing fields: ${JSON.stringify(it)}`);
+    if (pids.has(it.id)) err(`${tag}: duplicate id ${it.id}`);
+    pids.add(it.id);
+    if (!it.id?.startsWith(t.id + "-")) err(`${tag}/${it.id}: id must start with "${t.id}-"`);
+    if (!themes.has(it.theme)) err(`${tag}/${it.id}: unknown theme "${it.theme}"`);
+    if (it.level !== 1 && it.level !== 2) err(`${tag}/${it.id}: level must be 1 or 2`);
+    if (it.level === 1 && (!it.example?.hu || !it.example?.ua)) err(`${tag}/${it.id}: a word needs an example (hu + ua)`);
+    if (it.example && (/\s$/.test(it.example.hu) || !/[.!?]$/.test(it.example.hu))) err(`${tag}/${it.id}: example must end with . ! or ?`);
+    const k = it.hu.toLowerCase();
+    if (hus.has(k) && hus.get(k) !== it.level) warn(`${tag}/${it.id}: "${it.hu}" also at level ${hus.get(k)}`);
+    else if (hus.has(k)) err(`${tag}/${it.id}: duplicate hu "${it.hu}"`);
+    hus.set(k, it.level);
+    if (it.check) checks++;
+  }
+  for (const d of t.dialogues ?? []) {
+    if (!d.id?.startsWith(t.id + "-d") || pids.has(d.id)) err(`${tag} dialogues: bad or duplicate id ${d.id}`);
+    pids.add(d.id);
+    if (d.level !== 3 || !d.title) err(`${tag} dialogues/${d.id}: level 3 and title required`);
+    if (!Array.isArray(d.lines) || d.lines.length < 3 || d.lines.length > 8) err(`${tag} dialogues/${d.id}: 3–8 lines`);
+    for (const l of d.lines ?? []) if (!l.who || !l.hu || !l.ua) err(`${tag} dialogues/${d.id}: line needs who, hu, ua`);
+    const q = d.question;
+    if (!q?.q || !Array.isArray(q.options) || q.options.length < 2 || !(q.answer >= 0 && q.answer < q.options.length)) err(`${tag} dialogues/${d.id}: bad question`);
+    if (q && new Set(q.options).size !== q.options.length) err(`${tag} dialogues/${d.id}: duplicate options`);
+    if (d.check) checks++;
+  }
+  for (const x of t.texts ?? []) {
+    if (!x.id?.startsWith(t.id + "-t") || pids.has(x.id)) err(`${tag} texts: bad or duplicate id ${x.id}`);
+    pids.add(x.id);
+    if (x.level !== 3 || !x.title || !x.hu || !x.ua) err(`${tag} texts/${x.id}: level 3, title, hu, ua required`);
+    if (x.hu && x.ua && x.hu.split(/\n+/).length !== x.ua.split(/\n+/).length) err(`${tag} texts/${x.id}: hu and ua must have the same number of paragraphs`);
+    if (!Array.isArray(x.questions) || x.questions.length < 2 || x.questions.length > 4) err(`${tag} texts/${x.id}: 2–4 questions`);
+    for (const q of x.questions ?? []) {
+      if (!q.q || !Array.isArray(q.options) || q.options.length < 2 || !(q.answer >= 0 && q.answer < q.options.length)) err(`${tag} texts/${x.id}: bad question`);
+      if (new Set(q.options).size !== q.options.length) err(`${tag} texts/${x.id}: duplicate options`);
+    }
+    if (x.check) checks++;
+  }
+  const words = (t.items ?? []).filter((i) => i.level === 1).length;
+  console.log(`✓ ${tag}: ${words} words, ${(t.items ?? []).length - words} phrases, ${(t.dialogues ?? []).length} dialogues, ${(t.texts ?? []).length} texts${checks ? `, ⚠ ${checks} to check` : ""}`);
+}
+
 if (warnings) console.warn(`${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);

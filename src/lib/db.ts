@@ -6,13 +6,8 @@ import type { Card } from "ts-fsrs";
  * Content is NOT stored here — it is imported from /content/*.json.
  */
 
-/** FSRS card state for one item, plus which exercise it belongs to. */
-export interface CardRow {
-  /** `${exercise}:${itemId}` — e.g. "recall:a1-01-haz", "builder:a1-01-haz+suf-inessive" */
-  key: string;
-  exercise: Exercise;
-  itemId: string;
-  /** Flattened ts-fsrs Card with dates as epoch ms for indexing. */
+/** Flattened ts-fsrs Card with dates as epoch ms for indexing. */
+export interface FsrsFields {
   due: number;
   stability: number;
   difficulty: number;
@@ -22,6 +17,26 @@ export interface CardRow {
   lapses: number;
   state: number; // ts-fsrs State enum
   last_review?: number;
+}
+
+/** FSRS card state for one item, plus which exercise it belongs to. */
+export interface CardRow extends FsrsFields {
+  /** `${exercise}:${itemId}` — e.g. "recall:a1-01-haz", "builder:a1-01-haz+suf-inessive" */
+  key: string;
+  exercise: Exercise;
+  itemId: string;
+}
+
+/**
+ * Personal topics (lib/personal.ts) keep their own cards and review log in
+ * `pcards`/`previews`, so the main course's home, day plan and statistics
+ * never count them. Same FSRS, same row shape, own set of exercises.
+ */
+export type PExercise = "recognize" | "recall" | "quiz" | "sentence" | "dialogue" | "text";
+export interface PCardRow extends FsrsFields {
+  key: string;
+  exercise: PExercise;
+  itemId: string;
 }
 
 /**
@@ -55,6 +70,8 @@ class MagyarDB extends Dexie {
   cards!: Table<CardRow, string>;
   reviews!: Table<ReviewRow, number>;
   meta!: Table<MetaRow, string>;
+  pcards!: Table<PCardRow, string>;
+  previews!: Table<ReviewRow, number>;
 
   constructor() {
     super("magyar");
@@ -62,6 +79,11 @@ class MagyarDB extends Dexie {
       cards: "key, exercise, itemId, due, state",
       reviews: "++id, key, ts",
       meta: "k",
+    });
+    // v2: personal topics get their own tables (existing stores are kept as they are).
+    this.version(2).stores({
+      pcards: "key, exercise, itemId, due, state",
+      previews: "++id, key, ts",
     });
   }
 }
@@ -136,7 +158,7 @@ export function toRow(key: string, exercise: Exercise, itemId: string, c: Card):
   };
 }
 
-export function fromRow(r: CardRow): Card {
+export function fromRow(r: FsrsFields): Card {
   return {
     due: new Date(r.due),
     stability: r.stability,
@@ -152,21 +174,28 @@ export function fromRow(r: CardRow): Card {
 
 /** Export everything for backup. */
 export async function exportProgress() {
-  const [cards, reviews, meta] = await Promise.all([
+  const [cards, reviews, meta, pcards, previews] = await Promise.all([
     db.cards.toArray(),
     db.reviews.toArray(),
     db.meta.toArray(),
+    db.pcards.toArray(),
+    db.previews.toArray(),
   ]);
-  return { version: 1, exportedAt: new Date().toISOString(), cards, reviews, meta };
+  // Personal-topic tables ride along; older files without them import fine.
+  return { version: 1, exportedAt: new Date().toISOString(), cards, reviews, meta, pcards, previews };
 }
 
 export async function importProgress(data: Awaited<ReturnType<typeof exportProgress>>) {
-  await db.transaction("rw", db.cards, db.reviews, db.meta, async () => {
+  await db.transaction("rw", db.cards, db.reviews, db.meta, db.pcards, db.previews, async () => {
     await db.cards.clear();
     await db.reviews.clear();
     await db.meta.clear();
+    await db.pcards.clear();
+    await db.previews.clear();
     await db.cards.bulkPut(data.cards);
     await db.reviews.bulkPut(data.reviews.map(({ id: _id, ...r }) => r));
     await db.meta.bulkPut(data.meta);
+    await db.pcards.bulkPut(data.pcards ?? []);
+    await db.previews.bulkPut((data.previews ?? []).map(({ id: _id, ...r }) => r));
   });
 }

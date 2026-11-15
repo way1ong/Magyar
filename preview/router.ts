@@ -20,6 +20,13 @@ const ROUTES: Record<string, string> = {
   "/boss": "boss",
   "/guide": "guide",
   "/settings": "more",
+  "/personal": "personal",
+  "/personal/topic": "ptopic",
+  "/personal/cards": "pcards",
+  "/personal/quiz": "pquiz",
+  "/personal/sentences": "psentences",
+  "/personal/dialogues": "pdialogues",
+  "/personal/texts": "ptexts",
 };
 
 export const hrefFor = (path: string) => "#" + (ROUTES[path] ?? "");

@@ -18,6 +18,13 @@ import DictationPage from "@/app/dictation/page";
 import BossPage from "@/app/boss/page";
 import GuidePage from "@/app/guide/page";
 import SettingsPage from "@/app/settings/page";
+import PersonalPage from "@/app/personal/page";
+import PersonalTopicPage from "@/app/personal/topic/page";
+import PersonalCardsPage from "@/app/personal/cards/page";
+import PersonalQuizPage from "@/app/personal/quiz/page";
+import PersonalSentencesPage from "@/app/personal/sentences/page";
+import PersonalDialoguesPage from "@/app/personal/dialogues/page";
+import PersonalTextsPage from "@/app/personal/texts/page";
 import { usePath } from "./router";
 
 /**
@@ -40,6 +47,13 @@ const PAGES: Record<string, ComponentType> = {
   "/boss": BossPage,
   "/guide": GuidePage,
   "/settings": SettingsPage,
+  "/personal": PersonalPage,
+  "/personal/topic": PersonalTopicPage,
+  "/personal/cards": PersonalCardsPage,
+  "/personal/quiz": PersonalQuizPage,
+  "/personal/sentences": PersonalSentencesPage,
+  "/personal/dialogues": PersonalDialoguesPage,
+  "/personal/texts": PersonalTextsPage,
 };
 
 function App() {
