@@ -1,16 +1,21 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PersonalDone } from "@/components/PersonalDone";
-import { currentTopic, pAnswer, pItemById, pMistakeCards, pSessionCards, PLEVEL_TITLES, quizFor, seedPersonal, shuffle, takeLevel, takePMistakes, type PTopic } from "@/lib/personal";
+import { CtxLine } from "@/components/CtxLine";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
+import { currentTopic, pAnswer, pItemById, pMistakeCards, pSessionCards, PLEVEL_TITLES, quizFor, pMistakesRequested, seedPersonal, shuffle, takeLevel, takePMistakes, topicOf, type PTopic } from "@/lib/personal";
 import { Rating, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
-import type { PCardRow } from "@/lib/db";
+import { db, type PCardRow } from "@/lib/db";
 
 const FAST_MS = 6000;
 
 /** Quiz of a personal topic: a word, four options (HU→UA or UA→HU at random). Right → Good (fast → Easy), wrong → Again. */
 export default function PersonalQuizPage() {
   const [topic] = useState<PTopic | undefined>(() => (typeof window === "undefined" ? undefined : currentTopic()));
+  // The saved series belongs to this topic (and level): another topic starts its own.
+  const [series] = useState(() => (topic ? `pquiz:${topic.id}:${takeLevel()}` : null));
   const [level, setLevelState] = useState<1 | 2>(1);
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
@@ -20,25 +25,27 @@ export default function PersonalQuizPage() {
   const [locked, setLocked] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     if (!topic) return;
     await seedPersonal();
     const lv = takeLevel();
     setLevelState(lv);
-    const mm = takePMistakes("quiz");
+    const back = saved ? await restoreSeries(saved, (keys) => db.pcards.bulkGet(keys), (c: PCardRow) => !!pItemById(c.itemId) && topicOf(c.itemId) === topic) : null;
+    const mm = back ? !!saved?.mistakes : takePMistakes("quiz");
     setMistakes(mm);
-    const q = mm ? await pMistakeCards(topic, ["quiz"]) : await pSessionCards(topic, "quiz", { level: lv, limit: 15, newLimit: 8, minimum: 8 });
-    setLocked(!q.length && !mm && lv === 2);
-    setQueue(shuffle(q.filter((c) => pItemById(c.itemId))));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : mm ? await pMistakeCards(topic, ["quiz"]) : await pSessionCards(topic, "quiz", { level: lv, limit: 15, newLimit: 8, minimum: 8 });
+    setLocked(!back && !q.length && !mm && lv === 2);
+    setQueue(back ? q : shuffle(q.filter((c) => pItemById(c.itemId))));
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
     setPicked(null);
     shownAt.current = Date.now();
   }, [topic]);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer(series, () => pMistakesRequested("quiz"), load);
+  useRememberSeries(series, queue, i, picked !== null, score, mistakes);
 
   const row = queue?.[i];
   const item = row ? pItemById(row.itemId) : undefined;
@@ -51,6 +58,24 @@ export default function PersonalQuizPage() {
   }, [cardKey]);
 
   if (!topic) return <p className="muted">Тему не вибрано.</p>;
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Вікторина"
+        saved={offer}
+        back={{ href: "/personal/topic", label: `${topic.icon} До теми «${topic.title}»` }}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          if (series) clearSeries(series);
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
   if (!row || !item || !deal) {
     return <PersonalDone title={`Вікторина · ${PLEVEL_TITLES[level]}`} topic={topic} score={score} onAgain={load} mistakes={mistakes} locked={locked ? "Рівень фраз ще закритий: спершу переглянь половину слів у «Картках»." : undefined} />;
@@ -83,6 +108,7 @@ export default function PersonalQuizPage() {
       </div>
 
       <div className="card big" style={{ minHeight: "28dvh" }}>
+        {item.ctx && <CtxLine ctx={item.ctx} showUa={deal.dir === "ua" || done} />}
         <p className="hu" lang={deal.dir} style={item.level === 2 ? { fontSize: 24 } : undefined}>
           {deal.prompt}
         </p>

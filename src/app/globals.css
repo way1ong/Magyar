@@ -158,7 +158,19 @@ nav.tabs span { display: block; font-size: 20px; }
 
 .conj-table { border-collapse: collapse; margin: 10px auto 0; font-size: 17px; }
 .conj-table td { padding: 3px 10px; text-align: left; }
-.conj-table tr.hit td { font-weight: 700; color: var(--accent); }
+.conj-table caption { font-size: 13px; color: var(--muted); padding-bottom: 2px; }
+.conj-table tr.ok td { font-weight: 700; color: var(--ok); }
+.conj-table tr.bad td { font-weight: 700; color: var(--bad); }
+/* Item.ctx / Item.alt on cards: the line before a reply, other correct answers */
+.ctx { font-size: 18px; line-height: 1.35; margin: 0 0 14px; }
+.ctx .ctx-label { font-size: 13px; color: var(--muted); }
+.ctx .ctx-ua { font-size: 15px; color: var(--muted); }
+.alt-line { font-size: 15px; color: var(--muted); margin: 6px 0 0; }
+/* "Чому так?" under the conjugation table */
+.why { text-align: left; font-size: 15px; line-height: 1.45; margin: 10px 0 0; padding-left: 10px; border-left: 3px solid var(--line); }
+.why .why-h { margin: 8px 0 2px; font-weight: 600; }
+.why ul { margin: 0; padding-left: 18px; }
+.why li { margin-bottom: 4px; }
 .guide-h3 { font-size: 16px; margin: 14px 0 6px; }
 .guide-table-wrap { overflow-x: auto; margin: 6px 0 14px; }
 .guide-table { border-collapse: collapse; font-size: 14px; min-width: 100%; }

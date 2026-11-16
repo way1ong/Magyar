@@ -32,7 +32,7 @@
     {"id": "b2-05-az-ugyintezesi-hatarido-harminc-nap", "type": "phrase", "hu": "Az ügyintézési határidő harminc nap.", "ua": "Строк розгляду тридцять днів.", "pos": "phrase", "tags": ["docs"]},
     {"id": "b2-05-tudomasul-vettem", "type": "phrase", "hu": "Tudomásul vettem.", "ua": "Взяв до відома.", "pos": "phrase", "tags": ["docs"]},
 
-    {"id": "b2-05-kerveny", "type": "word", "hu": "kérvény", "ua": "заява, клопотання", "pos": "noun", "harmony": "front"},
+    {"id": "b2-05-kerveny", "type": "word", "hu": "kérvény", "ua": "письмове прохання", "pos": "noun", "harmony": "front"},
     {"id": "b2-05-beadvany", "type": "word", "hu": "beadvány", "ua": "подання (документ)", "pos": "noun", "harmony": "back"},
     {"id": "b2-05-fellebbezes", "type": "word", "hu": "fellebbezés", "ua": "апеляція, оскарження", "pos": "noun", "harmony": "front", "tags": ["abstract"]},
     {"id": "b2-05-felszolitas", "type": "word", "hu": "felszólítás", "ua": "офіційна вимога, нагадування", "pos": "noun", "harmony": "back", "tags": ["abstract"]},
@@ -74,7 +74,7 @@
     {"id": "b2-05-szives", "type": "word", "hu": "szíves", "ua": "ласкавий, люб'язний", "pos": "adj", "harmony": "front"},
     {"id": "b2-05-jogosult", "type": "word", "hu": "jogosult", "ua": "уповноважений, який має право", "pos": "adj", "harmony": "back"},
     {"id": "b2-05-postai", "type": "word", "hu": "postai", "ua": "поштовий", "pos": "adj", "harmony": "back"},
-    {"id": "b2-05-irasbeli", "type": "word", "hu": "írásbeli", "ua": "письмовий", "pos": "adj", "harmony": "front", "tags": ["compound"]},
+    {"id": "b2-05-irasbeli", "type": "word", "hu": "írásbeli", "ua": "письмовий (іспит)", "pos": "adj", "harmony": "front", "tags": ["compound"]},
     {"id": "b2-05-szobeli", "type": "word", "hu": "szóbeli", "ua": "усний", "pos": "adj", "harmony": "front", "tags": ["compound"]},
     {"id": "b2-05-mellekelt", "type": "word", "hu": "mellékelt", "ua": "доданий (у додатку)", "pos": "adj", "harmony": "front"},
     {"id": "b2-05-alabbi", "type": "word", "hu": "alábbi", "ua": "нижченаведений", "pos": "adj", "harmony": "back"},

@@ -51,7 +51,7 @@
     {"id": "a2-08-jegypenztar", "type": "word", "hu": "jegypénztár", "ua": "квиткова каса", "pos": "noun", "harmony": "back", "forms": {"low": true}, "tags": ["place", "compound"]},
     {"id": "a2-08-informacio", "type": "word", "hu": "információ", "ua": "інформація; довідкове бюро", "pos": "noun", "harmony": "back", "tags": ["place"]},
     {"id": "a2-08-szallas", "type": "word", "hu": "szállás", "ua": "житло (в подорожі), ночівля", "pos": "noun", "harmony": "back", "example": {"hu": "Szállást keresünk.", "ua": "Ми шукаємо житло."}, "tags": ["place"]},
-    {"id": "a2-08-hotel", "type": "word", "hu": "hotel", "ua": "готель", "pos": "noun", "harmony": "front", "tags": ["place", "mixed-vowel"]},
+    {"id": "a2-08-hotel", "type": "word", "hu": "hotel", "ua": "готель (міжнар. слово)", "pos": "noun", "harmony": "front", "tags": ["place", "mixed-vowel"]},
     {"id": "a2-08-panzio", "type": "word", "hu": "panzió", "ua": "пансіон", "pos": "noun", "harmony": "back", "tags": ["place"]},
     {"id": "a2-08-apartman", "type": "word", "hu": "apartman", "ua": "апартаменти", "pos": "noun", "harmony": "back", "tags": ["place"]},
     {"id": "a2-08-kemping", "type": "word", "hu": "kemping", "ua": "кемпінг", "pos": "noun", "harmony": "front", "forms": {"j": true}, "tags": ["place", "mixed-vowel"]},

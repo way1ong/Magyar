@@ -33,6 +33,10 @@ export interface PItem {
   /** Term the author was not sure about — shown with ⚠ until checked with a native source. */
   check?: boolean;
   note?: string;
+  /** The line this phrase answers or follows (see Item.ctx). */
+  ctx?: { hu: string; ua: string };
+  /** Other correct Hungarian answers (see Item.alt). */
+  alt?: string[];
 }
 export interface PDialogue {
   id: string;
@@ -139,6 +143,13 @@ export function requestPMistakes(page: string) {
     sessionStorage.setItem(MODE_KEY, `mistakes:${page}`);
   } catch {
     // ignore
+  }
+}
+export function pMistakesRequested(page: string): boolean {
+  try {
+    return sessionStorage.getItem(MODE_KEY) === `mistakes:${page}`;
+  } catch {
+    return false;
   }
 }
 export function takePMistakes(page: string): boolean {

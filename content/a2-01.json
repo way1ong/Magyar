@@ -5,7 +5,7 @@
   "items": [
     { "id": "a2-01-tuz-van", "type": "phrase", "hu": "Tűz van!", "ua": "Пожежа!", "pos": "phrase", "tags": ["emergency"] },
     { "id": "a2-01-segitseg", "type": "phrase", "hu": "Segítség!", "ua": "Допоможіть!", "pos": "phrase", "tags": ["emergency"] },
-    { "id": "a2-01-veszhelyzet-van", "type": "phrase", "hu": "Vészhelyzet van.", "ua": "Надзвичайна ситуація.", "pos": "phrase", "tags": ["emergency"] },
+    { "id": "a2-01-veszhelyzet-van", "type": "phrase", "hu": "Vészhelyzet van.", "ua": "У нас надзвичайна ситуація.", "pos": "phrase", "tags": ["emergency"] },
     { "id": "a2-01-hivd-a-tuzoltokat", "type": "phrase", "hu": "Hívd a tűzoltókat!", "ua": "Виклич пожежників!", "pos": "phrase", "tags": ["emergency"] },
     { "id": "a2-01-hivja-a-mentoket", "type": "phrase", "hu": "Hívja a mentőket!", "ua": "Викличте швидку!", "pos": "phrase", "tags": ["emergency"] },
     { "id": "a2-01-hol-a-veszkijarat", "type": "phrase", "hu": "Hol van a vészkijárat?", "ua": "Де аварійний вихід?", "pos": "phrase", "tags": ["emergency"] },

@@ -73,7 +73,7 @@
     {"id": "b1-05-jozan", "type": "word", "hu": "józan", "ua": "тверезий", "pos": "adj", "harmony": "back"},
     {"id": "b1-05-ittas", "type": "word", "hu": "ittas", "ua": "нетверезий", "pos": "adj", "harmony": "back"},
     {"id": "b1-05-elektromos", "type": "word", "hu": "elektromos", "ua": "електричний", "pos": "adj", "harmony": "back"},
-    {"id": "b1-05-automata", "type": "word", "hu": "automata", "ua": "автоматичний", "pos": "adj", "harmony": "back"},
+    {"id": "b1-05-automata", "type": "word", "hu": "automata", "ua": "автоматичний (про коробку передач)", "pos": "adj", "harmony": "back"},
     {"id": "b1-05-kezi", "type": "word", "hu": "kézi", "ua": "ручний", "pos": "adj", "harmony": "front"},
     {"id": "b1-05-lerobbant", "type": "word", "hu": "lerobbant", "ua": "зламаний (про авто)", "pos": "adj", "harmony": "back"},
     {"id": "b1-05-megengedett", "type": "word", "hu": "megengedett", "ua": "дозволений", "pos": "adj", "harmony": "front"},

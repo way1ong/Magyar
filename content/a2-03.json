@@ -67,7 +67,7 @@
     { "id": "a2-03-szemetes", "type": "word", "hu": "szemetes", "ua": "смітник", "pos": "noun", "harmony": "front" },
     { "id": "a2-03-kuka", "type": "word", "hu": "kuka", "ua": "сміттєвий бак", "pos": "noun", "harmony": "back" },
     { "id": "a2-03-edeny", "type": "word", "hu": "edény", "ua": "посуд", "pos": "noun", "harmony": "front", "tags": ["kitchen"] },
-    { "id": "a2-03-fazek", "type": "word", "hu": "fazék", "ua": "каструля", "pos": "noun", "harmony": "back", "forms": { "stem": "fazek", "low": true }, "tags": ["kitchen", "mixed-vowel"] },
+    { "id": "a2-03-fazek", "type": "word", "hu": "fazék", "ua": "каструля (глибока)", "pos": "noun", "harmony": "back", "forms": { "stem": "fazek", "low": true }, "tags": ["kitchen", "mixed-vowel"] },
     { "id": "a2-03-serpenyo", "type": "word", "hu": "serpenyő", "ua": "сковорода", "pos": "noun", "harmony": "front_rounded", "tags": ["kitchen"] },
     { "id": "a2-03-garazs", "type": "word", "hu": "garázs", "ua": "гараж", "pos": "noun", "harmony": "back", "tags": ["place"] },
     { "id": "a2-03-udvar", "type": "word", "hu": "udvar", "ua": "двір", "pos": "noun", "harmony": "back", "example": { "hu": "Az udvaron játszanak.", "ua": "Вони граються у дворі." }, "tags": ["place"] },

@@ -25,6 +25,29 @@ const packs = readdirSync(dir)
   .sort()
   .map((f) => ({ f, pack: JSON.parse(readFileSync(join(dir.pathname, f), "utf8")) }));
 
+// One Ukrainian side, one answer: two cards with the same Ukrainian side but a
+// different Hungarian answer make "UA → HU" a guess. Tell them apart with a
+// short hint in brackets (розм., книжн., офіц., ти / Ви, or the meaning) or a
+// context line (ctx). A question mark counts ("Відчинено?" is not "відчинено").
+const uaKey = (s) => s.toLowerCase().replace(/[.!,;:«»"…]/g, " ").replace(/\s+/g, " ").trim();
+const huKey = (s) => s.toLowerCase().replace(/[.!?,;:«»"…]/g, "").replace(/\s+/g, " ").trim();
+function checkSides(where, items) {
+  const by = new Map();
+  for (const it of items) {
+    if (it.ctx !== undefined && (typeof it.ctx?.hu !== "string" || typeof it.ctx?.ua !== "string" || !it.ctx.hu || !it.ctx.ua)) err(`${where}/${it.id}: ctx needs hu and ua`);
+    if (it.alt !== undefined && (!Array.isArray(it.alt) || !it.alt.length || it.alt.some((a) => typeof a !== "string" || !a || huKey(a) === huKey(it.hu)))) err(`${where}/${it.id}: alt must list other answers`);
+    const k = `${uaKey(it.ua)}|${it.ctx?.hu ?? ""}`;
+    if (!by.has(k)) by.set(k, []);
+    by.get(k).push(it);
+  }
+  for (const group of by.values()) {
+    if (new Set(group.map((it) => huKey(it.hu))).size < 2) continue;
+    err(`${where}: same Ukrainian side «${group[0].ua}» for ${group.map((it) => `${it.hu} (${it.id})`).join(", ")} — add a hint in brackets or ctx`);
+  }
+}
+
+checkSides("course", packs.flatMap(({ pack }) => pack.items ?? []));
+
 // Pass 1: items and ids across all packs (examples may reference earlier packs).
 const stems = new Map(); // hu → item, for words with a harmony class
 const allTags = new Set();
@@ -167,6 +190,7 @@ for (const f of readdirSync(pdir).filter((x) => x.endsWith(".json")).sort()) {
   const t = JSON.parse(readFileSync(join(pdir.pathname, f), "utf8"));
   const tag = `personal/${f}`;
   if (!t.id || !t.title || !t.titleHu || !t.icon || !Array.isArray(t.themes) || !Array.isArray(t.items) || !Array.isArray(t.dialogues) || !Array.isArray(t.texts)) err(`${tag}: bad topic shape`);
+  checkSides(tag, t.items ?? []);
   const themes = new Set((t.themes ?? []).map((th) => th.id));
   const hus = new Map();
   let checks = 0;

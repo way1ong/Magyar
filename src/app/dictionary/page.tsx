@@ -53,6 +53,16 @@ function Entry({ item }: { item: Item }) {
           {item.example.hu} <span className="muted" lang="uk">— {item.example.ua}</span>
         </p>
       )}
+      {item.ctx && (
+        <p className="muted" style={{ margin: "0 0 10px" }}>
+          Перед цим: <span lang="hu">{item.ctx.hu}</span> — {item.ctx.ua}
+        </p>
+      )}
+      {item.alt?.length ? (
+        <p className="muted" style={{ margin: "0 0 10px" }}>
+          Теж правильно: <span lang="hu">{item.alt.join(" · ")}</span>
+        </p>
+      ) : null}
       {forms.length > 0 && (
         <div className="guide-table-wrap">
           <table className="guide-table">

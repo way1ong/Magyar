@@ -1,16 +1,20 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PersonalDone } from "@/components/PersonalDone";
-import { currentTopic, pAnswer, pDealFor, pDialogueById, pMistakeCards, pSessionCards, seedPersonal, shuffle, takePMistakes, type PTopic } from "@/lib/personal";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
+import { currentTopic, pAnswer, pDealFor, pDialogueById, pMistakeCards, pSessionCards, pMistakesRequested, seedPersonal, shuffle, takePMistakes, topicOf, type PTopic } from "@/lib/personal";
 import { Rating, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
-import type { PCardRow } from "@/lib/db";
+import { db, type PCardRow } from "@/lib/db";
 
 const FAST_MS = 25000;
 
 /** Scenario dialogues of a personal topic: comprehension question or a missing line; translations after the answer. */
 export default function PersonalDialoguesPage() {
   const [topic] = useState<PTopic | undefined>(() => (typeof window === "undefined" ? undefined : currentTopic()));
+  // The saved series belongs to this topic (and level): another topic starts its own.
+  const [series] = useState(() => (topic ? `pdialogues:${topic.id}` : null));
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
@@ -20,24 +24,26 @@ export default function PersonalDialoguesPage() {
   const [locked, setLocked] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     if (!topic) return;
     await seedPersonal();
-    const mm = takePMistakes("dialogues");
+    const back = saved ? await restoreSeries(saved, (keys) => db.pcards.bulkGet(keys), (c: PCardRow) => !!pDialogueById(c.itemId) && topicOf(c.itemId) === topic) : null;
+    const mm = back ? !!saved?.mistakes : takePMistakes("dialogues");
     setMistakeMode(mm);
-    const q = (mm ? await pMistakeCards(topic, ["dialogue"]) : await pSessionCards(topic, "dialogue", { limit: 6, newLimit: 3, minimum: 3 })).filter((c) => pDialogueById(c.itemId));
-    setLocked(!q.length && !mm);
-    setQueue(shuffle(q));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : (mm ? await pMistakeCards(topic, ["dialogue"]) : await pSessionCards(topic, "dialogue", { limit: 6, newLimit: 3, minimum: 3 })).filter((c) => pDialogueById(c.itemId));
+    setLocked(!back && !q.length && !mm);
+    setQueue(back ? q : shuffle(q));
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
     setPicked(null);
     setShowUa(false);
     shownAt.current = Date.now();
   }, [topic]);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer(series, () => pMistakesRequested("dialogues"), load);
+  useRememberSeries(series, queue, i, picked !== null, score, mistakeMode);
 
   const row = queue?.[i];
   const d = row ? pDialogueById(row.itemId) : undefined;
@@ -52,6 +58,24 @@ export default function PersonalDialoguesPage() {
   }, [cardKey]);
 
   if (!topic) return <p className="muted">Тему не вибрано.</p>;
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Діалоги"
+        saved={offer}
+        back={{ href: "/personal/topic", label: `${topic.icon} До теми «${topic.title}»` }}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          if (series) clearSeries(series);
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
   if (!row || !d || !deal) return <PersonalDone title="Діалоги" topic={topic} score={score} onAgain={load} mistakes={mistakeMode} locked={locked ? "Діалоги відкриються з рівнем 3: спершу переглянь половину фраз у «Картках»." : undefined} />;
 

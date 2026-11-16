@@ -69,6 +69,10 @@ export interface Item {
   forms?: ItemForms;
   /** Example sentence (hu) + translation (ua). */
   example?: { hu: string; ua: string };
+  /** The line this phrase answers or follows, shown before it on the card ("Hogy vagy?" before "Jól vagyok, köszönöm."). */
+  ctx?: { hu: string; ua: string };
+  /** Other correct Hungarian answers to the Ukrainian side, shown on the back as «Теж правильно». */
+  alt?: string[];
   /** Free tags: theme, register, etc. */
   tags?: string[];
   /** Verbs: conjugation flags (lib/conj.ts). */
