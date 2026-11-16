@@ -116,11 +116,14 @@ export default function ConjPage() {
   const object = def ? "azt" : tr ? "valamit" : "";
   const imp = tense === "imp";
   const mark = imp ? "!" : ".";
-  const defLabel = def
-    ? "означена відміна — конкретний обʼєкт (azt, a könyvet)"
-    : tr
-      ? "неозначена відміна — обʼєкт невизначений (valamit, egy könyvet)"
-      : "неозначена відміна";
+  // A sentence whose form is the same in both conjugations (eszem, olvastam) must not claim one of them.
+  const defLabel = cloze?.shared
+    ? "форма однакова в означеній і неозначеній відміні"
+    : def
+      ? "означена відміна — конкретний обʼєкт (azt, a könyvet)"
+      : tr
+        ? "неозначена відміна — обʼєкт невизначений (valamit, egy könyvet)"
+        : "неозначена відміна";
 
   const grade = async (rating: Grade, right: boolean) => {
     const took = Date.now() - shownAt.current;
@@ -156,6 +159,22 @@ export default function ConjPage() {
   };
 
   const table = paradigmOf(item, tense, def);
+  // After the answer: the right form is green in the table; a wrong one is red —
+  // in its row when it belongs to this table, otherwise named under it (whose form it is).
+  const same = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
+  const wrong = !done || ok ? null : typing ? (outcome === "wrong" && typed.trim() ? typed.trim() : null) : picked;
+  const wrongInTable = !!wrong && table.some((r) => same(r.form, wrong));
+  const wrongSlot =
+    wrong && !wrongInTable
+      ? slotsFor(item)
+          .filter((sl) => {
+            const f = conjugate(item, sl);
+            return !!f && same(f, wrong);
+          })
+          .sort((a, b) => Number(b.tense === tense) - Number(a.tense === tense) || Number(b.def === def) - Number(a.def === def))[0]
+      : undefined;
+  const slotText = (sl: { tense: typeof tense; def: boolean; person: typeof person }) =>
+    `«${PRONOUN[sl.person]}» · ${tenseLabel(sl.tense)}${tr ? ` · ${sl.def ? "означена" : "неозначена"} відміна` : ""}`;
 
   return (
     <>
@@ -191,7 +210,7 @@ export default function ConjPage() {
         {done && (
           <>
             {typing && outcome && <p className="muted" style={{ margin: "0 0 4px", color }}>{VERDICT_TEXT[outcome]}</p>}
-            <p className="example" lang="hu" style={{ color, fontSize: 24 }}>
+            <p className="example" lang="hu" style={{ color: "var(--ok)", fontSize: 24 }}>
               {cloze ? cloze.full : `(${PRONOUN[person]}) ${correct}${object ? ` ${object}` : ""}${mark}`}
             </p>
             {typing && outcome === "wrong" && typed.trim() && (
@@ -200,15 +219,21 @@ export default function ConjPage() {
               </p>
             )}
             <table className="conj-table" lang="hu">
+              {tr && <caption>{def ? "означена відміна" : "неозначена відміна"}</caption>}
               <tbody>
                 {table.map((r) => (
-                  <tr key={r.person} className={r.person === person ? "hit" : ""}>
+                  <tr key={r.person} className={r.person === person ? "ok" : wrong && same(r.form, wrong) ? "bad" : ""}>
                     <td className="muted">{PRONOUN[r.person]}</td>
                     <td>{r.form}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            {wrongSlot && (
+              <p style={{ color: "var(--bad)", fontSize: 15, margin: "8px 0 0" }}>
+                <b lang="hu">{wrong}</b> — це форма {slotText(wrongSlot)}
+              </p>
+            )}
           </>
         )}
       </div>

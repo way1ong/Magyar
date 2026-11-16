@@ -1,5 +1,5 @@
 import { allItems } from "./content";
-import { conjugate, isPrefixWord, PERSONS, type Person } from "./conj";
+import { conjugate, isPrefixWord, isTransitive, PERSONS, type Person } from "./conj";
 import type { ConjTask } from "./conjcards";
 
 /**
@@ -9,6 +9,10 @@ import type { ConjTask } from "./conjcards";
  * Forms shorter than three letters or equal to a non-verb word (vár, fél)
  * are skipped, and a form shared by the present and the imperative
  * (várjuk) counts as imperative only in a sentence ending in "!".
+ * A form that is the same in the definite and the indefinite conjugation
+ * (past 1sg olvastam, -ik present 1sg eszem) cannot show which one the
+ * sentence uses ("Nem eszem húst." is indefinite), so such sentences are
+ * used only when no other person has one, and are flagged `shared`.
  * Computed lazily per task and cached — a scan is ~6 persons × 900 sentences.
  */
 export interface Cloze {
@@ -20,6 +24,8 @@ export interface Cloze {
   full: string;
   person: Person;
   form: string;
+  /** The form is identical in the other conjugation (definite ↔ indefinite): the sentence does not tell them apart. */
+  shared: boolean;
 }
 
 interface Sentence {
@@ -62,11 +68,16 @@ export function clozesFor(task: ConjTask): Cloze[] {
   const hit = cache.get(task.id);
   if (hit) return hit;
   nonVerbs ??= new Set(allItems.filter((i) => i.type === "word" && i.pos !== "verb").map((i) => i.hu.toLowerCase()));
-  const out: Cloze[] = [];
+  const clear: Cloze[] = [];
+  const twins: Cloze[] = [];
   const { item, tense, def } = task;
+  const tr = isTransitive(item);
   for (const person of PERSONS) {
     const form = conjugate(item, { tense, def, person });
     if (!form || form.length < 3 || nonVerbs.has(form.toLowerCase()) || HOMONYMS.has(form.toLowerCase())) continue;
+    const shared = tr && conjugate(item, { tense, def: !def, person }) === form;
+    const out = shared ? twins : clear;
+    if (out.length >= 6) continue;
     const twin = tense === "pres" ? "imp" : tense === "imp" ? "pres" : null;
     const ambiguous = twin ? conjugate(item, { tense: twin, def, person }) === form : false;
     const low = form.toLowerCase().split(" ")[0];
@@ -84,11 +95,12 @@ export function clozesFor(task: ConjTask): Cloze[] {
       // "értek egyet", "nézd meg": the form belongs to a prefixed verb (egyetérteni, megnézni), not to this one.
       const next = s.hu.slice(start + m[2].length).match(/^\s+(\p{L}+)/u)?.[1];
       if (next && isPrefixWord(next)) continue;
-      out.push({ hu: s.hu.slice(0, start) + "___" + s.hu.slice(start + m[2].length), ua: s.ua, full: s.hu, person, form });
+      out.push({ hu: s.hu.slice(0, start) + "___" + s.hu.slice(start + m[2].length), ua: s.ua, full: s.hu, person, form, shared });
       if (out.length >= 6) break;
     }
-    if (out.length >= 6) break;
+    if (clear.length >= 6) break;
   }
+  const out = clear.length ? clear : twins;
   cache.set(task.id, out);
   return out;
 }
