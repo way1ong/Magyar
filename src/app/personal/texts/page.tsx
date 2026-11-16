@@ -1,10 +1,12 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PersonalDone } from "@/components/PersonalDone";
-import { currentTopic, pAnswer, pMistakeCards, pSessionCards, pTextById, seedPersonal, shuffle, takePMistakes, type PTopic } from "@/lib/personal";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
+import { currentTopic, pAnswer, pMistakeCards, pSessionCards, pTextById, pMistakesRequested, seedPersonal, shuffle, takePMistakes, topicOf, type PTopic } from "@/lib/personal";
 import { Rating, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
-import type { PCardRow } from "@/lib/db";
+import { db, type PCardRow } from "@/lib/db";
 
 /**
  * Reading texts of a personal topic: read, then answer 2–3 questions about
@@ -13,6 +15,8 @@ import type { PCardRow } from "@/lib/db";
  */
 export default function PersonalTextsPage() {
   const [topic] = useState<PTopic | undefined>(() => (typeof window === "undefined" ? undefined : currentTopic()));
+  // The saved series belongs to this topic (and level): another topic starts its own.
+  const [series] = useState(() => (topic ? `ptexts:${topic.id}` : null));
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
   const [showUa, setShowUa] = useState(false);
@@ -22,24 +26,26 @@ export default function PersonalTextsPage() {
   const [locked, setLocked] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     if (!topic) return;
     await seedPersonal();
-    const mm = takePMistakes("texts");
+    const back = saved ? await restoreSeries(saved, (keys) => db.pcards.bulkGet(keys), (c: PCardRow) => !!pTextById(c.itemId) && topicOf(c.itemId) === topic) : null;
+    const mm = back ? !!saved?.mistakes : takePMistakes("texts");
     setMistakeMode(mm);
-    const q = (mm ? await pMistakeCards(topic, ["text"]) : await pSessionCards(topic, "text", { limit: 3, newLimit: 2, minimum: 2 })).filter((c) => pTextById(c.itemId));
-    setLocked(!q.length && !mm);
-    setQueue(shuffle(q));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : (mm ? await pMistakeCards(topic, ["text"]) : await pSessionCards(topic, "text", { limit: 3, newLimit: 2, minimum: 2 })).filter((c) => pTextById(c.itemId));
+    setLocked(!back && !q.length && !mm);
+    setQueue(back ? q : shuffle(q));
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
     setAnswers([]);
     setShowUa(false);
     shownAt.current = Date.now();
   }, [topic]);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer(series, () => pMistakesRequested("texts"), load);
+  useRememberSeries(series, queue, i, answers.length > 0 && answers.length >= (pTextById(queue?.[i]?.itemId ?? "")?.questions.length ?? Infinity), score, mistakeMode);
 
   const row = queue?.[i];
   const text = row ? pTextById(row.itemId) : undefined;
@@ -54,6 +60,24 @@ export default function PersonalTextsPage() {
   const shuffled = useMemo(() => (text ? text.questions.map((q) => shuffle(q.options)) : []), [text]);
 
   if (!topic) return <p className="muted">Тему не вибрано.</p>;
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Тексти"
+        saved={offer}
+        back={{ href: "/personal/topic", label: `${topic.icon} До теми «${topic.title}»` }}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          if (series) clearSeries(series);
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
   if (!row || !text) return <PersonalDone title="Тексти" topic={topic} score={score} onAgain={load} mistakes={mistakeMode} locked={locked ? "Тексти відкриються з рівнем 3: спершу переглянь половину фраз у «Картках»." : undefined} />;
 

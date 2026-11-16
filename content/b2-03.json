@@ -31,7 +31,7 @@
     {"id": "b2-03-meg-nem-tudom-folyekonyan", "type": "phrase", "hu": "Még nem tudom folyékonyan.", "ua": "Я ще не говорю вільно.", "pos": "phrase", "tags": ["study"]},
 
     {"id": "b2-03-nyelvtanfolyam", "type": "word", "hu": "nyelvtanfolyam", "ua": "мовні курси", "pos": "noun", "harmony": "back", "tags": ["compound"]},
-    {"id": "b2-03-kurzus", "type": "word", "hu": "kurzus", "ua": "курс (навчальний)", "pos": "noun", "harmony": "back"},
+    {"id": "b2-03-kurzus", "type": "word", "hu": "kurzus", "ua": "курс (запозич.)", "pos": "noun", "harmony": "back"},
     {"id": "b2-03-eloadas", "type": "word", "hu": "előadás", "ua": "лекція; виступ", "pos": "noun", "harmony": "back", "example": {"hu": "Az előadás tízkor kezdődik.", "ua": "Лекція починається о десятій."}},
     {"id": "b2-03-szeminarium", "type": "word", "hu": "szeminárium", "ua": "семінар", "pos": "noun", "harmony": "back"},
     {"id": "b2-03-elmelet", "type": "word", "hu": "elmélet", "ua": "теорія", "pos": "noun", "harmony": "front", "tags": ["abstract"]},

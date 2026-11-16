@@ -2,8 +2,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
-import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
+import { mistakeCards, mistakeModeRequested, takeMistakeMode } from "@/lib/mistakes";
 import { harmonyTaskById, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
 import { compare, type Verdict } from "@/lib/dictation";
@@ -12,7 +14,7 @@ import { harmonyChoice } from "@/lib/harmony";
 import { answer, Rating, sessionCards } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
-import type { CardRow } from "@/lib/db";
+import { db, type CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 import { HuInput } from "@/components/HuInput";
@@ -49,24 +51,26 @@ export default function HarmonyPage() {
   const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     await seedCards();
     setMode(await getTypingMode());
-    const mm = takeMistakeMode("harmony");
+    const back = saved ? await restoreSeries(saved, (keys) => db.cards.bulkGet(keys), (c: CardRow) => !!harmonyTaskById(c.itemId)) : null;
+    const mm = back ? !!saved?.mistakes : takeMistakeMode("harmony");
     setMistakes(mm);
-    const q = (await (mm ? mistakeCards("harmony") : sessionCards("harmony", 20, 8))).filter((c) => harmonyTaskById(c.itemId));
-    setHeld(!q.length && !mm ? await heldBack("harmony") : false);
-    setQueue(q.sort(() => Math.random() - 0.5));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : (await (mm ? mistakeCards("harmony") : sessionCards("harmony", 20, 8))).filter((c) => harmonyTaskById(c.itemId)).sort(() => Math.random() - 0.5);
+    setHeld(!back && !q.length && !mm ? await heldBack("harmony") : false);
+    setQueue(q);
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
     setPicked(null);
     setOutcome(null);
     shownAt.current = Date.now();
   }, []);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer("harmony", () => mistakeModeRequested("harmony"), load);
+  useRememberSeries("harmony", queue, i, picked !== null || outcome !== null, score, mistakes);
 
   const row = queue?.[i];
   const task: BuilderTask | undefined = row ? harmonyTaskById(row.itemId) : undefined;
@@ -81,6 +85,23 @@ export default function HarmonyPage() {
     shownAt.current = Date.now();
   }, [task]);
 
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Гармонія голосних"
+        saved={offer}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          clearSeries("harmony");
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !choice) {

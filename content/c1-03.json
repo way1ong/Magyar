@@ -68,7 +68,7 @@
     {"id": "c1-03-reszvenyes", "type": "word", "hu": "részvényes", "ua": "акціонер", "pos": "noun", "harmony": "front", "tags": ["person"]},
     {"id": "c1-03-alvallalkozo", "type": "word", "hu": "alvállalkozó", "ua": "субпідрядник", "pos": "noun", "harmony": "back", "tags": ["person", "compound"]},
     {"id": "c1-03-megbizo", "type": "word", "hu": "megbízó", "ua": "замовник", "pos": "noun", "harmony": "back", "tags": ["person"]},
-    {"id": "c1-03-szallito", "type": "word", "hu": "szállító", "ua": "постачальник", "pos": "noun", "harmony": "back", "tags": ["person"]},
+    {"id": "c1-03-szallito", "type": "word", "hu": "szállító", "ua": "постачальник, перевізник", "pos": "noun", "harmony": "back", "tags": ["person"]},
     {"id": "c1-03-alapanyag", "type": "word", "hu": "alapanyag", "ua": "сировина", "pos": "noun", "harmony": "back", "tags": ["compound", "material"]},
     {"id": "c1-03-negyedev", "type": "word", "hu": "negyedév", "ua": "квартал (року)", "pos": "noun", "harmony": "front", "tags": ["compound", "time"]},
     {"id": "c1-03-negyedeves", "type": "word", "hu": "negyedéves", "ua": "квартальний", "pos": "adj", "harmony": "front"},

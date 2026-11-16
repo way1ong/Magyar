@@ -5,8 +5,11 @@ import { itemById } from "@/lib/content";
 import { answer, previewIntervals, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
 import { SessionDone } from "@/components/SessionDone";
-import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
-import type { CardRow } from "@/lib/db";
+import { AltLine, CtxLine } from "@/components/CtxLine";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
+import { mistakeCards, mistakeModeRequested, takeMistakeMode } from "@/lib/mistakes";
+import { db, type CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speakItem } from "@/lib/tts";
 import { VoiceHint } from "@/components/VoiceHint";
@@ -22,25 +25,31 @@ export default function ReviewPage() {
   const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     await seedCards();
-    const mm = takeMistakeMode("review");
+    const back = saved ? await restoreSeries(saved, (keys) => db.cards.bulkGet(keys), (c: CardRow) => !!itemById(c.itemId)) : null;
+    const mm = back ? !!saved?.mistakes : takeMistakeMode("review");
     setMistakes(mm);
-    const [a, b] = mm
-      ? await Promise.all([mistakeCards("recognize"), mistakeCards("recall")])
-      : await Promise.all([sessionCards("recognize", 15, 6, 5), sessionCards("recall", 15, 6, 5)]);
-    // Cards whose item left the content (a duplicate removed) are skipped, not shown as "done".
-    const all = [...a, ...b].filter((c) => itemById(c.itemId)).sort(() => Math.random() - 0.5);
+    let all: CardRow[];
+    if (back) all = back.rows;
+    else {
+      const [a, b] = mm
+        ? await Promise.all([mistakeCards("recognize"), mistakeCards("recall")])
+        : await Promise.all([sessionCards("recognize", 15, 6, 5), sessionCards("recall", 15, 6, 5)]);
+      // Cards whose item left the content (a duplicate removed) are skipped, not shown as "done".
+      all = [...a, ...b].filter((c) => itemById(c.itemId)).sort(() => Math.random() - 0.5);
+    }
     setQueue(all);
-    setI(0);
-    setDone(0);
+    setI(back ? back.index : 0);
+    setDone(back && typeof saved?.score === "number" ? saved.score : 0);
     setFlipped(false);
     shownAt.current = Date.now();
   }, []);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer("review", () => mistakeModeRequested("review"), load);
+  useRememberSeries("review", queue, i, false, done, mistakes);
 
   const row = queue?.[i];
   const item = row ? itemById(row.itemId) : undefined;
@@ -56,6 +65,23 @@ export default function ReviewPage() {
     setI((n) => n + 1);
   };
 
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Картки"
+        saved={offer}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          clearSeries("review");
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !item) {
@@ -88,10 +114,12 @@ export default function ReviewPage() {
       </div>
 
       <button className="card big" onClick={() => setFlipped(true)} style={{ width: "100%", cursor: "pointer" }}>
+        {item.ctx && <CtxLine ctx={item.ctx} showUa={row.exercise === "recall" || flipped} />}
         <p className="hu">{front}</p>
         {flipped && (
           <>
             <p className="ua">{back}</p>
+            {row.exercise === "recall" && <AltLine alt={item.alt} />}
             {item.example && (
               <p className="example">
                 {item.example.hu}

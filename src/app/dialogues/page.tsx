@@ -1,12 +1,14 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SessionDone } from "@/components/SessionDone";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
 import { dealFor, dialogueTaskById, type DialogueTask } from "@/lib/dialogues";
-import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
+import { mistakeCards, mistakeModeRequested, takeMistakeMode } from "@/lib/mistakes";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
-import type { CardRow } from "@/lib/db";
+import { db, type CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 
 const FAST_MS = 25000;
@@ -35,23 +37,25 @@ export default function DialoguesPage() {
   const [mistakeMode, setMistakeMode] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     await seedCards();
-    const mm = takeMistakeMode("dialogue");
+    const back = saved ? await restoreSeries(saved, (keys) => db.cards.bulkGet(keys), (c: CardRow) => !!dialogueTaskById(c.itemId)) : null;
+    const mm = back ? !!saved?.mistakes : takeMistakeMode("dialogue");
     setMistakeMode(mm);
-    const q = (await (mm ? mistakeCards("dialogue") : sessionCards("dialogue", 10, 4, 4))).filter((c) => dialogueTaskById(c.itemId));
-    setHeld(!q.length && !mm ? await heldBack("dialogue") : false);
-    setQueue(shuffle(q));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : shuffle((await (mm ? mistakeCards("dialogue") : sessionCards("dialogue", 10, 4, 4))).filter((c) => dialogueTaskById(c.itemId)));
+    setHeld(!back && !q.length && !mm ? await heldBack("dialogue") : false);
+    setQueue(q);
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
     setPicked(null);
     setShowUa(false);
     shownAt.current = Date.now();
   }, []);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer("dialogue", () => mistakeModeRequested("dialogue"), load);
+  useRememberSeries("dialogue", queue, i, picked !== null, score, mistakeMode);
 
   const row = queue?.[i];
   const task: DialogueTask | undefined = row ? dialogueTaskById(row.itemId) : undefined;
@@ -65,6 +69,23 @@ export default function DialoguesPage() {
     shownAt.current = Date.now();
   }, [cardKey]);
 
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Діалоги"
+        saved={offer}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          clearSeries("dialogue");
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
   if (!row || !task || !deal) return <SessionDone title="Діалоги" score={score} onAgain={load} step="dialogue" mistakes={mistakeMode} heldBack={held ? HELD_BACK_TEXT.dialogue : undefined} />;
 

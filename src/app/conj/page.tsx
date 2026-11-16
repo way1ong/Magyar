@@ -2,16 +2,19 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
-import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
+import { mistakeCards, mistakeModeRequested, takeMistakeMode } from "@/lib/mistakes";
 import { conjTaskById, randomPerson, type ConjTask } from "@/lib/conjcards";
 import { pickCloze, type Cloze } from "@/lib/conjcloze";
 import { conjugate, isTransitive, paradigmOf, personTenseUa, PRONOUN, slotsFor, tenseLabel } from "@/lib/conj";
 import { compare, type Verdict } from "@/lib/dictation";
+import { explainConj, slotOfForm } from "@/lib/conjexplain";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
-import type { CardRow } from "@/lib/db";
+import { db, type CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 import { HuInput } from "@/components/HuInput";
@@ -50,28 +53,32 @@ export default function ConjPage() {
   const [picked, setPicked] = useState<string | null>(null);
   const [typed, setTyped] = useState("");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
+  // "Чому так?" — the explanation is hidden until asked for.
+  const [why, setWhy] = useState(false);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     await seedCards();
     setMode(await getTypingMode());
-    const mm = takeMistakeMode("conj");
+    const back = saved ? await restoreSeries(saved, (keys) => db.cards.bulkGet(keys), (c: CardRow) => !!conjTaskById(c.itemId)) : null;
+    const mm = back ? !!saved?.mistakes : takeMistakeMode("conj");
     setMistakes(mm);
-    const q = (await (mm ? mistakeCards("conj") : sessionCards("conj", 20, 8))).filter((c) => conjTaskById(c.itemId));
-    setHeld(!q.length && !mm ? await heldBack("conj") : false);
-    setQueue(shuffle(q));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : shuffle((await (mm ? mistakeCards("conj") : sessionCards("conj", 20, 8))).filter((c) => conjTaskById(c.itemId)));
+    setHeld(!back && !q.length && !mm ? await heldBack("conj") : false);
+    setQueue(q);
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
     setPicked(null);
     setOutcome(null);
     shownAt.current = Date.now();
   }, []);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer("conj", () => mistakeModeRequested("conj"), load);
+  useRememberSeries("conj", queue, i, picked !== null || outcome !== null, score, mistakes);
 
   const row = queue?.[i];
   const task: ConjTask | undefined = row ? conjTaskById(row.itemId) : undefined;
@@ -97,9 +104,27 @@ export default function ConjPage() {
     setPicked(null);
     setTyped("");
     setOutcome(null);
+    setWhy(false);
     shownAt.current = Date.now();
   }, [cardKey]);
 
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Дієвідміна"
+        saved={offer}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          clearSeries("conj");
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task || !deal) {
@@ -164,15 +189,8 @@ export default function ConjPage() {
   const same = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
   const wrong = !done || ok ? null : typing ? (outcome === "wrong" && typed.trim() ? typed.trim() : null) : picked;
   const wrongInTable = !!wrong && table.some((r) => same(r.form, wrong));
-  const wrongSlot =
-    wrong && !wrongInTable
-      ? slotsFor(item)
-          .filter((sl) => {
-            const f = conjugate(item, sl);
-            return !!f && same(f, wrong);
-          })
-          .sort((a, b) => Number(b.tense === tense) - Number(a.tense === tense) || Number(b.def === def) - Number(a.def === def))[0]
-      : undefined;
+  const wrongSlot = wrong && !wrongInTable ? slotOfForm(item, wrong, { tense, def, person }) : undefined;
+  const explanation = why ? explainConj(item, { tense, def, person }, { correct, wrong, synthetic: !cloze }) : null;
   const slotText = (sl: { tense: typeof tense; def: boolean; person: typeof person }) =>
     `«${PRONOUN[sl.person]}» · ${tenseLabel(sl.tense)}${tr ? ` · ${sl.def ? "означена" : "неозначена"} відміна` : ""}`;
 
@@ -233,6 +251,33 @@ export default function ConjPage() {
               <p style={{ color: "var(--bad)", fontSize: 15, margin: "8px 0 0" }}>
                 <b lang="hu">{wrong}</b> — це форма {slotText(wrongSlot)}
               </p>
+            )}
+            <button type="button" className="btn ghost" onClick={() => setWhy((v) => !v)} style={{ marginTop: 12, minHeight: 0, padding: "6px 12px", fontSize: 14 }}>
+              {why ? "Сховати пояснення" : "Чому так?"}
+            </button>
+            {explanation && (
+              <div className="why">
+                <p className="why-h">
+                  Чому <span lang="hu">{correct}</span>
+                </p>
+                <ul>
+                  {explanation.why.map((l) => (
+                    <li key={l}>{l}</li>
+                  ))}
+                </ul>
+                {explanation.whyNot.length > 0 && (
+                  <>
+                    <p className="why-h">
+                      Чому не <span lang="hu">{wrong}</span>
+                    </p>
+                    <ul>
+                      {explanation.whyNot.map((l) => (
+                        <li key={l}>{l}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
             )}
           </>
         )}

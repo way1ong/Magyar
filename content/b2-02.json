@@ -45,7 +45,7 @@
     {"id": "b2-02-szelenergia", "type": "word", "hu": "szélenergia", "ua": "енергія вітру", "pos": "noun", "harmony": "back", "tags": ["abstract", "compound"]},
     {"id": "b2-02-napelem", "type": "word", "hu": "napelem", "ua": "сонячна панель", "pos": "noun", "harmony": "front", "tags": ["compound"]},
     {"id": "b2-02-fogyasztas", "type": "word", "hu": "fogyasztás", "ua": "споживання", "pos": "noun", "harmony": "back", "example": {"hu": "Csökkent a fogyasztás.", "ua": "Споживання зменшилось."}, "tags": ["abstract"]},
-    {"id": "b2-02-meroallas", "type": "word", "hu": "mérőállás", "ua": "показники лічильника", "pos": "noun", "harmony": "back", "tags": ["compound"]},
+    {"id": "b2-02-meroallas", "type": "word", "hu": "mérőállás", "ua": "показники лічильника (офіц.)", "pos": "noun", "harmony": "back", "tags": ["compound"]},
     {"id": "b2-02-gazora", "type": "word", "hu": "gázóra", "ua": "газовий лічильник", "pos": "noun", "harmony": "back", "tags": ["compound"]},
     {"id": "b2-02-aramszunet", "type": "word", "hu": "áramszünet", "ua": "відключення електрики", "pos": "noun", "harmony": "front", "tags": ["compound", "abstract"]},
     {"id": "b2-02-csotores", "type": "word", "hu": "csőtörés", "ua": "прорив труби", "pos": "noun", "harmony": "front", "tags": ["compound"]},

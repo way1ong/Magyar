@@ -1,12 +1,15 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SessionDone } from "@/components/SessionDone";
+import { CtxLine } from "@/components/CtxLine";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
-import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
+import { mistakeCards, mistakeModeRequested, takeMistakeMode } from "@/lib/mistakes";
 import { sameOrder, sentenceTaskById, type SentenceTask } from "@/lib/sentences";
 import { answer, Rating, sessionCards, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
-import type { CardRow } from "@/lib/db";
+import { db, type CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 import { getTypingMode, shouldType, type TypingMode } from "@/lib/settings";
@@ -45,25 +48,27 @@ export default function SentencesPage() {
   const [typed, setTyped] = useState("");
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     await seedCards();
     setMode(await getTypingMode());
-    const mm = takeMistakeMode("sentence");
+    const back = saved ? await restoreSeries(saved, (keys) => db.cards.bulkGet(keys), (c: CardRow) => !!sentenceTaskById(c.itemId)) : null;
+    const mm = back ? !!saved?.mistakes : takeMistakeMode("sentence");
     setMistakeMode(mm);
-    const q = (await (mm ? mistakeCards("sentence") : sessionCards("sentence", 20, 8))).filter((c) => sentenceTaskById(c.itemId));
-    setHeld(!q.length && !mm ? await heldBack("sentence") : false);
-    setQueue(shuffle(q));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : shuffle((await (mm ? mistakeCards("sentence") : sessionCards("sentence", 20, 8))).filter((c) => sentenceTaskById(c.itemId)));
+    setHeld(!back && !q.length && !mm ? await heldBack("sentence") : false);
+    setQueue(q);
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
     setPlacedFor({ key: "", idx: [] });
     setOutcome(null);
     setMistakes(0);
     shownAt.current = Date.now();
   }, []);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer("sentence", () => mistakeModeRequested("sentence"), load);
+  useRememberSeries("sentence", queue, i, outcome === "right" || outcome === "revealed", score, mistakeMode);
 
   const row = queue?.[i];
   const task: SentenceTask | undefined = row ? sentenceTaskById(row.itemId) : undefined;
@@ -88,6 +93,23 @@ export default function SentencesPage() {
   const placed = placedFor.key === cardKey ? placedFor.idx : [];
   const setPlaced = (idx: number[]) => setPlacedFor({ key: cardKey, idx });
 
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Речення"
+        saved={offer}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          clearSeries("sentence");
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
   if (!row || !task) return <SessionDone title="Речення" score={score} onAgain={load} step="sentence" mistakes={mistakeMode} heldBack={held ? HELD_BACK_TEXT.sentence : undefined} />;
 
@@ -173,6 +195,7 @@ export default function SentencesPage() {
       </div>
 
       <div className="card big" style={{ paddingTop: 18, paddingBottom: 18 }}>
+        {task.ctx && <CtxLine ctx={task.ctx} showUa />}
         <p className="ua" style={{ fontSize: 22, margin: 0 }}>{task.ua}</p>
         {typing ? (
           <HuInput id="sentence-input" value={typed} onChange={setTyped} onEnter={() => (done ? nextCard() : checkTyped())} disabled={done} done={done} focusKey={cardKey} placeholder="напиши речення угорською…" />

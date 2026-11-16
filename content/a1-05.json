@@ -16,7 +16,7 @@
     { "id": "a1-05-hogy-mondjak", "type": "phrase", "hu": "Hogy mondják magyarul?", "ua": "Як це сказати угорською?", "pos": "phrase", "tags": ["language"] },
     { "id": "a1-05-mit-jelent", "type": "phrase", "hu": "Mit jelent ez?", "ua": "Що це означає?", "pos": "phrase", "tags": ["language"] },
     { "id": "a1-05-lassabban", "type": "phrase", "hu": "Lassabban, kérem!", "ua": "Повільніше, будь ласка!", "pos": "phrase", "tags": ["language"] },
-    { "id": "a1-05-ismetelje-meg", "type": "phrase", "hu": "Ismételje meg, kérem!", "ua": "Повторіть, будь ласка!", "pos": "phrase", "tags": ["language"] },
+    { "id": "a1-05-ismetelje-meg", "type": "phrase", "hu": "Ismételje meg, kérem!", "ua": "Повторіть, будь ласка!", "pos": "phrase", "tags": ["language"], "alt": ["Kérem, ismételje meg!"] },
     { "id": "a1-05-van-egy-kerdesem", "type": "phrase", "hu": "Van egy kérdésem.", "ua": "У мене є запитання.", "pos": "phrase", "tags": ["study"] },
     { "id": "a1-05-nem-tudom-a-valaszt", "type": "phrase", "hu": "Nem tudom a választ.", "ua": "Я не знаю відповіді.", "pos": "phrase", "tags": ["study"] },
     { "id": "a1-05-hany-orat-dolgozol", "type": "phrase", "hu": "Hány órát dolgozol?", "ua": "Скільки годин ти працюєш?", "pos": "phrase", "tags": ["work"] },

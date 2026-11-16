@@ -2,15 +2,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
-import { mistakeCards, takeMistakeMode } from "@/lib/mistakes";
+import { mistakeCards, mistakeModeRequested, takeMistakeMode } from "@/lib/mistakes";
 import { builderTaskById, shuffle, suffixOptions, type BuilderTask } from "@/lib/builder";
 import { patternShort } from "@/lib/content";
 import { fillFrame, glossForFrame, splitFrame } from "@/lib/frames";
 import { endsWithVowel, finalConsonant, lengthenFinal } from "@/lib/harmony";
 import { answer, Rating, sessionCards } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
-import type { CardRow } from "@/lib/db";
+import { db, type CardRow } from "@/lib/db";
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 
@@ -73,20 +75,22 @@ export default function BuilderPage() {
   const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     await seedCards();
-    const mm = takeMistakeMode("builder");
+    const back = saved ? await restoreSeries(saved, (keys) => db.cards.bulkGet(keys), (r: CardRow) => !!builderTaskById(r.itemId)) : null;
+    const mm = back ? !!saved?.mistakes : takeMistakeMode("builder");
     setMistakes(mm);
-    const q = (await (mm ? mistakeCards("builder") : sessionCards("builder", 20, 8))).filter((r) => builderTaskById(r.itemId));
-    setHeld(!q.length && !mm ? await heldBack("builder") : false);
-    setQueue(shuffle(q));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : shuffle((await (mm ? mistakeCards("builder") : sessionCards("builder", 20, 8))).filter((r) => builderTaskById(r.itemId)));
+    setHeld(!back && !q.length && !mm ? await heldBack("builder") : false);
+    setQueue(q);
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
   }, []);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer("builder", () => mistakeModeRequested("builder"), load);
+  useRememberSeries("builder", queue, i, verdict !== null, score, mistakes);
 
   const row = queue?.[i];
   const task = row ? builderTaskById(row.itemId) : undefined;
@@ -103,6 +107,23 @@ export default function BuilderPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- dealKey identifies the card
   }, [dealKey]);
 
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Конструктор"
+        saved={offer}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          clearSeries("builder");
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
 
   if (!row || !task) {

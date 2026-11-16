@@ -180,7 +180,9 @@ export function bossQuestions(pack: ContentPack, size = BOSS_SIZE): BossQuestion
       const field = kind === "recognize" ? "ua" : "hu";
       const ds = pickDistractors(it, items, field, 3);
       if (ds.length < 2) return;
-      qs.push({ kind, prompt: kind === "recognize" ? it.hu : it.ua, options: shuffle([it[field], ...ds]), answer: it[field] });
+      // A reply is asked together with the line it answers (Item.ctx).
+      const hint = it.ctx ? `перед цим: — ${it.ctx.hu}${kind === "recall" ? ` (${it.ctx.ua})` : ""}` : undefined;
+      qs.push({ kind, prompt: kind === "recognize" ? it.hu : it.ua, hint, options: shuffle([it[field], ...ds]), answer: it[field] });
     });
   return shuffle(qs);
 }

@@ -49,6 +49,15 @@ export function requestMistakeMode(page: string) {
   }
 }
 
+/** Whether the page was opened from "Помилки", without clearing the flag. */
+export function mistakeModeRequested(page: string): boolean {
+  try {
+    return sessionStorage.getItem(MODE_KEY) === `mistakes:${page}`;
+  } catch {
+    return false;
+  }
+}
+
 /** True once if the page was opened from "Помилки"; the flag is cleared. */
 export function takeMistakeMode(page: string): boolean {
   try {

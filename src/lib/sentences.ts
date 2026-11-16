@@ -18,6 +18,8 @@ export interface SentenceTask {
   end: string;
   note: string;
   packIndex: number;
+  /** The line a phrase answers (Item.ctx), shown above the translation. */
+  ctx?: { hu: string; ua: string };
 }
 
 export const QUESTION_WORDS = new Set(["ki", "kik", "kit", "kinek", "kivel", "kié", "mi", "mik", "mit", "mire", "miről", "hol", "hova", "hová", "honnan", "mikor", "mióta", "meddig", "hogy", "hogyan", "miért", "mennyi", "mennyibe", "hány", "hányadik", "hánykor", "melyik", "milyen", "merre"]);
@@ -41,13 +43,13 @@ export function autoNote(hu: string): string {
 
 /** Words that stay capitalised when shuffled: seen capitalised mid-sentence somewhere in the content. */
 const properNouns = new Set<string>(["Ön", "Önök", "Önt", "Önnek", "Önnel"]);
-const sources: { id: string; hu: string; ua: string; note?: string }[] = [];
+const sources: { id: string; hu: string; ua: string; note?: string; ctx?: { hu: string; ua: string } }[] = [];
 for (const p of packs) {
   for (const sn of p.sentences ?? []) sources.push(sn);
 }
 for (const it of allItems) {
   if (it.example?.hu && it.example.ua) sources.push({ id: it.id, hu: it.example.hu, ua: it.example.ua });
-  else if (it.type === "phrase") sources.push({ id: it.id, hu: it.hu, ua: it.ua });
+  else if (it.type === "phrase") sources.push({ id: it.id, hu: it.hu, ua: it.ua, ctx: it.ctx });
 }
 for (const s of sources) {
   const ws = s.hu.split(/\s+/);
@@ -58,7 +60,7 @@ for (const s of sources) {
   });
 }
 
-function toTask(src: { id: string; hu: string; ua: string; note?: string }): SentenceTask | null {
+function toTask(src: { id: string; hu: string; ua: string; note?: string; ctx?: { hu: string; ua: string } }): SentenceTask | null {
   const hu = src.hu.trim();
   if (/[…_/]/.test(hu) || /\.\.\./.test(hu)) return null;
   const m = hu.match(/^(.*?)([.!?]+)$/);
@@ -69,7 +71,7 @@ function toTask(src: { id: string; hu: string; ua: string; note?: string }): Sen
   // The first word loses its capital unless it is a proper noun, so it does not give its place away.
   const first = words[0];
   if (!properNouns.has(first.replace(/[,;:]/g, "")) && !/^[A-ZÁÉÍÓÖŐÚÜŰ]{2}/.test(first)) words[0] = first[0].toLowerCase() + first.slice(1);
-  return { id: src.id, hu, ua: src.ua, words, end, note: src.note ?? autoNote(hu), packIndex: packIndexOf(src.id) };
+  return { id: src.id, hu, ua: src.ua, words, end, note: src.note ?? autoNote(hu), packIndex: packIndexOf(src.id), ctx: src.ctx };
 }
 
 const seen = new Set<string>();

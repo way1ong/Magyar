@@ -1,16 +1,20 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PersonalDone } from "@/components/PersonalDone";
-import { currentTopic, pAnswer, pMistakeCards, pSentenceById, pSessionCards, sameOrder, seedPersonal, shuffle, takePMistakes, type PSentenceTask, type PTopic } from "@/lib/personal";
+import { ResumeOffer } from "@/components/ResumeOffer";
+import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
+import { currentTopic, pAnswer, pMistakeCards, pSentenceById, pSessionCards, sameOrder, pMistakesRequested, seedPersonal, shuffle, takePMistakes, topicOf, type PSentenceTask, type PTopic } from "@/lib/personal";
 import { Rating, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
-import type { PCardRow } from "@/lib/db";
+import { db, type PCardRow } from "@/lib/db";
 
 const FAST_MS = 15000;
 
 /** Word-order drill on the topic's example sentences and phrases (tiles only). */
 export default function PersonalSentencesPage() {
   const [topic] = useState<PTopic | undefined>(() => (typeof window === "undefined" ? undefined : currentTopic()));
+  // The saved series belongs to this topic (and level): another topic starts its own.
+  const [series] = useState(() => (topic ? `psentences:${topic.id}` : null));
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
   const [placedFor, setPlacedFor] = useState<{ key: string; idx: number[] }>({ key: "", idx: [] });
@@ -21,25 +25,27 @@ export default function PersonalSentencesPage() {
   const [locked, setLocked] = useState(false);
   const shownAt = useRef(Date.now());
 
-  const load = useCallback(async () => {
+  // A fresh series, or the saved unfinished one (lib/resume.ts).
+  const start = useCallback(async (saved: SavedSeries | null) => {
     if (!topic) return;
     await seedPersonal();
-    const mm = takePMistakes("sentences");
+    const back = saved ? await restoreSeries(saved, (keys) => db.pcards.bulkGet(keys), (c: PCardRow) => !!pSentenceById(c.itemId) && topicOf(c.itemId) === topic) : null;
+    const mm = back ? !!saved?.mistakes : takePMistakes("sentences");
     setMistakeMode(mm);
-    const q = (mm ? await pMistakeCards(topic, ["sentence"]) : await pSessionCards(topic, "sentence", { limit: 15, newLimit: 6, minimum: 6 })).filter((c) => pSentenceById(c.itemId));
-    setLocked(!q.length && !mm);
-    setQueue(shuffle(q));
-    setI(0);
-    setScore({ right: 0, total: 0 });
+    const q = back ? back.rows : (mm ? await pMistakeCards(topic, ["sentence"]) : await pSessionCards(topic, "sentence", { limit: 15, newLimit: 6, minimum: 6 })).filter((c) => pSentenceById(c.itemId));
+    setLocked(!back && !q.length && !mm);
+    setQueue(back ? q : shuffle(q));
+    setI(back ? back.index : 0);
+    setScore(back && isScore(saved?.score) ? saved.score : { right: 0, total: 0 });
     setPlacedFor({ key: "", idx: [] });
     setOutcome(null);
     setTries(0);
     shownAt.current = Date.now();
   }, [topic]);
+  const load = useCallback(() => start(null), [start]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
+  const [offer, setOffer] = useResumeOffer(series, () => pMistakesRequested("sentences"), load);
+  useRememberSeries(series, queue, i, outcome === "right" || outcome === "revealed", score, mistakeMode);
 
   const row = queue?.[i];
   const task: PSentenceTask | undefined = row ? pSentenceById(row.itemId) : undefined;
@@ -63,6 +69,24 @@ export default function PersonalSentencesPage() {
   const setPlaced = (idx: number[]) => setPlacedFor({ key: cardKey, idx });
 
   if (!topic) return <p className="muted">Тему не вибрано.</p>;
+  if (offer) {
+    return (
+      <ResumeOffer
+        title="Речення"
+        saved={offer}
+        back={{ href: "/personal/topic", label: `${topic.icon} До теми «${topic.title}»` }}
+        onContinue={() => {
+          setOffer(null);
+          start(offer);
+        }}
+        onRestart={() => {
+          if (series) clearSeries(series);
+          setOffer(null);
+          load();
+        }}
+      />
+    );
+  }
   if (queue === null) return <p className="muted">Завантажую…</p>;
   if (!row || !task) return <PersonalDone title="Речення" topic={topic} score={score} onAgain={load} mistakes={mistakeMode} locked={locked ? "Речення відкриються разом із рівнем фраз: спершу переглянь половину слів у «Картках»." : undefined} />;
 
