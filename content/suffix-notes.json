@@ -1,0 +1,905 @@
+{
+ "families": [
+  {
+   "id": "local",
+   "title": "Девʼять суфіксів місця",
+   "cols": [
+    "де?",
+    "куди?",
+    "звідки?"
+   ],
+   "rows": [
+    {
+     "label": "всередині",
+     "cells": [
+      [
+       "suf-inessive",
+       "-ban"
+      ],
+      [
+       "suf-illative",
+       "-ba"
+      ],
+      [
+       "suf-elative",
+       "-ból"
+      ]
+     ]
+    },
+    {
+     "label": "на поверхні",
+     "cells": [
+      [
+       "suf-superessive",
+       "-on"
+      ],
+      [
+       "suf-sublative",
+       "-ra"
+      ],
+      [
+       "suf-delative",
+       "-ról"
+      ]
+     ]
+    },
+    {
+     "label": "біля, у когось",
+     "cells": [
+      [
+       "suf-adessive",
+       "-nál"
+      ],
+      [
+       "suf-allative",
+       "-hoz"
+      ],
+      [
+       "suf-ablative",
+       "-tól"
+      ]
+     ]
+    }
+   ],
+   "intro": [
+    "Угорська не має прийменників «в», «на», «біля», «з»: їх замінюють суфікси. Їх девʼять: три місця (всередині, на поверхні, біля) на три питання (де? куди? звідки?). У таблиці — задньорядні варіанти; передньорядні (-ben, -be, -ből, -en, -re, -ről, -nél, -hez, -től) вибирає гармонія голосних.",
+    "Українське «з» відповідає двом суфіксам: з середини — -ból/-ből (дістати з книжки: könyvből), з поверхні — -ról/-ről (узяти зі столу: asztalról). «Від» — третій: -tól/-től (від друга: baráttól).",
+    "Підказка: усі «де?» мають n (-ban, -on, -nál), усі «звідки?» закінчуються на -ól/-ől (-ból, -ról, -tól)."
+   ]
+  }
+ ],
+ "notes": {
+  "suf-inessive": {
+   "text": [
+    "Де? — усередині чогось: a házban (у будинку), a táskában (у сумці).",
+    "Так само в часі й станах: januárban (у січні), 2020-ban (у 2020 році), jó hangulatban (у гарному настрої).",
+    "Закордонні міста й країни — з -ban/-ben: Kijevben, Bécsben, Ukrajnában. Більшість угорських міст і сама Magyarország — з -on/-en: Budapesten, Szegeden, Magyarországon."
+   ],
+   "examples": [
+    {
+     "hu": "A kulcs a táskában van.",
+     "ua": "Ключ у сумці."
+    },
+    {
+     "hu": "Bécsben lakom.",
+     "ua": "Я живу у Відні."
+    }
+   ]
+  },
+  "suf-illative": {
+   "text": [
+    "Куди? — усередину: a boltba (у магазин), az iskolába (до школи).",
+    "Від -ban/-ben відрізняється однією літерою n: Moziban vagyok — я в кіно (де?), Moziba megyek — я йду в кіно (куди?).",
+    "Переносно — «у щось»: beleszeret valakibe (закохатися в когось), belekezd valamibe (взятися за щось)."
+   ],
+   "examples": [
+    {
+     "hu": "Beteszem a kulcsot a táskába.",
+     "ua": "Кладу ключ у сумку."
+    },
+    {
+     "hu": "Holnap Bécsbe utazom.",
+     "ua": "Завтра їду до Відня."
+    }
+   ]
+  },
+  "suf-elative": {
+   "text": [
+    "Звідки? — з середини: a házból (з будинку), a könyvből (з книжки, тобто з її середини).",
+    "Українське «з» буває двох видів. «Дістати з книжки» (з середини) — könyvből; «узяти зі столу» (з поверхні) — asztalról. Якщо можна сказати «з середини», це -ból/-ből.",
+    "Переносно — джерело, матеріал, причина: a hírekből tudom (знаю з новин), fából készült (зроблений з дерева), szerelemből (з любові)."
+   ],
+   "examples": [
+    {
+     "hu": "Kiveszem a könyvből.",
+     "ua": "Дістаю це з книжки."
+    },
+    {
+     "hu": "Kijevből jöttem.",
+     "ua": "Я приїхав з Києва."
+    }
+   ]
+  },
+  "suf-superessive": {
+   "text": [
+    "Де? — на поверхні: az asztalon (на столі), a falon (на стіні). Транспорт — теж «на»: a buszon (в автобусі), a vonaton (у потязі).",
+    "Час: дні тижня й вихідні — hétfőn (у понеділок), hétvégén (на вихідних).",
+    "Більшість угорських міст і Magyarország: Budapesten, Szegeden, Magyarországon (в Угорщині).",
+    "Голосна за гармонією: asztalon, széken, földön; після голосної лише -n: autón, almán."
+   ],
+   "examples": [
+    {
+     "hu": "A könyv az asztalon van.",
+     "ua": "Книжка на столі."
+    },
+    {
+     "hu": "Hétfőn dolgozom.",
+     "ua": "У понеділок я працюю."
+    }
+   ]
+  },
+  "suf-sublative": {
+   "text": [
+    "Куди? — на поверхню: az asztalra (на стіл), a földre (на землю). Міста з -on: Budapestre (до Будапешта).",
+    "Переносно — на що спрямована думка чи дія: gondolok rád (я думаю про тебе), várok rád (я чекаю на тебе), emlékszem rá (я це памʼятаю), szükségem van rá (мені це потрібно).",
+    "Тому «думати про» — gondolni valamire (-ra), а «говорити про» — beszélni valamiről (-ról): думка спрямована на предмет, а розмова береться з нього.",
+    "Строк — «на»: két hétre (на два тижні), holnapra (на завтра)."
+   ],
+   "examples": [
+    {
+     "hu": "Tedd a könyvet az asztalra!",
+     "ua": "Поклади книжку на стіл!"
+    },
+    {
+     "hu": "Gondolok rád.",
+     "ua": "Я думаю про тебе."
+    }
+   ]
+  },
+  "suf-delative": {
+   "text": [
+    "Звідки? — з поверхні: leveszem a táskát a székről (знімаю сумку зі стільця), lejön a hegyről (спускається з гори). Міста з -on: Budapestről (з Будапешта).",
+    "«Про щось» — те саме значення в переносному сенсі. Тема — це «поверхня», з якої береться те, що кажуть: Beszélünk a könyvről — дослівно «говоримо з книжки», тобто про неї.",
+    "Так буває і в інших мовах: латинське de означає і «з, униз з», і «про» (De bello Gallico — «Про Галльську війну»); англійське of походить від off («геть з»): speak of something. Українське «з приводу» теж будує «про» через «з».",
+    "З -ról/-ről у значенні «про»: beszél (говорить), ír (пише), mesél (розповідає), hall (чує), olvas (читає), tud (знає), álmodik (мріє, бачить уві сні). Але «думати про» — gondol valamire (-ra)."
+   ],
+   "examples": [
+    {
+     "hu": "Beszélünk a könyvről.",
+     "ua": "Ми говоримо про книжку."
+    },
+    {
+     "hu": "Leveszem a táskát a székről.",
+     "ua": "Знімаю сумку зі стільця."
+    },
+    {
+     "hu": "Mit tudsz róla?",
+     "ua": "Що ти про це знаєш?"
+    }
+   ]
+  },
+  "suf-adessive": {
+   "text": [
+    "Де? — біля, поруч: az ablaknál (біля вікна), a kapunál (біля воріт).",
+    "У когось — удома, на роботі, в установі: a barátomnál (у друга), az orvosnál (у лікаря), egy nagy cégnél dolgozom (працюю у великій фірмі).",
+    "Порівняння «ніж»: Péter magasabb Annánál (Петер вищий за Анну) — те саме, що magasabb, mint Anna."
+   ],
+   "examples": [
+    {
+     "hu": "A barátomnál alszom.",
+     "ua": "Я ночую в друга."
+    },
+    {
+     "hu": "Egy nagy cégnél dolgozom.",
+     "ua": "Я працюю у великій фірмі."
+    }
+   ]
+  },
+  "suf-allative": {
+   "text": [
+    "Куди? — до чогось, впритул, але не всередину: a házhoz (до будинку), az ablakhoz (до вікна).",
+    "До людей — завжди цей суфікс: az orvoshoz (до лікаря), a barátomhoz (до друга).",
+    "Переносно: ért valamihez (розумітися на чомусь), hozzászokik valamihez (звикнути до чогось), tartozik valamihez (належати до чогось).",
+    "Три варіанти за гармонією: -hoz (ház), -hez (kert), -höz (tükör)."
+   ],
+   "examples": [
+    {
+     "hu": "Orvoshoz megyek.",
+     "ua": "Я йду до лікаря."
+    },
+    {
+     "hu": "Nem értek a számítógéphez.",
+     "ua": "Я не розуміюся на компʼютерах."
+    }
+   ]
+  },
+  "suf-ablative": {
+   "text": [
+    "Звідки? — від, з боку: a háztól (від будинку), a baráttól (від друга). Від людей — завжди цей суфікс: levelet kaptam anyától (лист від мами).",
+    "Час — у парі з -ig: reggeltől estig (з ранку до вечора), hétfőtől péntekig (з понеділка до пʼятниці).",
+    "Причина страху, втоми тощо: fél a kutyától (боїться собаки), elfáradt a munkától (втомився від роботи)."
+   ],
+   "examples": [
+    {
+     "hu": "Levelet kaptam anyától.",
+     "ua": "Я отримав лист від мами."
+    },
+    {
+     "hu": "Reggeltől estig dolgozom.",
+     "ua": "Я працюю з ранку до вечора."
+    }
+   ]
+  },
+  "suf-dative": {
+   "text": [
+    "Кому? чому?: Adok anyának egy virágot (Даю мамі квітку).",
+    "«У когось є» будується через «кому»: Péternek van autója (у Петера є машина, дослівно «Петеру є машина його»).",
+    "Дієслова з -nak/-nek: segít valakinek (допомагати комусь), tetszik valakinek (подобатися комусь), örül valaminek (радіти чомусь).",
+    "Ким стати: orvosnak tanul (вчиться на лікаря)."
+   ],
+   "examples": [
+    {
+     "hu": "Segítek a szomszédnak.",
+     "ua": "Я допомагаю сусідові."
+    },
+    {
+     "hu": "Annának van kutyája.",
+     "ua": "В Анни є собака."
+    }
+   ]
+  },
+  "suf-accusative": {
+   "text": [
+    "Кого? що? — обʼєкт дії: Kérek egy kávét (Мені каву), Látom a házat (Бачу будинок).",
+    "Після голосної — просто -t, кінцеві a/e подовжуються: alma → almát, kefe → kefét. Після приголосної — по-різному: asztalt, kertet, házat; форму варто запамʼятати разом зі словом.",
+    "Коли обʼєкт конкретний (a házat, azt, Pétert), дієслово йде в означеній відміні: Látom a házat. Коли невизначений (egy házat, valamit) — у неозначеній: Látok egy házat."
+   ],
+   "examples": [
+    {
+     "hu": "Kérek egy kávét.",
+     "ua": "Мені каву, будь ласка."
+    },
+    {
+     "hu": "Látom a buszt.",
+     "ua": "Я бачу автобус."
+    }
+   ]
+  },
+  "suf-plural": {
+   "text": [
+    "Множина: ház → házak, könyv → könyvek, autó → autók.",
+    "Після числівника й слів кількості іменник лишається в однині: két ház (два будинки), sok könyv (багато книжок), néhány autó (кілька машин).",
+    "Сполучна голосна та сама, що в знахідному: házak / házat, kertek / kertet."
+   ],
+   "examples": [
+    {
+     "hu": "A gyerekek a kertben játszanak.",
+     "ua": "Діти граються в саду."
+    },
+    {
+     "hu": "Két kávét kérek.",
+     "ua": "Дві кави, будь ласка."
+    }
+   ]
+  },
+  "suf-poss1": {
+   "text": [
+    "Мій: a házam (мій будинок), a könyvem (моя книжка), az autóm (моя машина).",
+    "Артикль лишається: a házam. Займенник az én — лише для наголосу: az én házam, nem a tiéd (мій будинок, а не твій).",
+    "Відмінковий суфікс іде після присвійного: a házamban (у моєму будинку)."
+   ],
+   "examples": [
+    {
+     "hu": "Hol van a kulcsom?",
+     "ua": "Де мій ключ?"
+    },
+    {
+     "hu": "Ez a táskám.",
+     "ua": "Це моя сумка."
+    }
+   ]
+  },
+  "suf-poss2": {
+   "text": [
+    "Твій: a házad (твій будинок), a könyved, az autód.",
+    "Ввічливе «ваш» (Ön) — це форма 3-ї особи: az Ön háza (ваш будинок).",
+    "Сполучна голосна та сама, що в «мій»: házam / házad, könyvem / könyved."
+   ],
+   "examples": [
+    {
+     "hu": "Hol van a telefonod?",
+     "ua": "Де твій телефон?"
+    }
+   ]
+  },
+  "suf-poss3": {
+   "text": [
+    "Його, її (рід не розрізняється): a háza — його чи її будинок.",
+    "Також «чийсь»: Péter háza (будинок Петера), дослівно «Петер будинок-його». Власник може стояти й у давальному: Péternek a háza.",
+    "Після голосної завжди -ja/-je: autója, kávéja. Після приголосної буває -a/-e (háza, könyve) або -ja/-je (barátja, kertje); форму варто запамʼятати."
+   ],
+   "examples": [
+    {
+     "hu": "Péter autója piros.",
+     "ua": "Машина Петера червона."
+    },
+    {
+     "hu": "Anna könyve az asztalon van.",
+     "ua": "Книжка Анни на столі."
+    }
+   ]
+  },
+  "suf-multiplicative": {
+   "text": [
+    "Скільки разів?: háromszor (тричі), négyszer, ötször. Питання — hányszor?",
+    "З порівнянням — «у стільки разів»: kétszer nagyobb (удвічі більший).",
+    "Від порядкових — «уперше, удруге»: először (уперше), másodszor (удруге)."
+   ],
+   "examples": [
+    {
+     "hu": "Hetente háromszor edzek.",
+     "ua": "Я тренуюся тричі на тиждень."
+    },
+    {
+     "hu": "Először vagyok itt.",
+     "ua": "Я тут уперше."
+    }
+   ]
+  },
+  "suf-causal": {
+   "text": [
+    "По що йти: Elmegyek kenyérért (Піду по хліб).",
+    "Ціна, обмін: Ezer forintért vettem (Купив за тисячу форинтів).",
+    "Заради кого, за що: aggódik valakiért (хвилюватися за когось), harcol valamiért (боротися за щось), felelős valamiért (відповідати за щось).",
+    "Форма одна для всіх слів; кінцеве a/e подовжується: almáért."
+   ],
+   "examples": [
+    {
+     "hu": "Elmegyek kenyérért.",
+     "ua": "Піду по хліб."
+    },
+    {
+     "hu": "Aggódom érted.",
+     "ua": "Я за тебе хвилююся."
+    }
+   ]
+  },
+  "suf-terminative": {
+   "text": [
+    "Аж до — межа в просторі, часі, рахунку: a boltig (до магазину й не далі), ötig (до пʼятої), tízig számol (рахує до десяти).",
+    "У парі з -tól/-től: reggeltől estig (з ранку до вечора), Budapesttől Bécsig (від Будапешта до Відня).",
+    "Питання — meddig? (до коли? докуди?). Форма одна для всіх слів."
+   ],
+   "examples": [
+    {
+     "hu": "Ötig dolgozom.",
+     "ua": "Я працюю до пʼятої."
+    },
+    {
+     "hu": "Meddig maradsz?",
+     "ua": "Доки ти залишишся?"
+    }
+   ]
+  },
+  "suf-temporal": {
+   "text": [
+    "О котрій? коли? — момент часу: ötkor (о пʼятій), éjfélkor (опівночі), karácsonykor (на Різдво).",
+    "Лише моменти: години, свята, події. Дні тижня — з -on/-en (hétfőn), місяці й роки — з -ban/-ben (januárban, 2020-ban).",
+    "Форма одна; кінцеве a/e не подовжується: hány órakor? (о котрій годині?)."
+   ],
+   "examples": [
+    {
+     "hu": "Hány órakor kezdődik?",
+     "ua": "О котрій починається?"
+    },
+    {
+     "hu": "Hétkor találkozunk.",
+     "ua": "Зустрінемося о сьомій."
+    }
+   ]
+  },
+  "suf-instrumental": {
+   "text": [
+    "Чим? — засіб: busszal (автобусом), tollal ír (пише ручкою).",
+    "З ким? — разом із: a barátommal (з другом).",
+    "v уподібнюється до кінцевого приголосного: busz + val → busszal, kés + vel → késsel; після голосної лишається: autóval.",
+    "Дієслова: találkozik valakivel (зустрічатися з кимось), beszél valakivel (говорити з кимось; порівняй beszél valamiről — «про щось»)."
+   ],
+   "examples": [
+    {
+     "hu": "Busszal megyek.",
+     "ua": "Я їду автобусом."
+    },
+    {
+     "hu": "Beszéltem a főnökkel.",
+     "ua": "Я поговорив з начальником."
+    }
+   ]
+  },
+  "suf-language": {
+   "text": [
+    "Якою мовою: magyarul (угорською), angolul (англійською), németül (німецькою). Питання — hogyan? або milyen nyelven?",
+    "Той самий суфікс є в кількох прислівниках способу: rosszul (погано), egyedül (сам, на самоті)."
+   ],
+   "examples": [
+    {
+     "hu": "Beszélsz magyarul?",
+     "ua": "Ти говориш угорською?"
+    },
+    {
+     "hu": "Egy kicsit beszélek németül.",
+     "ua": "Я трохи говорю німецькою."
+    }
+   ]
+  },
+  "suf-essive-formal": {
+   "text": [
+    "Як, у ролі: tanárként dolgozik (працює вчителем), példaként (як приклад).",
+    "Не плутай з -nak/-nek: orvosnak tanul — вчиться, щоб стати лікарем; orvosként dolgozik — уже працює лікарем."
+   ],
+   "examples": [
+    {
+     "hu": "Tolmácsként dolgozom.",
+     "ua": "Я працюю перекладачем."
+    }
+   ]
+  },
+  "suf-adjectival-i": {
+   "text": [
+    "Робить прикметник «що стосується …»: gyár → gyári (заводський), nap → napi (денний), Budapest → budapesti (будапештський).",
+    "Від прислівників часу: ma → mai (сьогоднішній), tegnap → tegnapi (вчорашній)."
+   ],
+   "examples": [
+    {
+     "hu": "a mai újság",
+     "ua": "сьогоднішня газета"
+    },
+    {
+     "hu": "Kijevi vagyok.",
+     "ua": "Я з Києва."
+    }
+   ]
+  },
+  "suf-distributive": {
+   "text": [
+    "По кожному, на кожну одиницю: óránként (щогодини), darabonként (поштучно), személyenként (з людини)."
+   ],
+   "examples": [
+    {
+     "hu": "Óránként indul egy busz.",
+     "ua": "Щогодини відправляється автобус."
+    },
+    {
+     "hu": "Ezer forint személyenként.",
+     "ua": "Тисяча форинтів з людини."
+    }
+   ]
+  },
+  "suf-adjectival-s": {
+   "text": [
+    "Прикметник «що має щось, з чимось»: kert → kertes ház (будинок із садом), cukor → cukros (з цукром), só → sós (солоний).",
+    "Протилежне — -tlan/-tlen «без»: sós ↔ sótlan (несолоний)."
+   ],
+   "examples": [
+    {
+     "hu": "Kertes házban lakunk.",
+     "ua": "Ми живемо в будинку з садом."
+    }
+   ]
+  },
+  "suf-comparative": {
+   "text": [
+    "Порівняльний ступінь: olcsó → olcsóbb (дешевший), nagy → nagyobb (більший).",
+    "«Ніж» — mint або -nál/-nél: olcsóbb, mint a busz = olcsóbb a busznál.",
+    "Найвищий: leg- + -bb: legolcsóbb (найдешевший). Винятки: jó → jobb (кращий), sok → több (більше)."
+   ],
+   "examples": [
+    {
+     "hu": "A vonat gyorsabb, mint a busz.",
+     "ua": "Потяг швидший за автобус."
+    }
+   ]
+  },
+  "suf-abstract": {
+   "text": [
+    "Іменник-якість від прикметника: szép → szépség (краса), tiszta → tisztaság (чистота).",
+    "Той самий суфікс на іменнику дає спільноту: polgár → polgárság (громадяни)."
+   ],
+   "examples": [
+    {
+     "hu": "A tisztaság fontos.",
+     "ua": "Чистота важлива."
+    }
+   ]
+  },
+  "suf-nominal": {
+   "text": [
+    "Дія як іменник: parkol → parkolás (паркування), tanul → tanulás (навчання).",
+    "Часто й результат дії: fizet → fizetés (оплата; і зарплата), jelent → jelentés (звіт)."
+   ],
+   "examples": [
+    {
+     "hu": "Itt tilos a parkolás.",
+     "ua": "Тут паркування заборонено."
+    }
+   ]
+  },
+  "suf-ordinal": {
+   "text": [
+    "Порядковий числівник: öt → ötödik (пʼятий), tíz → tizedik (десятий).",
+    "Винятки: első (перший), második (другий)."
+   ],
+   "examples": [
+    {
+     "hu": "A negyedik emeleten lakom.",
+     "ua": "Я живу на четвертому поверсі."
+    }
+   ]
+  },
+  "suf-privative": {
+   "text": [
+    "Прикметник «без»: hiba → hibátlan (без помилок), veszély → veszélytelen (безпечний).",
+    "Протилежне до -s «з чимось»: sós ↔ sótlan, cukros ↔ cukortalan.",
+    "Після голосної -tlan/-tlen (hibátlan), після приголосної -talan/-telen (cukortalan)."
+   ],
+   "examples": [
+    {
+     "hu": "A munka hibátlan.",
+     "ua": "Робота без помилок."
+    }
+   ]
+  },
+  "suf-adverbial": {
+   "text": [
+    "Як? — прислівник від прикметника: gyors → gyorsan (швидко), szép → szépen (гарно).",
+    "Винятки: jó → jól (добре), rossz → rosszul (погано), lassú → lassan (повільно)."
+   ],
+   "examples": [
+    {
+     "hu": "Szépen beszélsz magyarul.",
+     "ua": "Ти гарно говориш угорською."
+    }
+   ]
+  },
+  "suf-beli": {
+   "text": [
+    "Прикметник «з якогось місця, часу чи групи»: város → városbeli (міський), iskola → iskolabeli (шкільний).",
+    "Звучить книжно; у розмові частіше -i: városi, iskolai."
+   ],
+   "examples": [
+    {
+     "hu": "a városbeli rokonaim",
+     "ua": "мої родичі з міста"
+    }
+   ]
+  },
+  "suf-attributive": {
+   "text": [
+    "З якимось …: kék szemű (блакитноокий), hosszú hajú (довговолосий).",
+    "Завжди з означенням попереду: kék szemű, а не просто szemű.",
+    "Після голосної -jú/-jű: kerek formájú (круглої форми)."
+   ],
+   "examples": [
+    {
+     "hu": "Egy kék szemű lány.",
+     "ua": "Блакитноока дівчина."
+    }
+   ]
+  },
+  "suf-potential": {
+   "text": [
+    "Може, можна: parkol → parkolhat, megy → mehet.",
+    "Два значення: дозвіл — Bejöhetek? (Можна увійти?); можливість — Eshet (Може піти дощ). Уміння передає tudni: Tudok úszni (Я вмію плавати)."
+   ],
+   "examples": [
+    {
+     "hu": "Itt parkolhat.",
+     "ua": "Тут можна паркуватися."
+    },
+    {
+     "hu": "Bejöhetek?",
+     "ua": "Можна увійти?"
+    }
+   ]
+  },
+  "suf-sociative": {
+   "text": [
+    "Разом із чимось як одне ціле: családostul (усією сімʼєю), kutyástul (разом із собакою).",
+    "Утворюється від форми на -s: család → családos → családostul."
+   ],
+   "examples": [
+    {
+     "hu": "Családostul jöttek.",
+     "ua": "Вони прийшли всією сімʼєю."
+    }
+   ]
+  },
+  "suf-family": {
+   "text": [
+    "Родина чи компанія когось: szomszéd → szomszédék (сусіди з родиною), Kovács → Kovácsék (Ковачі).",
+    "Дієслово — у множині: Kovácsék elköltöztek (Ковачі переїхали)."
+   ],
+   "examples": [
+    {
+     "hu": "Szomszédéknál vacsorázunk.",
+     "ua": "Ми вечеряємо в сусідів."
+    }
+   ]
+  },
+  "suf-quantity": {
+   "text": [
+    "Міра, кількість «на одну …»: egy kanálnyi (з ложку), maroknyi (жменька), egy órányi út (година дороги)."
+   ],
+   "examples": [
+    {
+     "hu": "Egy kanálnyi cukrot kérek.",
+     "ua": "Мені ложку цукру."
+    }
+   ]
+  },
+  "suf-kind": {
+   "text": [
+    "Різновид: két → kétféle (двох видів), sok → sokféle (різноманітний), minden → mindenféle (усякий)."
+   ],
+   "examples": [
+    {
+     "hu": "Kétféle sajtot vettem.",
+     "ua": "Я купив два види сиру."
+    }
+   ]
+  },
+  "suf-potadj": {
+   "text": [
+    "Такий, що можна …: letölt → letölthető (який можна завантажити), enni → ehető (їстівний).",
+    "Будова: -hat/-het («можна») + -ó/-ő («той, що»)."
+   ],
+   "examples": [
+    {
+     "hu": "Az alkalmazás ingyen letölthető.",
+     "ua": "Застосунок можна завантажити безкоштовно."
+    }
+   ]
+  },
+  "suf-like": {
+   "text": [
+    "На кшталт, схожий на: gép → gépszerű (машиноподібний).",
+    "Сталі слова: korszerű (сучасний, «відповідний часові»), nagyszerű (чудовий), célszerű (доцільний)."
+   ],
+   "examples": [
+    {
+     "hu": "Ez nagyszerű ötlet!",
+     "ua": "Це чудова ідея!"
+    }
+   ]
+  },
+  "suf-capable": {
+   "text": [
+    "Здатний до: hitelképes (кредитоспроможний), versenyképes (конкурентоспроможний), munkaképes (працездатний)."
+   ],
+   "examples": [
+    {
+     "hu": "A cég versenyképes maradt.",
+     "ua": "Фірма лишилася конкурентоспроможною."
+    }
+   ]
+  },
+  "suf-free": {
+   "text": [
+    "Вільний від, без: cukormentes (без цукру), gluténmentes (без глютену), díjmentes (безкоштовний).",
+    "Порівняй з -tlan/-tlen: -mentes звучить офіційніше, як на етикетці: cukortalan / cukormentes."
+   ],
+   "examples": [
+    {
+     "hu": "Gluténmentes kenyeret kérek.",
+     "ua": "Мені безглютеновий хліб."
+    }
+   ]
+  },
+  "suf-respect": {
+   "text": [
+    "З погляду чогось, у якомусь плані: elméletileg (теоретично), gyakorlatilag (практично), szakmailag (професійно)."
+   ],
+   "examples": [
+    {
+     "hu": "Elméletileg igen, gyakorlatilag nem.",
+     "ua": "Теоретично так, практично ні."
+    }
+   ]
+  },
+  "suf-negpot": {
+   "text": [
+    "Такий, що не можна …: felejthetetlen (незабутній), elkerülhetetlen (неминучий).",
+    "Будова: -hat/-het («можна») + -atlan/-etlen («без»)."
+   ],
+   "examples": [
+    {
+     "hu": "Felejthetetlen élmény volt.",
+     "ua": "Це було незабутнє враження."
+    }
+   ]
+  },
+  "suf-gerundive": {
+   "text": [
+    "Такий, що його треба …: fizetendő (до сплати), beadandó (який треба подати), elkerülendő (чого слід уникати)."
+   ],
+   "examples": [
+    {
+     "hu": "Fizetendő összeg: ötezer forint.",
+     "ua": "Сума до сплати: пʼять тисяч форинтів."
+    }
+   ]
+  },
+  "suf-contra": {
+   "text": [
+    "Що суперечить чомусь, проти: szabályellenes (проти правил), törvényellenes (незаконний), háborúellenes (антивоєнний)."
+   ],
+   "examples": [
+    {
+     "hu": "Ez szabályellenes.",
+     "ua": "Це суперечить правилам."
+    }
+   ]
+  },
+  "suf-flavour": {
+   "text": [
+    "Зі смаком чогось: eper → eperízű (полуничний на смак), csokoládé → csokoládéízű.",
+    "Від íz (смак) + -ű «з якимось», як kék szemű."
+   ],
+   "examples": [
+    {
+     "hu": "Eperízű fagyit kérek.",
+     "ua": "Мені полуничне морозиво."
+    }
+   ]
+  },
+  "suf-prone": {
+   "text": [
+    "Схильний до дії, легко …: tanul → tanulékony (здібний до навчання), feled → feledékeny (забудькуватий), tör → törékeny (крихкий)."
+   ],
+   "examples": [
+    {
+     "hu": "Vigyázz, törékeny!",
+     "ua": "Обережно, крихке!"
+    }
+   ]
+  },
+  "suf-sick": {
+   "text": [
+    "Хворий на: szívbeteg (сердечник), cukorbeteg (діабетик). Від beteg (хворий), пишеться разом."
+   ],
+   "examples": [
+    {
+     "hu": "A nagyapám cukorbeteg.",
+     "ua": "Мій дідусь діабетик."
+    }
+   ]
+  },
+  "suf-line": {
+   "text": [
+    "Рейс, маршрут: buszjárat (автобусний рейс), repülőjárat (авіарейс), kompjárat (поромна переправа)."
+   ],
+   "examples": [
+    {
+     "hu": "Törölték a repülőjáratot.",
+     "ua": "Авіарейс скасували."
+    }
+   ]
+  },
+  "suf-friendly": {
+   "text": [
+    "Дружній до, зручний для: felhasználóbarát (зручний для користувача), környezetbarát (екологічний), családbarát (зручний для сімей)."
+   ],
+   "examples": [
+    {
+     "hu": "Ez a termék környezetbarát.",
+     "ua": "Цей продукт екологічний."
+    }
+   ]
+  },
+  "suf-collective": {
+   "text": [
+    "Спільнота або стан: polgár → polgárság (громадяни як спільнота), lakos → lakosság (населення), katona → katonaság (військо).",
+    "Той самий суфікс на прикметнику дає якість: szép → szépség (краса)."
+   ],
+   "examples": [
+    {
+     "hu": "A lakosság fele vidéken él.",
+     "ua": "Половина населення живе в провінції."
+    }
+   ]
+  },
+  "suf-rooms": {
+   "text": [
+    "Скількикімнатний: kétszobás lakás (двокімнатна квартира), háromszobás (трикімнатний)."
+   ],
+   "examples": [
+    {
+     "hu": "Kétszobás lakást keresek.",
+     "ua": "Шукаю двокімнатну квартиру."
+    }
+   ]
+  },
+  "suf-fold": {
+   "text": [
+    "-кратний, -разовий: kétszeres bajnok (дворазовий чемпіон), háromszoros (потрійний).",
+    "Від -szor/-szer «разів»: kétszer (двічі) → kétszeres (дворазовий)."
+   ],
+   "examples": [
+    {
+     "hu": "Kétszeres olimpiai bajnok.",
+     "ua": "Дворазовий олімпійський чемпіон."
+    }
+   ]
+  },
+  "suf-manner": {
+   "text": [
+    "Яким чином: másképp (інакше), mindenképp (обовʼязково, будь-що), semmiképp (у жодному разі)."
+   ],
+   "examples": [
+    {
+     "hu": "Mindenképp eljövök.",
+     "ua": "Я обовʼязково прийду."
+    }
+   ]
+  },
+  "suf-partpres": {
+   "text": [
+    "Той, що робить: olvas → olvasó (той, що читає; читач), tanul → tanuló (учень).",
+    "Багато таких слів стали іменниками: vásárló (покупець), dolgozó (працівник)."
+   ],
+   "examples": [
+    {
+     "hu": "a dohányzó utasok",
+     "ua": "пасажири, що курять"
+    }
+   ]
+  },
+  "suf-partpast": {
+   "text": [
+    "Зроблений: olvasott (прочитаний), írt (написаний), festett (пофарбований).",
+    "Форма збігається з минулим часом 3-ї особи: olvasott — і «він прочитав», і «прочитаний»."
+   ],
+   "examples": [
+    {
+     "hu": "a tegnap vett kenyér",
+     "ua": "хліб, куплений учора"
+    }
+   ]
+  },
+  "suf-advpart": {
+   "text": [
+    "Роблячи або в якому стані: ülve (сидячи), zárva (зачинено), nyitva (відчинено).",
+    "З van — стан після дії: Az ajtó be van zárva (Двері замкнені)."
+   ],
+   "examples": [
+    {
+     "hu": "A bolt vasárnap zárva van.",
+     "ua": "Магазин у неділю зачинений."
+    }
+   ]
+  },
+  "suf-causative": {
+   "text": [
+    "Змусити когось або замовити, щоб зробили: írat (доручає написати), megjavíttatja az autót (віддає машину в ремонт).",
+    "Хто виконує — з -val/-vel: Megjavíttatom a szerelővel (Віддам майстрові полагодити)."
+   ],
+   "examples": [
+    {
+     "hu": "Megjavíttattam a gépet.",
+     "ua": "Я віддав машину в ремонт."
+    }
+   ]
+  },
+  "suf-factitive": {
+   "text": [
+    "Робити якимось: szép → szépít (прикрашати), rövid → rövidít (скорочувати)."
+   ],
+   "examples": [
+    {
+     "hu": "Rövidítsd le a szöveget!",
+     "ua": "Скороти текст!"
+    }
+   ]
+  }
+ }
+}

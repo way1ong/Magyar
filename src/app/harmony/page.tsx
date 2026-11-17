@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { SuffixMore } from "@/components/SuffixMore";
 import { ResumeOffer } from "@/components/ResumeOffer";
 import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
@@ -208,6 +209,7 @@ export default function HarmonyPage() {
                 ти написав: <s>{typed}</s>
               </p>
             )}
+            <SuffixMore key={cardKey} pattern={pattern} />
           </>
         )}
       </div>

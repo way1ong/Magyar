@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { SuffixMore } from "@/components/SuffixMore";
 import { ResumeOffer } from "@/components/ResumeOffer";
 import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
@@ -222,6 +223,7 @@ export default function BuilderPage() {
               <b lang="hu">{task.stem.hu}</b> — {task.stem.ua} · <b lang="hu">{task.pattern.name}</b> — {patternShort(task.pattern, task.stem)}
             </p>
             {why && <p style={{ margin: "6px 0 0" }}>{why}</p>}
+            <SuffixMore key={dealKey} pattern={task.pattern} />
           </div>
         )}
       </div>
