@@ -236,5 +236,19 @@ for (const f of readdirSync(pdir).filter((x) => x.endsWith(".json")).sort()) {
   console.log(`✓ ${tag}: ${words} words, ${(t.items ?? []).length - words} phrases, ${(t.dialogues ?? []).length} dialogues, ${(t.texts ?? []).length} texts${checks ? `, ⚠ ${checks} to check` : ""}`);
 }
 
+// Suffix notes (content/suffix-notes.json, lib/suffixnotes.ts): every pattern has one, ids exist.
+{
+  const sn = JSON.parse(readFileSync(new URL("../content/suffix-notes.json", import.meta.url), "utf8"));
+  const pids = new Set(packs.flatMap(({ pack }) => (pack.patterns ?? []).map((p) => p.id)));
+  for (const [id, n] of Object.entries(sn.notes ?? {})) {
+    if (!pids.has(id)) err(`suffix-notes: unknown pattern ${id}`);
+    if (!Array.isArray(n.text) || !n.text.length || n.text.some((t) => typeof t !== "string" || !t)) err(`suffix-notes/${id}: text must be a list of lines`);
+    for (const e of n.examples ?? []) if (!e.hu || !e.ua) err(`suffix-notes/${id}: example needs hu and ua`);
+  }
+  for (const id of pids) if (!sn.notes?.[id]) warn(`suffix-notes: no note for ${id}`);
+  for (const f of sn.families ?? []) for (const r of f.rows) for (const [id] of r.cells) if (!pids.has(id)) err(`suffix-notes/${f.id}: unknown pattern ${id}`);
+  console.log(`✓ suffix-notes.json: ${Object.keys(sn.notes ?? {}).length} notes, ${(sn.families ?? []).length} family`);
+}
+
 if (warnings) console.warn(`${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);

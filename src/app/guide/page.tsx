@@ -5,6 +5,8 @@ import guide from "@content/guide.json";
 import { allPatterns, patternShort } from "@/lib/content";
 import { ConjTables, conjGuideText } from "@/components/ConjGuide";
 import { grammarSections } from "@/components/GrammarTables";
+import { SuffixNoteBody } from "@/components/SuffixMore";
+import { suffixNote } from "@/lib/suffixnotes";
 
 interface Example {
   hu: string;
@@ -42,7 +44,7 @@ export default function GuidePage() {
     hit(t.term, t.def, t.diff ?? "", ...t.examples.flatMap((e) => [e.hu, e.ua]))
   );
   const suffixes = allPatterns.filter((p) =>
-    hit(p.name, patternShort(p), p.meaning, ...p.examples.flatMap((e) => [e.result, e.ua]))
+    hit(p.name, patternShort(p), p.meaning, ...(suffixNote(p.id)?.text ?? []), ...p.examples.flatMap((e) => [e.result, e.ua]))
   );
   const tables = grammarSections().filter((t) => hit(t.title, t.text));
   const conjNotes = guide.conjugation.filter((c) => hit(c.title, c.text));
@@ -116,6 +118,9 @@ export default function GuidePage() {
             </span>
           </summary>
           <p>{p.meaning}</p>
+          <div className="why" style={{ marginBottom: 8 }}>
+            <SuffixNoteBody pattern={p} />
+          </div>
           <Examples items={p.examples.slice(0, 5).map((e) => ({ hu: e.result, ua: e.ua }))} />
         </details>
       ))}

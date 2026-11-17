@@ -19,7 +19,7 @@ const same = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLow
 
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 
-function tenseRule(item: Item, tense: Tense, def: boolean): string {
+function tenseRule(item: Item, tense: Tense, def: boolean): string | string[] {
   const f = (person: Person) => conjugate(item, { tense, def, person });
   const ex = tense === "imp" ? `${f("2sg")}, ${f("3sg")}` : `${f("1sg")}, ${f("3sg")}`;
   // The nine irregular verbs (enni, menni…) do not follow the rule except in the future and with -hat/-het.
@@ -32,7 +32,12 @@ function tenseRule(item: Item, tense: Tense, def: boolean): string {
     case "fut":
       return `Майбутній час: змінюється лише fog, а дієслово лишається в інфінітиві (${ex}).`;
     case "pot":
-      return `-hat/-het: основа + -hat/-het + закінчення теперішнього часу (${ex}). Значення: «можна», тобто дозвіл (Itt parkolhat: тут можна паркуватися), або «може, можуть», тобто можливість (Ezt félreérthetik: це можуть неправильно зрозуміти). Уміння передає tudni: Tudok úszni.`;
+      // Ukrainian «можу» covers permission, possibility and ability; -hat/-het is only the first two.
+      return [
+        `-hat/-het: основа + -hat/-het + закінчення теперішнього часу (${ex}).`,
+        "Українське «можу» має три значення, а -hat/-het передає два з них: дозвіл, «можна» (Kérhetek egy kávét? — Можна мені каву?), і можливість, «може статися» (Késhet a busz. — Автобус може запізнитися).",
+        "Третє значення, вміння («я вмію, я в змозі»), передає не -hat/-het, а tudni + інфінітив: Tudok úszni. — Я вмію плавати. Порівняй: Úszhatok? — Можна мені поплавати?",
+      ];
     case "imp":
       return `Наказовий спосіб: основа + -j- + закінчення (${ex}). Після s, sz, z, t приголосний зливається з -j- (olvass, nézz, fizess), а відокремлюваний префікс стає після дієслова (nézd meg).`;
     case "cond":
@@ -67,7 +72,7 @@ export function explainConj(item: Item, asked: Slot, opts: { correct: string; wr
   const { correct, wrong, synthetic } = opts;
   const tr = isTransitive(item);
   const shared = tr && conjugate(item, { ...asked, def: !asked.def }) === correct;
-  const why = [tenseRule(item, asked.tense, asked.def), defReason(item, asked.def, shared, synthetic, correct)];
+  const why = [tenseRule(item, asked.tense, asked.def), defReason(item, asked.def, shared, synthetic, correct)].flat();
   const whyNot: string[] = [];
   if (wrong && !same(wrong, correct)) {
     const ws = slotOfForm(item, wrong, asked);

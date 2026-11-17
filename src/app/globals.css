@@ -166,6 +166,13 @@ nav.tabs span { display: block; font-size: 20px; }
 .ctx .ctx-label { font-size: 13px; color: var(--muted); }
 .ctx .ctx-ua { font-size: 15px; color: var(--muted); }
 .alt-line { font-size: 15px; color: var(--muted); margin: 6px 0 0; }
+/* «Детальніше» about a suffix: the 3×3 table of place suffixes */
+.family-table { border-collapse: collapse; margin: 6px 0 8px; font-size: 15px; }
+.family-table caption { font-weight: 600; text-align: left; padding-bottom: 4px; }
+.family-table th, .family-table td { padding: 4px 8px; text-align: center; border: 1px solid var(--line); }
+.family-table th { font-weight: 600; color: var(--muted); font-size: 13px; }
+.family-table td.hit { background: color-mix(in srgb, var(--ok) 28%, var(--card)); font-weight: 700; }
+.why p { margin: 0 0 6px; }
 /* "Чому так?" under the conjugation table */
 .why { text-align: left; font-size: 15px; line-height: 1.45; margin: 10px 0 0; padding-left: 10px; border-left: 3px solid var(--line); }
 .why .why-h { margin: 8px 0 2px; font-weight: 600; }
