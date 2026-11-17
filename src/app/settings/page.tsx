@@ -5,6 +5,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db, exportProgress, importProgress } from "@/lib/db";
 import { backupToLaptop, IS_STATIC, NO_LAPTOP, lastBackup, markExported, shareProgress } from "@/lib/backup";
 import { allItems, allPatterns } from "@/lib/content";
+import { clearSeries } from "@/lib/resume";
 import { getGating, getTypingMode, GATING_LABELS, setGating, setTypingMode, TYPING_LABELS, type Gating, type TypingMode } from "@/lib/settings";
 
 export default function SettingsPage() {
@@ -80,8 +81,16 @@ export default function SettingsPage() {
   };
 
   // Two-step confirmation in the page itself (confirm() is blocked in some webviews).
+  // Erases the course only: its cards, review log, boss results and day plans. Personal
+  // topics (pcards/previews), the settings and the backup dates stay.
   const reset = async () => {
-    await db.delete();
+    await db.transaction("rw", db.cards, db.reviews, db.meta, async () => {
+      await db.cards.clear();
+      await db.reviews.clear();
+      await db.meta.where("k").startsWith("boss:").delete();
+      await db.meta.where("k").startsWith("day:").delete();
+    });
+    for (const page of ["review", "harmony", "builder", "conj", "sentence", "dialogue"]) clearSeries(page);
     location.reload();
   };
 
@@ -187,7 +196,9 @@ export default function SettingsPage() {
 
       {confirming ? (
         <div className="card">
-          <p style={{ marginTop: 0 }}>Стерти всі картки й журнал повторень на цьому пристрої? Це не можна скасувати.</p>
+          <p style={{ marginTop: 0 }}>
+            Стерти прогрес курсу на цьому пристрої: картки, журнал повторень, результати босів і план дня? Персональні теми й налаштування залишаться. Це не можна скасувати.
+          </p>
           <div className="row">
             <button className="btn" onClick={() => setConfirming(false)}>Ні, залишити</button>
             <button className="btn" onClick={reset} style={{ background: "var(--bad)", borderColor: "var(--bad)", color: "#fff" }}>
@@ -197,7 +208,7 @@ export default function SettingsPage() {
         </div>
       ) : (
         <button className="btn ghost" onClick={() => setConfirming(true)} style={{ borderColor: "var(--bad)", color: "var(--bad)" }}>
-          Стерти прогрес
+          Стерти прогрес курсу
         </button>
       )}
     </>
