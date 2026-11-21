@@ -12,9 +12,15 @@ const FAST_MS = 25000;
 
 /** Scenario dialogues of a personal topic: comprehension question or a missing line; translations after the answer. */
 export default function PersonalDialoguesPage() {
-  const [topic] = useState<PTopic | undefined>(() => (typeof window === "undefined" ? undefined : currentTopic()));
+  // Read on the client after mounting, so the prerendered page and the first client render match.
+  const [topic, setTopic] = useState<PTopic | null | undefined>(undefined);
   // The saved series belongs to this topic (and level): another topic starts its own.
-  const [series] = useState(() => (topic ? `pdialogues:${topic.id}` : null));
+  const [series, setSeries] = useState<string | null>(null);
+  useEffect(() => {
+    const t = currentTopic() ?? null;
+    setTopic(t);
+    setSeries(t ? `pdialogues:${t.id}` : null);
+  }, []);
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
@@ -57,6 +63,7 @@ export default function PersonalDialoguesPage() {
     shownAt.current = Date.now();
   }, [cardKey]);
 
+  if (topic === undefined) return <p className="muted">Завантажую…</p>;
   if (!topic) return <p className="muted">Тему не вибрано.</p>;
   if (offer) {
     return (

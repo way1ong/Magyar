@@ -11,9 +11,15 @@ import { db, type PCardRow } from "@/lib/db";
 
 /** Flashcards of a personal topic: HU→UA and UA→HU of one level, shuffled together. */
 export default function PersonalCardsPage() {
-  const [topic] = useState<PTopic | undefined>(() => (typeof window === "undefined" ? undefined : currentTopic()));
+  // Read on the client after mounting, so the prerendered page and the first client render match.
+  const [topic, setTopic] = useState<PTopic | null | undefined>(undefined);
   // The saved series belongs to this topic (and level): another topic starts its own.
-  const [series] = useState(() => (topic ? `pcards:${topic.id}:${takeLevel()}` : null));
+  const [series, setSeries] = useState<string | null>(null);
+  useEffect(() => {
+    const t = currentTopic() ?? null;
+    setTopic(t);
+    setSeries(t ? `pcards:${t.id}:${takeLevel()}` : null);
+  }, []);
   const [level, setLevelState] = useState<1 | 2>(1);
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
@@ -47,6 +53,7 @@ export default function PersonalCardsPage() {
   const [offer, setOffer] = useResumeOffer(series, () => pMistakesRequested("cards"), load);
   useRememberSeries(series, queue, i, false, done, mistakes);
 
+  if (topic === undefined) return <p className="muted">Завантажую…</p>;
   if (!topic) return <p className="muted">Тему не вибрано.</p>;
   const row = queue?.[i];
   const item = row ? pItemById(row.itemId) : undefined;
