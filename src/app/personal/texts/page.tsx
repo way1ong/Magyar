@@ -14,9 +14,15 @@ import { db, type PCardRow } from "@/lib/db";
  * miss → Hard, more → Again.
  */
 export default function PersonalTextsPage() {
-  const [topic] = useState<PTopic | undefined>(() => (typeof window === "undefined" ? undefined : currentTopic()));
+  // Read on the client after mounting, so the prerendered page and the first client render match.
+  const [topic, setTopic] = useState<PTopic | null | undefined>(undefined);
   // The saved series belongs to this topic (and level): another topic starts its own.
-  const [series] = useState(() => (topic ? `ptexts:${topic.id}` : null));
+  const [series, setSeries] = useState<string | null>(null);
+  useEffect(() => {
+    const t = currentTopic() ?? null;
+    setTopic(t);
+    setSeries(t ? `ptexts:${t.id}` : null);
+  }, []);
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
   const [showUa, setShowUa] = useState(false);
@@ -59,6 +65,7 @@ export default function PersonalTextsPage() {
   // Options are shuffled once per showing so the right one is not always first.
   const shuffled = useMemo(() => (text ? text.questions.map((q) => shuffle(q.options)) : []), [text]);
 
+  if (topic === undefined) return <p className="muted">Завантажую…</p>;
   if (!topic) return <p className="muted">Тему не вибрано.</p>;
   if (offer) {
     return (

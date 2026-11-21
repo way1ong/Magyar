@@ -12,9 +12,15 @@ const FAST_MS = 15000;
 
 /** Word-order drill on the topic's example sentences and phrases (tiles only). */
 export default function PersonalSentencesPage() {
-  const [topic] = useState<PTopic | undefined>(() => (typeof window === "undefined" ? undefined : currentTopic()));
+  // Read on the client after mounting, so the prerendered page and the first client render match.
+  const [topic, setTopic] = useState<PTopic | null | undefined>(undefined);
   // The saved series belongs to this topic (and level): another topic starts its own.
-  const [series] = useState(() => (topic ? `psentences:${topic.id}` : null));
+  const [series, setSeries] = useState<string | null>(null);
+  useEffect(() => {
+    const t = currentTopic() ?? null;
+    setTopic(t);
+    setSeries(t ? `psentences:${t.id}` : null);
+  }, []);
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
   const [placedFor, setPlacedFor] = useState<{ key: string; idx: number[] }>({ key: "", idx: [] });
@@ -68,6 +74,7 @@ export default function PersonalSentencesPage() {
   const placed = placedFor.key === cardKey ? placedFor.idx : [];
   const setPlaced = (idx: number[]) => setPlacedFor({ key: cardKey, idx });
 
+  if (topic === undefined) return <p className="muted">Завантажую…</p>;
   if (!topic) return <p className="muted">Тему не вибрано.</p>;
   if (offer) {
     return (
