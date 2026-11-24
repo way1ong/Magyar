@@ -19,7 +19,8 @@ import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 import { HuInput } from "@/components/HuInput";
 
-const FAST_MS = 4000;
+/** Easy when answered this fast, counted from the card showing (think, open the options, pick). */
+const FAST_MS = 8000;
 const FAST_TYPED_MS = 10000;
 
 type Outcome = Verdict | "revealed";
@@ -55,6 +56,8 @@ export default function ConjPage() {
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   // "Чому так?" — the explanation is hidden until asked for.
   const [why, setWhy] = useState(false);
+  // The options stay hidden until asked for: recall the form first, then check it among the options.
+  const [optionsShown, setOptionsShown] = useState(false);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
@@ -105,6 +108,7 @@ export default function ConjPage() {
     setTyped("");
     setOutcome(null);
     setWhy(false);
+    setOptionsShown(false);
     shownAt.current = Date.now();
   }, [cardKey]);
 
@@ -317,6 +321,16 @@ export default function ConjPage() {
               Далі
             </button>
           )}
+          {!optionsShown && !picked ? (
+            <>
+              <p className="muted" style={{ textAlign: "center", fontSize: 14, margin: "0 0 8px" }}>
+                Спершу згадай форму сам, потім відкрий варіанти.
+              </p>
+              <button className="btn primary" onClick={() => setOptionsShown(true)}>
+                Показати варіанти
+              </button>
+            </>
+          ) : (
           <div className="choices" style={{ gridTemplateColumns: "1fr 1fr" }}>
             {options.map((v) => {
               let cls = "btn";
@@ -331,6 +345,7 @@ export default function ConjPage() {
               );
             })}
           </div>
+          )}
         </>
       )}
     </>
