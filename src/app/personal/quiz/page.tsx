@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PersonalDone } from "@/components/PersonalDone";
+import { RevealOptions } from "@/components/RevealOptions";
 import { CtxLine } from "@/components/CtxLine";
 import { ResumeOffer } from "@/components/ResumeOffer";
 import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
@@ -9,7 +10,7 @@ import { Rating, type Grade } from "@/lib/scheduler";
 import { queueWrite } from "@/lib/writes";
 import { db, type PCardRow } from "@/lib/db";
 
-const FAST_MS = 6000;
+const FAST_MS = 9000;
 
 /** Quiz of a personal topic: a word, four options (HU→UA or UA→HU at random). Right → Good (fast → Easy), wrong → Again. */
 export default function PersonalQuizPage() {
@@ -26,6 +27,8 @@ export default function PersonalQuizPage() {
   const [queue, setQueue] = useState<PCardRow[] | null>(null);
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
+  // Options hidden until asked for: answer in your head first.
+  const [optionsShown, setOptionsShown] = useState(false);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const [mistakes, setMistakes] = useState(false);
   const [locked, setLocked] = useState(false);
@@ -60,6 +63,7 @@ export default function PersonalQuizPage() {
 
   useEffect(() => {
     setPicked(null);
+    setOptionsShown(false);
     shownAt.current = Date.now();
   }, [cardKey]);
 
@@ -128,20 +132,22 @@ export default function PersonalQuizPage() {
         )}
       </div>
 
-      <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
-        {deal.options.map((v) => {
-          let cls = "btn";
-          if (done) {
-            if (v === deal.answer) cls += " right";
-            else if (v === picked) cls += " wrong";
-          }
-          return (
-            <button key={v} className={cls} lang={deal.dir === "hu" ? "uk" : "hu"} onClick={() => pick(v)} disabled={done} style={{ textAlign: "left", minHeight: 52, fontSize: 18, fontWeight: 500 }}>
-              {v}
-            </button>
-          );
-        })}
-      </div>
+      <RevealOptions shown={optionsShown || done} onShow={() => setOptionsShown(true)}>
+        <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
+          {deal.options.map((v) => {
+            let cls = "btn";
+            if (done) {
+              if (v === deal.answer) cls += " right";
+              else if (v === picked) cls += " wrong";
+            }
+            return (
+              <button key={v} className={cls} lang={deal.dir === "hu" ? "uk" : "hu"} onClick={() => pick(v)} disabled={done} style={{ textAlign: "left", minHeight: 52, fontSize: 18, fontWeight: 500 }}>
+                {v}
+              </button>
+            );
+          })}
+        </div>
+      </RevealOptions>
       {done && (
         <button className="btn primary" onClick={() => setI((n) => n + 1)} style={{ marginTop: 12 }} ref={(el) => el?.scrollIntoView({ block: "nearest" })}>
           Далі

@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { RevealOptions } from "@/components/RevealOptions";
 import { ResumeOffer } from "@/components/ResumeOffer";
 import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
@@ -19,7 +20,8 @@ import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 import { HuInput } from "@/components/HuInput";
 
-const FAST_MS = 4000;
+/** Easy when answered this fast, counted from the card showing (think, open the options, pick). */
+const FAST_MS = 8000;
 const FAST_TYPED_MS = 10000;
 
 type Outcome = Verdict | "revealed";
@@ -55,6 +57,8 @@ export default function ConjPage() {
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   // "Чому так?" — the explanation is hidden until asked for.
   const [why, setWhy] = useState(false);
+  // The options stay hidden until asked for: recall the form first, then check it among the options.
+  const [optionsShown, setOptionsShown] = useState(false);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
@@ -105,6 +109,7 @@ export default function ConjPage() {
     setTyped("");
     setOutcome(null);
     setWhy(false);
+    setOptionsShown(false);
     shownAt.current = Date.now();
   }, [cardKey]);
 
@@ -317,20 +322,22 @@ export default function ConjPage() {
               Далі
             </button>
           )}
-          <div className="choices" style={{ gridTemplateColumns: "1fr 1fr" }}>
-            {options.map((v) => {
-              let cls = "btn";
-              if (picked) {
-                if (v === correct) cls += " right";
-                else if (v === picked) cls += " wrong";
-              }
-              return (
-                <button key={v} className={cls} lang="hu" onClick={() => pick(v)} disabled={!!picked}>
-                  {v}
-                </button>
-              );
-            })}
-          </div>
+          <RevealOptions shown={optionsShown || !!picked} onShow={() => setOptionsShown(true)} hint="Спершу згадай форму сам, потім відкрий варіанти.">
+            <div className="choices" style={{ gridTemplateColumns: "1fr 1fr" }}>
+              {options.map((v) => {
+                let cls = "btn";
+                if (picked) {
+                  if (v === correct) cls += " right";
+                  else if (v === picked) cls += " wrong";
+                }
+                return (
+                  <button key={v} className={cls} lang="hu" onClick={() => pick(v)} disabled={!!picked}>
+                    {v}
+                  </button>
+                );
+              })}
+            </div>
+          </RevealOptions>
         </>
       )}
     </>

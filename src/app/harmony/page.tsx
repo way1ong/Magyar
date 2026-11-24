@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { RevealOptions } from "@/components/RevealOptions";
 import { SuffixMore } from "@/components/SuffixMore";
 import { ResumeOffer } from "@/components/ResumeOffer";
 import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
@@ -48,6 +49,8 @@ export default function HarmonyPage() {
   const [picked, setPicked] = useState<string | null>(null);
   const [typed, setTyped] = useState("");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
+  // Options hidden until asked for: pick the suffix in your head first.
+  const [optionsShown, setOptionsShown] = useState(false);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const [mistakes, setMistakes] = useState(false);
   const shownAt = useRef(Date.now());
@@ -83,6 +86,7 @@ export default function HarmonyPage() {
     setPicked(null);
     setTyped("");
     setOutcome(null);
+    setOptionsShown(false);
     shownAt.current = Date.now();
   }, [task]);
 
@@ -135,7 +139,7 @@ export default function HarmonyPage() {
     const took = Date.now() - shownAt.current;
     const right = v === correct;
     setScore((s) => ({ right: s.right + (right ? 1 : 0), total: s.total + 1 }));
-    queueWrite(() => answer(row, right ? (took < 2500 ? Rating.Easy : Rating.Good) : Rating.Again, took));
+    queueWrite(() => answer(row, right ? (took < 5000 ? Rating.Easy : Rating.Good) : Rating.Again, took));
     if (right) speak(result);
   };
 
@@ -248,20 +252,22 @@ export default function HarmonyPage() {
               Далі
             </button>
           )}
-          <div className="choices" style={{ gridTemplateColumns: `repeat(${Math.min(options.length, 3)}, 1fr)` }}>
-            {options.map((v) => {
-              let cls = "btn";
-              if (picked) {
-                if (v === correct) cls += " right";
-                else if (v === picked) cls += " wrong";
-              }
-              return (
-                <button key={v} className={cls} onClick={() => pick(v)} disabled={!!picked}>
-                  -{v}
-                </button>
-              );
-            })}
-          </div>
+          <RevealOptions shown={optionsShown || !!picked} onShow={() => setOptionsShown(true)} hint="Спершу вибери суфікс подумки, потім відкрий варіанти.">
+            <div className="choices" style={{ gridTemplateColumns: `repeat(${Math.min(options.length, 3)}, 1fr)` }}>
+              {options.map((v) => {
+                let cls = "btn";
+                if (picked) {
+                  if (v === correct) cls += " right";
+                  else if (v === picked) cls += " wrong";
+                }
+                return (
+                  <button key={v} className={cls} onClick={() => pick(v)} disabled={!!picked}>
+                    -{v}
+                  </button>
+                );
+              })}
+            </div>
+          </RevealOptions>
         </>
       )}
     </>
