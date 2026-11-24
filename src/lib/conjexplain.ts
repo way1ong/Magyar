@@ -16,6 +16,61 @@ export interface ConjExplanation {
 }
 
 const same = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
+const SIBILANTS = ["sz", "zs", "dz", "s", "z"];
+
+/**
+ * A form cut into its parts where the model makes that safe: -hat/-het
+ * (stem + hat/het + ending), the present (stem + ending) and the past
+ * (stem + t/tt/ott + ending) of regular verbs. Null where a cut would be a
+ * guess: irregular verbs, overridden forms, a j merged into a sibilant (olvassa).
+ */
+export function splitForm(item: Item, slot: Slot, form: string): { kind: "pot" | "pres" | "past"; parts: string[] } | null {
+  if (!form || form.includes(" ")) return null;
+  if (slot.tense === "pot") {
+    const pot = conjugate(item, { tense: "pot", def: false, person: "3sg" }); // the -hat/-het stem: szerethet, ehet
+    if (!pot || pot.length < 4 || !form.startsWith(pot)) return null;
+    return { kind: "pot", parts: [pot.slice(0, -3), pot.slice(-3), form.slice(pot.length)] };
+  }
+  const P = analyse(item);
+  if (P.irregular || item.conj?.forms) return null;
+  if (slot.tense === "pres") {
+    const s = [P.prefix + P.vstem, P.prefix + P.stem].sort((a, b) => b.length - a.length).find((x) => form.startsWith(x));
+    if (!s) return null;
+    const rest = form.slice(s.length);
+    const sib = SIBILANTS.find((c) => s.endsWith(c));
+    if (slot.def && sib && rest.startsWith(sib[sib.length - 1])) return null; // olvas + ja → olvassa
+    return { kind: "pres", parts: [s, rest] };
+  }
+  if (slot.tense === "past") {
+    for (const s of [P.prefix + P.pastStem, P.prefix + (item.conj?.pastStem ?? P.vstem)]) {
+      if (!form.startsWith(s)) continue;
+      const m = form.slice(s.length).match(/^([aeoö]?tt|t)(.*)$/);
+      if (m) return { kind: "past", parts: [s, m[1], m[2]] };
+    }
+  }
+  return null;
+}
+
+/** «Будова» line: the form's parts in words, a tt that is not the past marker, and a twin form of another person or tense. */
+function partsLine(item: Item, slot: Slot, form: string): string | null {
+  const sp = splitForm(item, slot, form);
+  if (!sp) return null;
+  const who = `«${PRONOUN[slot.person]}»`;
+  const conj = isTransitive(item) ? `${slot.def ? "означеної" : "неозначеної"} відміни ` : "";
+  const [a, b, c] = sp.parts;
+  let text: string;
+  if (sp.kind === "pot") text = `Будова: ${form} = ${a} + ${b}${c ? ` + ${c}` : ""} — основа, -${b} («може, можна») і ${c ? `закінчення ${conj}для ${who}` : `нульове закінчення, як ${who} у теперішньому`}.`;
+  else if (sp.kind === "pres") text = `Будова: ${form} = ${a}${b ? ` + ${b}` : ""} — основа${b ? ` і закінчення ${conj}для ${who}` : ` з нульовим закінченням (${who})`}.`;
+  else text = `Будова: ${form} = ${a} + ${b}${c ? ` + ${c}` : ""} — основа, -${b}- (знак минулого часу)${c ? ` і закінчення ${conj}для ${who}` : ""}.`;
+  // A tt that is not the past marker: the t of the stem or of -het meets the t of the ending.
+  const before = sp.kind === "pot" ? b : sp.kind === "pres" ? a : "";
+  const ending = sp.kind === "pot" ? c : sp.kind === "pres" ? b : "";
+  if (before.endsWith("t") && ending?.startsWith("t")) text += ` Подвійне tt тут — кінцеве t ${sp.kind === "pot" ? `від -${b}` : "основи"} плюс t закінчення, а не знак минулого часу.`;
+  // The same word as another slot: szerettek is «ti» now and «ők» in the past.
+  if (sp.kind === "pres" && slot.person !== "3pl" && conjugate(item, { tense: "past", def: slot.def, person: "3pl" }) === form) text += ` Та сама форма буває й минулим часом для «ők» («вони …» у минулому); що саме, видно з особи.`;
+  if (sp.kind === "pot" && slot.person === "2pl" && !slot.def && form.endsWith("hettek")) text += ` Та сама форма буває й минулим часом від -het для «ők» («вони могли …»); у тренажері минулого від -hat/-het нема, тож тут це «ti».`;
+  return text;
+}
 
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 
@@ -72,12 +127,17 @@ export function explainConj(item: Item, asked: Slot, opts: { correct: string; wr
   const { correct, wrong, synthetic } = opts;
   const tr = isTransitive(item);
   const shared = tr && conjugate(item, { ...asked, def: !asked.def }) === correct;
-  const why = [tenseRule(item, asked.tense, asked.def), defReason(item, asked.def, shared, synthetic, correct)].flat();
+  // Formation first, then the parts of this very form, the reason for the conjugation, and the rest of the rule.
+  const rule = [tenseRule(item, asked.tense, asked.def)].flat();
+  const parts = partsLine(item, asked, correct);
+  const why = [rule[0], ...(parts ? [parts] : []), defReason(item, asked.def, shared, synthetic, correct), ...rule.slice(1)];
   const whyNot: string[] = [];
   if (wrong && !same(wrong, correct)) {
     const ws = slotOfForm(item, wrong, asked);
     if (!ws) whyNot.push(`${wrong} — це не форма дієслова ${item.hu}.`);
     else {
+      const wp = partsLine(item, ws, wrong);
+      if (wp) whyNot.push(wp);
       if (ws.tense !== asked.tense) whyNot.push(`${wrong} — ${tenseLabel(ws.tense)}, а тут — ${tenseLabel(asked.tense)}.`);
       // When the asked form is the same in both conjugations, the conjugation is not what went wrong.
       if (ws.def !== asked.def && !shared)
