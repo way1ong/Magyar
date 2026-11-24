@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SessionDone } from "@/components/SessionDone";
+import { RevealOptions } from "@/components/RevealOptions";
 import { ResumeOffer } from "@/components/ResumeOffer";
 import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
@@ -33,6 +34,8 @@ export default function DialoguesPage() {
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
   const [showUa, setShowUa] = useState(false);
+  // Options hidden until asked for: answer in your head first.
+  const [optionsShown, setOptionsShown] = useState(false);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const [mistakeMode, setMistakeMode] = useState(false);
   const shownAt = useRef(Date.now());
@@ -66,6 +69,7 @@ export default function DialoguesPage() {
   useEffect(() => {
     setPicked(null);
     setShowUa(false);
+    setOptionsShown(false);
     shownAt.current = Date.now();
   }, [cardKey]);
 
@@ -142,20 +146,22 @@ export default function DialoguesPage() {
       <p style={{ margin: "14px 0 8px", fontSize: 18 }}>
         <b>{deal.prompt}</b>
       </p>
-      <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
-        {deal.options.map((v) => {
-          let cls = "btn";
-          if (done) {
-            if (v === deal.answer) cls += " right";
-            else if (v === picked) cls += " wrong";
-          }
-          return (
-            <button key={v} className={cls} lang={deal.kind === "gap" ? "hu" : undefined} onClick={() => pick(v)} disabled={done} style={{ textAlign: "left", minHeight: 48 }}>
-              {v}
-            </button>
-          );
-        })}
-      </div>
+      <RevealOptions shown={optionsShown || done} onShow={() => setOptionsShown(true)}>
+        <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
+          {deal.options.map((v) => {
+            let cls = "btn";
+            if (done) {
+              if (v === deal.answer) cls += " right";
+              else if (v === picked) cls += " wrong";
+            }
+            return (
+              <button key={v} className={cls} lang={deal.kind === "gap" ? "hu" : undefined} onClick={() => pick(v)} disabled={done} style={{ textAlign: "left", minHeight: 48 }}>
+                {v}
+              </button>
+            );
+          })}
+        </div>
+      </RevealOptions>
       {done && (
         <button className="btn primary" onClick={() => setI((n) => n + 1)} style={{ marginTop: 12 }} ref={(el) => el?.scrollIntoView({ block: "nearest" })}>
           Далі

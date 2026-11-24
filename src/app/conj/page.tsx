@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { SessionDone } from "@/components/SessionDone";
+import { RevealOptions } from "@/components/RevealOptions";
 import { ResumeOffer } from "@/components/ResumeOffer";
 import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { HELD_BACK_TEXT, heldBack } from "@/lib/readiness";
@@ -321,31 +322,22 @@ export default function ConjPage() {
               Далі
             </button>
           )}
-          {!optionsShown && !picked ? (
-            <>
-              <p className="muted" style={{ textAlign: "center", fontSize: 14, margin: "0 0 8px" }}>
-                Спершу згадай форму сам, потім відкрий варіанти.
-              </p>
-              <button className="btn primary" onClick={() => setOptionsShown(true)}>
-                Показати варіанти
-              </button>
-            </>
-          ) : (
-          <div className="choices" style={{ gridTemplateColumns: "1fr 1fr" }}>
-            {options.map((v) => {
-              let cls = "btn";
-              if (picked) {
-                if (v === correct) cls += " right";
-                else if (v === picked) cls += " wrong";
-              }
-              return (
-                <button key={v} className={cls} lang="hu" onClick={() => pick(v)} disabled={!!picked}>
-                  {v}
-                </button>
-              );
-            })}
-          </div>
-          )}
+          <RevealOptions shown={optionsShown || !!picked} onShow={() => setOptionsShown(true)} hint="Спершу згадай форму сам, потім відкрий варіанти.">
+            <div className="choices" style={{ gridTemplateColumns: "1fr 1fr" }}>
+              {options.map((v) => {
+                let cls = "btn";
+                if (picked) {
+                  if (v === correct) cls += " right";
+                  else if (v === picked) cls += " wrong";
+                }
+                return (
+                  <button key={v} className={cls} lang="hu" onClick={() => pick(v)} disabled={!!picked}>
+                    {v}
+                  </button>
+                );
+              })}
+            </div>
+          </RevealOptions>
         </>
       )}
     </>

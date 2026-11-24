@@ -7,6 +7,7 @@ import { BOSS_PASS, bossResults, packProgress, recordBoss, unlockedCount, type B
 import { seedCards } from "@/lib/seed";
 import { speak } from "@/lib/tts";
 import type { ContentPack } from "@/lib/types";
+import { RevealOptions } from "@/components/RevealOptions";
 
 const KIND_LABEL: Record<BossQuestion["kind"], string> = {
   recognize: "Що це означає?",
@@ -28,6 +29,8 @@ export default function BossPage() {
   const [qs, setQs] = useState<BossQuestion[]>([]);
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
+  // Options hidden until asked for, as in the drills.
+  const [optionsShown, setOptionsShown] = useState(false);
   const [right, setRight] = useState(0);
   const [started, setStarted] = useState(false);
   // Guards against a double tap on "Результат" while the result is being saved.
@@ -46,6 +49,7 @@ export default function BossPage() {
     setQs(bossQuestions(p));
     setI(0);
     setPicked(null);
+    setOptionsShown(false);
     setRight(0);
     setStarted(false);
     setFinishing(false);
@@ -88,6 +92,7 @@ export default function BossPage() {
       return;
     }
     setPicked(null);
+    setOptionsShown(false);
     setI((n) => n + 1);
   };
 
@@ -171,20 +176,22 @@ export default function BossPage() {
         {q.hint && <p className="ua" style={{ marginTop: 0, fontSize: 16 }}>{q.hint}</p>}
       </div>
 
-      <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
-        {q.options.map((v) => {
-          let cls = "btn";
-          if (picked) {
-            if (v === q.answer) cls += " right";
-            else if (v === picked) cls += " wrong";
-          }
-          return (
-            <button key={v} className={cls} lang={q.kind === "sentence" ? "hu" : undefined} onClick={() => pick(v)} disabled={!!picked} style={{ fontSize: q.kind === "sentence" || q.kind === "dialogue" ? 17 : 20, minHeight: 56, textAlign: q.kind === "sentence" || q.kind === "dialogue" ? "left" : undefined }}>
-              {v}
-            </button>
-          );
-        })}
-      </div>
+      <RevealOptions shown={optionsShown || !!picked} onShow={() => setOptionsShown(true)}>
+        <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
+          {q.options.map((v) => {
+            let cls = "btn";
+            if (picked) {
+              if (v === q.answer) cls += " right";
+              else if (v === picked) cls += " wrong";
+            }
+            return (
+              <button key={v} className={cls} lang={q.kind === "sentence" ? "hu" : undefined} onClick={() => pick(v)} disabled={!!picked} style={{ fontSize: q.kind === "sentence" || q.kind === "dialogue" ? 17 : 20, minHeight: 56, textAlign: q.kind === "sentence" || q.kind === "dialogue" ? "left" : undefined }}>
+                {v}
+              </button>
+            );
+          })}
+        </div>
+      </RevealOptions>
 
       {picked && (
         <button className="btn primary" onClick={next} disabled={finishing} style={{ marginTop: 12 }}>

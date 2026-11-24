@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PersonalDone } from "@/components/PersonalDone";
+import { RevealOptions } from "@/components/RevealOptions";
 import { ResumeOffer } from "@/components/ResumeOffer";
 import { clearSeries, isScore, restoreSeries, useRememberSeries, useResumeOffer, type SavedSeries } from "@/lib/resume";
 import { currentTopic, pAnswer, pMistakeCards, pSessionCards, pTextById, pMistakesRequested, seedPersonal, shuffle, takePMistakes, topicOf, type PTopic } from "@/lib/personal";
@@ -27,6 +28,8 @@ export default function PersonalTextsPage() {
   const [i, setI] = useState(0);
   const [showUa, setShowUa] = useState(false);
   const [answers, setAnswers] = useState<(string | null)[]>([]);
+  // Options of the current question hidden until asked for: how many questions have them open.
+  const [opened, setOpened] = useState(0);
   const [score, setScore] = useState({ right: 0, total: 0 });
   const [mistakeMode, setMistakeMode] = useState(false);
   const [locked, setLocked] = useState(false);
@@ -58,6 +61,7 @@ export default function PersonalTextsPage() {
   const cardKey = row ? `${i}:${row.key}` : "";
 
   useEffect(() => {
+    setOpened(0);
     setAnswers([]);
     setShowUa(false);
     shownAt.current = Date.now();
@@ -157,20 +161,22 @@ export default function PersonalTextsPage() {
                 {qi + 1}. {q.q}
               </b>
             </p>
-            <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
-              {(shuffled[qi] ?? q.options).map((v) => {
-                let cls = "btn";
-                if (a !== null) {
-                  if (v === right) cls += " right";
-                  else if (v === a) cls += " wrong";
-                }
-                return (
-                  <button key={v} className={cls} onClick={() => pick(qi, v)} disabled={a !== null} style={{ textAlign: "left", minHeight: 46, fontSize: 16, fontWeight: 500 }}>
-                    {v}
-                  </button>
-                );
-              })}
-            </div>
+            <RevealOptions shown={a !== null || opened > qi} onShow={() => setOpened(qi + 1)}>
+              <div className="choices" style={{ gridTemplateColumns: "1fr" }}>
+                {(shuffled[qi] ?? q.options).map((v) => {
+                  let cls = "btn";
+                  if (a !== null) {
+                    if (v === right) cls += " right";
+                    else if (v === a) cls += " wrong";
+                  }
+                  return (
+                    <button key={v} className={cls} onClick={() => pick(qi, v)} disabled={a !== null} style={{ textAlign: "left", minHeight: 46, fontSize: 16, fontWeight: 500 }}>
+                      {v}
+                    </button>
+                  );
+                })}
+              </div>
+            </RevealOptions>
           </div>
         );
       })}
